@@ -4,7 +4,6 @@ dist/
 *.tsbuildinfo
 test-results/
 playwright-report/
-scripts/pdf/node_modules/
 
 # Lokale Dateien
 .env
