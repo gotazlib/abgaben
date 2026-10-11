@@ -1,0 +1,37 @@
+.home-page__intro p {
+  color: var(--color-text-muted);
+}
+
+/* Mobile first: one column, the sections are stacked */
+.home-page__columns {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.home-page__card {
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+}
+
+.home-page__empty,
+.home-page__hint {
+  color: var(--color-text-muted);
+}
+
+.home-page__empty {
+  margin: 0;
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+/* From tablet width: name and "create" on the left, list on the right */
+@media (min-width: 768px) {
+  .home-page__columns {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: start;
+  }
+}

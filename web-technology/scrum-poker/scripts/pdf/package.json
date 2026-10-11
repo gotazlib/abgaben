@@ -1,0 +1,11 @@
+{
+  "name": "scrum-poker-pdf-tools",
+  "private": true,
+  "description": "Nur für scripts/build-pdf.sh: Markdown → HTML → PDF. Nicht Teil der App.",
+  "type": "module",
+  "dependencies": {
+    "marked": "18.1.0",
+    "mermaid": "12.1.0",
+    "playwright-core": "1.64.0"
+  }
+}

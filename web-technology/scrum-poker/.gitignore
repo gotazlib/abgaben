@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.tsbuildinfo
+test-results/
+playwright-report/
+
+# Abgabe-ZIP (scripts/make-submission.sh)
+/scrum-poker-abgabe.zip

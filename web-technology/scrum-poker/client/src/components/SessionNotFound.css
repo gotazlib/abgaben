@@ -1,0 +1,8 @@
+.session-not-found {
+  max-width: 32rem;
+  padding: var(--space-lg);
+  border-left: 6px solid var(--color-danger);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow);
+}

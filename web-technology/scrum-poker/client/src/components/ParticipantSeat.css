@@ -1,0 +1,115 @@
+/* Mobile: one row per person (card left, name right). Desktop: card above the name. */
+.seat {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-width: 0;
+  padding: var(--space-sm);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow);
+}
+
+.seat--own {
+  border-color: var(--color-primary);
+}
+
+.seat__card {
+  flex: 0 0 auto;
+  width: 2.25rem;
+  height: 3.25rem;
+  perspective: 600px;
+}
+
+.seat__empty {
+  width: 100%;
+  height: 100%;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+/* Flip card: both faces lie on top of each other, the front is turned away.
+   Revealing rotates the whole card by 180°, so the front comes into view. */
+.seat__flip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.seat__flip--revealed {
+  transform: rotateY(180deg);
+}
+
+.seat__face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  backface-visibility: hidden;
+}
+
+.seat__face--back {
+  border: 3px solid var(--color-surface);
+  background-color: var(--color-primary);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgb(255 255 255 / 0.18) 0 4px,
+    transparent 4px 8px
+  );
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+.seat__face--front {
+  transform: rotateY(180deg);
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.seat__name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+  min-width: 0;
+  font-weight: 600;
+  overflow-wrap: break-word;
+}
+
+.seat__badge {
+  padding: 0 var(--space-xs);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .seat {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .seat__card {
+    width: 2.75rem;
+    height: 4rem;
+  }
+
+  .seat__name {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seat__flip {
+    transition: none;
+  }
+}

@@ -1,0 +1,20 @@
+.create-session-button {
+  width: 100%;
+  margin-bottom: var(--space-md);
+  padding: var(--space-sm) var(--space-lg);
+  font-weight: 600;
+  color: var(--color-on-primary);
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.create-session-button:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
+
+.create-session-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

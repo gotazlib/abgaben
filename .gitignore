@@ -1,0 +1,14 @@
+# Abhängigkeiten und Build-Ausgaben (werden lokal erzeugt)
+node_modules/
+dist/
+*.tsbuildinfo
+test-results/
+playwright-report/
+scripts/pdf/node_modules/
+
+# Lokale Dateien
+.env
+.env.*
+.DS_Store
+.vscode/
+.idea/

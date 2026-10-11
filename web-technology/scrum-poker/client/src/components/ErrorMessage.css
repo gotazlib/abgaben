@@ -1,0 +1,30 @@
+.error-message {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-danger);
+  background-color: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-border);
+  border-radius: var(--radius-sm);
+}
+
+.error-message__text {
+  margin: 0;
+}
+
+.error-message__retry {
+  padding: var(--space-xs) var(--space-sm);
+  color: var(--color-danger);
+  background: none;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.error-message__retry:hover {
+  background-color: var(--color-surface);
+}
