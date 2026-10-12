@@ -19,6 +19,8 @@ Alles im Ordner [`abgabe/`](abgabe/):
 | --- | --- |
 | [DOKUMENTATION.html](abgabe/DOKUMENTATION.html) | Projektdokumentation, eigenständige HTML-Datei, offline lesbar ([im Browser ansehen](https://gotazlib.github.io/abgaben/web-technology/abgabe/DOKUMENTATION.html)) |
 | [DOKUMENTATION.pdf](abgabe/DOKUMENTATION.pdf) | Projektdokumentation als PDF |
+| [FACHGESPRAECH.html](abgabe/FACHGESPRAECH.html) | Leitfaden fürs Fachgespräch, eigenständige HTML-Datei ([im Browser ansehen](https://gotazlib.github.io/abgaben/web-technology/abgabe/FACHGESPRAECH.html)) |
+| [FACHGESPRAECH.pdf](abgabe/FACHGESPRAECH.pdf) | Leitfaden fürs Fachgespräch als PDF |
 | [scrum-poker-code.zip](abgabe/scrum-poker-code.zip) | Quellcode ohne `node_modules` |
 | [code/](abgabe/code/) | derselbe Quellcode zum Durchklicken, Start-Anleitung im [README](abgabe/code/README.md) |
 

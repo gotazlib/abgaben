@@ -6,6 +6,6 @@ Als Webseite: <https://gotazlib.github.io/abgaben/>
 
 | Fach | Abgabe |
 | --- | --- |
-| [Web Technology](web-technology/README.md) | Scrum Poker App: [Dokumentation (HTML)](https://gotazlib.github.io/abgaben/web-technology/abgabe/DOKUMENTATION.html) · [PDF](web-technology/abgabe/DOKUMENTATION.pdf) · [Code-ZIP](web-technology/abgabe/scrum-poker-code.zip) · [Code](web-technology/abgabe/code/) · [Live-App](https://scrumpoker.tasgor.ch) |
+| [Web Technology](web-technology/README.md) | Scrum Poker App: [Dokumentation (HTML)](https://gotazlib.github.io/abgaben/web-technology/abgabe/DOKUMENTATION.html) · [PDF](web-technology/abgabe/DOKUMENTATION.pdf) · [Leitfaden Fachgespräch](https://gotazlib.github.io/abgaben/web-technology/abgabe/FACHGESPRAECH.html) · [Code-ZIP](web-technology/abgabe/scrum-poker-code.zip) · [Code](web-technology/abgabe/code/) · [Live-App](https://scrumpoker.tasgor.ch) |
 | [Requirements Engineering](requirements-engineering/README.md) | Abgaben folgen. |
 | [Supply Chain Management](supply-chain-management/README.md) | Abgaben folgen. |
