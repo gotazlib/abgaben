@@ -15,6 +15,9 @@ sehen Durchschnitt und Konsens.
 > REST-API, Datenfluss, Fehlerzustände, Karteileichen-Strategie, Durchschnitt bei T-Shirt-Grössen,
 > Responsive Design, Tests, ausführliche Inbetriebnahme mit Troubleshooting und KI-Einsatz.
 
+> **Vorbereitung aufs Fachgespräch:** [docs/FACHGESPRAECH.md](docs/FACHGESPRAECH.md) (auch als PDF
+> und HTML) – Rundgang durch alle Dateien, Musterantworten, Demo-Drehbuch und Übungsaufgaben.
+
 ## Voraussetzungen
 
 - **Node.js ≥ 22.12** (aktuelle LTS-Version empfohlen). Vite 8 und Vitest 5 laufen nicht mehr auf
@@ -74,6 +77,7 @@ scrum-poker/
 ├── eslint.config.js        ESLint für alle Pakete (Vite-Setup + typescript-eslint, kein `any`)
 ├── playwright.config.ts    E2E-Tests: startet Server (Port 3101) und Client (Port 5273)
 ├── e2e/                    Playwright-Tests mit zwei Browsern
+├── docs/                   FACHGESPRAECH.md/.pdf/.html: Leitfaden fürs Fachgespräch
 ├── shared/                 @scrum-poker/shared
 │   └── src/
 │       ├── index.ts        Types (Session, Participant, Request/Response), DECKS, computeResult()
