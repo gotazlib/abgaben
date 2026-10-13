@@ -1,3 +1,6 @@
+// Tests für die REST-API: schicken echte HTTP-Requests an die App (mit supertest),
+// ohne dass ein Server-Port geöffnet wird.
+
 import request from 'supertest'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type {
@@ -10,7 +13,7 @@ import { app } from './app'
 import { PARTICIPANT_TIMEOUT_MS } from './config'
 import { clearSessions, removeInactiveParticipants } from './store'
 
-// Small helpers so that the tests read like the user flow
+// Kleine Hilfsfunktionen, damit sich die Tests wie der Ablauf in der App lesen
 
 async function createSession(): Promise<string> {
   const res = await request(app).post('/api/sessions').expect(201)
@@ -124,6 +127,7 @@ describe('participants', () => {
     ['a name that is too long', { name: 'x'.repeat(31) }],
     ['a missing name', {}],
     ['a name that is not a string', { name: 42 }],
+    ['a participantId that is not a string', { name: 'Anna', participantId: 42 }],
   ])('rejects %s with 400', async (_label, body) => {
     const id = await createSession()
     const res = await request(app).post(`/api/sessions/${id}/participants`).send(body).expect(400)
@@ -142,6 +146,49 @@ describe('participants', () => {
     await request(app).delete(`/api/sessions/${id}/participants/${participantId}`).expect(204)
     await request(app).delete(`/api/sessions/${id}/participants/${participantId}`).expect(204)
     expect((await getState(id)).participants).toEqual([])
+  })
+
+  it('continues as the same participant with a known participantId', async () => {
+    const id = await createSession()
+    const anna = await join(id, 'Anna')
+    await join(id, 'Ben') // hält die Runde offen
+    await vote(id, anna, '5').expect(200)
+
+    // Reload: Der Client schickt die gespeicherte ID mit
+    const res = await request(app)
+      .post(`/api/sessions/${id}/participants`)
+      .send({ name: 'Anna', participantId: anna })
+      .expect(200)
+    expect((res.body as JoinSessionResponse).participantId).toBe(anna)
+
+    // Kein zweiter Eintrag, die Stimme ist noch da
+    const state = await getState(id, anna)
+    expect(state.participants).toHaveLength(2)
+    expect(state.participants[0]).toMatchObject({ id: anna, hasVoted: true, vote: '5' })
+  })
+
+  it('joins anew with an unknown participantId', async () => {
+    const id = await createSession()
+
+    const res = await request(app)
+      .post(`/api/sessions/${id}/participants`)
+      .send({ name: 'Anna', participantId: 'gone' })
+      .expect(201)
+    const participantId = (res.body as JoinSessionResponse).participantId
+    expect(participantId).not.toBe('gone')
+    expect((await getState(id)).participants).toEqual([
+      { id: participantId, name: 'Anna', hasVoted: false, vote: null },
+    ])
+  })
+
+  it('still checks the name when continuing', async () => {
+    const id = await createSession()
+    const anna = await join(id, 'Anna')
+
+    await request(app)
+      .post(`/api/sessions/${id}/participants`)
+      .send({ name: '  ', participantId: anna })
+      .expect(400)
   })
 
   it('answers 200 for an unknown participantId when polling', async () => {
@@ -166,7 +213,7 @@ describe('voting', () => {
       { id: anna, name: 'Anna', hasVoted: true, vote: null },
       { id: ben, name: 'Ben', hasVoted: false, vote: null },
     ])
-    // The secret must not appear anywhere in the response
+    // Der geheime Wert darf nirgends in der Antwort stehen
     expect(JSON.stringify(state)).not.toContain('"5"')
     expect(JSON.stringify(await getState(id))).not.toContain('"5"')
 
@@ -181,12 +228,12 @@ describe('voting', () => {
     const id = await createSession()
     const anna = await join(id, 'Anna')
     const ben = await join(id, 'Ben')
-    await join(id, 'Cem') // keeps the round open, nobody reveals automatically
+    await join(id, 'Cem') // hält die Runde offen, nichts wird automatisch aufgedeckt
 
     await vote(id, anna, '5').expect(200)
     const res = await vote(id, ben, '8').expect(200)
 
-    // The response to Ben's vote contains his own vote, but not Anna's
+    // Die Antwort auf Bens Stimme enthält seine eigene Stimme, aber nicht die von Anna
     const afterVote = res.body as SessionState
     expect(afterVote.revealed).toBe(false)
     expect(afterVote.participants.map((participant) => participant.vote)).toEqual([
@@ -196,7 +243,7 @@ describe('voting', () => {
     ])
     expect(JSON.stringify(afterVote)).not.toContain('"5"')
 
-    // Polling as Anna shows only Anna's vote
+    // Anna sieht beim Polling nur ihre eigene Stimme
     const annaView = await getState(id, anna)
     expect(annaView.participants.map((participant) => participant.vote)).toEqual([
       '5',
@@ -205,7 +252,7 @@ describe('voting', () => {
     ])
     expect(JSON.stringify(annaView)).not.toContain('"8"')
 
-    // Without a participantId nothing is shown
+    // Ohne participantId wird keine Stimme gezeigt
     const anonymous = await getState(id)
     expect(anonymous.participants.map((participant) => participant.vote)).toEqual([
       null,
@@ -299,7 +346,7 @@ describe('deck', () => {
     expect(state.revealed).toBe(false)
     expect(state.participants.every((participant) => !participant.hasVoted)).toBe(true)
 
-    // Cards of the new deck are now valid
+    // Karten des neuen Decks sind jetzt gültig
     await vote(id, anna, 'XL').expect(200)
   })
 
@@ -313,7 +360,7 @@ describe('deck', () => {
     expect((res.body as SessionState).participants[0].hasVoted).toBe(true)
   })
 
-  it.each([[{ deck: 'poker' }], [{ deck: 'toString' }], [{}]])('rejects %j with 400', async (body) => {
+  it.each([[{ deck: 'poker' }], [{ deck: 'toString' }], [{ deck: 42 }], [{}]])('rejects %j with 400', async (body) => {
     const id = await createSession()
     await request(app).put(`/api/sessions/${id}/deck`).send(body).expect(400)
   })
@@ -332,11 +379,11 @@ describe('heartbeat timeout', () => {
     const anna = await join(id, 'Anna')
     await join(id, 'Ben')
 
-    // Anna keeps polling, Ben does not
+    // Anna pollt weiter, Ben nicht
     vi.advanceTimersByTime(PARTICIPANT_TIMEOUT_MS - 1_000)
     await getState(id, anna)
     vi.advanceTimersByTime(2_000)
-    removeInactiveParticipants(Date.now())
+    removeInactiveParticipants()
 
     const state = await getState(id)
     expect(state.participants.map((participant) => participant.name)).toEqual(['Anna'])
@@ -347,7 +394,7 @@ describe('heartbeat timeout', () => {
     await join(id, 'Anna')
 
     vi.advanceTimersByTime(PARTICIPANT_TIMEOUT_MS + 1)
-    removeInactiveParticipants(Date.now())
+    removeInactiveParticipants()
 
     expect((await getState(id)).participants).toEqual([])
   })

@@ -1,15 +1,17 @@
+// Tests für die Startseite: Name, Session erstellen, Liste mit Polling, Beitreten, Löschen.
+// Ein kleiner Fake-Server ersetzt fetch.
+
 import type { SessionSummary } from '@scrum-poker/shared'
 import { act, fireEvent, render, screen, within } from '@testing-library/react'
 import { MemoryRouter, Route, Routes, useParams } from 'react-router-dom'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { UserProvider } from '../context/UserContext'
-import { NAME_STORAGE_KEY } from '../context/UserContextValue'
+import { UserProvider } from '../UserContext'
 import HomePage from './HomePage'
 
 const olderSession: SessionSummary = { id: 'aaa111', participantCount: 1, createdAt: '2026-10-11T08:00:00.000Z' }
 const newerSession: SessionSummary = { id: 'bbb222', participantCount: 3, createdAt: '2026-10-11T09:00:00.000Z' }
 
-// A tiny fake of the REST API: answers like the real server and remembers deletions
+// Kleiner Fake der REST-API: antwortet wie der echte Server und merkt sich Löschungen
 function mockServer(initialSessions: SessionSummary[]) {
   let sessions = initialSessions
   const fetchMock = vi.fn((input: RequestInfo | URL, init?: RequestInit) => {
@@ -28,14 +30,14 @@ function mockServer(initialSessions: SessionSummary[]) {
   return fetchMock
 }
 
-// Stands in for the poker table, so we can see where the navigation went
+// Platzhalter für den Pokertisch, damit wir sehen, wohin navigiert wurde
 function SessionPageStub() {
   const { sessionId } = useParams()
   return <p>Pokertisch {sessionId}</p>
 }
 
 function renderHomePage() {
-  render(
+  return render(
     <UserProvider>
       <MemoryRouter initialEntries={['/']}>
         <Routes>
@@ -63,7 +65,7 @@ afterEach(() => {
 
 describe('HomePage: name', () => {
   it('fills in the name from localStorage', async () => {
-    localStorage.setItem(NAME_STORAGE_KEY, 'Anna')
+    localStorage.setItem('scrum-poker:name', 'Anna')
     mockServer([])
     renderHomePage()
 
@@ -78,7 +80,7 @@ describe('HomePage: name', () => {
 
     fireEvent.change(nameInput(), { target: { value: 'Ben' } })
 
-    expect(localStorage.getItem(NAME_STORAGE_KEY)).toBe('Ben')
+    expect(localStorage.getItem('scrum-poker:name')).toBe('Ben')
     await screen.findByText(/Noch keine offenen Sessions/)
   })
 
@@ -101,7 +103,7 @@ describe('HomePage: name', () => {
 
 describe('HomePage: create session', () => {
   it('creates a session and navigates to it', async () => {
-    localStorage.setItem(NAME_STORAGE_KEY, 'Anna')
+    localStorage.setItem('scrum-poker:name', 'Anna')
     const fetchMock = mockServer([])
     renderHomePage()
     await screen.findByText(/Noch keine offenen Sessions/)
@@ -114,7 +116,7 @@ describe('HomePage: create session', () => {
   })
 
   it('shows an error if the session cannot be created', async () => {
-    localStorage.setItem(NAME_STORAGE_KEY, 'Anna')
+    localStorage.setItem('scrum-poker:name', 'Anna')
     mockServer([])
     renderHomePage()
     await screen.findByText(/Noch keine offenen Sessions/)
@@ -165,7 +167,7 @@ describe('HomePage: session list', () => {
   })
 
   it('keeps showing the last list while the server is down', async () => {
-    // Fake only the interval, so that promises and findBy still work normally
+    // Nur das Intervall fälschen, damit Promises und findBy normal funktionieren
     vi.useFakeTimers({ toFake: ['setInterval', 'clearInterval'] })
     mockServer([olderSession])
     renderHomePage()
@@ -178,8 +180,24 @@ describe('HomePage: session list', () => {
     expect(screen.getByText('Session aaa111')).toBeInTheDocument()
   })
 
+  it('loads the list again every 3 seconds and stops polling after leaving the page', async () => {
+    vi.useFakeTimers({ toFake: ['setInterval', 'clearInterval'] })
+    const fetchMock = mockServer([olderSession])
+    const { unmount } = renderHomePage()
+    await screen.findByText('Session aaa111')
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+
+    await act(() => vi.advanceTimersByTimeAsync(3_000))
+    expect(fetchMock).toHaveBeenCalledTimes(2)
+
+    // Cleanup: Nach dem Unmount gehen keine Anfragen mehr raus
+    unmount()
+    await vi.advanceTimersByTimeAsync(9_000)
+    expect(fetchMock).toHaveBeenCalledTimes(2)
+  })
+
   it('navigates to the session when joining', async () => {
-    localStorage.setItem(NAME_STORAGE_KEY, 'Anna')
+    localStorage.setItem('scrum-poker:name', 'Anna')
     mockServer([olderSession])
     renderHomePage()
 
@@ -195,7 +213,7 @@ describe('HomePage: delete session', () => {
     const fetchMock = mockServer([olderSession, newerSession])
     renderHomePage()
 
-    // Newest first, so the first entry is bbb222
+    // Neueste zuerst, also ist der erste Eintrag bbb222
     const [item] = await screen.findAllByRole('listitem')
     fireEvent.click(within(item).getByRole('button', { name: 'Löschen' }))
 

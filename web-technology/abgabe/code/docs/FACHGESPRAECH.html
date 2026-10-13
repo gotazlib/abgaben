@@ -403,26 +403,59 @@ summary {
   }
 }
 </style></head>
-<body><nav class="toc" aria-label="Inhaltsverzeichnis"><details open=""><summary>Inhalt</summary><ul><li><a href="#teil-a--rundgang-durch-alle-dateien">Teil A – Rundgang durch alle Dateien</a><ul><li><a href="#a1-projektwurzel">A.1 Projektwurzel</a></li><li><a href="#a2-shared--der-gemeinsame-vertrag">A.2 shared/ – der gemeinsame Vertrag</a></li><li><a href="#a3-server--express-api">A.3 server/ – Express-API</a></li><li><a href="#a4-client--react-app">A.4 client/ – React-App</a></li></ul></li><li><a href="#teil-b--musterantworten-auf-die-typischen-fragen">Teil B – Musterantworten auf die typischen Fragen</a><ul><li><a href="#b1-zeigen-sie-komponente-x-welche-props-hat-sie-wer-rendert-sie">B.1 «Zeigen Sie Komponente X. Welche Props hat sie, wer rendert sie?»</a></li><li><a href="#b2-warum-liegt-dieser-state-hier">B.2 «Warum liegt dieser State hier?»</a></li><li><a href="#b3-welche-routen-gibt-es-wie-kommt-die-session-id-in-die-komponente">B.3 «Welche Routen gibt es, wie kommt die Session-ID in die Komponente?»</a></li><li><a href="#b4-verfolgen-sie-einen-klick-auf-eine-karte">B.4 «Verfolgen Sie einen Klick auf eine Karte.»</a></li><li><a href="#b5-welche-api-routen-gibt-es-welche-methode-warum">B.5 «Welche API-Routen gibt es, welche Methode, warum?»</a></li><li><a href="#b6-was-passiert-wenn-der-server-beim-polling-nicht-antwortet">B.6 «Was passiert, wenn der Server beim Polling nicht antwortet?»</a></li><li><a href="#b7-warum-ist-dieser-typ-so-definiert-was-ginge-ohne-ihn-schief">B.7 «Warum ist dieser Typ so definiert? Was ginge ohne ihn schief?»</a></li><li><a href="#b8-welches-problem-löst-context-wann-sind-props-besser">B.8 «Welches Problem löst Context? Wann sind Props besser?»</a></li><li><a href="#b9-warum-braucht-es-ein-cleanup-im-useeffect">B.9 «Warum braucht es ein Cleanup im useEffect?»</a></li><li><a href="#b10-was-macht-strictmode-mit-effects">B.10 «Was macht StrictMode mit Effects?»</a></li></ul></li><li><a href="#teil-c--weitere-wahrscheinliche-prüfungsfragen">Teil C – Weitere wahrscheinliche Prüfungsfragen</a></li><li><a href="#teil-d--demo-und-checkliste">Teil D – Demo und Checkliste</a><ul><li><a href="#d1-demo-drehbuch-max-3-minuten-zwei-browserfenster">D.1 Demo-Drehbuch (max. 3 Minuten, zwei Browserfenster)</a></li><li><a href="#d2-checkliste-für-den-tag">D.2 Checkliste für den Tag</a></li></ul></li><li><a href="#teil-e--übungsaufgaben-zum-selbsttest">Teil E – Übungsaufgaben zum Selbsttest</a></li></ul></details></nav>
+<body><nav class="toc" aria-label="Inhaltsverzeichnis"><details open=""><summary>Inhalt</summary><ul><li><a href="#aufteilung-für-die-gruppe">Aufteilung für die Gruppe</a></li><li><a href="#teil-a--rundgang-durch-alle-dateien">Teil A – Rundgang durch alle Dateien</a><ul><li><a href="#a0-das-wichtigste-in-fünf-sätzen">A.0 Das Wichtigste in fünf Sätzen</a></li><li><a href="#a1-projektwurzel">A.1 Projektwurzel</a></li><li><a href="#a2-shared--der-gemeinsame-vertrag">A.2 shared/ – der gemeinsame Vertrag</a></li><li><a href="#a3-server--express-api">A.3 server/ – Express-API</a></li><li><a href="#a4-client--react-app">A.4 client/ – React-App</a></li></ul></li><li><a href="#teil-b--musterantworten-auf-die-typischen-fragen">Teil B – Musterantworten auf die typischen Fragen</a><ul><li><a href="#b1-zeigen-sie-komponente-x-welche-props-hat-sie-wer-rendert-sie">B.1 «Zeigen Sie Komponente X. Welche Props hat sie, wer rendert sie?»</a></li><li><a href="#b2-warum-liegt-dieser-state-hier">B.2 «Warum liegt dieser State hier?»</a></li><li><a href="#b3-welche-routen-gibt-es-wie-kommt-die-session-id-in-die-komponente">B.3 «Welche Routen gibt es, wie kommt die Session-ID in die Komponente?»</a></li><li><a href="#b4-verfolgen-sie-einen-klick-auf-eine-karte">B.4 «Verfolgen Sie einen Klick auf eine Karte.»</a></li><li><a href="#b5-welche-api-routen-gibt-es-welche-methode-warum">B.5 «Welche API-Routen gibt es, welche Methode, warum?»</a></li><li><a href="#b6-was-passiert-wenn-der-server-beim-polling-nicht-antwortet">B.6 «Was passiert, wenn der Server beim Polling nicht antwortet?»</a></li><li><a href="#b7-warum-ist-dieser-typ-so-definiert-was-ginge-ohne-ihn-schief">B.7 «Warum ist dieser Typ so definiert? Was ginge ohne ihn schief?»</a></li><li><a href="#b8-welches-problem-löst-context-wann-sind-props-besser">B.8 «Welches Problem löst Context? Wann sind Props besser?»</a></li><li><a href="#b9-warum-braucht-es-ein-cleanup-im-useeffect">B.9 «Warum braucht es ein Cleanup im useEffect?»</a></li><li><a href="#b10-was-macht-strictmode-mit-effects">B.10 «Was macht StrictMode mit Effects?»</a></li><li><a href="#b11-was-passiert-bei-einem-reload-am-tisch">B.11 «Was passiert bei einem Reload am Tisch?»</a></li><li><a href="#b12-warum-habt-ihr-das-so-einfach-gelöst-kennt-ihr-keine-custom-hooks-oder-abortcontroller">B.12 «Warum habt ihr das so einfach gelöst? Kennt ihr keine Custom Hooks oder AbortController?»</a></li></ul></li><li><a href="#teil-c--fragenkatalog">Teil C – Fragenkatalog</a></li><li><a href="#teil-d--demo-und-checkliste">Teil D – Demo und Checkliste</a><ul><li><a href="#d1-demo-drehbuch-max-3-minuten-zwei-browserfenster">D.1 Demo-Drehbuch (max. 3 Minuten, zwei Browserfenster)</a></li><li><a href="#d2-checkliste-für-den-tag">D.2 Checkliste für den Tag</a></li></ul></li><li><a href="#teil-e--übungsaufgaben-zum-selbsttest">Teil E – Übungsaufgaben zum Selbsttest</a></li></ul></details></nav>
 <main id="content">
 <h1 id="scrum-poker--leitfaden-fürs-fachgespräch">Scrum Poker – Leitfaden fürs Fachgespräch</h1>
 <p>Im Fachgespräch wird <strong>jedes Gruppenmitglied einzeln</strong> zu beliebigen Stellen im Code befragt. Wer
-nichts erklären kann, bekommt die Note 1.0 – unabhängig davon, wie gut die App ist. Weil die App
-grösstenteils mit KI erstellt wurde (siehe Dokumentation, Kapitel 15 «KI-Einsatz»),
-müsst ihr den Code jetzt so gut kennen, als hättet ihr ihn selbst geschrieben.</p>
+nichts erklären kann, bekommt die Note 1.0, egal wie gut die App ist. Die App wurde grösstenteils
+mit KI erstellt (Dokumentation, Kapitel 15 «KI-Einsatz») und danach auf Wunsch der Gruppe
+<strong>vereinfacht</strong>: Sie benutzt nur Kursstoff, jede Datei beginnt mit einem deutschen Kommentar, und
+fast jede Funktion ist kurz genug, um sie in einer Minute zu erklären. Ihr müsst den Code jetzt so
+gut kennen, als hättet ihr ihn selbst geschrieben. Dieser Leitfaden zeigt, wie.</p>
 <p><strong>So arbeitet ihr mit diesem Leitfaden</strong></p>
 <ol>
-<li>Teil A (Rundgang) mit dem Code daneben lesen. Jede Datei öffnen und die genannten Zeilen
-ansehen.</li>
-<li>Teil B (Musterantworten) laut üben, <strong>in eigenen Worten</strong>, ohne abzulesen. Eine Person fragt,
+<li><strong>Teil A (Rundgang)</strong> mit dem Code daneben lesen. Jede Datei öffnen und die genannten Zeilen
+ansehen. Zuerst den eigenen Bereich (siehe «Aufteilung für die Gruppe»), dann alles andere.</li>
+<li><strong>Teil B (Musterantworten)</strong> laut üben, <strong>in eigenen Worten</strong>, ohne abzulesen. Eine Person fragt,
 die andere zeigt die Stelle im Code und erklärt.</li>
-<li>Teil C (weitere Fragen) als Quiz verwenden.</li>
-<li>Teil E (Übungsaufgaben) wirklich durchführen: Code ändern, beobachten, mit <code>git checkout .</code>
-zurücksetzen. Wer etwas selbst kaputt gemacht und repariert hat, kann es erklären.</li>
-<li>Teil D (Demo und Checkliste) am Vortag einmal komplett durchspielen.</li>
+<li><strong>Teil C (Fragenkatalog)</strong> als Quiz verwenden.</li>
+<li><strong>Teil E (Übungen)</strong> wirklich durchführen: Code ändern, beobachten, zurücksetzen. Wer etwas
+selbst kaputt gemacht und repariert hat, kann es erklären.</li>
+<li><strong>Teil D (Demo und Checkliste)</strong> am Vortag einmal komplett durchspielen.</li>
 </ol>
-<p>Verweise wie <code>PokerRoom.tsx:82</code> bedeuten Datei und Zeilennummer. Pfade sind relativ zum
-Projektordner (im Code-ZIP der Ordner <code>scrum-poker/</code>).</p>
+<p>Verweise wie <code>PokerRoom.tsx:132</code> bedeuten Datei und Zeilennummer. Pfade sind relativ zum
+Projektordner (im Code-ZIP der Ordner <code>scrum-poker/</code>). Im Editor springt ihr mit <code>Ctrl+G</code>
+(VS Code: «Go to Line») direkt zur Zeile.</p>
+<p><strong>Lernplan: in vier Abenden bereit</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Abend</th>
+<th>Was</th>
+<th>Ziel am Ende</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>App starten (<code>pnpm dev</code>), zwei Fenster, alles einmal durchklicken. Dann «Das Wichtigste in fünf Sätzen» (A.0) und den <strong>eigenen Bereich</strong> in Teil A lesen.</td>
+<td>Ich kann «meine» Dateien Zeile für Zeile vorlesen und sagen, was passiert.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Die zwei <strong>anderen Bereiche</strong> in Teil A. Teil B.1–B.5 laut üben.</td>
+<td>Ich kann jede Datei in einem Satz beschreiben und den Klick auf eine Karte vom Button bis zum Server verfolgen.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Teil B.6–B.12 und Teil C zu zweit als Quiz. Übungen E.1–E.8.</td>
+<td>Ich beantworte die Fragen ohne Unterlagen und habe Code geändert und zurückgesetzt.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Restliche Übungen, Demo (Teil D) mit Stoppuhr, gegenseitig zu zufälligen Zeilen befragen.</td>
+<td>Ich kann jede beliebige Stelle zeigen und erklären.</td>
+</tr>
+</tbody></table></div>
 <p><strong>Kursthemen</strong>, auf die die Spalte «Kursthema» verweist:</p>
 <div class="table-wrap"><table>
 <thead>
@@ -437,11 +470,11 @@ Projektordner (im Code-ZIP der Ordner <code>scrum-poker/</code>).</p>
 </tr>
 <tr>
 <td><strong>TS</strong></td>
-<td>JavaScript/TypeScript: Types, Interfaces, Union Types, Generics, <code>unknown</code>, Type Guards, <code>async</code>/<code>await</code>, Promises</td>
+<td>JavaScript/TypeScript: Types, Interfaces, Union Types, <code>unknown</code>, <code>typeof</code>-Prüfungen, <code>async</code>/<code>await</code>, Promises, <code>try</code>/<code>catch</code></td>
 </tr>
 <tr>
 <td><strong>React</strong></td>
-<td>Komponenten, JSX, Props, Listen mit <code>key</code>, Events, bedingtes Rendern, Komposition (<code>children</code>)</td>
+<td>Komponenten, JSX, Props, Listen mit <code>key</code>, Events, bedingtes Rendern, <code>children</code></td>
 </tr>
 <tr>
 <td><strong>State</strong></td>
@@ -449,7 +482,7 @@ Projektordner (im Code-ZIP der Ordner <code>scrum-poker/</code>).</p>
 </tr>
 <tr>
 <td><strong>Effects</strong></td>
-<td><code>useEffect</code>, Cleanup, Dependencies, StrictMode, <code>useCallback</code>, <code>useRef</code>, Custom Hooks</td>
+<td><code>useEffect</code>, Cleanup, Dependencies, StrictMode, <code>ignore</code>-Flag</td>
 </tr>
 <tr>
 <td><strong>Context</strong></td>
@@ -457,11 +490,11 @@ Projektordner (im Code-ZIP der Ordner <code>scrum-poker/</code>).</p>
 </tr>
 <tr>
 <td><strong>Routing</strong></td>
-<td>React Router: <code>Routes</code>, <code>Route</code>, <code>useParams</code>, <code>useNavigate</code>, <code>Link</code>, <code>Outlet</code></td>
+<td>React Router: <code>Routes</code>, <code>Route</code>, <code>useParams</code>, <code>useNavigate</code>, <code>Link</code></td>
 </tr>
 <tr>
 <td><strong>HTTP</strong></td>
-<td>REST, HTTP-Methoden, Statuscodes, JSON, <code>fetch</code>, Fehlerbehandlung, Polling</td>
+<td>REST, HTTP-Methoden, Statuscodes, JSON, <code>fetch</code>, Fehlerbehandlung, Polling mit <code>setInterval</code></td>
 </tr>
 <tr>
 <td><strong>Express</strong></td>
@@ -469,7 +502,7 @@ Projektordner (im Code-ZIP der Ordner <code>scrum-poker/</code>).</p>
 </tr>
 <tr>
 <td><strong>Test</strong></td>
-<td>Vitest, React Testing Library, supertest, Mocks und Fake-Timer</td>
+<td>Vitest, React Testing Library, supertest, Fake-<code>fetch</code>, Fake-Timer, Playwright</td>
 </tr>
 <tr>
 <td><strong>Tooling</strong></td>
@@ -477,7 +510,71 @@ Projektordner (im Code-ZIP der Ordner <code>scrum-poker/</code>).</p>
 </tr>
 </tbody></table></div>
 <div class="todo">TODO Gruppe: Falls der Kurs nummerierte Blöcke hat (z. B. «Block 4: Hooks»), die Nummern hier in der Tabelle ergänzen.</div><hr>
+<h2 id="aufteilung-für-die-gruppe">Aufteilung für die Gruppe</h2>
+<p>Der Code hat drei Bereiche. Jedes Mitglied nimmt sich <strong>zuerst</strong> einen Bereich vor, wird darin
+«Expertin» bzw. «Experte» und erklärt ihn danach den anderen. <strong>Wichtig:</strong> Das ist nur die
+Reihenfolge fürs Lernen. Im Fachgespräch muss <strong>jede Person alles</strong> erklären können, die Fragen
+kommen zu beliebigen Stellen.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Bereich</th>
+<th>Dateien</th>
+<th>Zentrale Fragen, die die Person zuerst beherrscht</th>
+<th>Teil A</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1. Server und gemeinsame Types</strong></td>
+<td><code>shared/src/index.ts</code>, alle Dateien in <code>server/src/</code>, Server-Tests</td>
+<td>REST-Routen, Methoden und Statuscodes; wie die Stimmen geheim bleiben; Heartbeat und Karteileichen; Durchschnitt bei T-Shirt-Grössen; warum der Server Eingaben prüft</td>
+<td>A.2, A.3</td>
+</tr>
+<tr>
+<td><strong>2. Client-Basis und Home-Seite</strong></td>
+<td><code>main.tsx</code>, <code>App.tsx</code>, <code>UserContext.tsx</code>, <code>api.ts</code>, <code>HomePage.tsx</code>, <code>NameForm.tsx</code>, <code>SessionListItem.tsx</code>, <code>ErrorBoundary.tsx</code>, <code>ErrorMessage.tsx</code>, <code>LoadingIndicator.tsx</code>, <code>NotFoundPage.tsx</code>, <code>global.css</code>, <code>HomePage.css</code>, Vite-Proxy</td>
+<td>Routen und <code>useNavigate</code>; Context für den Namen und <code>localStorage</code>; Polling der Liste mit Cleanup; wie <code>api.ts</code> Fehler meldet; Grid und Box-Modell</td>
+<td>A.4 (Einstieg bis Home-Seite)</td>
+</tr>
+<tr>
+<td><strong>3. Pokertisch</strong></td>
+<td><code>SessionPage.tsx</code>, <code>SessionNameForm.tsx</code>, <code>SessionNotFound.tsx</code>, <code>PokerRoom.tsx</code>, <code>PokerTable.tsx</code>, <code>ParticipantSeat.tsx</code>, <code>CardDeck.tsx</code>, <code>DeckSwitcher.tsx</code>, <code>ShareLinkButton.tsx</code>, <code>RoundResult.tsx</code>, <code>SessionPage.css</code>, E2E-Tests</td>
+<td>Beitreten/Verlassen im <code>useEffect</code>, StrictMode und <code>ignore</code>-Flag; Reload mit <code>sessionStorage</code>; Polling als Heartbeat; Klick auf eine Karte; Lifting State Up; Flexbox-Tisch</td>
+<td>A.4 (Session-Seite bis Ende)</td>
+</tr>
+</tbody></table></div>
+<p><strong>Vorschlag, wenn ihr mehr oder weniger als drei seid:</strong> Zu zweit nimmt eine Person Bereich 1 und 2
+(Server und Home gehören über <code>api.ts</code> zusammen), die andere Bereich 3. Zu viert teilen sich zwei
+Personen den Pokertisch: <code>SessionPage.tsx</code> mit Beitreten/Verlassen und Reload für die eine,
+<code>PokerRoom.tsx</code> mit Polling, Aktionen und den Tisch-Komponenten für die andere.</p>
+<p><strong>So bringt ihr euch gegenseitig alles bei</strong></p>
+<ol>
+<li>Nach Abend 1 erklärt jede Person ihren Bereich den anderen in 15 Minuten, mit dem Code auf dem
+Bildschirm (nicht mit Folien).</li>
+<li>Die Zuhörenden stellen danach je drei Fragen aus Teil C, die zu diesem Bereich passen.</li>
+<li>Ab Abend 3 tauscht ihr: Jede Person erklärt einen Bereich, der <strong>nicht</strong> ihr eigener ist. Wer
+den Bereich vorbereitet hat, korrigiert.</li>
+<li>Für den Datenfluss «Klick auf eine Karte» (B.4) braucht es alle drei Bereiche. Übt ihn so: Person
+3 beginnt beim Button, Person 2 übernimmt bei <code>api.ts</code>, Person 1 erklärt Server und Store.
+Danach erzählt jede Person den ganzen Weg allein.</li>
+</ol>
+<div class="todo">TODO Gruppe: Hier eintragen, wer welchen Bereich zuerst vorbereitet.</div><hr>
 <h2 id="teil-a--rundgang-durch-alle-dateien">Teil A – Rundgang durch alle Dateien</h2>
+<h3 id="a0-das-wichtigste-in-fünf-sätzen">A.0 Das Wichtigste in fünf Sätzen</h3>
+<ol>
+<li>Der <strong>Server</strong> (Express) hält alle Sessions in einer <code>Map</code> im Arbeitsspeicher und bietet dafür
+eine REST-API unter <code>/api/sessions</code> an.</li>
+<li>Der <strong>Client</strong> (React) fragt den Server regelmässig nach dem aktuellen Stand (<strong>Polling</strong> mit
+<code>setInterval</code> im <code>useEffect</code>) und zeigt ihn an. Jede Klick-Aktion ist ein Request, dessen Antwort
+sofort angezeigt wird.</li>
+<li>Der <strong>Name</strong> liegt in einem <strong>Context</strong> und im <code>localStorage</code>, die <strong>eigene Teilnehmer-ID</strong> im
+<code>sessionStorage</code> (damit ein Reload niemanden aus der Runde wirft).</li>
+<li><strong>Beitreten</strong> passiert im <code>useEffect</code> der Session-Seite, <strong>Verlassen</strong> in dessen Cleanup.
+Verschwindet jemand ohne Verlassen (Tab zu), entfernt ihn der Server nach 15–20 s, weil seine
+Polls fehlen (<strong>Heartbeat</strong>).</li>
+<li>Types, Decks, Namensregel und Durchschnitt stehen nur einmal in <strong><code>shared/src/index.ts</code></strong>, Client
+und Server benutzen beide diese Datei.</li>
+</ol>
 <h3 id="a1-projektwurzel">A.1 Projektwurzel</h3>
 <div class="table-wrap"><table>
 <thead>
@@ -491,13 +588,13 @@ Projektordner (im Code-ZIP der Ordner <code>scrum-poker/</code>).</p>
 <tbody><tr>
 <td><code>package.json</code></td>
 <td>Skripte für alle Pakete</td>
-<td><code>dev</code> startet Server und Client mit <code>concurrently</code> gleichzeitig. <code>test</code>/<code>build</code>/<code>typecheck</code> laufen mit <code>pnpm --recursive</code> in jedem Paket. <code>engines.node &gt;= 22.12</code>, <code>packageManager: pnpm@10.34.6</code> (Corepack nimmt genau diese Version). <code>test:e2e</code> startet Playwright.</td>
+<td><code>dev</code> startet Server und Client mit <code>concurrently</code> gleichzeitig. <code>test</code>, <code>build</code>, <code>typecheck</code> laufen mit <code>pnpm --recursive</code> in jedem Paket. <code>engines.node &gt;= 22.12</code>, <code>packageManager: pnpm@10.34.6</code> (Corepack nimmt genau diese Version). <code>test:e2e</code> startet Playwright.</td>
 <td>Tooling</td>
 </tr>
 <tr>
 <td><code>pnpm-workspace.yaml</code></td>
 <td>macht <code>client</code>, <code>server</code>, <code>shared</code> zu einem Workspace</td>
-<td>Darum kann der Client <code>@scrum-poker/shared</code> mit <code>"workspace:*"</code> einbinden, ohne es zu veröffentlichen.</td>
+<td>Darum kann der Client <code>@scrum-poker/shared</code> mit <code>"workspace:*"</code> einbinden: «nimm den Ordner aus diesem Projekt», ohne ihn irgendwo zu veröffentlichen.</td>
 <td>Tooling</td>
 </tr>
 <tr>
@@ -521,7 +618,7 @@ Projektordner (im Code-ZIP der Ordner <code>scrum-poker/</code>).</p>
 <tr>
 <td><code>playwright.config.ts</code></td>
 <td>Konfiguration der E2E-Tests</td>
-<td>startet Server und Client selbst auf eigenen Ports (3101/5273) über <code>webServer</code>, Chromium, ein Worker (die Tests teilen sich einen Server). Bewusst der Dev-Server: Nur dort läuft StrictMode.</td>
+<td>startet Server und Client selbst auf eigenen Ports (3101/5273), ein Worker (die Tests teilen sich einen Server). Bewusst der Dev-Server: Nur dort läuft StrictMode.</td>
 <td>Test</td>
 </tr>
 <tr>
@@ -548,21 +645,13 @@ Projektordner (im Code-ZIP der Ordner <code>scrum-poker/</code>).</p>
 <td></td>
 <td></td>
 </tr>
-<tr>
-<td><code>DOKUMENTATION.md</code> / <code>.pdf</code> / <code>.html</code></td>
-<td>Projektdokumentation</td>
-<td>wird neben dem Code-ZIP abgegeben, nicht darin</td>
-<td></td>
-</tr>
-<tr>
-<td><code>scripts/</code>, <code>deploy/</code></td>
-<td><code>make-submission.sh</code> (Code-ZIP), <code>build-pdf.sh</code> + <code>pdf/</code> (PDF und HTML erzeugen), Betrieb auf dem Server</td>
-<td>gehören nicht zur App und sind nicht im Code-ZIP</td>
-<td></td>
-</tr>
 </tbody></table></div>
+<p>Die Projektdokumentation (<code>DOKUMENTATION.pdf</code>/<code>.html</code>) wird neben dem Code-ZIP abgegeben, nicht
+darin. Im ZIP fehlen ausserdem die internen Ordner <code>scripts/</code> (Doku- und Abgabe-Scripts) und
+<code>deploy/</code> (Betrieb auf dem Server). Die App braucht sie nicht.</p>
 <h3 id="a2-shared--der-gemeinsame-vertrag">A.2 <code>shared/</code> – der gemeinsame Vertrag</h3>
-<p><strong><code>shared/src/index.ts</code></strong> – Types und Logik, die Client und Server beide importieren.</p>
+<p><strong><code>shared/src/index.ts</code></strong> – Types und Funktionen, die Client und Server beide importieren.
+Kursthema: TS.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -572,83 +661,97 @@ Projektordner (im Code-ZIP der Ordner <code>scrum-poker/</code>).</p>
 </tr>
 </thead>
 <tbody><tr>
-<td>8</td>
+<td>7</td>
 <td><code>type DeckType = 'fibonacci' | 'tshirt'</code></td>
-<td><strong>Union aus String-Literalen.</strong> Nur diese zwei Werte sind erlaubt, ein Tippfehler wie <code>'tshrit'</code> ist ein Compile-Fehler.</td>
+<td><strong>Union Type aus Texten.</strong> Nur diese zwei Werte sind erlaubt, ein Tippfehler wie <code>'tshrit'</code> ist ein Fehler beim Kompilieren.</td>
 </tr>
 <tr>
-<td>10</td>
+<td>9</td>
 <td><code>type CardValue = string</code></td>
-<td>Kartenwerte sind Strings (<code>'5'</code>, <code>'XL'</code>, <code>'?'</code>). Gültig ist ein Wert nur, wenn er im aktiven Deck vorkommt. Das prüft der Server zur Laufzeit.</td>
+<td>Kartenwerte sind Texte (<code>'5'</code>, <code>'XL'</code>, <code>'?'</code>). Ob ein Wert gültig ist, prüft der Server zur Laufzeit (gehört er zum aktiven Deck?).</td>
 </tr>
 <tr>
-<td>12-26</td>
-<td><code>Deck</code>, <code>DECKS</code></td>
-<td><code>Record&lt;DeckType, Deck&gt;</code> erzwingt, dass es für <strong>jeden</strong> Deck-Typ einen Eintrag gibt. <code>readonly CardValue[]</code> verhindert, dass jemand die Karten verändert.</td>
+<td>11-14</td>
+<td><code>interface Deck</code></td>
+<td>Ein Deck hat einen Namen für die Anzeige und eine Liste von Karten.</td>
 </tr>
 <tr>
-<td>30-36</td>
+<td>17-26</td>
+<td><code>DECKS</code></td>
+<td>Der Type <code>{ fibonacci: Deck; tshirt: Deck }</code> erzwingt, dass beide Decks da sind und jedes <code>label</code> und <code>cards</code> hat.</td>
+</tr>
+<tr>
+<td>29</td>
+<td><code>DECK_TYPES</code></td>
+<td>Alle Deck-Namen als Liste. Der Client macht daraus die Buttons, der Server prüft damit.</td>
+</tr>
+<tr>
+<td>33-39</td>
 <td><code>TSHIRT_VALUES</code></td>
-<td>Abbildung XS=1 … XL=8 für den Durchschnitt</td>
+<td>Zahl pro T-Shirt-Grösse (XS=1 … XL=8) für den Durchschnitt. <code>Record&lt;string, number&gt;</code> heisst: ein Objekt mit Text-Schlüsseln und Zahl-Werten.</td>
 </tr>
 <tr>
-<td>38</td>
+<td>43</td>
 <td><code>MAX_NAME_LENGTH = 30</code></td>
-<td>Eine Konstante für Client <strong>und</strong> Server. Ändert man sie, ändern sich beide Prüfungen.</td>
+<td>Eine Konstante für Client <strong>und</strong> Server.</td>
 </tr>
 <tr>
-<td>44-51</td>
+<td>47-56</td>
+<td><code>validateName()</code></td>
+<td>Gibt die Fehlermeldung zurück oder <code>null</code>, wenn der Name gültig ist. Prüft den Namen ohne Leerzeichen am Rand (<code>trim()</code>). Benutzt von Home-Seite, Namensformular am Tisch und Server: eine Regel, gleiche Meldung überall.</td>
+</tr>
+<tr>
+<td>60-67</td>
 <td><code>Participant</code></td>
-<td>Was der Client über eine Person sieht: <code>hasVoted</code> immer, <code>vote</code> nur nach dem Aufdecken (oder die eigene). <code>vote: CardValue | null</code> zwingt den Client, den Fall <code>null</code> zu behandeln.</td>
+<td>Was der Client über eine Person sieht: <code>hasVoted</code> immer, <code>vote</code> nur nach dem Aufdecken oder bei der eigenen Stimme. <code>CardValue | null</code> zwingt den Client, den Fall «keine Stimme» zu behandeln.</td>
 </tr>
 <tr>
-<td>53-58</td>
+<td>69-74</td>
 <td><code>SessionState</code></td>
-<td>Antwort von <code>GET /api/sessions/:id</code> und allen Aktionen</td>
+<td>Der ganze Zustand eines Tisches. Antwort auf das Polling und auf alle Aktionen.</td>
 </tr>
 <tr>
-<td>60-65</td>
+<td>77-82</td>
 <td><code>SessionSummary</code></td>
-<td>ein Eintrag der Liste. <code>createdAt</code> ist ein ISO-String, weil JSON keinen Datumstyp hat.</td>
+<td>ein Eintrag der Liste auf der Home-Seite. <code>createdAt</code> ist Text, weil JSON keinen Datumstyp kennt.</td>
 </tr>
 <tr>
-<td>67-112</td>
-<td>Request-/Response-Types</td>
-<td>Pro Route ein Type, z. B. <code>CastVoteRequest { value: CardValue | null }</code>. Der Client baut damit den Body, der Server prüft ihn dagegen.</td>
+<td>87-118</td>
+<td>Request- und Response-Types</td>
+<td>Pro Route mit eigener Form ein Type, z. B. <code>CastVoteRequest { value: CardValue | null }</code>. Der Client baut damit den Body, der Server weiss, was er erwartet. <code>participantId?:</code> (Zeile 96) heisst: Das Feld darf fehlen.</td>
 </tr>
 <tr>
-<td>110-112</td>
-<td><code>ApiErrorBody { error: string }</code></td>
+<td>116-118</td>
+<td><code>ErrorResponse { error: string }</code></td>
 <td>Form jeder Fehlerantwort</td>
 </tr>
 <tr>
-<td>118-125</td>
+<td>122-129</td>
 <td><code>RoundResult</code></td>
 <td>Ergebnis von <code>computeResult()</code></td>
 </tr>
 <tr>
-<td>127-134</td>
+<td>132-145</td>
 <td><code>toNumber()</code></td>
-<td>T-Shirt → Tabelle, sonst <code>Number(card)</code>. <code>'?'</code> und <code>'☕'</code> ergeben <code>NaN</code> → <code>null</code>.</td>
+<td>T-Shirt → Zahl aus der Tabelle, sonst <code>Number(card)</code>. <code>'?'</code> und <code>'☕'</code> ergeben <code>NaN</code> → <code>null</code> (zählt nicht).</td>
 </tr>
 <tr>
-<td>136-149</td>
+<td>148-161</td>
 <td><code>closestTshirtSize()</code></td>
-<td>sucht die Grösse mit dem kleinsten Abstand. <code>&lt;=</code> (Zeile 143) wählt bei Gleichstand die grössere.</td>
+<td>Geht alle Grössen durch und merkt sich die mit dem kleinsten Abstand. Das <code>&lt;=</code> in Zeile 155 wählt bei Gleichstand die spätere, also grössere Grösse.</td>
 </tr>
 <tr>
-<td>151-168</td>
+<td>164-195</td>
 <td><code>computeResult()</code></td>
-<td><strong>reine Funktion</strong>: gleiche Eingabe → gleiche Ausgabe, keine Nebenwirkungen. Darum einfach testbar. <code>.filter((value) =&gt; value !== null)</code> – TypeScript erkennt seit Version 5.5, dass danach nur noch <code>number</code> übrig ist. Zeile 164 rundet auf eine Nachkommastelle.</td>
+<td>Erst Konsens (166-171), dann Summe und Anzahl der Zahlenkarten (174-182), dann Durchschnitt auf eine Nachkommastelle (189), bei T-Shirt die nächste Grösse (191-193). Gleiche Stimmen ergeben immer dasselbe Ergebnis, ohne Nebenwirkungen. Darum leicht zu testen.</td>
 </tr>
 </tbody></table></div>
-<p><strong><code>shared/src/computeResult.test.ts</code></strong> – acht Unit-Tests für <code>computeResult()</code> (siehe
-DOKUMENTATION Kapitel 12). Kursthema: Test.</p>
+<p><strong><code>shared/src/index.test.ts</code></strong> – elf Unit-Tests für <code>validateName()</code> und <code>computeResult()</code>.
+Kursthema: Test.</p>
 <p><code>shared/package.json</code>: <code>"exports": "./src/index.ts"</code> – das Paket zeigt direkt auf den
-TypeScript-Quelltext. Vite und <code>tsx</code> können TS direkt lesen, es braucht keinen Build-Schritt.
-<code>shared/tsconfig.json</code>: <code>strict: true</code>, <code>noEmit</code> (nur Typprüfung).</p>
+TypeScript-Quelltext. Vite und <code>tsx</code> lesen TypeScript direkt, es braucht keinen Build-Schritt.</p>
 <h3 id="a3-server--express-api">A.3 <code>server/</code> – Express-API</h3>
-<p><strong><code>server/src/index.ts</code></strong> (Kursthema: Express)</p>
+<p><strong><code>server/src/index.ts</code></strong> – Startpunkt des Servers. Kursthema: Express.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -657,16 +760,16 @@ TypeScript-Quelltext. Vite und <code>tsx</code> können TS direkt lesen, es brau
 </tr>
 </thead>
 <tbody><tr>
-<td>5</td>
-<td><code>setInterval(() =&gt; removeInactiveParticipants(Date.now()), CLEANUP_INTERVAL_MS)</code> – alle 5 s Karteileichen entfernen. <code>Date.now()</code> wird übergeben, damit die Funktion in Tests mit einer festen Zeit aufgerufen werden kann.</td>
+<td>9</td>
+<td><code>setInterval(removeInactiveParticipants, CLEANUP_INTERVAL_MS)</code> – alle 5 s Karteileichen entfernen (Kapitel 8 der Doku).</td>
 </tr>
 <tr>
-<td>7-9</td>
-<td><code>app.listen(PORT, …)</code> startet den HTTP-Server auf Port 3001.</td>
+<td>11-13</td>
+<td><code>app.listen(PORT, …)</code> startet den HTTP-Server auf Port 3001 und meldet «Scrum Poker API läuft auf …».</td>
 </tr>
 </tbody></table></div>
 <p><strong><code>server/src/app.ts</code></strong> – die Express-App <strong>ohne</strong> <code>listen()</code>. So können die Tests die App mit
-supertest direkt aufrufen, ohne einen Port zu belegen. (Kursthema: Express)</p>
+supertest direkt aufrufen, ohne einen Port zu belegen. Kursthema: Express.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -675,33 +778,36 @@ supertest direkt aufrufen, ohne einen Port zu belegen. (Kursthema: Express)</p>
 </tr>
 </thead>
 <tbody><tr>
-<td>14</td>
-<td><code>app.use(express.json())</code> – Middleware: liest JSON-Bodies und legt sie in <code>req.body</code> ab.</td>
+<td>10-12</td>
+<td>Kommentar: Warum kein CORS nötig ist (Proxy in der Entwicklung, gleiche Adresse im Betrieb).</td>
 </tr>
 <tr>
-<td>16</td>
+<td>15</td>
+<td><code>app.use(express.json())</code> – <strong>Middleware</strong>: liest JSON-Bodies und legt sie in <code>req.body</code> ab.</td>
+</tr>
+<tr>
+<td>17</td>
 <td><code>app.use('/api/sessions', sessionsRouter)</code> – alle Session-Routen hängen unter diesem Präfix.</td>
 </tr>
 <tr>
-<td>19-30</td>
-<td>Nur im Produktivbetrieb (<code>SERVE_CLIENT</code>): <code>express.static</code> liefert den gebauten Client aus. Andere <code>GET</code>-Pfade wie <code>/sessions/&lt;id&gt;</code> bekommen <code>index.html</code>, damit ein Reload auch ohne Vite funktioniert (React Router entscheidet dann). In der Entwicklung liefert Vite den Client, dort ist das aus.</td>
+<td>20-31</td>
+<td>Nur im Produktivbetrieb (<code>SERVE_CLIENT</code>): <code>express.static</code> liefert den gebauten Client aus. Andere <code>GET</code>-Adressen wie <code>/sessions/&lt;id&gt;</code> bekommen <code>index.html</code>, damit ein Reload auch ohne Vite funktioniert (React Router entscheidet dann). In der Entwicklung liefert Vite den Client, dort ist das aus.</td>
 </tr>
 <tr>
-<td>33-35</td>
-<td>Middleware <strong>nach</strong> allen Routen: Wenn keine Route gepasst hat, kommt die Anfrage hier an → 404 als JSON statt der HTML-Seite von Express.</td>
+<td>34-36</td>
+<td>Middleware <strong>nach</strong> allen Routen: Hat keine Route gepasst, kommt die Anfrage hier an → 404 als JSON statt einer HTML-Seite.</td>
 </tr>
 <tr>
-<td>38-47</td>
-<td><strong>Error-Handler</strong>, erkennbar an den <strong>vier</strong> Parametern <code>(err, req, res, next)</code>. <code>SyntaxError</code> kommt von <code>express.json()</code> bei kaputtem JSON → 400. Alles andere → 500, der Stacktrace wird nur in der Konsole ausgegeben, nie an den Client.</td>
+<td>39-48</td>
+<td><strong>Error-Handler</strong>, erkennbar an den <strong>vier</strong> Parametern <code>(err, req, res, next)</code>. <code>SyntaxError</code> kommt von <code>express.json()</code> bei kaputtem JSON → 400. Alles andere → 500; der Fehler wird nur in der Konsole ausgegeben, nie an den Client.</td>
 </tr>
 </tbody></table></div>
-<p><strong><code>server/src/config.ts</code></strong> – <code>PORT</code> (Standard 3001, per Umgebungsvariable <code>PORT</code> änderbar), <code>CLEANUP_INTERVAL_MS = 5_000</code>,
-<code>PARTICIPANT_TIMEOUT_MS = 15_000</code>, dazu <code>CLIENT_DIST</code> und <code>SERVE_CLIENT</code> für den Produktivbetrieb
-(nur mit <code>NODE_ENV=production</code>). Benannte Konstanten statt «magischer Zahlen». <code>5_000</code> ist
-dasselbe wie <code>5000</code>, der Unterstrich dient nur der Lesbarkeit.</p>
-<p><strong><code>server/src/sendError.ts</code></strong> – <code>sendError(res, status, error)</code> schickt immer
-<code>{ error }</code> mit dem Type <code>ApiErrorBody</code>. Ein Ort für die Fehlerform statt zehn.</p>
-<p><strong><code>server/src/store.ts</code></strong> – alle Daten und Regeln, <strong>ohne Express</strong>. (Kursthemen: TS, Express)</p>
+<p><strong><code>server/src/config.ts</code></strong> – alle Einstellungen an einem Ort: <code>PORT</code> (Zeile 7, Standard 3001, mit
+der Umgebungsvariable <code>PORT</code> änderbar), <code>CLEANUP_INTERVAL_MS = 5_000</code> (Zeile 10),
+<code>PARTICIPANT_TIMEOUT_MS = 15_000</code> (Zeile 14), dazu <code>CLIENT_DIST</code> und <code>SERVE_CLIENT</code> für den
+Produktivbetrieb (Zeilen 18-20). <code>5_000</code> ist dieselbe Zahl wie <code>5000</code>, der Unterstrich macht sie
+nur lesbarer.</p>
+<p><strong><code>server/src/store.ts</code></strong> – Speicher und Regeln, ohne Express. Kursthema: TS.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -710,63 +816,211 @@ dasselbe wie <code>5000</code>, der Unterstrich dient nur der Lesbarkeit.</p>
 </tr>
 </thead>
 <tbody><tr>
-<td>11-16</td>
-<td><code>StoredParticipant</code> – interne Sicht mit der <strong>echten</strong> Stimme und <code>lastSeen</code>. Unterscheidet sich bewusst vom öffentlichen <code>Participant</code>.</td>
+<td>11-17</td>
+<td><code>StoredParticipant</code>: so speichert <strong>der Server</strong> eine Person, mit echter Stimme und <code>lastSeen</code> (Zeitpunkt der letzten Abfrage). Der Client bekommt diesen Type nie zu sehen.</td>
 </tr>
 <tr>
-<td>18-24</td>
-<td><code>Session</code> mit <code>createdAt: Date</code> (intern ein echtes Datum, nach aussen ein ISO-String)</td>
+<td>19-25</td>
+<td><code>Session</code>: <code>createdAt</code> ist hier ein echtes <code>Date</code>, erst für die Antwort wird daraus Text.</td>
 </tr>
 <tr>
-<td>26</td>
-<td><code>const sessions = new Map&lt;string, Session&gt;()</code> – die «Datenbank». <code>Map</code> statt Objekt: schnelles <code>get</code>/<code>has</code>/<code>delete</code> per Schlüssel, keine Kollision mit geerbten Namen wie <code>toString</code>.</td>
+<td>28</td>
+<td><code>const sessions = new Map&lt;string, Session&gt;()</code> – <strong>der ganze Speicher</strong>: Schlüssel = Session-ID. Eine <code>Map</code> findet eine Session direkt über ihre ID.</td>
 </tr>
 <tr>
-<td>36-48</td>
-<td><code>toSessionState()</code> – wandelt intern → öffentlich. Zeile 45 ist <strong>die Geheimhaltungsregel</strong>: <code>vote</code> nur, wenn aufgedeckt oder wenn es die eigene Person (<code>viewerId</code>) ist.</td>
+<td>34-54</td>
+<td><code>toSessionState()</code> macht aus der gespeicherten Session das, was der Client sehen darf. Zeile 38: Die Stimme wird nur mitgeschickt, wenn aufgedeckt ist <strong>oder</strong> es die eigene Stimme der fragenden Person ist. Sonst bleibt <code>vote</code> <code>null</code>. <strong>Hier wird die Geheimhaltung gemacht.</strong></td>
 </tr>
 <tr>
-<td>50-56</td>
-<td><code>listSessions()</code> – <code>Array.from(map.values(), mapFn)</code></td>
+<td>56-66</td>
+<td><code>listSessions()</code> – eine Zusammenfassung pro Session für die Home-Seite (Anzahl Personen statt Namen).</td>
 </tr>
 <tr>
-<td>62-79</td>
-<td><code>createSession()</code> – 6 Zeichen aus <code>randomUUID()</code>. Kurz genug zum Teilen. Weil kurze IDs sich wiederholen können, wird neu gewürfelt, bis die ID frei ist.</td>
+<td>68-85</td>
+<td><code>createSession()</code> – 6 Zeichen einer zufälligen UUID als ID. Ist sie schon vergeben, wird neu gewürfelt (<code>while</code>). Neue Sessions starten mit Fibonacci und ohne Teilnehmer.</td>
 </tr>
 <tr>
-<td>105-109</td>
-<td><code>addParticipant()</code> – neue Person mit <code>randomUUID()</code> und <code>lastSeen: now</code></td>
+<td>88-104</td>
+<td>kleine Hilfsfunktionen: Session holen, löschen, alle löschen (nur für Tests), Person suchen. <code>undefined</code> heisst «gibt es nicht».</td>
 </tr>
 <tr>
-<td>111-117</td>
-<td><code>removeParticipant()</code> – entfernt und prüft danach das Auto-Reveal (die Person war evtl. die letzte ohne Stimme)</td>
+<td>106-115</td>
+<td><code>addParticipant()</code> – neue Person mit <code>randomUUID()</code> als ID, ohne Stimme, <code>lastSeen = Date.now()</code>.</td>
 </tr>
 <tr>
-<td>120-122</td>
-<td><code>markAsSeen()</code> – Heartbeat: <code>lastSeen = now</code></td>
+<td>117-121</td>
+<td><code>removeParticipant()</code> – <code>filter</code> erzeugt eine neue Liste ohne die Person. Danach <code>revealIfEveryoneVoted</code>: War sie die Letzte ohne Stimme, wird aufgedeckt.</td>
 </tr>
 <tr>
-<td>129-138</td>
-<td><code>removeInactiveParticipants()</code> – Karteileichen-Strategie, siehe DOKUMENTATION Kapitel 8</td>
+<td>128-138</td>
+<td><code>removeInactiveParticipants()</code> – sucht alle, deren <code>lastSeen</code> länger als 15 s her ist, und entfernt sie. Leere Sessions bleiben stehen.</td>
 </tr>
 <tr>
-<td>144-147</td>
-<td><code>castVote()</code> – Stimme setzen, dann Auto-Reveal prüfen</td>
+<td>141-144</td>
+<td><code>castVote()</code> – Stimme setzen (<code>null</code> = zurückziehen), dann prüfen, ob alle gewählt haben.</td>
 </tr>
 <tr>
-<td>150-157</td>
-<td><code>revealIfEveryoneVoted()</code> – <code>length &gt; 0 &amp;&amp;</code> verhindert, dass eine leere Session «aufgedeckt» wird (<code>[].every(...)</code> ist immer <code>true</code>!).</td>
+<td>147-157</td>
+<td><code>revealIfEveryoneVoted()</code> – leere Session: nichts tun. Hat jemand noch keine Stimme: nichts tun (<code>return</code>). Sonst aufdecken.</td>
 </tr>
 <tr>
-<td>163-168</td>
-<td><code>resetRound()</code> – verdecken, alle Stimmen auf <code>null</code></td>
+<td>159-168</td>
+<td><code>revealCards()</code>, <code>resetRound()</code> – aufdecken bzw. alle Stimmen löschen und wieder verdecken.</td>
 </tr>
 <tr>
 <td>170-177</td>
-<td><code>changeDeck()</code> – gleiches Deck → nichts tun, sonst Deck setzen und neue Runde</td>
+<td><code>changeDeck()</code> – gleiches Deck: nichts tun. Anderes Deck: wechseln und neue Runde, weil alte Karten im neuen Deck nicht gelten.</td>
 </tr>
 </tbody></table></div>
-<p><strong><code>server/src/validation.ts</code></strong> – prüft Request-Bodies. (Kursthema: TS)</p>
+<p><strong><code>server/src/validation.ts</code></strong> – prüft die Bodies. Kursthema: TS.</p>
+<p>Ein Body kommt von aussen und kann alles enthalten. Darum ist er hier <code>unknown</code>. TypeScript lässt
+einen erst damit arbeiten, wenn man ihn geprüft hat.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeilen</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>9-29</td>
+<td><code>getJoinError()</code>. Zeile 10: Ist der Body überhaupt ein Objekt (<code>typeof body !== 'object'</code>), nicht <code>null</code> (in JavaScript ist <code>typeof null</code> auch <code>'object'</code>) und hat er ein Feld <code>name</code> (<code>'name' in body</code>)? Danach weiss TypeScript, dass <code>body.name</code> existiert. Zeile 17: Für den Namen gilt dieselbe Regel wie im Client (<code>validateName</code>). Zeilen 22-27: <code>participantId</code> darf fehlen, <code>null</code> oder Text sein.</td>
+</tr>
+<tr>
+<td>32-44</td>
+<td><code>getVoteError()</code> – <code>null</code> ist erlaubt (zurückziehen). Sonst muss der Wert ein Text sein, der im aktuellen Deck vorkommt.</td>
+</tr>
+<tr>
+<td>47-57</td>
+<td><code>getDeckError()</code> – das Deck muss einer der Namen aus <code>DECK_TYPES</code> sein.</td>
+</tr>
+</tbody></table></div>
+<p>Jede Funktion gibt die <strong>Fehlermeldung</strong> zurück oder <code>null</code>, wenn alles stimmt. Die Route macht
+daraus eine 400-Antwort.</p>
+<p><strong><code>server/src/routes/sessions.ts</code></strong> – alle Routen. Kursthema: Express, HTTP.</p>
+<p>Jede Route liest sich gleich: Session holen → gibt es sie nicht, 404 → Body prüfen (400) → Store
+ändern → antworten.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeilen</th>
+<th>Route</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>34-36</td>
+<td><code>GET /</code></td>
+<td>Liste aller Sessions, Status 200</td>
+</tr>
+<tr>
+<td>39-43</td>
+<td><code>POST /</code></td>
+<td>Session erstellen → <code>201 { id }</code></td>
+</tr>
+<tr>
+<td>46-54</td>
+<td><code>DELETE /:sessionId</code></td>
+<td>404, wenn unbekannt, sonst löschen → <code>204</code> ohne Body (<code>res.status(204).end()</code>)</td>
+</tr>
+<tr>
+<td>57-79</td>
+<td><code>GET /:sessionId</code></td>
+<td>Zustand eines Tisches. <code>req.query.participantId</code> (Zeilen 64-67) ist nur ein Text, wenn er in der Adresse steht. Zeilen 72-77: <strong>Heartbeat</strong>, <code>lastSeen</code> wird aktualisiert. Eine unbekannte ID ist kein Fehler.</td>
+</tr>
+<tr>
+<td>82-111</td>
+<td><code>POST /:sessionId/participants</code></td>
+<td>Beitreten. Zeilen 88-92: Body prüfen. Zeile 94: <code>req.body as JoinSessionRequest</code> – ab hier ist der Body geprüft, <code>as</code> sagt TypeScript, welche Form er hat. Zeilen 98-106: Gibt es die mitgeschickte <code>participantId</code> noch, geht es mit ihr weiter (<strong>200</strong>, Reload). Sonst neue Person (<strong>201</strong>).</td>
+</tr>
+<tr>
+<td>114-123</td>
+<td><code>DELETE /:sessionId/participants/:participantId</code></td>
+<td>Verlassen, <strong>idempotent</strong>: auch eine schon entfernte Person ergibt 204.</td>
+</tr>
+<tr>
+<td>126-152</td>
+<td><code>PUT /:sessionId/participants/:participantId/vote</code></td>
+<td>Prüft der Reihe nach: Session (404), Person (404), schon aufgedeckt (409), Karte gültig (400). Antwort mit der eigenen Stimme (Zeile 151).</td>
+</tr>
+<tr>
+<td>155-170</td>
+<td><code>PUT /:sessionId/deck</code></td>
+<td>Deck prüfen (400), wechseln, neuen Zustand schicken</td>
+</tr>
+<tr>
+<td>173-181</td>
+<td><code>POST /:sessionId/reveal</code></td>
+<td>aufdecken</td>
+</tr>
+<tr>
+<td>184-192</td>
+<td><code>POST /:sessionId/reset</code></td>
+<td>neue Runde</td>
+</tr>
+</tbody></table></div>
+<p><code>req.params.sessionId</code> ist der Teil der Adresse an der Stelle von <code>:sessionId</code>.</p>
+<p><strong>Server-Tests</strong> (Kursthema: Test)</p>
+<ul>
+<li><strong><code>server/src/app.test.ts</code></strong> – testet alle Routen mit <strong>supertest</strong>: <code>request(app).post(…)</code>
+schickt einen echten HTTP-Request an die App, ohne Port. Vor jedem Test leert <code>clearSessions()</code>
+den Speicher. Der Heartbeat-Test ganz unten stellt mit <code>vi.useFakeTimers({ toFake: ['Date'] })</code>
+die Uhr vor, statt 15 s zu warten, und ruft dann <code>removeInactiveParticipants()</code> direkt auf.</li>
+<li><strong><code>server/src/static.test.ts</code></strong> – testet den Produktivbetrieb mit einem kleinen künstlichen
+<code>client/dist</code>-Ordner.</li>
+</ul>
+<h3 id="a4-client--react-app">A.4 <code>client/</code> – React-App</h3>
+<h4 id="einstieg-und-konfiguration">Einstieg und Konfiguration</h4>
+<p><strong><code>client/index.html</code></strong> – die einzige HTML-Seite. Zeile 6: <code>viewport</code>, damit Handys die echte
+Breite verwenden. Zeile 10: <code>&lt;div id="root"&gt;</code>, hier hängt React die App hinein. Zeile 11 lädt
+<code>main.tsx</code>. Kursthema: HTML/CSS.</p>
+<p><strong><code>client/vite.config.ts</code></strong> – Kursthema: Tooling.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeilen</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>9-10</td>
+<td>Ports aus Umgebungsvariablen, sonst 5173 und 3001</td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>strictPort: true</code> – ist 5173 belegt, bricht Vite ab, statt still auf 5174 auszuweichen</td>
+</tr>
+<tr>
+<td>19-21</td>
+<td><strong>Proxy</strong>: Jede Anfrage an <code>/api</code> geht an den Express-Server. Der Browser spricht nur mit <code>localhost:5173</code>, darum braucht es kein CORS.</td>
+</tr>
+<tr>
+<td>23-27</td>
+<td>Einstellungen für Vitest: <code>jsdom</code> spielt im Test den Browser, <code>setup.ts</code> läuft vor jedem Test-File.</td>
+</tr>
+</tbody></table></div>
+<p><strong><code>client/src/main.tsx</code></strong> – Startpunkt. Kursthema: React, Context, Routing.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeilen</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>6-8</td>
+<td><code>global.css</code> wird <strong>vor</strong> <code>App</code> geladen. So kommen die Seiten-Styles danach und gewinnen bei gleich starken Regeln (z. B. der rote Button «Löschen»).</td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>createRoot(document.getElementById('root')!)</code> – das <code>!</code> sagt TypeScript: «dieses Element gibt es sicher» (es steht in <code>index.html</code>). Sonst wäre der Type <code>HTMLElement | null</code>.</td>
+</tr>
+<tr>
+<td>17-24</td>
+<td>Verschachtelung: <code>StrictMode</code> → <code>UserProvider</code> → <code>BrowserRouter</code> → <code>App</code>. Der Provider liegt aussen, damit jede Seite den Namen lesen kann.</td>
+</tr>
+</tbody></table></div>
+<p><strong><code>client/src/App.tsx</code></strong> – Kursthema: Routing.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -776,33 +1030,21 @@ dasselbe wie <code>5000</code>, der Unterstrich dient nur der Lesbarkeit.</p>
 </thead>
 <tbody><tr>
 <td>13</td>
-<td><code>ValidationResult&lt;T&gt;</code> – <strong>Discriminated Union</strong>: entweder <code>{ ok: true; value: T }</code> oder <code>{ ok: false; error: string }</code>. Nach <code>if (!result.ok)</code> weiss TypeScript, dass es <code>error</code> gibt, sonst <code>value</code>.</td>
+<td><code>ErrorBoundary</code> um alles: Fehler beim Rendern → Meldung statt weisser Seite.</td>
 </tr>
 <tr>
-<td>15-17</td>
-<td><code>isObject()</code> – <strong>Type Guard</strong> (<code>value is Record&lt;string, unknown&gt;</code>). Nach dem Aufruf darf man auf Eigenschaften zugreifen. <code>typeof null === 'object'</code>, darum zusätzlich <code>!== null</code>.</td>
+<td>14-18</td>
+<td>Header mit <code>&lt;Link to="/"&gt;</code>: wechselt die Seite ohne Neuladen.</td>
 </tr>
 <tr>
-<td>19-22</td>
-<td><code>isDeckType()</code> – <code>Object.hasOwn</code> statt <code>in</code>, weil <code>'toString' in DECKS</code> auch <code>true</code> wäre (geerbt). Ein Test prüft genau das.</td>
-</tr>
-<tr>
-<td>24-36</td>
-<td><code>validateJoinBody()</code> – Name muss String sein, wird getrimmt, darf nicht leer und höchstens 30 Zeichen lang sein.</td>
-</tr>
-<tr>
-<td>38-50</td>
-<td><code>validateVoteBody()</code> – <code>value</code> muss vorhanden sein. <code>null</code> ist erlaubt (zurückziehen), sonst muss die Karte im <strong>aktiven</strong> Deck sein.</td>
-</tr>
-<tr>
-<td>52-57</td>
-<td><code>validateDeckBody()</code></td>
+<td>20-25</td>
+<td><code>&lt;Routes&gt;</code> wählt <strong>eine</strong> <code>&lt;Route&gt;</code> passend zur Adresse. <code>:sessionId</code> (Zeile 22) ist ein Platzhalter, <code>*</code> (Zeile 24) passt auf alles andere.</td>
 </tr>
 </tbody></table></div>
-<p>Der Body ist <code>unknown</code>, nicht <code>any</code>: Mit <code>unknown</code> erzwingt TypeScript eine Prüfung vor jedem
-Zugriff. Mit <code>any</code> könnte man ungeprüft <code>body.name.trim()</code> aufrufen und der Server würde bei
-<code>{ "name": 42 }</code> abstürzen.</p>
-<p><strong><code>server/src/routes/sessions.ts</code></strong> – Router: HTTP ⇄ Store. (Kursthemen: Express, HTTP)</p>
+<p><strong><code>client/src/test/setup.ts</code></strong> – läuft vor jedem Test-File: räumt nach jedem Test das gerenderte
+HTML ab und leert <code>localStorage</code> und <code>sessionStorage</code>, damit sich Tests nicht beeinflussen.</p>
+<h4 id="context-für-den-namen">Context für den Namen</h4>
+<p><strong><code>client/src/UserContext.tsx</code></strong> – Kursthema: Context, State.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -811,1022 +1053,711 @@ Zugriff. Mit <code>any</code> könnte man ungeprüft <code>body.name.trim()</cod
 </tr>
 </thead>
 <tbody><tr>
-<td>31</td>
-<td><code>Router()</code> – ein Mini-App-Objekt, in <code>app.ts</code> unter <code>/api/sessions</code> eingehängt</td>
+<td>7</td>
+<td>Key im <code>localStorage</code>. Der Präfix <code>scrum-poker:</code> verhindert Kollisionen mit anderen Apps.</td>
 </tr>
 <tr>
-<td>34-37</td>
-<td><code>sendSession()</code> – baut den <code>SessionState</code> für die fragende Person</td>
+<td>9-12</td>
+<td>Was im Context steht: der Name und eine Funktion zum Ändern.</td>
 </tr>
 <tr>
-<td>41-47</td>
-<td><code>findSessionOr404()</code> – gibt die Session zurück oder schickt 404. Muster: <code>if (!session) return</code>.</td>
+<td>15</td>
+<td>Kommentar für ESLint: Die Regel <code>react-refresh</code> möchte, dass eine Datei nur Komponenten exportiert. Context und Provider gehören aber zusammen, darum wird die Regel hier bewusst ausgeschaltet.</td>
 </tr>
 <tr>
-<td>49-52</td>
-<td><code>GET /</code> – Liste</td>
-</tr>
-<tr>
-<td>54-58</td>
-<td><code>POST /</code> – neue Session, <strong>201</strong></td>
-</tr>
-<tr>
-<td>60-64</td>
-<td><code>DELETE /:sessionId</code> – <strong>204</strong> ohne Body (<code>res.status(204).end()</code>)</td>
-</tr>
-<tr>
-<td>66-81</td>
-<td><code>GET /:sessionId</code> – mit <code>?participantId=…</code> zugleich Heartbeat. <code>req.query.participantId</code> kann ein String, ein Array oder fehlen, darum <code>typeof … === 'string'</code>. Unbekannte ID ist kein Fehler.</td>
-</tr>
-<tr>
-<td>83-95</td>
-<td><code>POST /:sessionId/participants</code> – validieren (400), hinzufügen, <strong>201</strong> mit <code>participantId</code></td>
-</tr>
-<tr>
-<td>97-104</td>
-<td><code>DELETE …/participants/:participantId</code> – idempotent, immer 204</td>
-</tr>
-<tr>
-<td>106-126</td>
-<td><code>PUT …/vote</code> – Reihenfolge der Prüfungen: Session 404 → Teilnehmer 404 → aufgedeckt 409 → Body 400 → speichern → Antwort mit eigener Stimme</td>
-</tr>
-<tr>
-<td>128-139</td>
-<td><code>PUT /:sessionId/deck</code></td>
-</tr>
-<tr>
-<td>141-155</td>
-<td><code>POST …/reveal</code>, <code>POST …/reset</code></td>
-</tr>
-</tbody></table></div>
-<p><strong><code>server/src/app.test.ts</code></strong> – Tests aller Routen mit supertest gegen <code>app</code>. Hilfsfunktionen
-<code>createSession</code>, <code>join</code>, <code>getState</code>, <code>vote</code> (Zeilen 15-40) machen die Tests lesbar.
-<code>beforeEach(clearSessions)</code> – jeder Test startet leer. Der Heartbeat-Test (Zeilen 322-354) fälscht
-mit <code>vi.useFakeTimers({ toFake: ['Date'] })</code> nur die Uhr und ruft <code>removeInactiveParticipants()</code>
-direkt auf. (Kursthema: Test)</p>
-<p><strong><code>server/src/static.test.ts</code></strong> – testet den Produktivbetrieb: <code>vi.stubEnv</code> setzt <code>NODE_ENV</code> und
-<code>CLIENT_DIST</code> auf ein kleines Fake-<code>dist</code> im Temp-Ordner, <code>vi.resetModules()</code> lädt die App neu,
-weil <code>config.ts</code> die Umgebung beim Import liest. (Kursthema: Test, Express)</p>
-<p><code>server/package.json</code>: <code>dev</code> = <code>tsx watch src/index.ts</code> (startet bei jeder Änderung neu), <code>build</code>
-= nur <code>tsc --noEmit</code> (Typprüfung, kein JavaScript-Output).</p>
-<h3 id="a4-client--react-app">A.4 <code>client/</code> – React-App</h3>
-<h4 id="einstieg-und-konfiguration">Einstieg und Konfiguration</h4>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Datei</th>
-<th>Zweck und wichtige Zeilen</th>
-<th>Kursthema</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>client/index.html</code></td>
-<td>Die einzige HTML-Seite (Single Page App). <code>&lt;div id="root"&gt;</code> (Z. 10) ist der Ort, an dem React rendert. <code>lang="de"</code>, Viewport-Meta (Z. 6) für Mobile.</td>
-<td>HTML/CSS</td>
-</tr>
-<tr>
-<td><code>client/vite.config.ts</code></td>
-<td>Ports aus Umgebungsvariablen <code>CLIENT_PORT</code>/<code>API_PORT</code> mit Standard 5173/3001 (Z. 7-8), <code>strictPort: true</code> (kein stilles Ausweichen), <strong>Proxy</strong> <code>/api</code> → Express (Z. 18-20). Testumgebung <code>jsdom</code> und Setup-Datei.</td>
-<td>Tooling</td>
-</tr>
-<tr>
-<td><code>client/package.json</code></td>
-<td>React 19, React Router 7. <code>build</code> = <code>tsc -b &amp;&amp; vite build</code>.</td>
-<td>Tooling</td>
-</tr>
-<tr>
-<td><code>client/tsconfig*.json</code></td>
-<td><code>tsconfig.app.json</code> für <code>src/</code> (DOM-Types, <code>jsx: react-jsx</code>), <code>tsconfig.node.json</code> für <code>vite.config.ts</code>. Überall <code>strict: true</code>, <code>noUnusedLocals</code>.</td>
-<td>TS</td>
-</tr>
-<tr>
-<td><code>client/public/favicon.svg</code></td>
-<td>Icon im Browser-Tab</td>
-<td></td>
-</tr>
-<tr>
-<td><code>client/src/test/setup.ts</code></td>
-<td>lädt <code>jest-dom</code>-Matcher (<code>toBeInTheDocument</code>), räumt nach jedem Test auf und leert <code>localStorage</code> und <code>sessionStorage</code></td>
-<td>Test</td>
-</tr>
-<tr>
-<td><code>client/src/config.ts</code></td>
-<td><code>POLL_INTERVAL_MS = 1_500</code> (Tisch), <code>SESSION_LIST_POLL_INTERVAL_MS = 3_000</code> (Liste). Der Kommentar erklärt die Abhängigkeit zum 15-s-Timeout des Servers.</td>
-<td>HTTP</td>
-</tr>
-</tbody></table></div>
-<p><strong><code>client/src/main.tsx</code></strong> (Kursthemen: React, Context, Routing)</p>
-<pre><code>createRoot(document.getElementById('root')!).render(
-  &lt;StrictMode&gt;
-    &lt;UserProvider&gt;
-      &lt;BrowserRouter&gt;
-        &lt;App /&gt;</code></pre>
-<ul>
-<li><code>!</code> (Non-null Assertion): Wir wissen, dass <code>#root</code> in <code>index.html</code> existiert.</li>
-<li>Reihenfolge: <code>StrictMode</code> aussen (prüft alles), <code>UserProvider</code> über dem Router (der Name gilt für
-alle Seiten), <code>BrowserRouter</code> um <code>App</code> (die Routen brauchen ihn).</li>
-<li>Z. 6: <code>import './styles/global.css'</code> – Vite bindet CSS per Import ein.</li>
-</ul>
-<p><strong><code>client/src/App.tsx</code></strong> – die Routen (siehe B.3). <code>ErrorBoundary</code> aussen, eine Layout-Route ohne
-Pfad (Z. 14), darin <code>index</code> (= <code>/</code>), <code>sessions/:sessionId</code> und <code>*</code>. (Kursthema: Routing)</p>
-<h4 id="api-und-hooks">API und Hooks</h4>
-<p><strong><code>client/src/api/client.ts</code></strong> – eine typisierte Funktion pro Route. Komponenten rufen nie selbst
-<code>fetch</code> auf. (Kursthema: HTTP, TS)</p>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Zeilen</th>
-<th>Erklärung</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>23-31</td>
-<td><code>class ApiError extends Error</code> mit <code>status</code>. <code>0</code> = Server gar nicht erreicht. So kann eine Komponente <code>err instanceof ApiError &amp;&amp; err.status === 404</code> prüfen.</td>
-</tr>
-<tr>
-<td>33-37</td>
-<td><code>RequestOptions</code> – <code>method</code> als Union der vier erlaubten Methoden, optional <code>body</code> und <code>signal</code>.</td>
-</tr>
-<tr>
-<td>39-53</td>
-<td><code>readErrorMessage()</code> – liest <code>{ error }</code> aus der Antwort. Ist der Body kein JSON (z. B. 502 vom Vite-Proxy, wenn Express nicht läuft), wird eine eigene Meldung erzeugt.</td>
-</tr>
-<tr>
-<td>55-79</td>
-<td><code>send()</code> – <strong>der wichtigste Teil</strong>. <code>fetch</code> wirft nur, wenn <strong>keine</strong> Antwort kam (Netzwerk) → <code>ApiError(0)</code>. Eine Antwort mit 404 oder 500 wirft <strong>nicht</strong>, darum Z. 75 <code>if (!response.ok)</code>. Abgebrochene Requests (Z. 68-70) werden unverändert weitergeworfen, damit <code>usePolling</code> sie erkennt.</td>
-</tr>
-<tr>
-<td>82-86</td>
-<td><code>request&lt;T&gt;()</code> – <strong>Generic</strong>: Der Aufrufer sagt, welchen Type die JSON-Antwort hat. <code>as T</code> ist ein Vertrauensvorschuss an den Server (der Vertrag steht in <code>shared</code>).</td>
-</tr>
-<tr>
-<td>88-94</td>
-<td><code>encodeURIComponent</code> – Sonderzeichen in IDs zerstören die URL nicht</td>
-</tr>
-<tr>
-<td>96-148</td>
-<td>je eine Funktion pro Route. <code>getSession</code> hängt <code>?participantId=</code> an (Heartbeat). Funktionen ohne Antwort-Body (<code>deleteSession</code>, <code>leaveSession</code>) nutzen <code>send()</code> statt <code>request()</code>, weil 204 keinen JSON-Body hat.</td>
-</tr>
-</tbody></table></div>
-<p><strong><code>client/src/hooks/usePolling.ts</code></strong> – <strong>Custom Hook</strong>, generisch für jede Art von Daten.
-(Kursthema: Effects)</p>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Zeilen</th>
-<th>Erklärung</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>3-13</td>
-<td><code>PollingResult&lt;T&gt;</code> – was der Hook zurückgibt: <code>data</code>, <code>error</code>, <code>isLoading</code>, <code>refresh</code>, <code>setData</code></td>
-</tr>
-<tr>
-<td>19-22</td>
-<td><code>fetcher</code> bekommt ein <code>AbortSignal</code>, damit der Hook Requests abbrechen kann</td>
-</tr>
-<tr>
-<td>23-27</td>
-<td>vier <code>useState</code>. <code>refreshCount</code> ist nur ein Zähler: Ändert er sich, läuft der Effekt neu.</td>
-</tr>
-<tr>
-<td>30</td>
-<td><code>useRef&lt;AbortController&gt;</code> – ein Wert, der Renders überlebt, aber <strong>kein</strong> Re-Render auslöst. Ein Ref, weil auch <code>setData</code> (ausserhalb des Effekts) den Controller braucht.</td>
-</tr>
-<tr>
-<td>32-62</td>
-<td>der Effekt: <code>poll()</code> sofort, dann <code>setInterval</code>. In <code>poll()</code> zuerst den alten Request abbrechen (Z. 36), dann neuen starten. Nach dem <code>await</code> prüfen, ob inzwischen abgebrochen wurde (Z. 42, 47).</td>
-</tr>
-<tr>
-<td>58-61</td>
-<td><strong>Cleanup</strong>: Intervall stoppen, laufenden Request abbrechen</td>
-</tr>
-<tr>
-<td>62</td>
-<td>Dependencies <code>[fetcher, intervalMs, refreshCount]</code> – darum muss <code>fetcher</code> stabil sein (<code>useCallback</code> in <code>PokerRoom</code>, Modul-Funktion in <code>HomePage</code>)</td>
-</tr>
-<tr>
-<td>64-66</td>
-<td><code>refresh()</code> – Zähler erhöhen → Effekt neu → sofort laden</td>
-</tr>
-<tr>
-<td>68-75</td>
-<td><code>setData()</code> mit <code>useCallback</code> – zeigt eine Antwort sofort an und bricht den laufenden Poll ab (sonst flackert der alte Zustand kurz zurück)</td>
-</tr>
-</tbody></table></div>
-<p><strong><code>client/src/utils/validateName.ts</code></strong> – gleiche Regeln wie der Server, gibt eine Fehlermeldung
-oder <code>null</code> zurück. Der Client prüft für schnelles Feedback, der Server zur Sicherheit.</p>
-<h4 id="context">Context</h4>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Datei</th>
-<th>Erklärung</th>
-<th>Kursthema</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>context/UserContextValue.ts</code></td>
-<td><code>NAME_STORAGE_KEY = 'scrum-poker:name'</code> (Z. 7), <code>UserContextValue</code> (Z. 9-12), <code>createContext&lt;UserContextValue | undefined&gt;(undefined)</code> (Z. 15). <code>undefined</code> als Standard = «kein Provider». Eigene Datei, weil React Fast Refresh nur in Dateien funktioniert, die ausschliesslich Komponenten exportieren.</td>
-<td>Context</td>
-</tr>
-<tr>
-<td><code>context/UserContext.tsx</code></td>
-<td><code>UserProvider</code>: State <code>name</code> mit Lazy Init aus <code>localStorage</code> (Z. 10), Effekt schreibt jede Änderung zurück (Z. 12-14). Z. 17: In React 19 ist <code>&lt;UserContext value={…}&gt;</code> selbst der Provider.</td>
-<td>Context, Effects</td>
-</tr>
-<tr>
-<td><code>context/useUser.ts</code></td>
-<td><code>useContext</code> + Fehler, wenn kein Provider da ist. Rückgabetyp ohne <code>undefined</code> – Komponenten müssen nicht jedes Mal prüfen.</td>
-<td>Context</td>
-</tr>
-</tbody></table></div>
-<h4 id="seiten">Seiten</h4>
-<p><strong><code>pages/HomePage.tsx</code></strong> (Kursthemen: State, React)</p>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Zeilen</th>
-<th>Erklärung</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>16-18</td>
-<td>Name aus dem Context, Fehler und Gültigkeit <strong>abgeleitet</strong> (kein eigener State)</td>
-</tr>
-<tr>
-<td>21</td>
-<td><code>usePolling(listSessions, SESSION_LIST_POLL_INTERVAL_MS)</code> (3 s) – <code>listSessions</code> ist eine Modul-Funktion, ihre Identität ändert sich nie, darum kein <code>useCallback</code> nötig</td>
-</tr>
-<tr>
-<td>33-34</td>
-<td><code>NameForm</code> kontrolliert (<code>name</code>, <code>onNameChange={setName}</code>), <code>CreateSessionButton disabled={!isNameValid}</code></td>
-</tr>
-<tr>
-<td>41-43</td>
-<td>Fehler <strong>zusätzlich</strong> zu alten Daten anzeigen (Liste bleibt sichtbar)</td>
-</tr>
-<tr>
-<td>45-56</td>
-<td>bedingtes Rendern: Laden, leere Liste, Liste</td>
-</tr>
-<tr>
-<td>54</td>
-<td><code>onDeleted={refresh}</code> – nach dem Löschen sofort neu laden</td>
-</tr>
-</tbody></table></div>
-<p><strong><code>pages/SessionPage.tsx</code></strong> (Kursthemen: Routing, Effects)</p>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Zeilen</th>
-<th>Erklärung</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>12-16</td>
-<td><code>participantStorageKey()</code> – Key in <code>sessionStorage</code>, z. B. <code>scrum-poker:participant:ab12cd</code>. <code>sessionStorage</code> gilt pro Tab: übersteht einen Reload, nicht das Schliessen.</td>
-</tr>
-<tr>
-<td>18-30</td>
-<td><code>resumeOrJoin()</code> – gibt es eine gespeicherte ID und kennt der Server sie noch (<code>getSession</code> mit der ID, zählt zugleich als Heartbeat), geht es mit ihr weiter. Sonst <code>joinSession()</code>.</td>
-</tr>
-<tr>
-<td>33</td>
-<td><code>useParams()</code> liefert <code>sessionId</code> aus der URL</td>
-</tr>
-<tr>
-<td>38-39</td>
-<td>ohne gültigen Namen wird nicht beigetreten</td>
-</tr>
-<tr>
-<td>41-44</td>
-<td>State: <code>participantId</code>, <code>joinError</code>, <code>joinAttempt</code></td>
-</tr>
-<tr>
-<td>46-94</td>
-<td><strong>Join-Effekt</strong>: beim Mount beitreten oder nach einem Reload fortsetzen, im Cleanup verlassen. <code>cancelled</code>-Flag für StrictMode (siehe B.10).</td>
-</tr>
-<tr>
-<td>54-55</td>
-<td>gespeicherte ID aus <code>sessionStorage</code> lesen</td>
-</tr>
-<tr>
-<td>67-72</td>
-<td>Antwort kam nach dem Cleanup: neu erstellten Teilnehmer wieder verlassen, die gespeicherte ID aber nicht (der zweite StrictMode-Durchlauf macht mit ihr weiter)</td>
-</tr>
-<tr>
-<td>73-75</td>
-<td>ID merken (Variable <code>joinedId</code>, <code>sessionStorage</code>, State)</td>
-</tr>
-<tr>
-<td>83-93</td>
-<td>Cleanup: <code>cancelled = true</code>, verlassen (<code>DELETE</code>), ID aus <code>sessionStorage</code> löschen, State zurücksetzen. Ein Reload baut React nicht ab, darum läuft das Cleanup dort nicht – genau deshalb bleibt man nach einem Reload am Tisch.</td>
-</tr>
-<tr>
-<td>94</td>
-<td>Dependencies <code>[sessionId, trimmedName, hasName, joinAttempt]</code> – ändert sich eines, wird verlassen und neu beigetreten. <code>joinAttempt</code> erhöhen = «nochmals versuchen».</td>
-</tr>
-<tr>
-<td>96-118</td>
-<td><code>renderContent()</code> – je nach Zustand Namensformular, «nicht gefunden», Fehler, Laden oder <code>PokerRoom</code></td>
-</tr>
-<tr>
-<td>111-112</td>
-<td><code>key={participantId}</code> – neue Person → frische <code>PokerRoom</code>-Instanz</td>
-</tr>
-</tbody></table></div>
-<p><strong><code>pages/NotFoundPage.tsx</code></strong> – Text und <code>&lt;Link to="/"&gt;</code>. Wird für jede unbekannte URL gerendert.</p>
-<h4 id="komponenten">Komponenten</h4>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Datei</th>
-<th>Zweck</th>
-<th>Wichtigste Zeilen</th>
-<th>Kursthema</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>Layout.tsx</code></td>
-<td>Header + Platz für die Seite</td>
-<td><code>&lt;Outlet /&gt;</code> (Z. 12) rendert die aktive Kind-Route</td>
-<td>Routing</td>
-</tr>
-<tr>
-<td><code>ErrorBoundary.tsx</code></td>
-<td>fängt Render-Fehler</td>
-<td>Klassenkomponente, <code>getDerivedStateFromError</code> (Z. 17-19). <code>&lt;Link to="/" reloadDocument&gt;</code> lädt die ganze App neu und setzt damit auch die Boundary zurück.</td>
-<td>React</td>
-</tr>
-<tr>
-<td><code>ErrorMessage.tsx</code></td>
-<td>Fehlermeldung</td>
-<td><code>role="alert"</code>, optionaler <code>onRetry</code>-Button (<code>onRetry &amp;&amp;</code>)</td>
-<td>React, HTML/CSS</td>
-</tr>
-<tr>
-<td><code>LoadingIndicator.tsx</code></td>
-<td>Ladeanzeige</td>
-<td>Standardwert <code>label = 'Wird geladen…'</code>, <code>role="status"</code></td>
-<td>React</td>
-</tr>
-<tr>
-<td><code>NameForm.tsx</code></td>
-<td>Namensfeld auf Home</td>
-<td>kontrolliertes <code>&lt;input value onChange&gt;</code> (Z. 28-29), <code>event.preventDefault()</code> beim Absenden (Z. 16), <code>aria-invalid</code>/<code>aria-describedby</code></td>
-<td>State, HTML/CSS</td>
-</tr>
-<tr>
-<td><code>CreateSessionButton.tsx</code></td>
-<td>Session erstellen</td>
-<td><code>isCreating</code>/<code>error</code> (Z. 13-14), <code>await createSession()</code> → <code>navigate</code> (Z. 20-22), <code>try/catch</code></td>
-<td>State, Routing, HTTP</td>
-</tr>
-<tr>
-<td><code>SessionList.tsx</code></td>
-<td>Liste</td>
-<td><code>[...sessions].sort(...)</code> – <strong>Kopie</strong> sortieren, <code>sort()</code> würde den State verändern (Z. 14). <code>key={session.id}</code></td>
-<td>React</td>
-</tr>
-<tr>
-<td><code>SessionListItem.tsx</code></td>
-<td>ein Eintrag</td>
-<td><code>window.confirm</code> vor dem Löschen, 404 zählt als Erfolg (Z. 37-39), <code>toLocaleTimeString('de-CH')</code>, <code>aria-describedby</code></td>
-<td>State, HTTP</td>
-</tr>
-<tr>
-<td><code>SessionNameForm.tsx</code></td>
-<td>Name bei geteiltem Link</td>
-<td>eigener <code>draft</code>-State, <code>validateName(draft)</code> zeigt dieselbe Meldung wie auf Home (Z. 13, 41-45), erst beim Absenden <code>setName</code> (Z. 16-21) → <code>SessionPage</code> tritt automatisch bei</td>
-<td>State, Context</td>
-</tr>
-<tr>
-<td><code>SessionNotFound.tsx</code></td>
-<td>404-Meldung</td>
-<td>Link zurück</td>
-<td>React</td>
-</tr>
-<tr>
-<td><code>PokerRoom.tsx</code></td>
-<td>Herz des Tisches</td>
-<td>siehe unten</td>
-<td>State, Effects, HTTP</td>
-</tr>
-<tr>
-<td><code>PokerTable.tsx</code></td>
-<td>Tischlayout</td>
-<td>Personen auf zwei Reihen verteilen (<code>Math.ceil</code>, Z. 16), <code>children</code> in der Mitte (Z. 32)</td>
-<td>React</td>
-</tr>
-<tr>
-<td><code>ParticipantSeat.tsx</code></td>
-<td>ein Platz</td>
-<td>drei Zustände: leer / verdeckt / aufgedeckt (Z. 22-31). Zwei Kartenseiten übereinander, CSS dreht sie (Flip). Text für Screenreader (Z. 37).</td>
-<td>React, HTML/CSS</td>
-</tr>
-<tr>
-<td><code>RoundResult.tsx</code></td>
-<td>Ergebnis</td>
-<td><code>computeResult()</code> bei jedem Render (Z. 12-13), kein State</td>
-<td>State</td>
-</tr>
-<tr>
-<td><code>RoundControls.tsx</code></td>
-<td>Aufdecken / Neue Runde</td>
-<td>rein über Props gesteuert, Button-Text je nach Ladezustand</td>
-<td>React</td>
-</tr>
-<tr>
-<td><code>DeckSwitcher.tsx</code></td>
-<td>Deck wählen</td>
-<td><code>&lt;fieldset&gt;</code>/<code>&lt;legend&gt;</code>, <code>aria-pressed</code>, ruft <code>onChange</code> nur bei einem anderen Deck auf (Z. 26). <code>DECK_TYPES</code> als Liste, weil <code>Object.keys()</code> nur <code>string[]</code> liefert.</td>
-<td>React, TS</td>
-</tr>
-<tr>
-<td><code>CardDeck.tsx</code></td>
-<td>Handkarten</td>
-<td><code>DECKS[deck].cards.map(...)</code>, <code>key={value}</code>, <code>onClick={() =&gt; onCardClick(value)}</code> (Z. 26)</td>
-<td>React</td>
-</tr>
-<tr>
-<td><code>PlayingCard.tsx</code></td>
-<td>eine Karte</td>
-<td><code>&lt;button aria-pressed={selected}&gt;</code> – echter Button, also tastaturbedienbar</td>
-<td>React, HTML/CSS</td>
-</tr>
-<tr>
-<td><code>ShareLinkButton.tsx</code></td>
-<td>Link kopieren</td>
-<td><code>navigator.clipboard.writeText</code>, Fallback <code>window.prompt</code>. Effekt mit Cleanup blendet «Kopiert!» nach 2 s aus (Z. 7-11).</td>
-<td>Effects</td>
-</tr>
-</tbody></table></div>
-<p><strong><code>components/PokerRoom.tsx</code></strong> im Detail:</p>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Zeilen</th>
-<th>Erklärung</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>18-22</td>
-<td>Props <code>sessionId</code>, <code>participantId</code>, <code>onRejoin</code></td>
+<td>16</td>
+<td><code>createContext(…)</code> mit Startwert. Der Startwert gilt nur, wenn <strong>kein</strong> Provider darüber liegt; in der App kommt das nicht vor.</td>
 </tr>
 <tr>
 <td>24</td>
-<td><code>type Action = 'vote' | 'deck' | 'reveal' | 'reset'</code></td>
+<td><code>useState(() =&gt; localStorage.getItem(…) ?? '')</code> – die Funktion läuft nur beim <strong>ersten</strong> Render, <code>localStorage</code> wird also nur einmal gelesen. <code>??</code> heisst: Ist links <code>null</code> (noch nichts gespeichert), nimm <code>''</code>.</td>
 </tr>
 <tr>
-<td>30-33</td>
-<td><code>fetchSession</code> mit <code>useCallback</code> – stabile Identität, sonst startet <code>usePolling</code> bei jedem Render neu</td>
+<td>27-30</td>
+<td><code>setName()</code> setzt den State <strong>und</strong> speichert sofort. Jeder Tastendruck ist gespeichert.</td>
 </tr>
 <tr>
-<td>35</td>
-<td>Polling = Heartbeat</td>
-</tr>
-<tr>
-<td>39-40</td>
-<td><code>pendingAction</code>, <code>actionError</code></td>
-</tr>
-<tr>
-<td>44-54</td>
-<td><code>runAction()</code> – gemeinsames Muster für alle Aktionen: Ladezustand an, Request, <code>setData</code> mit der Antwort, Fehler als Meldung, <code>finally</code> Ladezustand aus</td>
-</tr>
-<tr>
-<td>56-62</td>
-<td>404 → <code>SessionNotFound</code>; noch keine Daten → Laden oder Fehler</td>
-</tr>
-<tr>
-<td>64-76</td>
-<td>eigene Person fehlt → «Wieder beitreten»</td>
-</tr>
-<tr>
-<td>78-80</td>
-<td>abgeleitete Werte: <code>myVote</code>, <code>busy</code>, <code>voteCount</code></td>
-</tr>
-<tr>
-<td>82-86</td>
-<td><code>handleCardClick</code> – gleiche Karte nochmals → <code>null</code></td>
-</tr>
-<tr>
-<td>92-94</td>
-<td><code>aria-busy={busy}</code> am Tisch: Screenreader erfahren, dass eine Aktion läuft</td>
-</tr>
-<tr>
-<td>101</td>
-<td>«Verlassen» navigiert nur. Das Verlassen selbst macht das Cleanup in <code>SessionPage</code>.</td>
-</tr>
-<tr>
-<td>110-127</td>
-<td><code>PokerTable</code> mit <code>RoundResult</code> oder Zähler und <code>RoundControls</code> als <code>children</code></td>
-</tr>
-<tr>
-<td>129-134</td>
-<td><code>CardDeck</code>, gesperrt wenn aufgedeckt oder eine Aktion läuft</td>
+<td>33</td>
+<td><code>&lt;UserContext value={…}&gt;</code> – seit React 19 ist der Context selbst der Provider. Alles in <code>children</code> kann den Wert mit <code>useContext(UserContext)</code> lesen.</td>
 </tr>
 </tbody></table></div>
+<h4 id="alle-anfragen-an-den-server">Alle Anfragen an den Server</h4>
+<p><strong><code>client/src/api.ts</code></strong> – eine Funktion pro API-Route. Komponenten rufen nie selbst <code>fetch()</code>
+auf. Kursthema: HTTP, TS.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeilen</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>21-32</td>
+<td><code>send()</code> – die einzige Stelle mit <code>fetch()</code>. Gibt es einen Body, wird er mit <code>JSON.stringify</code> zu Text und bekommt den Header <code>Content-Type: application/json</code>. <strong>Wichtig:</strong> <code>fetch()</code> wirft nur, wenn gar keine Antwort kommt (Server aus, kein Netz). Dann wird daraus «Server nicht erreichbar.» (Zeilen 27-31). Eine 404- oder 500-Antwort ist für <code>fetch()</code> kein Fehler.</td>
+</tr>
+<tr>
+<td>35-50</td>
+<td><code>createError()</code> – macht aus einer Fehlerantwort ein <code>Error</code> mit Text. 502/503/504 kommen vom Vite-Proxy, wenn Express nicht läuft → auch «Server nicht erreichbar.». Sonst der Text aus <code>{ error }</code> vom Server. <code>as ErrorResponse</code> (Zeile 42): Wir vertrauen dem eigenen Server, dass die Antwort diese Form hat.</td>
+</tr>
+<tr>
+<td>53-59</td>
+<td><code>listSessions()</code> – das Muster aller Funktionen: senden, <code>response.ok</code> prüfen (Status 200–299), sonst Fehler werfen, sonst JSON zurückgeben.</td>
+</tr>
+<tr>
+<td>62-69</td>
+<td><code>createSession()</code> gibt nur die neue ID zurück.</td>
+</tr>
+<tr>
+<td>72-81</td>
+<td><code>deleteSession()</code> – 404 zählt als Erfolg: jemand anderes hat die Session schon gelöscht, das Ziel ist erreicht.</td>
+</tr>
+<tr>
+<td>86-95</td>
+<td><code>getSession()</code> – schickt die eigene <code>participantId</code> mit (Heartbeat). 404 → <code>null</code>: «diese Session gibt es nicht».</td>
+</tr>
+<tr>
+<td>100-115</td>
+<td><code>joinSession()</code> – schickt Name und gespeicherte ID (nach Reload) mit. 404 → <code>null</code>.</td>
+</tr>
+<tr>
+<td>118-161</td>
+<td><code>leaveSession()</code>, <code>castVote()</code>, <code>changeDeck()</code>, <code>revealCards()</code>, <code>resetRound()</code> – alle nach demselben Muster.</td>
+</tr>
+<tr>
+<td>165-170</td>
+<td><code>getErrorMessage()</code> – im <code>catch</code> ist der Fehler vom Typ <code>unknown</code>. Mit <code>instanceof Error</code> prüfen wir, ob er eine <code>message</code> hat.</td>
+</tr>
+</tbody></table></div>
+<p><strong><code>client/src/api.test.ts</code></strong> – ersetzt <code>fetch</code> durch einen Fake (<code>vi.stubGlobal</code>) und prüft
+Adresse, Body und Fehlermeldungen.</p>
+<h4 id="home-seite">Home-Seite</h4>
+<p><strong><code>client/src/pages/HomePage.tsx</code></strong> – Route <code>/</code>. Kursthema: State, Effects, HTTP.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeilen</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>16</td>
+<td><code>SESSION_LIST_POLL_INTERVAL_MS = 3000</code> – die Liste wird alle 3 s neu geladen.</td>
+</tr>
+<tr>
+<td>23-25</td>
+<td>Name aus dem Context. Ob er gültig ist, wird <strong>bei jedem Render berechnet</strong>, nicht gespeichert (abgeleiteter Wert, kann nie veralten).</td>
+</tr>
+<tr>
+<td>28-31</td>
+<td>Vier States. <code>useState&lt;SessionSummary[] | null&gt;(null)</code>: Der Type in spitzen Klammern sagt, was im State liegen darf. <code>null</code> heisst «noch keine Antwort».</td>
+</tr>
+<tr>
+<td>34</td>
+<td><code>isLoading</code> – berechnet: Wir laden, solange weder Liste noch Fehler da sind.</td>
+</tr>
+<tr>
+<td>37-64</td>
+<td><strong>Polling-Effekt</strong> (Muster, das auch <code>PokerRoom</code> benutzt): <code>let ignore = false</code> (39), <code>async function loadSessions()</code> mit <code>try</code>/<code>catch</code> (41-54), sofort einmal laden und dann alle 3 s (56-57), <strong>Cleanup</strong> <code>ignore = true; clearInterval(intervalId)</code> (60-63). Das leere Dependency-Array <code>[]</code> (64): Der Effekt läuft nur beim Öffnen der Seite.</td>
+</tr>
+<tr>
+<td>48-53</td>
+<td>Bei einem Fehler bleibt die alte Liste stehen, nur <code>listError</code> wird gesetzt. Der nächste Poll versucht es von selbst wieder.</td>
+</tr>
+<tr>
+<td>66-77</td>
+<td><code>handleCreate()</code> – Ladezustand an, Session erstellen, dann <code>navigate('/sessions/' + sessionId)</code>. Bei Fehler Meldung und Button wieder frei.</td>
+</tr>
+<tr>
+<td>81-90</td>
+<td><code>handleDeleted()</code> – entfernt die gelöschte Session sofort aus der Liste. <code>setSessions((currentSessions) =&gt; …)</code> mit einer Funktion bekommt den neusten Stand, auch wenn inzwischen ein Poll angekommen ist. <code>filter()</code> erzeugt eine <strong>neue</strong> Liste, der alte State wird nicht verändert.</td>
+</tr>
+<tr>
+<td>94-98</td>
+<td>Sortieren: zuerst kopieren (<code>[...sessions]</code>), denn <code>sort()</code> verändert das Array selbst, und State darf man nie direkt verändern.</td>
+</tr>
+<tr>
+<td>110</td>
+<td><code>NameForm</code> bekommt Name, Fehlermeldung und <code>setName</code> als Props.</td>
+</tr>
+<tr>
+<td>111-118</td>
+<td>Button «Neue Session erstellen», gesperrt bei ungültigem Namen oder während des Erstellens.</td>
+</tr>
+<tr>
+<td>125-143</td>
+<td>Bedingtes Rendern mit <code>&amp;&amp;</code>: Fehler, Ladeanzeige, leere Liste, Hinweis, Liste. Zeile 140: <code>key={session.id}</code> – stabile ID statt Index.</td>
+</tr>
+</tbody></table></div>
+<p><strong><code>client/src/components/NameForm.tsx</code></strong> – Kursthema: State, React.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeilen</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>8-13</td>
+<td>Props: <code>name</code>, <code>error</code> (<code>null</code> = gültig), <code>onNameChange</code> (Callback nach oben).</td>
+</tr>
+<tr>
+<td>16-19</td>
+<td><code>event.preventDefault()</code> – sonst würde der Browser beim Drücken von Enter die Seite neu laden.</td>
+</tr>
+<tr>
+<td>30-31</td>
+<td><strong>Kontrolliertes Eingabefeld</strong>: <code>value</code> kommt von oben, jede Eingabe geht über <code>onNameChange</code> zurück in den Context.</td>
+</tr>
+<tr>
+<td>32</td>
+<td><code>maxLength</code> – der Browser lässt nicht mehr als 30 Zeichen zu.</td>
+</tr>
+<tr>
+<td>35-36</td>
+<td><code>aria-invalid</code> und <code>aria-describedby</code> sagen Screenreadern, dass das Feld ungültig ist und wo die Meldung steht (nur, wenn es eine gibt).</td>
+</tr>
+<tr>
+<td>38-42</td>
+<td>Meldung nur, wenn es einen Fehler gibt.</td>
+</tr>
+</tbody></table></div>
+<p><strong><code>client/src/components/SessionListItem.tsx</code></strong> – Kursthema: State, React.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeilen</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10-16</td>
+<td>Props: die Session, ob Beitreten erlaubt ist, Callback nach dem Löschen.</td>
+</tr>
+<tr>
+<td>21-22</td>
+<td>Eigener State pro Eintrag: Nur dieser eine Eintrag zeigt «Wird gelöscht…».</td>
+</tr>
+<tr>
+<td>24-28</td>
+<td>Text «1 Person» / «x Personen» und die Uhrzeit (<code>toLocaleTimeString('de-CH', …)</code>).</td>
+</tr>
+<tr>
+<td>32-46</td>
+<td><code>handleDelete()</code> – <code>window.confirm</code> fragt nach. Bei Erfolg <code>onDeleted(session.id)</code>: die Seite entfernt den Eintrag aus der Liste (Lifting State Up).</td>
+</tr>
+<tr>
+<td>59-67</td>
+<td>«Beitreten» navigiert nur auf die Session. Beigetreten wird erst auf der Session-Seite.</td>
+</tr>
+<tr>
+<td>68-76</td>
+<td>«Löschen» mit eigenem Ladetext.</td>
+</tr>
+</tbody></table></div>
+<p><strong><code>client/src/components/ErrorBoundary.tsx</code></strong> – die <strong>einzige Klasse</strong> der App, weil React Error
+Boundaries nur als Klasse anbietet. Zeilen 20-22: <code>getDerivedStateFromError</code> setzt
+<code>hasError: true</code>, wenn ein Kind beim Rendern einen Fehler wirft. Zeilen 25-36: dann eine Meldung
+statt der Kinder. Zeile 31: <code>&lt;Link reloadDocument&gt;</code> lädt die ganze App neu, damit auch der
+Fehlerzustand weg ist. Fängt <strong>keine</strong> Fehler in Event-Handlern oder <code>fetch</code> (die fangen wir mit
+<code>try</code>/<code>catch</code>). Kursthema: React.</p>
+<p><strong><code>client/src/components/ErrorMessage.tsx</code></strong> – rote Meldung mit <code>role="alert"</code> (Screenreader lesen
+sie sofort vor). Mit <code>onRetry</code> erscheint der Button «Erneut versuchen» (Zeilen 14-18), ohne nicht.
+Das <code>?</code> in <code>onRetry?:</code> heisst: Die Prop ist freiwillig.</p>
+<p><strong><code>client/src/components/LoadingIndicator.tsx</code></strong> – drehender Kreis und Text mit <code>role="status"</code>.
+Der Kreis hat <code>aria-hidden="true"</code>, weil er nur Dekoration ist.</p>
+<p><strong><code>client/src/pages/NotFoundPage.tsx</code></strong> – für alle unbekannten Adressen, mit <code>&lt;Link to="/"&gt;</code>
+zurück.</p>
+<p><strong><code>client/src/pages/HomePage.test.tsx</code></strong> – ersetzt <code>fetch</code> durch einen Fake-Server und prüft Name,
+Erstellen, Liste, Fehler, Polling (mit Fake-Timern: «nach 3 s kommt der zweite Request, nach dem
+Verlassen der Seite keiner mehr») und Löschen. <strong><code>client/src/App.test.tsx</code></strong> prüft die Routen.
+<strong><code>client/src/UserContext.test.tsx</code></strong> prüft Lesen und Schreiben im <code>localStorage</code>.</p>
+<h4 id="session-seite-beitreten-verlassen-reload">Session-Seite (Beitreten, Verlassen, Reload)</h4>
+<p><strong><code>client/src/pages/SessionPage.tsx</code></strong> – Route <code>/sessions/:sessionId</code>. Kursthema: Effects,
+Routing, State.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeilen</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>17</td>
+<td><code>const { sessionId = '' } = useParams()</code> – liest <code>:sessionId</code> aus der Adresse. <code>useParams()</code> liefert <code>string | undefined</code>, <code>= ''</code> macht daraus sicher einen Text.</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Name aus dem Context.</td>
+</tr>
+<tr>
+<td>22-23</td>
+<td><code>hasName</code> und <code>trimmedName</code> werden berechnet.</td>
+</tr>
+<tr>
+<td>25-29</td>
+<td>Vier States. <code>joinAttempt</code> ist ein Zähler: Hochzählen startet den Effekt neu («Erneut versuchen», «Wieder beitreten»).</td>
+</tr>
+<tr>
+<td>34-93</td>
+<td><strong>Join-Effekt.</strong> Beitreten beim Öffnen, Verlassen im Cleanup.</td>
+</tr>
+<tr>
+<td>35-37</td>
+<td>Ohne gültigen Namen nichts tun. Dann zeigt die Seite das Namensformular.</td>
+</tr>
+<tr>
+<td>43-44</td>
+<td>Gespeicherte ID aus <code>sessionStorage</code> lesen (gibt es nur nach einem Reload in diesem Tab).</td>
+</tr>
+<tr>
+<td>49-50</td>
+<td><code>ignore</code> (Muster aus der React-Doku) und <code>joinedId</code> (wer ist beigetreten, damit das Cleanup weiss, wen es abmelden muss).</td>
+</tr>
+<tr>
+<td>52-76</td>
+<td><code>async function join()</code>: <code>joinSession(...)</code> (54). Ist der Effekt schon aufgeräumt (<code>ignore</code>, 55-63), wird ein <strong>neu</strong> angelegter Teilnehmer gleich wieder abgemeldet. <code>null</code> → «nicht gefunden» (64-67). Sonst ID merken, in <code>sessionStorage</code> schreiben und anzeigen (68-70). Fehler → Meldung (71-75).</td>
+</tr>
+<tr>
+<td>78</td>
+<td><code>join()</code> wird aufgerufen. Ein Effekt selbst darf nicht <code>async</code> sein, darum die innere Funktion.</td>
+</tr>
+<tr>
+<td>81-92</td>
+<td><strong>Cleanup</strong>: <code>ignore = true</code>; war man beigetreten, Leave-Request schicken (Fehler egal, <code>.catch(() =&gt; {})</code>) und die gespeicherte ID löschen; State zurücksetzen.</td>
+</tr>
+<tr>
+<td>93</td>
+<td>Dependencies: Ändert sich Session, Name oder <code>joinAttempt</code>, wird zuerst aufgeräumt und dann neu beigetreten.</td>
+</tr>
+<tr>
+<td>95-97</td>
+<td><code>joinAgain()</code> zählt <code>joinAttempt</code> hoch.</td>
+</tr>
+<tr>
+<td>99-114</td>
+<td><code>renderContent()</code> entscheidet mit <code>if</code> und frühem <code>return</code>, was angezeigt wird: Namensformular, «nicht gefunden», Fehler, Laden oder der Tisch.</td>
+</tr>
+<tr>
+<td>113</td>
+<td><code>key={participantId}</code>: neue ID → React baut ein frisches <code>PokerRoom</code> mit leerem State.</td>
+</tr>
+</tbody></table></div>
+<p><strong><code>client/src/components/SessionNameForm.tsx</code></strong> – fragt nach dem Namen, wenn jemand einen
+geteilten Link ohne gespeicherten Namen öffnet. <code>draft</code> (Zeile 10) ist ein eigener State: Erst beim
+Absenden (Zeilen 14-20) kommt der Name in den Context, sonst würde schon beim ersten Buchstaben
+beigetreten. Zeile 12: dieselbe Prüfung <code>validateName</code> wie auf der Home-Seite. Danach sieht
+<code>SessionPage</code> einen gültigen Namen, und ihr Effekt tritt von selbst bei.</p>
+<p><strong><code>client/src/components/SessionNotFound.tsx</code></strong> – Meldung «Diese Session existiert nicht (mehr)»
+mit Link zurück. Benutzt von <code>SessionPage</code> (Beitreten schlägt fehl) <strong>und</strong> <code>PokerRoom</code> (Session
+wird gelöscht, während man am Tisch sitzt): derselbe Fehlerzustand.</p>
+<h4 id="pokertisch">Pokertisch</h4>
+<p><strong><code>client/src/components/PokerRoom.tsx</code></strong> – der Tisch eines beigetretenen Teilnehmers. Hält den
+ganzen Zustand des Tisches. Kursthema: State, Effects, HTTP.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeilen</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>19</td>
+<td><code>POLL_INTERVAL_MS = 1500</code> – muss deutlich unter dem Server-Timeout von 15 s liegen, weil jeder Poll als Heartbeat zählt.</td>
+</tr>
+<tr>
+<td>21-25</td>
+<td>Props: Session-ID, eigene ID, Callback für «Wieder beitreten».</td>
+</tr>
+<tr>
+<td>32-37</td>
+<td>State: <code>session</code> (Zustand vom Server, Single Source of Truth), <code>pollError</code>, <code>notFound</code>, <code>isBusy</code> (eine Aktion läuft), <code>actionError</code>.</td>
+</tr>
+<tr>
+<td>40-76</td>
+<td><strong>Polling-Effekt</strong>, gleiches Muster wie auf der Home-Seite.</td>
+</tr>
+<tr>
+<td>49-55</td>
+<td>Session gelöscht (<code>null</code>): <code>clearInterval</code> stoppt das Polling, damit nicht alle 1.5 s ein unnötiger Request mit 404 rausgeht. Dann <code>notFound</code>.</td>
+</tr>
+<tr>
+<td>58-63</td>
+<td>Fehler: der letzte Stand bleibt sichtbar, <code>pollError</code> zeigt die Meldung.</td>
+</tr>
+<tr>
+<td>67-68</td>
+<td>Erst den Timer anlegen, dann sofort laden. So kennt <code>loadSession</code> die <code>intervalId</code> schon, wenn die erste Antwort kommt (sie kommt erst nach dem <code>await</code>).</td>
+</tr>
+<tr>
+<td>72-75</td>
+<td>Cleanup: <code>ignore = true</code> und <code>clearInterval</code>. Ohne das liefe das Polling nach dem Verlassen weiter.</td>
+</tr>
+<tr>
+<td>76</td>
+<td>Dependencies <code>[sessionId, participantId]</code>.</td>
+</tr>
+<tr>
+<td>81-91</td>
+<td><code>runAction(request)</code> – für alle vier Aktionen gleich: <code>isBusy</code> an, alten Fehler weg, auf die Antwort warten, sie mit <code>setSession</code> sofort anzeigen; bei Fehler Meldung; <code>isBusy</code> aus. Der Request läuft schon, wenn <code>runAction</code> ihn bekommt, z. B. <code>runAction(revealCards(sessionId))</code>.</td>
+</tr>
+<tr>
+<td>93-102</td>
+<td>Frühe Returns: nicht gefunden, noch nichts geladen (Laden oder Fehler).</td>
+</tr>
+<tr>
+<td>104-116</td>
+<td><code>me</code> – die eigene Person in der Liste suchen. Fehlt sie, hat der Server uns entfernt → «Du bist nicht mehr am Tisch» mit «Wieder beitreten».</td>
+</tr>
+<tr>
+<td>118-120</td>
+<td>Abgeleitete Werte: eigene Stimme, Anzahl Stimmen. Nicht im State, sondern bei jedem Render berechnet.</td>
+</tr>
+<tr>
+<td>123-130</td>
+<td><code>roundStatus</code> – die Tischmitte: vor dem Aufdecken «x von y haben gewählt», danach <code>RoundResult</code>. Ein <code>if</code> statt eines verschachtelten Ausdrucks im JSX.</td>
+</tr>
+<tr>
+<td>132-139</td>
+<td><code>handleCardClick()</code> – Klick auf die schon gewählte Karte → <code>null</code> (zurückziehen), sonst die Karte.</td>
+</tr>
+<tr>
+<td>141-151</td>
+<td>Die anderen Aktionen, jede eine Zeile.</td>
+</tr>
+<tr>
+<td>155</td>
+<td><code>aria-busy</code> sagt Screenreadern, dass gerade etwas läuft.</td>
+</tr>
+<tr>
+<td>160-164</td>
+<td>«Verlassen» navigiert <strong>nur</strong>. Das Leave macht das Cleanup in <code>SessionPage</code>.</td>
+</tr>
+<tr>
+<td>171-185</td>
+<td><code>PokerTable</code> bekommt die Tischmitte als <code>children</code>: Stand oder Ergebnis, «Wird gesendet …» während einer Aktion, die Buttons «Karten aufdecken» (gesperrt, solange niemand gewählt hat) und «Neue Runde».</td>
+</tr>
+<tr>
+<td>187-192</td>
+<td><code>CardDeck</code> bekommt Deck, eigene Stimme und <code>handleCardClick</code>. Gesperrt, wenn aufgedeckt ist oder eine Aktion läuft.</td>
+</tr>
+</tbody></table></div>
+<p><strong><code>client/src/components/PokerTable.tsx</code></strong> – die Plätze. Zeilen 16-18: Die erste Hälfte sitzt
+oben, die zweite unten (<code>Math.ceil</code> rundet auf, <code>slice</code> kopiert einen Teil der Liste). Zeilen
+23-30 und 34-41: ein <code>ParticipantSeat</code> pro Person mit <code>key={participant.id}</code>. Zeile 32:
+<code>{children}</code> – was <code>PokerRoom</code> mitgibt, landet in der Tischmitte. Kursthema: React.</p>
+<p><strong><code>client/src/components/ParticipantSeat.tsx</code></strong> – ein Platz. Kursthema: React, HTML/CSS.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeilen</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12-23</td>
+<td><code>describeStatus()</code> – Text für Screenreader («wählt noch», «hat gewählt», «Karte 5»).</td>
+</tr>
+<tr>
+<td>27-35</td>
+<td>Welche Karte gezeigt wird: leer, verdeckt (<code>--covered</code>) oder aufgedeckt mit Wert (<code>--revealed</code>). Drei CSS-Klassen, keine Animation.</td>
+</tr>
+<tr>
+<td>38</td>
+<td>Der eigene Platz bekommt zusätzlich <code>seat--own</code> (Rahmen in Farbe).</td>
+</tr>
+<tr>
+<td>39</td>
+<td><code>aria-hidden="true"</code> – die Karte ist nur Dekoration, der Text steht in Zeile 46.</td>
+</tr>
+<tr>
+<td>46</td>
+<td><code>visually-hidden</code> – unsichtbar, aber Screenreader lesen es vor.</td>
+</tr>
+</tbody></table></div>
+<p><strong><code>client/src/components/CardDeck.tsx</code></strong> – die eigenen Karten. Kein eigener State. Zeile 20:
+<code>DECKS[deck].cards.map(...)</code> – eine Karte pro Wert des aktiven Decks. Zeile 24: <code>key={value}</code>
+(die Werte sind im Deck eindeutig). Zeilen 26-27: Klasse und <code>aria-pressed</code> für die gewählte
+Karte. Zeile 29: <code>onClick={() =&gt; onCardClick(value)}</code> – die Arrow-Function gibt den Wert dieser
+Karte mit. Kursthema: React, State.</p>
+<p><strong><code>client/src/components/DeckSwitcher.tsx</code></strong> – zwei Buttons, einer pro Deck aus <code>DECK_TYPES</code>.
+Zeilen 12-17: Klick auf das aktive Deck tut nichts (sonst würde die Runde unnötig zurückgesetzt).
+Zeilen 20-21: <code>fieldset</code> mit <code>legend</code> gruppiert die Buttons. Zeile 28: <code>aria-pressed</code> zeigt das
+aktive Deck.</p>
+<p><strong><code>client/src/components/ShareLinkButton.tsx</code></strong> – Kursthema: Effects.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeilen</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10-16</td>
+<td>Zweiter Effekt mit Cleanup: Nach «Kopiert!» startet ein Timer, der nach 2 s zurückschaltet. Das Cleanup <code>clearTimeout</code> verhindert, dass der Timer feuert, wenn der Button vorher verschwindet.</td>
+</tr>
+<tr>
+<td>20</td>
+<td><code>window.location.href</code> wird nur <strong>gelesen</strong>, nie zum Navigieren benutzt.</td>
+</tr>
+<tr>
+<td>23</td>
+<td><code>navigator.clipboard.writeText</code> – gibt es nur unter <code>https</code> oder auf <code>localhost</code>.</td>
+</tr>
+<tr>
+<td>27</td>
+<td>Notlösung: Link in einem Dialog anzeigen.</td>
+</tr>
+<tr>
+<td>34</td>
+<td><code>aria-live="polite"</code> – Screenreader lesen «Kopiert!» vor.</td>
+</tr>
+</tbody></table></div>
+<p><strong><code>client/src/components/RoundResult.tsx</code></strong> – Ergebnis nach dem Aufdecken. Kursthema: React,
+State.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeilen</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>13-23</td>
+<td>Eine <code>for … of</code>-Schleife sammelt die Stimmen. Wer nicht gewählt hat, wird übersprungen (<code>continue</code>). <code>?</code> und <code>☕</code> werden gezählt, um sie unten zu erwähnen.</td>
+</tr>
+<tr>
+<td>24</td>
+<td><code>computeResult()</code> aus <code>shared</code>. Das Ergebnis ist kein State, sondern wird bei jedem Render neu berechnet.</td>
+</tr>
+<tr>
+<td>33</td>
+<td>Konsens hervorgehoben (gelber Kasten, CSS-Klasse <code>round-result__consensus</code>).</td>
+</tr>
+<tr>
+<td>34-43</td>
+<td><code>&lt;dl&gt;</code>: Beschreibungsliste für «Durchschnitt» und «Stimmen». <code>?? '–'</code> zeigt einen Strich, wenn es keinen Durchschnitt gibt.</td>
+</tr>
+<tr>
+<td>44-49</td>
+<td>T-Shirt: Erklärung, wie die Grösse berechnet wurde.</td>
+</tr>
+</tbody></table></div>
+<p><strong><code>client/src/pages/SessionPage.test.tsx</code></strong> – Kursthema: Test. Zeilen 30-83: ein kleiner
+<strong>Fake-Server</strong>, der <code>fetch</code> ersetzt und wie die echte API antwortet. <code>renderSessionPage()</code> rendert
+die Seite in einem <code>MemoryRouter</code> (Router ohne echten Browser), auf Wunsch in <code>&lt;StrictMode&gt;</code>. Die
+Tests prüfen Beitreten, Verlassen, Reload, StrictMode, Karten, Ergebnis, Fehler und «Kopiert!».</p>
 <h4 id="css">CSS</h4>
 <div class="table-wrap"><table>
 <thead>
 <tr>
 <th>Datei</th>
-<th>Wichtig</th>
+<th>Inhalt</th>
 <th>Kursthema</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>styles/global.css</code></td>
-<td><strong>Design-Tokens</strong> als CSS-Variablen in <code>:root</code> (Farben, Abstände, Radien), <code>box-sizing: border-box</code> für alle Elemente, <code>:focus-visible</code>, Layout (<code>.app-main</code> max. 960 px, zentriert mit <code>margin: 0 auto</code>), gemeinsame <code>.button</code>-Klassen, <code>.visually-hidden</code></td>
+<td><code>client/src/styles/global.css</code></td>
+<td>Variablen für Farben und Abstände (<code>--space-md</code> …), <code>box-sizing: border-box</code> für alle Elemente, Schrift, Header, Buttons (<code>.button</code>, <code>.button--secondary</code>), Fehlermeldung, Ladeanzeige, <code>.visually-hidden</code>, <code>:focus-visible</code>, <code>prefers-reduced-motion</code>. <strong>Mobile First</strong>: Grundregeln für das Handy, <code>@media (min-width: 768px)</code> für grössere Bildschirme.</td>
 <td>HTML/CSS</td>
 </tr>
 <tr>
-<td><code>pages/HomePage.css</code></td>
-<td><strong>Grid</strong>: eine Spalte, ab 768 px zwei Spalten <code>minmax(0, 2fr) minmax(0, 3fr)</code></td>
+<td><code>client/src/pages/HomePage.css</code></td>
+<td><strong>Grid</strong>: eine Spalte auf dem Handy, ab 768 px zwei Spalten 2 : 3. Namensfeld, Liste (Flexbox), roter Button «Löschen» (<code>.button--danger</code>).</td>
 <td>HTML/CSS</td>
 </tr>
 <tr>
-<td><code>components/PokerTable.css</code></td>
-<td><strong>Flexbox</strong>: mobil Spalte + Tisch unten (<code>order: 1</code>), ab 768 px Reihen mit <code>flex-wrap</code>, ovaler Tisch (<code>border-radius: 999px</code>), Filz mit <code>radial-gradient</code></td>
+<td><code>client/src/pages/SessionPage.css</code></td>
+<td>alle Tisch-Styles in einer Datei: Namensformular, Werkzeugleiste, Deck-Umschalter, <strong>Flexbox</strong>-Tisch (Handy: Plätze als Liste, Tisch darunter mit <code>order: 1</code>; ab 768 px: Plätze oben und unten, ovaler Tisch dazwischen), Plätze, drei Kartenarten, Ergebnis, Handkarten mit <code>flex-wrap</code>.</td>
 <td>HTML/CSS</td>
-</tr>
-<tr>
-<td><code>components/ParticipantSeat.css</code></td>
-<td>Karten-Flip mit <code>transform: rotateY(180deg)</code>, <code>transition</code>, <code>backface-visibility</code>. <code>prefers-reduced-motion</code> schaltet die Animation aus.</td>
-<td>HTML/CSS</td>
-</tr>
-<tr>
-<td><code>components/PlayingCard.css</code></td>
-<td>Hover/gewählt-Zustand, grössere Karten ab 768 px</td>
-<td>HTML/CSS</td>
-</tr>
-<tr>
-<td>übrige <code>.css</code></td>
-<td>je eine Datei pro Komponente, Klassennamen nach BEM (<code>block__element--modifier</code>, z. B. <code>seat__face--front</code>)</td>
-<td>HTML/CSS</td>
-</tr>
-</tbody></table></div>
-<h4 id="client-tests">Client-Tests</h4>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Datei</th>
-<th>Technik</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>App.test.tsx</code></td>
-<td><code>MemoryRouter initialEntries={[path]}</code> simuliert eine URL ohne Browser</td>
-</tr>
-<tr>
-<td><code>pages/HomePage.test.tsx</code></td>
-<td><code>fetch</code> mit <code>vi.stubGlobal</code> ersetzt, <code>window.confirm</code> gemockt</td>
-</tr>
-<tr>
-<td><code>pages/SessionPage.test.tsx</code></td>
-<td>kleiner Fake-Server <code>answerLikeTheServer()</code> (Z. 42-77), zählt alle Requests (<code>callsTo</code>). StrictMode-Test rendert mit <code>&lt;StrictMode&gt;</code>.</td>
-</tr>
-<tr>
-<td><code>hooks/usePolling.test.ts</code></td>
-<td><code>renderHook</code> + <code>vi.useFakeTimers()</code> – Zeit vorspulen statt warten</td>
-</tr>
-<tr>
-<td><code>api/client.test.ts</code></td>
-<td>prüft URL, Body, Fehlerumwandlung</td>
-</tr>
-<tr>
-<td><code>context/UserContext.test.tsx</code></td>
-<td><code>localStorage</code> lesen/schreiben, Fehler ohne Provider</td>
-</tr>
-<tr>
-<td><code>utils/validateName.test.ts</code></td>
-<td>Grenzfälle der Namensprüfung</td>
 </tr>
 </tbody></table></div>
 <hr>
 <h2 id="teil-b--musterantworten-auf-die-typischen-fragen">Teil B – Musterantworten auf die typischen Fragen</h2>
 <h3 id="b1-zeigen-sie-komponente-x-welche-props-hat-sie-wer-rendert-sie">B.1 «Zeigen Sie Komponente X. Welche Props hat sie, wer rendert sie?»</h3>
-<p>Vorgehen in der Prüfung: Datei öffnen → <code>interface …Props</code> zeigen → mit der Suche (<code>Ctrl+Shift+F</code>)
-nach <code>&lt;KomponentenName</code> suchen, um die Stelle zu zeigen, die sie rendert.</p>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Komponente</th>
-<th>Props (Type)</th>
-<th>Gerendert von (Datei:Zeile)</th>
-<th>Was sie macht</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>App</code></td>
-<td>–</td>
-<td><code>main.tsx:12</code></td>
-<td>definiert die Routen</td>
-</tr>
-<tr>
-<td><code>ErrorBoundary</code></td>
-<td><code>children: ReactNode</code></td>
-<td><code>App.tsx:11</code></td>
-<td>zeigt bei Render-Fehlern eine Meldung</td>
-</tr>
-<tr>
-<td><code>Layout</code></td>
-<td>–</td>
-<td><code>App.tsx:14</code> (als <code>element</code> der Layout-Route)</td>
-<td>Header + <code>&lt;Outlet /&gt;</code></td>
-</tr>
-<tr>
-<td><code>HomePage</code></td>
-<td>–</td>
-<td><code>App.tsx:15</code></td>
-<td>Startseite</td>
-</tr>
-<tr>
-<td><code>SessionPage</code></td>
-<td>–</td>
-<td><code>App.tsx:16</code></td>
-<td>Beitreten/Verlassen, wählt die Ansicht</td>
-</tr>
-<tr>
-<td><code>NotFoundPage</code></td>
-<td>–</td>
-<td><code>App.tsx:17</code></td>
-<td>unbekannte URL</td>
-</tr>
-<tr>
-<td><code>NameForm</code></td>
-<td><code>name: string</code>, <code>error: string | null</code>, <code>onNameChange: (name: string) =&gt; void</code></td>
-<td><code>HomePage.tsx:33</code></td>
-<td>kontrolliertes Namensfeld</td>
-</tr>
-<tr>
-<td><code>CreateSessionButton</code></td>
-<td><code>disabled: boolean</code></td>
-<td><code>HomePage.tsx:34</code></td>
-<td>erstellt eine Session und navigiert</td>
-</tr>
-<tr>
-<td><code>SessionList</code></td>
-<td><code>sessions: SessionSummary[]</code>, <code>canJoin: boolean</code>, <code>onDeleted: () =&gt; void</code></td>
-<td><code>HomePage.tsx:54</code></td>
-<td>sortiert und rendert die Einträge</td>
-</tr>
-<tr>
-<td><code>SessionListItem</code></td>
-<td><code>session: SessionSummary</code>, <code>canJoin: boolean</code>, <code>onDeleted: () =&gt; void</code></td>
-<td><code>SessionList.tsx:19</code></td>
-<td>Beitreten, Löschen</td>
-</tr>
-<tr>
-<td><code>SessionNameForm</code></td>
-<td>–</td>
-<td><code>SessionPage.tsx:98</code></td>
-<td>Name bei geteiltem Link</td>
-</tr>
-<tr>
-<td><code>SessionNotFound</code></td>
-<td>–</td>
-<td><code>SessionPage.tsx:101</code>, <code>PokerRoom.tsx:57</code></td>
-<td>Session existiert nicht</td>
-</tr>
-<tr>
-<td><code>PokerRoom</code></td>
-<td><code>sessionId: string</code>, <code>participantId: string</code>, <code>onRejoin: () =&gt; void</code></td>
-<td><code>SessionPage.tsx:111-116</code></td>
-<td>Polling, Aktionen, verteilt Daten</td>
-</tr>
-<tr>
-<td><code>DeckSwitcher</code></td>
-<td><code>deck: DeckType</code>, <code>disabled: boolean</code>, <code>onChange: (deck: DeckType) =&gt; void</code></td>
-<td><code>PokerRoom.tsx:96</code></td>
-<td>Deck wählen</td>
-</tr>
-<tr>
-<td><code>ShareLinkButton</code></td>
-<td>–</td>
-<td><code>PokerRoom.tsx:98</code></td>
-<td>Link kopieren</td>
-</tr>
-<tr>
-<td><code>PokerTable</code></td>
-<td><code>participants: Participant[]</code>, <code>ownId: string</code>, <code>revealed: boolean</code>, <code>children: ReactNode</code></td>
-<td><code>PokerRoom.tsx:110</code></td>
-<td>Plätze + Tischmitte</td>
-</tr>
-<tr>
-<td><code>ParticipantSeat</code></td>
-<td><code>participant: Participant</code>, <code>isOwn: boolean</code>, <code>revealed: boolean</code></td>
-<td><code>PokerTable.tsx:20-25</code></td>
-<td>ein Platz mit Karte</td>
-</tr>
-<tr>
-<td><code>RoundResult</code></td>
-<td><code>participants: Participant[]</code>, <code>deck: DeckType</code></td>
-<td><code>PokerRoom.tsx:112</code> (als <code>children</code> von <code>PokerTable</code>)</td>
-<td>Durchschnitt, Konsens</td>
-</tr>
-<tr>
-<td><code>RoundControls</code></td>
-<td><code>revealed</code>, <code>canReveal</code>, <code>busy</code>, <code>revealing</code>, <code>resetting: boolean</code>, <code>onReveal</code>, <code>onReset: () =&gt; void</code></td>
-<td><code>PokerRoom.tsx:118-126</code></td>
-<td>Buttons</td>
-</tr>
-<tr>
-<td><code>CardDeck</code></td>
-<td><code>deck: DeckType</code>, <code>selected: CardValue | null</code>, <code>disabled: boolean</code>, <code>onCardClick: (value: CardValue) =&gt; void</code></td>
-<td><code>PokerRoom.tsx:129-134</code></td>
-<td>Handkarten</td>
-</tr>
-<tr>
-<td><code>PlayingCard</code></td>
-<td><code>value: CardValue</code>, <code>selected: boolean</code>, <code>disabled: boolean</code>, <code>onClick: () =&gt; void</code></td>
-<td><code>CardDeck.tsx:21-27</code></td>
-<td>eine Karte</td>
-</tr>
-<tr>
-<td><code>LoadingIndicator</code></td>
-<td><code>label?: string</code></td>
-<td><code>HomePage.tsx:45</code>, <code>SessionPage.tsx:107</code>, <code>PokerRoom.tsx:61</code></td>
-<td>Ladeanzeige</td>
-</tr>
-<tr>
-<td><code>ErrorMessage</code></td>
-<td><code>message: string</code>, <code>onRetry?: () =&gt; void</code></td>
-<td>u. a. <code>HomePage.tsx:42</code>, <code>SessionPage.tsx:104</code>, <code>PokerRoom.tsx:107-108</code></td>
-<td>Fehlermeldung</td>
-</tr>
-</tbody></table></div>
-<p><strong>Beispielantwort für <code>PlayingCard</code>:</strong> «<code>PlayingCard</code> ist eine einzelne Handkarte. Sie hat vier
-Props: den Kartenwert <code>value</code>, ob sie gewählt ist (<code>selected</code>), ob sie gesperrt ist (<code>disabled</code>)
-und einen Callback <code>onClick</code>. Gerendert wird sie von <code>CardDeck</code> in einer <code>map</code> über die Karten des
-aktiven Decks, mit dem Kartenwert als <code>key</code>. Sie hat keinen eigenen State: Ob sie gewählt ist,
-weiss nur <code>PokerRoom</code> aus dem Server-Zustand. Sie ist ein echter <code>&lt;button&gt;</code> mit <code>aria-pressed</code>,
-damit sie mit Tastatur und Screenreader funktioniert.»</p>
-<p><strong>Beispielantwort für <code>PokerTable</code> und <code>children</code>:</strong> «<code>PokerTable</code> bekommt neben den Daten auch
-<code>children</code>. Das ist alles, was <code>PokerRoom</code> zwischen <code>&lt;PokerTable&gt;</code> und <code>&lt;/PokerTable&gt;</code> schreibt –
-hier das Ergebnis oder der Zähler und die Buttons. <code>PokerTable</code> muss nicht wissen, was in der Mitte
-liegt, es legt es einfach in den Filz. Das nennt man Komposition. Ohne <code>children</code> müsste
-<code>PokerTable</code> alle Props von <code>RoundResult</code> und <code>RoundControls</code> durchreichen.»</p>
+<p>Vorgehen: Datei öffnen → Kommentar oben vorlesen (wozu, wer benutzt sie) → <code>interface …Props</code>
+zeigen → sagen, was jede Prop bedeutet → mit <code>Ctrl+Shift+F</code> nach <code>&lt;Komponentenname</code> suchen und die
+Stelle zeigen, die sie rendert.</p>
+<blockquote>
+<p><strong>Beispiel <code>CardDeck</code>:</strong> «<code>CardDeck</code> zeigt die eigenen Karten. Sie bekommt vier Props: <code>deck</code>,
+welches Deck aktiv ist; <code>selected</code>, die eigene Stimme oder <code>null</code>; <code>disabled</code>, ob die Karten
+gesperrt sind; und <code>onCardClick</code>, eine Funktion, die sie beim Klick mit dem Kartenwert aufruft.
+Gerendert wird sie von <code>PokerRoom</code> in Zeile 187. Sie hat keinen eigenen State: Welche Karte
+gewählt ist, kommt vom Server über <code>PokerRoom</code>.»</p>
+</blockquote>
+<blockquote>
+<p><strong>Beispiel <code>PokerRoom</code>:</strong> «<code>PokerRoom</code> ist der Tisch einer Person, die beigetreten ist. Props:
+<code>sessionId</code>, <code>participantId</code> und <code>onRejoin</code>. Gerendert wird er von <code>SessionPage</code> erst, wenn das
+Beitreten geklappt hat, mit <code>key={participantId}</code>. Er hält den Zustand des Tisches, pollt ihn
+alle 1.5 s und gibt alles per Props an <code>DeckSwitcher</code>, <code>PokerTable</code> und <code>CardDeck</code> weiter.»</p>
+</blockquote>
+<p>Die Tabelle aller Komponenten steht in der Dokumentation, Kapitel 3.2.</p>
 <h3 id="b2-warum-liegt-dieser-state-hier">B.2 «Warum liegt dieser State hier?»</h3>
+<p>Grundregel: <strong>State liegt in der untersten Komponente, die ihn ändern muss, und gerade so weit
+oben, dass alle, die ihn lesen, darunter liegen.</strong></p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
 <th>State</th>
-<th>Datei:Zeile</th>
-<th>Antwort</th>
+<th>Ort</th>
+<th>Satz zum Merken</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>name</code></td>
-<td><code>UserContext.tsx:10</code></td>
-<td>Home und Session-Seite brauchen ihn, sie sind Geschwister unter dem Router. Der gemeinsame Ort ist über dem Router, im Context. Dazu wird er in <code>localStorage</code> gespeichert.</td>
+<td>Name</td>
+<td>Context über dem Router</td>
+<td>Home <strong>und</strong> Tisch brauchen ihn, und er soll den Seitenwechsel überleben.</td>
 </tr>
 <tr>
-<td><code>data</code>, <code>error</code>, <code>isLoading</code>, <code>refreshCount</code></td>
-<td><code>usePolling.ts:23-27</code></td>
-<td>Im Custom Hook, weil Home und Pokertisch dasselbe Polling-Verhalten brauchen. Jeder Aufruf des Hooks hat seinen eigenen State.</td>
+<td>Session-Zustand</td>
+<td><code>PokerRoom</code></td>
+<td>Alle Teile des Tisches brauchen ihn; <code>PokerRoom</code> ist der gemeinsame Elternteil (Lifting State Up).</td>
 </tr>
 <tr>
-<td><code>isCreating</code>, <code>error</code></td>
-<td><code>CreateSessionButton.tsx:13-14</code></td>
-<td>Nur dieser Button braucht sie. State so tief wie möglich, so hoch wie nötig.</td>
-</tr>
-<tr>
-<td><code>isDeleting</code>, <code>error</code></td>
-<td><code>SessionListItem.tsx:17-18</code></td>
-<td>Pro Eintrag eigener State: Löscht man Session A, ist nur A gesperrt. Läge der State in <code>SessionList</code>, bräuchte man eine Map von IDs.</td>
+<td><code>isDeleting</code></td>
+<td><code>SessionListItem</code></td>
+<td>Betrifft nur diesen einen Eintrag.</td>
 </tr>
 <tr>
 <td><code>draft</code></td>
-<td><code>SessionNameForm.tsx:11</code></td>
-<td>Der Name darf erst beim Absenden in den Context, denn jede Änderung des Context-Namens löst in <code>SessionPage</code> einen Join aus. Bis dahin ist es ein lokaler Entwurf.</td>
+<td><code>SessionNameForm</code></td>
+<td>Ein Entwurf, erst beim Absenden zählt er.</td>
 </tr>
 <tr>
-<td><code>participantId</code>, <code>joinError</code>, <code>joinAttempt</code></td>
-<td><code>SessionPage.tsx:41-44</code></td>
-<td>Sie gehören zum Join-Effekt, der hier läuft. <code>PokerRoom</code> bekommt die ID als Prop.</td>
+<td>eigene Stimme</td>
+<td><strong>kein</strong> eigener State</td>
+<td>Steht schon im Server-Zustand (<code>me.vote</code>). Doppelt gespeichert könnte sie veralten (Single Source of Truth).</td>
 </tr>
 <tr>
-<td><code>pendingAction</code>, <code>actionError</code></td>
-<td><code>PokerRoom.tsx:39-40</code></td>
-<td>Alle Aktionen (Karte, Deck, Aufdecken, Reset) teilen sich einen Ladezustand, damit nie zwei gleichzeitig laufen. Darum im gemeinsamen Elternteil aller Buttons (Lifting State Up).</td>
-</tr>
-<tr>
-<td><code>copied</code></td>
-<td><code>ShareLinkButton.tsx:4</code></td>
-<td>betrifft nur diesen Button</td>
-</tr>
-<tr>
-<td><code>hasError</code></td>
-<td><code>ErrorBoundary.tsx:15</code></td>
-<td>Klassen-State der Boundary</td>
+<td>Ergebnis, Gültigkeit des Namens</td>
+<td><strong>kein</strong> State</td>
+<td>Wird bei jedem Render berechnet.</td>
 </tr>
 </tbody></table></div>
-<p><strong>Was bewusst kein State ist:</strong> Gültigkeit des Namens, eigene Karte (<code>myVote</code>), <code>busy</code>,
-<code>voteCount</code>, Ergebnis, sortierte Liste. Alles wird bei jedem Render aus vorhandenem State
-<strong>abgeleitet</strong>. Faustregel: Was sich aus anderem State berechnen lässt, gehört nicht in einen
-eigenen State – sonst können zwei Kopien auseinanderlaufen.</p>
 <h3 id="b3-welche-routen-gibt-es-wie-kommt-die-session-id-in-die-komponente">B.3 «Welche Routen gibt es, wie kommt die Session-ID in die Komponente?»</h3>
-<p>«Es gibt drei Routen in <code>App.tsx</code>: <code>/</code> für die Home-Seite, <code>/sessions/:sessionId</code> für den
-Pokertisch und <code>*</code> für alles andere, die Not-Found-Seite. Alle drei hängen unter einer
-Layout-Route ohne Pfad, damit alle denselben Header haben. <code>Layout</code> rendert die aktive Seite an der
-Stelle von <code>&lt;Outlet /&gt;</code>.</p>
-<p><code>:sessionId</code> ist ein Platzhalter in der URL. In <code>SessionPage</code> lese ich ihn mit <code>useParams()</code> aus
-(<code>SessionPage.tsx:33</code>). <code>useParams</code> gibt <code>string | undefined</code> zurück, darum der Standardwert <code>''</code>.
-Danach gebe ich die ID als Prop an <code>PokerRoom</code> weiter und brauche sie für alle API-Aufrufe.</p>
-<p>Navigiert wird programmatisch mit <code>useNavigate()</code>: nach dem Erstellen einer Session
-(<code>CreateSessionButton.tsx:22</code>), beim Beitreten aus der Liste (<code>SessionListItem.tsx:62</code>) und beim
-Verlassen (<code>PokerRoom.tsx:101</code>). Für normale Links nehme ich <code>&lt;Link to="/"&gt;</code>, das wechselt die
-Seite ohne Neuladen. <code>BrowserRouter</code> in <code>main.tsx</code> nutzt die History-API, darum funktionieren
-echte URLs und der Zurück-Button.»</p>
-<p>Zusatzfrage «Was passiert bei <code>/sessions/abc</code>, wenn es die Session nicht gibt?» → Der Join
-(<code>POST …/participants</code>) antwortet 404, <code>SessionPage</code> zeigt <code>SessionNotFound</code>
-(<code>SessionPage.tsx:100-102</code>). Die Route selbst passt, denn React Router weiss nichts über Sessions.</p>
+<blockquote>
+<p>«Drei Routen in <code>App.tsx</code>, Zeilen 20-25: <code>/</code> für die Home-Seite, <code>/sessions/:sessionId</code> für den
+Tisch und <code>*</code> für alles andere. <code>:sessionId</code> ist ein Platzhalter. <code>SessionPage</code> liest ihn in
+Zeile 17 mit <code>useParams()</code> aus und gibt ihn als Prop an <code>PokerRoom</code> weiter. Weil die ID in der
+Adresse steht, kann man den Link teilen und die Seite neu laden. Programmatisch navigieren wir
+mit <code>useNavigate()</code>: nach dem Erstellen einer Session, beim Klick auf «Beitreten» und bei
+«Verlassen». Für Links im Header und auf den Fehlerseiten nehmen wir <code>&lt;Link&gt;</code>, nie <code>&lt;a href&gt;</code>,
+damit die Seite nicht neu lädt.»</p>
+</blockquote>
 <h3 id="b4-verfolgen-sie-einen-klick-auf-eine-karte">B.4 «Verfolgen Sie einen Klick auf eine Karte.»</h3>
-<p>Kurzfassung zum Auswendiglernen (Details in DOKUMENTATION Kapitel 6):</p>
+<p>Mit dem Code daneben, in dieser Reihenfolge zeigen (Details: Dokumentation, Kapitel 6):</p>
 <ol>
-<li><code>PlayingCard.tsx:20</code> – <code>&lt;button onClick&gt;</code> → <code>CardDeck.tsx:26</code> ruft <code>onCardClick('5')</code>.</li>
-<li><code>PokerRoom.tsx:82-86</code> – <code>handleCardClick</code>: gleiche Karte → <code>null</code>, sonst <code>'5'</code>.</li>
-<li><code>PokerRoom.tsx:44-54</code> – <code>runAction</code>: <code>setPendingAction('vote')</code> → alle Buttons gesperrt.</li>
-<li><code>client.ts:128-135</code> – <code>castVote()</code> → <code>PUT /api/sessions/:id/participants/:pid/vote</code> mit
+<li><code>CardDeck.tsx:29</code> – <code>onClick={() =&gt; onCardClick(value)}</code> meldet den Wert nach oben.</li>
+<li><code>PokerRoom.tsx:132-139</code> – <code>handleCardClick</code>: schon gewählt → <code>null</code>, sonst der Wert.</li>
+<li><code>PokerRoom.tsx:81-91</code> – <code>runAction</code>: <code>isBusy</code> an, alles gesperrt.</li>
+<li><code>api.ts:126-133</code> – <code>castVote</code>: <code>PUT /api/sessions/:id/participants/:pid/vote</code> mit
 <code>{ "value": "5" }</code>.</li>
-<li><code>vite.config.ts:18-20</code> – Proxy leitet an Port 3001 weiter.</li>
-<li><code>app.ts:14</code> – <code>express.json()</code> liest den Body.</li>
-<li><code>sessions.ts:106-126</code> – 404/404/409/400 prüfen, dann <code>castVote</code> im Store.</li>
-<li><code>store.ts:144-157</code> – Stimme speichern, Auto-Reveal prüfen.</li>
-<li><code>sessions.ts:125</code> – Antwort <code>SessionState</code> mit der eigenen Stimme (<code>store.ts:45</code>).</li>
-<li><code>PokerRoom.tsx:48</code> – <code>setData(antwort)</code> (<code>usePolling.ts:68-75</code> bricht alten Poll ab).</li>
-<li>Re-Render: <code>myVote = '5'</code> → <code>CardDeck selected</code> → <code>aria-pressed="true"</code>; am eigenen Platz eine
-verdeckte Karte.</li>
-<li>Andere Browser sehen die verdeckte Karte beim nächsten Poll (≤ 1.5 s).</li>
+<li><code>vite.config.ts:19-21</code> – der Proxy leitet an Port 3001 weiter.</li>
+<li><code>sessions.ts:126-152</code> – Route prüft: Session (404), Person (404), aufgedeckt (409), Karte (400).</li>
+<li><code>store.ts:141-157</code> – Stimme speichern, alle gewählt? → aufdecken.</li>
+<li><code>sessions.ts:151</code> + <code>store.ts:38</code> – Antwort mit der eigenen Stimme, die anderen bleiben <code>null</code>.</li>
+<li><code>PokerRoom.tsx:86</code> – <code>setSession(newSession)</code> → React rendert neu → Karte hervorgehoben.</li>
+<li>Die anderen sehen die verdeckte Karte bei ihrem nächsten Poll (≤ 1.5 s).</li>
 </ol>
 <h3 id="b5-welche-api-routen-gibt-es-welche-methode-warum">B.5 «Welche API-Routen gibt es, welche Methode, warum?»</h3>
-<p>Tabelle in DOKUMENTATION Kapitel 5 zeigen. Die Kernaussagen:</p>
-<ul>
-<li><strong>GET</strong> = nur lesen (Liste, Session-Zustand). Sicher und wiederholbar. Kleine Ausnahme: der
-Heartbeat (<code>lastSeen</code>), das ist keine fachliche Änderung.</li>
-<li><strong>POST</strong> = etwas Neues erstellen, der Server vergibt die ID (Session, Teilnehmer) → 201. Auch für
-Aktionen ohne eigene Ressource (<code>reveal</code>, <code>reset</code>).</li>
-<li><strong>PUT</strong> = einen Wert vollständig setzen (Stimme, Deck). Idempotent: zweimal derselbe Request,
-gleiches Ergebnis.</li>
-<li><strong>DELETE</strong> = entfernen → 204. Teilnehmer entfernen ist idempotent.</li>
-<li>Statuscodes: 400 ungültige Eingabe, 404 nicht gefunden, 409 Konflikt mit dem Zustand (Abstimmen
-nach dem Aufdecken), 500 Serverfehler.</li>
-</ul>
-<p>Typische Nachfrage: «Warum ist <code>vote</code> kein POST?» → «Weil die Stimme eine Eigenschaft der Person
-ist, die ich setze. Ich erzeuge keine neue Ressource. Schicke ich zweimal <code>'5'</code>, ist das Ergebnis
-dasselbe – das ist die Definition von idempotent, und dafür ist PUT gedacht.» «Warum <code>reveal</code> kein
-PUT auf <code>revealed: true</code>?» → «Ginge auch. Wir haben es als Aktion modelliert, weil «aufdecken» ein
-Ereignis im Spielablauf ist. Beides ist vertretbar, wichtig ist, dass es konsistent ist.»</p>
+<blockquote>
+<p>«Alle unter <code>/api/sessions</code> in <code>server/src/routes/sessions.ts</code>. <code>GET</code> zum Lesen: die Liste und
+der Zustand eines Tisches. <code>POST</code> erstellt etwas Neues, dessen ID der Server vergibt: eine Session
+oder einen Teilnehmer, Antwort 201. <code>PUT</code> setzt einen Wert vollständig: die eigene Stimme und das
+Deck; zweimal derselbe Request ergibt dasselbe (idempotent). <code>DELETE</code> entfernt: Session oder
+Teilnehmer, Antwort 204 ohne Body. Aufdecken und Neue Runde sind Aktionen, darum <code>POST</code>. Fehler
+kommen immer als <code>{ error: '…' }</code>: 400 bei ungültiger Eingabe, 404 wenn etwas nicht existiert,
+409 wenn man nach dem Aufdecken noch abstimmen will.»</p>
+</blockquote>
+<p>Die ganze Tabelle steht in der Dokumentation, Kapitel 5.</p>
 <h3 id="b6-was-passiert-wenn-der-server-beim-polling-nicht-antwortet">B.6 «Was passiert, wenn der Server beim Polling nicht antwortet?»</h3>
-<p>«Es gibt zwei Fälle. Läuft der Server gar nicht, wirft <code>fetch</code> einen Fehler. <code>send()</code> in
-<code>client.ts:65-73</code> macht daraus einen <code>ApiError</code> mit Status 0 und der Meldung «Server nicht
-erreichbar.». Über den Vite-Proxy kommt stattdessen eine 502-Antwort ohne JSON, die <code>readErrorMessage</code>
-(<code>client.ts:48-52</code>) ebenfalls in «Server nicht erreichbar.» übersetzt.</p>
-<p><code>usePolling</code> fängt den Fehler im <code>catch</code> (<code>usePolling.ts:45-48</code>) und setzt <code>error</code>. Wichtig: <code>data</code>
-wird <strong>nicht</strong> gelöscht. Darum bleibt am Tisch der letzte Stand sichtbar, und darüber erscheint
-«Server nicht erreichbar. Neuer Versuch läuft …» (<code>PokerRoom.tsx:107</code>). Das Intervall läuft weiter.
-Sobald der Server wieder antwortet, setzt der nächste erfolgreiche Poll <code>error</code> zurück auf <code>null</code>
-und die Meldung verschwindet von selbst. Auf der Home-Seite gibt es zusätzlich einen Button
-«Erneut versuchen», der <code>refresh()</code> aufruft.</p>
-<p>Antwortet der Server sehr langsam, bricht der nächste Poll den alten Request ab
-(<code>usePolling.ts:36</code>). So stauen sich keine Requests und eine alte Antwort überschreibt nie eine
-neue.</p>
-<p>Bleibt der Server länger als 15 s weg und kommt dann wieder, hat er beim Neustart alle Daten
-verloren (in-memory) → 404 → «Diese Session existiert nicht (mehr)». War nur das Netz des Clients
-weg, hat der Server den Teilnehmer nach 15 s entfernt → «Du bist nicht mehr am Tisch» mit «Wieder
-beitreten».»</p>
+<blockquote>
+<p>«<code>fetch</code> wirft, weil keine Antwort kommt. <code>send()</code> in <code>api.ts</code>, Zeilen 27-31, macht daraus den
+Fehler ‹Server nicht erreichbar.›. Über den Vite-Proxy kommt stattdessen eine 502, die
+<code>createError()</code> in denselben Text übersetzt. Im Polling-Effekt von <code>PokerRoom</code> landet der Fehler
+im <code>catch</code>, Zeilen 58-63: <code>pollError</code> wird gesetzt, <code>session</code> aber <strong>nicht</strong> gelöscht. Darum
+bleibt der Tisch mit dem letzten Stand sichtbar, darüber steht ‹… Neuer Versuch läuft …›. Das
+Intervall läuft weiter; sobald der Server wieder antwortet, setzt der nächste Poll <code>pollError</code>
+auf <code>null</code>. Startet der Server neu, sind die Daten weg, die nächste Antwort ist 404, also <code>null</code>,
+und wir zeigen ‹Diese Session existiert nicht (mehr)›. Die Home-Seite macht es genauso.»</p>
+</blockquote>
 <h3 id="b7-warum-ist-dieser-typ-so-definiert-was-ginge-ohne-ihn-schief">B.7 «Warum ist dieser Typ so definiert? Was ginge ohne ihn schief?»</h3>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Warum so</th>
-<th>Was ohne ihn schiefginge</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>DeckType = 'fibonacci' | 'tshirt'</code></td>
-<td>Union aus Literalen</td>
-<td>Mit <code>string</code> würde <code>changeDeck(id, 'tshrit')</code> kompilieren und erst der Server meldet 400. <code>DECKS[deck]</code> könnte <code>undefined</code> sein.</td>
-</tr>
-<tr>
-<td><code>Participant.vote: CardValue | null</code></td>
-<td><code>null</code> = keine Stimme oder geheim</td>
-<td>Mit <code>vote: CardValue</code> würde TypeScript nicht erzwingen, den Fall «noch verdeckt» zu behandeln. <code>RoundResult</code> würde <code>null</code> an <code>computeResult</code> geben. Ein optionales <code>vote?:</code> wäre unklar: fehlt es oder ist es geheim?</td>
-</tr>
-<tr>
-<td><code>hasVoted: boolean</code> getrennt von <code>vote</code></td>
-<td>Vor dem Aufdecken muss der Client wissen, <strong>ob</strong> jemand gewählt hat, ohne <strong>was</strong> zu erfahren</td>
-<td>Ohne <code>hasVoted</code> müsste der Server die Stimme schicken, damit der Client eine verdeckte Karte zeigen kann – dann könnte man sie in den Entwicklertools lesen.</td>
-</tr>
-<tr>
-<td><code>StoredParticipant</code> (Server) vs. <code>Participant</code> (öffentlich)</td>
-<td>intern echte Stimme und <code>lastSeen</code>, nach aussen gefiltert</td>
-<td>Würde der Server seine interne Struktur direkt senden, gingen geheime Stimmen und Verwaltungsdaten an alle Clients.</td>
-</tr>
-<tr>
-<td><code>SessionState</code> / Request-Types in <code>shared</code></td>
-<td>ein Vertrag für Client und Server</td>
-<td>Benennt jemand im Server <code>revealed</code> in <code>isRevealed</code> um, würde der Client erst zur Laufzeit <code>undefined</code> lesen. So meldet TypeScript den Fehler sofort an beiden Stellen.</td>
-</tr>
-<tr>
-<td><code>SessionSummary.createdAt: string</code></td>
-<td>JSON kennt kein <code>Date</code></td>
-<td>Mit <code>Date</code> würde TypeScript <code>.getTime()</code> erlauben, zur Laufzeit ist es aber ein String → Absturz.</td>
-</tr>
-<tr>
-<td><code>ValidationResult&lt;T&gt;</code> (Discriminated Union)</td>
-<td><code>ok: true</code> mit <code>value</code> oder <code>ok: false</code> mit <code>error</code></td>
-<td>Mit zwei optionalen Feldern könnte man <code>value</code> lesen, obwohl die Prüfung fehlschlug.</td>
-</tr>
-<tr>
-<td>Body als <code>unknown</code> (<code>validation.ts</code>)</td>
-<td>erzwingt Prüfung vor Zugriff</td>
-<td>Mit <code>any</code> würde <code>{ "name": 42 }</code> beim <code>.trim()</code> den Server mit einem 500er abstürzen lassen.</td>
-</tr>
-<tr>
-<td><code>ApiError</code> mit <code>status</code></td>
-<td>Fehlerart unterscheiden</td>
-<td>Ohne Status könnte <code>SessionPage</code> 404 («gibt es nicht») nicht von «Server weg» unterscheiden.</td>
-</tr>
-<tr>
-<td><code>PollingResult&lt;T&gt;</code> / <code>usePolling&lt;T&gt;</code></td>
-<td>Generic</td>
-<td>Ohne Generic wäre <code>data</code> <code>unknown</code> oder <code>any</code> – die Home-Seite wüsste nicht, dass es <code>SessionSummary[]</code> ist.</td>
-</tr>
-<tr>
-<td><code>CreateSessionButtonProps</code> usw.</td>
-<td>Props-Interfaces</td>
-<td>Fehlende oder falsch geschriebene Props wären erst im Browser sichtbar.</td>
-</tr>
-<tr>
-<td><code>type Action</code> in <code>PokerRoom</code></td>
-<td>nur vier erlaubte Werte</td>
-<td><code>pendingAction === 'revael'</code> würde kompilieren und nie zutreffen.</td>
-</tr>
-</tbody></table></div>
-<h3 id="b8-welches-problem-löst-context-wann-sind-props-besser">B.8 «Welches Problem löst Context? Wann sind Props besser?»</h3>
-<p>«Context löst <strong>Prop Drilling</strong>: Ein Wert, den viele Komponenten auf verschiedenen Ebenen brauchen,
-müsste sonst durch jede Zwischenkomponente als Prop durchgereicht werden, auch durch solche, die ihn
-selbst nicht brauchen. Bei uns ist das der Name: Ihn brauchen <code>HomePage</code>, <code>SessionPage</code> und
-<code>SessionNameForm</code>. Ohne Context müsste <code>App</code> den Namen halten und über die Routen weitergeben.</p>
-<p>So ist es gebaut: <code>createContext</code> in <code>UserContextValue.ts</code>, der Provider in <code>UserContext.tsx</code> hält
-den State und liegt in <code>main.tsx</code> über dem Router, und <code>useUser()</code> liest ihn mit <code>useContext</code>.</p>
-<p>Props sind besser, wenn</p>
 <ul>
-<li>der Wert nur ein, zwei Ebenen weit geht – Props zeigen klar, woher Daten kommen;</li>
-<li>der Wert sich oft ändert – jede Änderung eines Context-Werts rendert <strong>alle</strong> Leser neu. Unser
-Session-Zustand ändert sich alle 1.5 s, darum geht er als Props nach unten;</li>
-<li>eine Komponente wiederverwendbar und einfach testbar sein soll – <code>PlayingCard</code> funktioniert ohne
-Provider.</li>
+<li><strong><code>DeckType = 'fibonacci' | 'tshirt'</code>:</strong> Mit <code>string</code> könnte man <code>'tshrit'</code> schreiben, und es
+fiele erst zur Laufzeit auf. Der Union Type lässt nur die zwei Werte zu.</li>
+<li><strong><code>vote: CardValue | null</code>:</strong> <code>null</code> heisst «keine Stimme» bzw. «verdeckt». TypeScript zwingt
+jeden, der <code>vote</code> benutzt, an diesen Fall zu denken (z. B. <code>participant.vote ?? ''</code> in
+<code>ParticipantSeat.tsx:34</code>).</li>
+<li><strong><code>StoredParticipant</code> vs. <code>Participant</code>:</strong> Der Server speichert die echte Stimme und <code>lastSeen</code>,
+der Client bekommt nur, was er sehen darf. Zwei Types machen sichtbar, dass hier etwas verborgen
+wird.</li>
+<li><strong><code>body: unknown</code> in <code>validation.ts</code>:</strong> Von aussen kann alles kommen. Mit <code>unknown</code> erlaubt
+TypeScript keinen Zugriff, bevor wir mit <code>typeof</code> und <code>in</code> geprüft haben. Mit <code>any</code> würde
+TypeScript gar nichts prüfen; <code>any</code> ist bei uns per ESLint verboten.</li>
+<li><strong>Gemeinsame Types in <code>shared</code>:</strong> Ändert jemand <code>SessionState</code>, melden Client und Server sofort
+Fehler, statt dass sie still aneinander vorbeireden.</li>
 </ul>
-<p>Context ist gut für wenige, selten wechselnde, «globale» Werte: Name, Sprache, Theme, Login.»</p>
+<h3 id="b8-welches-problem-löst-context-wann-sind-props-besser">B.8 «Welches Problem löst Context? Wann sind Props besser?»</h3>
+<blockquote>
+<p>«Den Namen brauchen die Home-Seite und die Session-Seite. Die beiden sind Geschwister unter dem
+Router. Ohne Context müsste <code>App</code> den Namen halten und an jede Route geben (‹Prop Drilling›). Mit
+Context legt <code>main.tsx</code> den <code>UserProvider</code> einmal um alles, und jede Komponente liest den Namen
+mit <code>useContext(UserContext)</code>. Props sind besser für alles andere: Sie zeigen, woher die Daten
+kommen, und bei häufigen Änderungen wie dem Tisch-Zustand alle 1.5 s rendert nur der betroffene
+Teil neu. Context lohnt sich für wenige Werte, die selten wechseln und die viele Stellen
+brauchen.»</p>
+</blockquote>
 <h3 id="b9-warum-braucht-es-ein-cleanup-im-useeffect">B.9 «Warum braucht es ein Cleanup im <code>useEffect</code>?»</h3>
-<p>«Ein Effekt startet oft etwas, das weiterläuft: ein Intervall, einen Request, einen Timer, eine
-Mitgliedschaft auf dem Server. Wird die Komponente entfernt oder ändern sich die Dependencies, muss
-das wieder gestoppt werden. Sonst läuft das Intervall ewig weiter (Memory Leak, unnötige Requests),
-eine späte Antwort ruft <code>setState</code> auf einer Komponente auf, die es nicht mehr gibt, oder es laufen
-nach einem Wechsel der Dependencies zwei Intervalle gleichzeitig.</p>
-<p>Bei uns gibt es drei Cleanups:</p>
+<blockquote>
+<p>«Ein Effekt startet etwas, das ausserhalb von React weiterläuft: ein Intervall, einen Timer, eine
+Anmeldung am Server. Wird die Komponente entfernt, muss das wieder aufhören. Bei uns gibt es vier
+Cleanups:</p>
 <ol>
-<li><code>usePolling.ts:58-61</code> – <code>clearInterval</code> und laufenden Request abbrechen. Nach dem Verlassen des
-Tisches wird nicht weiter gepollt, und damit hört auch der Heartbeat auf.</li>
-<li><code>SessionPage.tsx:83-93</code> – die Session verlassen (<code>DELETE …/participants/:id</code>) und die
-gespeicherte ID aus <code>sessionStorage</code> löschen. Der «Verlassen»-Button navigiert nur, dadurch wird
-die Seite entfernt und das Cleanup läuft. Bei einem Reload läuft es bewusst nicht: Dann bleibt man
-am Tisch, und die neu geladene Seite macht mit der gespeicherten ID weiter.</li>
-<li><code>ShareLinkButton.tsx:10</code> – <code>clearTimeout</code>, damit «Kopiert!» nicht nach dem Entfernen noch einen
-State setzt.</li>
+<li><strong>Polling der Liste</strong> (<code>HomePage.tsx:60-63</code>): <code>clearInterval</code>, sonst liefen nach dem Wechsel
+zum Tisch weiter Requests für die Liste.</li>
+<li><strong>Polling am Tisch</strong> (<code>PokerRoom.tsx:72-75</code>): <code>clearInterval</code>, sonst liefe das Polling nach
+dem Verlassen weiter.</li>
+<li><strong>Beitreten</strong> (<code>SessionPage.tsx:81-92</code>): Leave-Request, sonst sässe man nach dem Verlassen noch
+bis zum Timeout am Tisch.</li>
+<li><strong>«Kopiert!»</strong> (<code>ShareLinkButton.tsx:15</code>): <code>clearTimeout</code>.</li>
 </ol>
-<p>Das Cleanup läuft vor dem nächsten Durchlauf des Effekts und beim Unmount.»</p>
+<p>Dazu kommt das <code>ignore</code>-Flag: Eine Antwort, die erst nach dem Cleanup ankommt, schreibt nicht
+mehr in den State.»</p>
+</blockquote>
 <h3 id="b10-was-macht-strictmode-mit-effects">B.10 «Was macht StrictMode mit Effects?»</h3>
-<p>«Im Entwicklungsmodus führt <code>&lt;StrictMode&gt;</code> (in <code>main.tsx:9</code>) jeden Effekt beim ersten Mount
-<strong>zweimal</strong> aus: Mount → Cleanup → Mount. Damit findet React Effekte ohne korrektes Cleanup. Im
-Produktions-Build passiert das nicht.</p>
-<p>Bei uns bedeutet das: <code>SessionPage</code> startet zwei Joins. Ohne Gegenmassnahme gäbe es zwei Teilnehmer
-mit demselben Namen. Die Lösung ist das <code>cancelled</code>-Flag (<code>SessionPage.tsx:57-81</code>):</p>
-<ol>
-<li>Erster Effekt: <code>cancelled = false</code>, <code>joinSession()</code> startet.</li>
-<li>StrictMode ruft das Cleanup auf: <code>cancelled = true</code>. <code>joinedId</code> ist noch <code>null</code> (der Request
-läuft noch), also wird noch nichts verlassen.</li>
-<li>Zweiter Effekt: eigenes, neues <code>cancelled = false</code>, zweiter <code>joinSession()</code>.</li>
-<li>Die Antwort des <strong>ersten</strong> Joins kommt: <code>cancelled</code> ist <code>true</code> → dieser Teilnehmer verlässt
-sofort wieder (Z. 67-72).</li>
-<li>Die Antwort des zweiten Joins kommt: <code>cancelled</code> ist <code>false</code> → <code>setParticipantId</code>.</li>
-</ol>
-<p>Ergebnis: genau ein Teilnehmer, kein Duplikat, keine Leiche. Jeder Effekt-Durchlauf hat sein
-eigenes <code>cancelled</code> (Closure), darum funktioniert das. Ein Test prüft genau diesen Fall
-(<code>SessionPage.test.tsx</code>, «leaves the first participant again in StrictMode»).</p>
-<p>Sonderfall Reload: Beide Durchläufe finden dieselbe gespeicherte ID in <code>sessionStorage</code> und machen
-mit ihr weiter. Kommt die Antwort des ersten Durchlaufs nach dessen Cleanup, darf er diese ID
-<strong>nicht</strong> verlassen, sonst wäre sie für den zweiten Durchlauf weg. Darum <code>if (id !== savedId)</code>
-(Z. 68). Test: «continues as the same participant after a reload (sessionStorage)».</p>
-<p>Auch <code>usePolling</code> wird zweimal gestartet. Dort bricht das Cleanup den ersten Request ab und
-stoppt das erste Intervall, es bleibt eines übrig.»</p>
+<blockquote>
+<p>«StrictMode (<code>main.tsx:17</code>) startet in der Entwicklung jeden Effekt beim ersten Anzeigen zweimal:
+Effekt, Cleanup, Effekt. So fällt sofort auf, wenn ein Cleanup fehlt. Beim Beitreten gehen
+dadurch zwei Join-Requests los. Das Cleanup des ersten Durchlaufs setzt dessen <code>ignore</code> auf
+<code>true</code>. Kommt seine Antwort, sieht der Code in <code>SessionPage.tsx:55-63</code>: ‹ich bin schon
+aufgeräumt›. Hat dieser Join einen neuen Teilnehmer angelegt, meldet er ihn sofort wieder ab.
+Übrig bleibt der Teilnehmer des zweiten Durchlaufs. Im gebauten Produktivcode läuft der Effekt nur
+einmal. Ein Test prüft das unter <code>&lt;StrictMode&gt;</code>.»</p>
+</blockquote>
+<h3 id="b11-was-passiert-bei-einem-reload-am-tisch">B.11 «Was passiert bei einem Reload am Tisch?»</h3>
+<blockquote>
+<p>«Bei einem Reload läuft kein React-Cleanup, auf dem Server sitzt man also noch am Tisch. Nach dem
+Beitreten hat <code>SessionPage</code> die eigene <code>participantId</code> in <code>sessionStorage</code> geschrieben
+(Zeile 69). Die neu geladene Seite liest sie in Zeile 44 und schickt sie beim Beitreten mit. Der
+Server sieht in <code>sessions.ts</code>, Zeilen 98-106: ‹diese Person kenne ich noch› und antwortet 200 mit
+derselben ID, statt eine neue Person anzulegen. Platz und Stimme bleiben, es gibt keinen
+Doppel-Eintrag, und die Runde wird nicht aufgedeckt. Kennt der Server die ID nicht mehr (z. B.
+nach dem Timeout), legt er eine neue Person an (201). <code>sessionStorage</code> statt <code>localStorage</code>, weil
+jeder Tab eine eigene Person sein soll.»</p>
+</blockquote>
+<h3 id="b12-warum-habt-ihr-das-so-einfach-gelöst-kennt-ihr-keine-custom-hooks-oder-abortcontroller">B.12 «Warum habt ihr das so einfach gelöst? Kennt ihr keine Custom Hooks oder <code>AbortController</code>?»</h3>
+<p>Ehrlich antworten:</p>
+<blockquote>
+<p>«Die erste Fassung hatte einen allgemeinen Polling-Hook mit <code>useCallback</code>, <code>useRef</code> und
+<code>AbortController</code>. Wir haben den Code bewusst vereinfacht, damit jede Person jede Stelle erklären
+kann. Jetzt hat jede Seite, die pollt, ihren eigenen kurzen <code>useEffect</code> mit <code>setInterval</code> und
+Cleanup. Das ist zweimal fast derselbe Code, dafür sieht man alles an einer Stelle. Statt
+Requests abzubrechen, ignorieren wir späte Antworten mit dem <code>ignore</code>-Flag aus der React-Doku.
+Der Preis: Kommt eine alte Poll-Antwort zufällig nach der Antwort einer eigenen Aktion an, zeigt
+der Tisch höchstens 1.5 s lang den alten Stand, bis der nächste Poll kommt. Mit einem Custom Hook
+würden wir das Muster an einer Stelle sammeln, zum Beispiel <code>usePolling(load, intervall)</code>.»</p>
+</blockquote>
 <hr>
-<h2 id="teil-c--weitere-wahrscheinliche-prüfungsfragen">Teil C – Weitere wahrscheinliche Prüfungsfragen</h2>
+<h2 id="teil-c--fragenkatalog">Teil C – Fragenkatalog</h2>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -1838,252 +1769,272 @@ stoppt das erste Intervall, es bleibt eines übrig.»</p>
 <tbody><tr>
 <td>1</td>
 <td>Was ist der Unterschied zwischen Props und State?</td>
-<td>Props kommen von aussen und sind in der Komponente nur lesbar. State gehört der Komponente, ändert sich mit <code>setX</code> und löst ein Re-Render aus.</td>
+<td>Props kommen von aussen und sind in der Komponente nur lesbar. State gehört der Komponente, ändert sich mit der Setter-Funktion und löst ein neues Rendern aus.</td>
 </tr>
 <tr>
 <td>2</td>
-<td>Warum darf man State nicht direkt ändern (<code>session.revealed = true</code>)?</td>
-<td>React erkennt Änderungen nur über <code>setState</code> mit einem neuen Wert. Direkte Mutation löst kein Re-Render aus. Darum <code>[...sessions].sort()</code> statt <code>sessions.sort()</code>.</td>
+<td>Warum darf man State nicht direkt ändern?</td>
+<td>React merkt Änderungen nur über den Setter mit einem <strong>neuen</strong> Wert. Direkt verändert, rendert nichts neu, und andere Stellen sehen einen veränderten Wert. Darum <code>[...sessions]</code> vor <code>sort()</code> und <code>filter()</code> beim Löschen.</td>
 </tr>
 <tr>
 <td>3</td>
 <td>Wozu dient <code>key</code> in Listen?</td>
-<td>React erkennt damit, welches Element welches ist, wenn sich die Liste ändert. Wir nehmen stabile IDs (<code>session.id</code>, <code>participant.id</code>), nie den Index.</td>
+<td>Damit React beim Ändern der Liste weiss, welches Element welches ist. Wir nehmen stabile IDs (<code>session.id</code>, <code>participant.id</code>), nie den Index.</td>
 </tr>
 <tr>
 <td>4</td>
-<td>Was passiert, wenn <code>fetchSession</code> ohne <code>useCallback</code> definiert wäre?</td>
-<td>Jede Render-Phase erzeugt eine neue Funktion → Dependency von <code>usePolling</code> ändert sich → Effekt läuft neu → bei jedem Render ein neuer Request und ein neues Intervall.</td>
+<td>Was macht <code>useEffect</code>, und wann läuft er?</td>
+<td>Er führt Code <strong>nach</strong> dem Rendern aus, für alles ausserhalb von React (Server, Timer). Er läuft beim ersten Anzeigen und immer dann, wenn sich ein Wert im Dependency-Array ändert. <code>[]</code> = nur einmal.</td>
 </tr>
 <tr>
 <td>5</td>
-<td>Was ist ein Custom Hook?</td>
-<td>Eine Funktion, die mit <code>use</code> beginnt und andere Hooks verwendet. <code>usePolling</code> und <code>useUser</code> kapseln wiederverwendbare Logik.</td>
+<td>Warum ist die Funktion im Effekt nicht direkt <code>async</code>?</td>
+<td>Ein Effekt darf nur eine Cleanup-Funktion zurückgeben, eine <code>async</code>-Funktion gibt aber ein Promise zurück. Darum eine innere <code>async function</code> und sie sofort aufrufen.</td>
 </tr>
 <tr>
 <td>6</td>
-<td>Warum <code>useRef</code> für den <code>AbortController</code>?</td>
-<td>Der Wert muss Renders überleben und von Effekt <strong>und</strong> <code>setData</code> erreichbar sein, soll aber kein Re-Render auslösen.</td>
+<td>Was macht das <code>ignore</code>-Flag?</td>
+<td>Jeder Effekt-Durchlauf hat sein eigenes <code>ignore</code>. Das Cleanup setzt es auf <code>true</code>. Eine Antwort, die danach kommt, wird nicht mehr in den State geschrieben.</td>
 </tr>
 <tr>
 <td>7</td>
-<td>Was ist Lazy Initial State?</td>
-<td><code>useState(() =&gt; …)</code>: Die Funktion läuft nur beim ersten Render. So wird <code>localStorage</code> nicht bei jedem Render gelesen.</td>
+<td>Warum ruft <code>loadSession</code> selbst <code>clearInterval</code> auf?</td>
+<td>Wurde die Session gelöscht, ist weiteres Abfragen sinnlos. Sonst ginge alle 1.5 s ein Request mit 404 raus.</td>
 </tr>
 <tr>
 <td>8</td>
-<td><code>localStorage</code> vs. <code>sessionStorage</code>?</td>
-<td><code>localStorage</code> bleibt nach dem Schliessen des Browsers und gilt für alle Tabs, <code>sessionStorage</code> gilt nur für den Tab und übersteht einen Reload. Der Name soll bleiben → <code>localStorage</code>. Die <code>participantId</code> soll nur einen Reload desselben Tabs überstehen → <code>sessionStorage</code>.</td>
+<td>Was heisst <code>useState(() =&gt; …)</code>?</td>
+<td>Die Funktion läuft nur beim ersten Render (Lazy Initial State). So wird <code>localStorage</code> nicht bei jedem Render gelesen.</td>
 </tr>
 <tr>
 <td>9</td>
-<td>Warum polling und nicht WebSockets?</td>
-<td>Einfacher, passt zu REST, gehört zum Kursstoff. Nachteil: bis 1.5 s Verzögerung und mehr Requests. Für ein Team von 5–10 Personen unproblematisch.</td>
+<td>Was heisst <code>setSessions((current) =&gt; …)</code>?</td>
+<td>Der Setter bekommt eine Funktion und ruft sie mit dem neusten State auf. Sicher, auch wenn sich der State inzwischen geändert hat (z. B. ein Poll ist angekommen).</td>
 </tr>
 <tr>
 <td>10</td>
-<td>Warum 1.5 s Polling-Intervall?</td>
-<td>Schnell genug, dass es sich live anfühlt, und weit unter dem 15-s-Timeout (zehn Abfragen Puffer).</td>
+<td><code>localStorage</code> vs. <code>sessionStorage</code>?</td>
+<td><code>localStorage</code> bleibt nach dem Schliessen und gilt für alle Tabs → Name. <code>sessionStorage</code> gilt nur für einen Tab und übersteht einen Reload → <code>participantId</code>.</td>
 </tr>
 <tr>
 <td>11</td>
-<td>Was ist CORS und warum braucht ihr es nicht?</td>
-<td>Der Browser blockiert Antworten von einem anderen Ursprung (Port zählt mit), wenn der Server es nicht erlaubt. Der Vite-Proxy macht <code>/api</code> zum selben Ursprung wie die Seite.</td>
+<td>Warum Polling und nicht WebSockets?</td>
+<td>Einfacher, passt zu REST, gehört zum Kursstoff. Nachteil: bis 1.5 s Verzögerung und mehr Requests. Für ein Team von 5–10 Personen kein Problem.</td>
 </tr>
 <tr>
 <td>12</td>
-<td>Was macht <code>express.json()</code>?</td>
-<td>Middleware, die JSON-Bodies parst und in <code>req.body</code> ablegt. Bei kaputtem JSON wirft sie einen <code>SyntaxError</code> → unser Error-Handler → 400.</td>
+<td>Warum 1.5 s am Tisch und 3 s bei der Liste?</td>
+<td>Am Tisch soll es sich live anfühlen und der Heartbeat braucht Abstand zum 15-s-Timeout. Die Liste ist weniger dringend.</td>
 </tr>
 <tr>
 <td>13</td>
+<td>Was ist CORS und warum braucht ihr es nicht?</td>
+<td>Der Browser blockiert Antworten von einer anderen Adresse (auch ein anderer Port zählt), wenn der Server es nicht erlaubt. Der Vite-Proxy macht <code>/api</code> zur selben Adresse wie die Seite.</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Was macht <code>express.json()</code>?</td>
+<td>Middleware, die JSON-Bodies liest und in <code>req.body</code> ablegt. Bei kaputtem JSON wirft sie einen <code>SyntaxError</code> → unser Error-Handler → 400.</td>
+</tr>
+<tr>
+<td>15</td>
 <td>Was ist Middleware?</td>
 <td>Eine Funktion <code>(req, res, next)</code>, die vor oder nach den Routen läuft. Sie kann die Anfrage verändern, beantworten oder mit <code>next()</code> weitergeben.</td>
 </tr>
 <tr>
-<td>14</td>
+<td>16</td>
 <td>Woran erkennt Express den Error-Handler?</td>
-<td>An den vier Parametern <code>(err, req, res, next)</code>.</td>
+<td>An den vier Parametern <code>(err, req, res, next)</code>. Darum steht <code>_next</code> da, obwohl er nicht benutzt wird.</td>
 </tr>
 <tr>
-<td>15</td>
+<td>17</td>
 <td>Warum ist <code>app.ts</code> von <code>index.ts</code> getrennt?</td>
 <td>Damit Tests die App ohne <code>listen()</code> und ohne Timer importieren können.</td>
 </tr>
 <tr>
-<td>16</td>
-<td>Warum prüft der Server den Namen, obwohl der Client schon prüft?</td>
-<td>Der Client ist nicht vertrauenswürdig: Jeder kann mit <code>curl</code> Requests schicken. Client-Prüfung = Komfort, Server-Prüfung = Sicherheit.</td>
-</tr>
-<tr>
-<td>17</td>
-<td>Warum 201 statt 200 beim Erstellen?</td>
-<td>201 Created sagt genau, dass eine neue Ressource entstanden ist.</td>
-</tr>
-<tr>
 <td>18</td>
-<td>Warum 204 beim Löschen?</td>
-<td>Erfolg ohne Inhalt. Es gibt nichts zurückzuschicken.</td>
+<td>Warum prüft der Server den Namen, obwohl der Client schon prüft?</td>
+<td>Jeder kann mit <code>curl</code> Requests schicken. Prüfung im Client = Komfort, Prüfung im Server = Sicherheit. Dieselbe Funktion <code>validateName</code> sorgt für dieselbe Regel.</td>
 </tr>
 <tr>
 <td>19</td>
-<td>Wann kommt 409?</td>
-<td>Wenn jemand nach dem Aufdecken noch abstimmen will. Die Anfrage ist gültig, passt aber nicht zum aktuellen Zustand.</td>
+<td>Warum 201 beim Erstellen und 200 beim Fortsetzen nach einem Reload?</td>
+<td>201 Created heisst: etwas Neues ist entstanden. Beim Fortsetzen entsteht nichts Neues, darum 200 OK.</td>
 </tr>
 <tr>
 <td>20</td>
-<td>Wie verhindert ihr, dass man Stimmen in den DevTools sieht?</td>
-<td>Der Server sendet vor dem Aufdecken nur <code>hasVoted</code>, <code>vote</code> ist <code>null</code> (<code>store.ts:45</code>). Ein Test prüft, dass der Wert nirgends in der Antwort steht.</td>
+<td>Warum 204 beim Löschen?</td>
+<td>Erfolg ohne Inhalt, es gibt nichts zurückzuschicken.</td>
 </tr>
 <tr>
 <td>21</td>
-<td>Warum sieht man die eigene Stimme vor dem Aufdecken?</td>
-<td>Damit der Client die gewählte Karte aus dem Server-Zustand hervorheben kann, ohne sie lokal zu speichern (Single Source of Truth). Für die eigene Person ist sie kein Geheimnis.</td>
+<td>Wann kommt 409?</td>
+<td>Wenn jemand nach dem Aufdecken noch abstimmen will. Die Anfrage ist richtig gebaut, passt aber nicht zum aktuellen Zustand.</td>
 </tr>
 <tr>
 <td>22</td>
-<td>Wann wird automatisch aufgedeckt?</td>
-<td>Wenn alle (mindestens eine Person) gewählt haben – nach einer Stimme oder wenn die letzte fehlende Person geht.</td>
+<td>Wie verhindert ihr, dass man Stimmen in den Entwicklertools sieht?</td>
+<td>Der Server schickt vor dem Aufdecken nur <code>hasVoted</code>, <code>vote</code> ist <code>null</code> (<code>store.ts:38</code>). Ein E2E-Test prüft die echte Server-Antwort.</td>
 </tr>
 <tr>
 <td>23</td>
+<td>Warum sieht man die eigene Stimme vor dem Aufdecken?</td>
+<td>Damit der Client die gewählte Karte aus dem Server-Zustand hervorheben kann, ohne sie selbst zu speichern. Für die eigene Person ist sie kein Geheimnis.</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Wann wird automatisch aufgedeckt?</td>
+<td>Wenn alle (mindestens eine Person) gewählt haben: nach einer Stimme oder wenn die letzte Person ohne Stimme geht.</td>
+</tr>
+<tr>
+<td>25</td>
 <td>Warum startet ein Deck-Wechsel eine neue Runde?</td>
 <td>Alte Karten (z. B. <code>13</code>) gibt es im neuen Deck nicht, der Durchschnitt wäre sinnlos.</td>
 </tr>
 <tr>
-<td>24</td>
-<td>Wie wird der Durchschnitt bei <code>?</code> und <code>☕</code> berechnet?</td>
-<td>Sie zählen nicht zum Durchschnitt, aber zur Anzahl Stimmen. Nur <code>?</code>/<code>☕</code> → Durchschnitt <code>–</code>.</td>
+<td>26</td>
+<td>Wie zählen <code>?</code> und <code>☕</code>?</td>
+<td>Nicht zum Durchschnitt, aber zur Anzahl Stimmen. Nur <code>?</code>/<code>☕</code> → Durchschnitt «–».</td>
 </tr>
 <tr>
-<td>25</td>
+<td>27</td>
 <td>Was heisst Konsens bei euch?</td>
 <td>Mindestens zwei Stimmen und alle gleich (auch zweimal <code>?</code>).</td>
 </tr>
 <tr>
-<td>26</td>
-<td>Was ist eine reine Funktion, und welche habt ihr?</td>
-<td>Gleiche Eingabe → gleiche Ausgabe, keine Nebenwirkungen. <code>computeResult</code>, <code>validateName</code>, <code>toSessionState</code>.</td>
-</tr>
-<tr>
-<td>27</td>
-<td>Was ist der Unterschied zwischen <code>unknown</code> und <code>any</code>?</td>
-<td>Beide nehmen alles an. Bei <code>unknown</code> verlangt TypeScript eine Prüfung vor der Nutzung, <code>any</code> schaltet die Prüfung ab. ESLint verbietet <code>any</code> bei uns.</td>
-</tr>
-<tr>
 <td>28</td>
-<td>Was ist ein Type Guard?</td>
-<td>Eine Funktion mit Rückgabetyp <code>value is X</code>. Nach <code>if (isObject(body))</code> weiss TypeScript, dass <code>body</code> ein Objekt ist.</td>
+<td>Welche Funktionen haben keine Nebenwirkungen?</td>
+<td><code>computeResult</code>, <code>validateName</code>, <code>toSessionState</code>: gleiche Eingabe, gleiches Ergebnis, sie ändern nichts. Darum leicht zu testen.</td>
 </tr>
 <tr>
 <td>29</td>
-<td>Was macht <code>async</code>/<code>await</code>?</td>
-<td><code>await</code> wartet auf ein Promise, ohne den Browser zu blockieren. Fehler eines Promise werden mit <code>try/catch</code> gefangen.</td>
+<td>Unterschied <code>unknown</code> und <code>any</code>?</td>
+<td>Beide nehmen alles an. Bei <code>unknown</code> verlangt TypeScript eine Prüfung vor der Nutzung, <code>any</code> schaltet die Prüfung ab. ESLint verbietet <code>any</code>.</td>
 </tr>
 <tr>
 <td>30</td>
-<td>Was bedeutet <code>void</code> vor einem Promise?</td>
-<td>Wir starten das Promise bewusst, ohne darauf zu warten (z. B. im <code>onClick</code>, der nichts zurückgeben soll). Seine Fehler sind innen mit <code>try/catch</code> behandelt.</td>
+<td>Was macht <code>as JoinSessionRequest</code>?</td>
+<td>Es sagt TypeScript, welche Form ein Wert hat. Es prüft nichts! Darum steht es erst <strong>nach</strong> der Prüfung in <code>validation.ts</code>. In <code>api.ts</code> vertrauen wir so dem eigenen Server.</td>
 </tr>
 <tr>
 <td>31</td>
-<td>Warum wirft <code>fetch</code> bei 404 keinen Fehler?</td>
-<td><code>fetch</code> wirft nur, wenn keine Antwort kam. Jede HTTP-Antwort ist für <code>fetch</code> ein Erfolg. Darum prüfen wir <code>response.ok</code> selbst.</td>
+<td>Was bedeutet das <code>!</code> in <code>getElementById('root')!</code>?</td>
+<td>«Dieser Wert ist sicher nicht <code>null</code>». Das <code>&lt;div id="root"&gt;</code> steht in <code>index.html</code>.</td>
 </tr>
 <tr>
 <td>32</td>
-<td>Wofür <code>AbortController</code>?</td>
-<td>Um einen laufenden <code>fetch</code> abzubrechen: beim Unmount, bei einem neuen Poll oder nach einer Aktion.</td>
+<td>Was machen <code>?.</code> und <code>??</code>?</td>
+<td><code>??</code> nimmt den rechten Wert, wenn links <code>null</code> oder <code>undefined</code> steht (<code>localStorage.getItem(…) ?? ''</code>). <code>?.</code> greift nur zu, wenn der Wert nicht <code>null</code>/<code>undefined</code> ist (im Test).</td>
 </tr>
 <tr>
 <td>33</td>
-<td>Was ist der Unterschied zwischen <code>&lt;Link&gt;</code> und <code>&lt;a href&gt;</code>?</td>
-<td><code>&lt;Link&gt;</code> wechselt die Route im Browser ohne Neuladen, State bleibt erhalten. <code>&lt;a href&gt;</code> lädt die ganze Seite neu. In der ErrorBoundary wollen wir genau das, darum dort <code>&lt;Link reloadDocument&gt;</code>.</td>
+<td>Was macht <code>async</code>/<code>await</code>?</td>
+<td><code>await</code> wartet auf ein Promise, ohne den Browser zu blockieren. Fehler fängt man mit <code>try</code>/<code>catch</code>.</td>
 </tr>
 <tr>
 <td>34</td>
-<td>Was macht <code>&lt;Outlet /&gt;</code>?</td>
-<td>Platzhalter in einer Eltern-Route, an dem die passende Kind-Route gerendert wird.</td>
+<td>Warum wirft <code>fetch</code> bei 404 keinen Fehler?</td>
+<td><code>fetch</code> wirft nur, wenn keine Antwort kam. Jede HTTP-Antwort ist für <code>fetch</code> ein Erfolg. Darum prüfen wir <code>response.ok</code> bzw. <code>response.status</code> selbst.</td>
 </tr>
 <tr>
 <td>35</td>
-<td>Was ist ein kontrolliertes Formular?</td>
-<td>Der Wert des <code>&lt;input&gt;</code> kommt aus State (<code>value</code>), jede Eingabe geht über <code>onChange</code> zurück in den State. React ist die einzige Quelle für den Feldinhalt.</td>
+<td>Warum gibt <code>getSession</code> bei 404 <code>null</code> zurück statt eines Fehlers?</td>
+<td>«Gibt es nicht» ist ein normaler Fall, kein Absturz. <code>null</code> lässt sich mit einem <code>if</code> prüfen, ohne <code>try</code>/<code>catch</code>.</td>
 </tr>
 <tr>
 <td>36</td>
+<td>Warum <code>.catch(() =&gt; {})</code> beim Leave-Request?</td>
+<td>Ein Fehler beim Verlassen ist egal, der Heartbeat-Timeout entfernt die Person trotzdem. Ohne <code>.catch</code> gäbe es eine «Uncaught (in promise)»-Meldung.</td>
+</tr>
+<tr>
+<td>37</td>
+<td>Unterschied <code>&lt;Link&gt;</code> und <code>&lt;a href&gt;</code>?</td>
+<td><code>&lt;Link&gt;</code> wechselt die Seite ohne Neuladen, der State bleibt. <code>&lt;a href&gt;</code> lädt alles neu. In der ErrorBoundary wollen wir genau das, darum <code>&lt;Link reloadDocument&gt;</code>.</td>
+</tr>
+<tr>
+<td>38</td>
+<td>Was ist ein kontrolliertes Formular?</td>
+<td>Der Wert des Eingabefelds kommt aus dem State (<code>value</code>), jede Eingabe geht über <code>onChange</code> zurück. React ist die einzige Quelle für den Inhalt.</td>
+</tr>
+<tr>
+<td>39</td>
 <td>Warum <code>event.preventDefault()</code> im Formular?</td>
 <td>Sonst lädt der Browser beim Absenden (Enter) die Seite neu.</td>
 </tr>
 <tr>
-<td>37</td>
+<td>40</td>
+<td>Was macht <code>children</code> bei <code>PokerTable</code>?</td>
+<td>Alles, was zwischen <code>&lt;PokerTable&gt;</code> und <code>&lt;/PokerTable&gt;</code> steht, kommt als Prop <code>children</code> an. <code>PokerTable</code> zeigt es in der Mitte, ohne zu wissen, was es ist.</td>
+</tr>
+<tr>
+<td>41</td>
+<td>Wozu <code>key={participantId}</code> auf <code>PokerRoom</code>?</td>
+<td>Neue ID → React baut ein neues <code>PokerRoom</code> mit leerem State, statt das alte weiterzuverwenden.</td>
+</tr>
+<tr>
+<td>42</td>
+<td>Warum ist <code>ErrorBoundary</code> eine Klasse?</td>
+<td>React bietet Error Boundaries nur als Klasse an (<code>getDerivedStateFromError</code>). Es ist die einzige Klasse der App.</td>
+</tr>
+<tr>
+<td>43</td>
 <td>Was macht <code>box-sizing: border-box</code>?</td>
 <td><code>width</code> schliesst Padding und Rahmen ein. Elemente werden nicht unerwartet breiter.</td>
 </tr>
 <tr>
-<td>38</td>
+<td>44</td>
 <td>Flexbox oder Grid – wann was?</td>
-<td>Flexbox für eine Richtung (Reihe von Buttons, Karten), Grid für zweidimensionale Layouts (Spalten der Home-Seite).</td>
+<td>Flexbox für eine Richtung (Reihe von Buttons, Karten, Plätzen), Grid für Spalten und Zeilen (Home-Seite).</td>
 </tr>
 <tr>
-<td>39</td>
+<td>45</td>
 <td>Was heisst Mobile First?</td>
-<td>Grundregeln für kleine Bildschirme schreiben, mit <code>min-width</code>-Media-Queries für grössere ergänzen.</td>
+<td>Zuerst Regeln für kleine Bildschirme schreiben, mit <code>min-width</code>-Media-Queries für grössere ergänzen.</td>
 </tr>
 <tr>
-<td>40</td>
+<td>46</td>
 <td>Wozu <code>aria-pressed</code>, <code>role="alert"</code>, <code>role="status"</code>?</td>
 <td>Screenreader erfahren, ob ein Button aktiv ist, und lesen Fehler sofort bzw. Ladehinweise höflich vor.</td>
 </tr>
 <tr>
-<td>41</td>
-<td>Was passiert bei einem Reload am Tisch?</td>
-<td>Beim Neuladen läuft kein React-Cleanup, man bleibt also auf dem Server am Tisch. Die neu geladene Seite findet die <code>participantId</code> in <code>sessionStorage</code>, prüft per <code>GET</code>, ob es sie noch gibt, und macht mit ihr weiter: gleicher Platz, gleiche Stimme, kein Doppel-Eintrag, kein Aufdecken.</td>
-</tr>
-<tr>
-<td>42</td>
+<td>47</td>
 <td>Was passiert, wenn zwei Personen gleichzeitig das Deck wechseln?</td>
-<td>Der Server verarbeitet Requests nacheinander. Der zweite gewinnt, beide sehen beim nächsten Poll denselben Zustand.</td>
+<td>Der Server bearbeitet Requests nacheinander. Der zweite gewinnt, beide sehen beim nächsten Poll denselben Zustand.</td>
 </tr>
 <tr>
-<td>43</td>
-<td>Was passiert mit den Daten bei einem Server-Neustart?</td>
-<td>Alles weg (in-memory <code>Map</code>). Bewusst so, es gibt keine Datenbank.</td>
+<td>48</td>
+<td>Was passiert mit den Daten bei einem Neustart des Servers?</td>
+<td>Alles weg (<code>Map</code> im Arbeitsspeicher). Bewusst so, es gibt keine Datenbank.</td>
 </tr>
 <tr>
-<td>44</td>
-<td>Wie testet ihr den Heartbeat ohne 15 s zu warten?</td>
-<td>Mit <code>vi.useFakeTimers({ toFake: ['Date'] })</code> und <code>vi.advanceTimersByTime()</code>, dann <code>removeInactiveParticipants(Date.now())</code> direkt aufrufen.</td>
+<td>49</td>
+<td>Wie testet ihr den Heartbeat, ohne 15 s zu warten?</td>
+<td><code>vi.useFakeTimers({ toFake: ['Date'] })</code> und <code>vi.advanceTimersByTime()</code> stellen die Uhr vor, dann wird <code>removeInactiveParticipants()</code> direkt aufgerufen.</td>
 </tr>
 <tr>
-<td>45</td>
+<td>50</td>
+<td>Warum verlasst ihr die Session nicht beim Schliessen des Tabs (<code>pagehide</code>)?</td>
+<td><code>pagehide</code> feuert auch beim Reload, und der Browser unterscheidet die Fälle nicht. Ein Reload hätte die Stimme gelöscht und vielleicht für alle aufgedeckt. Ein geschlossener Tab bleibt darum bis 20 s am Tisch.</td>
+</tr>
+<tr>
+<td>51</td>
+<td>Was passiert mit zwei Tabs derselben Person?</td>
+<td>Jeder Tab hat sein eigenes <code>sessionStorage</code>, also eine eigene <code>participantId</code>: zwei Einträge am Tisch.</td>
+</tr>
+<tr>
+<td>52</td>
 <td>Was macht <code>pnpm --filter</code>?</td>
 <td>Führt einen Befehl nur in einem Paket des Workspaces aus.</td>
 </tr>
 <tr>
-<td>46</td>
-<td>Warum ein eigenes <code>shared</code>-Paket?</td>
-<td>Types und <code>computeResult</code> nur einmal. Änderungen werden in Client und Server gleichzeitig geprüft.</td>
-</tr>
-<tr>
-<td>47</td>
-<td>Warum verlasst ihr die Session nicht beim Schliessen des Tabs (<code>pagehide</code>)?</td>
-<td><code>pagehide</code> feuert auch beim Reload, der Browser unterscheidet die Fälle nicht. Früher war das eingebaut: Ein Reload löschte dann die eigene Stimme, und war man der Letzte ohne Stimme, deckte der Server für alle auf. Ein geschlossener Tab bleibt jetzt bis zu 20 s am Tisch (Heartbeat), aufdecken von Hand geht trotzdem.</td>
-</tr>
-<tr>
-<td>48</td>
-<td>Was passiert mit zwei Tabs derselben Person?</td>
-<td>Jeder Tab hat sein eigenes <code>sessionStorage</code>, also eine eigene <code>participantId</code>: zwei Einträge am Tisch. Mit <code>localStorage</code> wären beide Tabs ein Teilnehmer, und Verlassen in einem Tab würfe auch den anderen raus.</td>
-</tr>
-<tr>
-<td>49</td>
-<td>Woher weiss die Seite nach einem Reload, ob die gespeicherte ID noch gilt?</td>
-<td>Sie fragt den Server (<code>resumeOrJoin</code>, <code>SessionPage.tsx:20-30</code>). Wurde man inzwischen entfernt (Timeout), fehlt die ID in der Teilnehmerliste und es wird normal neu beigetreten.</td>
-</tr>
-<tr>
-<td>50</td>
+<td>53</td>
 <td>Was prüfen die E2E-Tests, was die Unit-Tests nicht können?</td>
 <td>Das Zusammenspiel im echten Browser mit echtem Server: zwei Personen gleichzeitig, Proxy, Reload, Tab schliessen, Layout ohne horizontales Scrollen, keine Fehler in der Konsole.</td>
+</tr>
+<tr>
+<td>54</td>
+<td>Was ersetzt der Fake-Server in den Client-Tests?</td>
+<td><code>fetch</code>. Er antwortet wie die echte API, damit die Tests ohne laufenden Server die Oberfläche prüfen können.</td>
 </tr>
 </tbody></table></div>
 <hr>
@@ -2104,19 +2055,19 @@ stoppt das erste Intervall, es bleibt eines übrig.»</p>
 <td>0:00</td>
 <td>A</td>
 <td>Name «Anna» steht schon da</td>
-<td>«Der Name kommt aus dem <code>localStorage</code>, gespeichert im UserContext.»</td>
+<td>«Der Name kommt aus dem <code>localStorage</code>, gelesen im <code>UserProvider</code>.»</td>
 </tr>
 <tr>
 <td>0:10</td>
 <td>B</td>
-<td>Name leeren → Buttons grau, Meldung. Dann «Ben» eingeben</td>
-<td>«Ungültige Namen sperren Erstellen und Beitreten. Der Server prüft zusätzlich.»</td>
+<td>Name leer lassen → Meldung, Buttons grau. Dann «Ben» eingeben</td>
+<td>«<code>validateName</code> aus <code>shared</code> sperrt Erstellen und Beitreten. Der Server prüft mit derselben Funktion.»</td>
 </tr>
 <tr>
 <td>0:25</td>
 <td>A</td>
 <td>«Neue Session erstellen»</td>
-<td>«POST <code>/api/sessions</code> → 201, dann <code>useNavigate</code> auf <code>/sessions/&lt;id&gt;</code>. Die ID kommt per <code>useParams</code> in die Seite.»</td>
+<td>«<code>POST /api/sessions</code> → 201, dann <code>navigate</code> auf <code>/sessions/&lt;id&gt;</code>. Die ID kommt per <code>useParams</code> in die Seite.»</td>
 </tr>
 <tr>
 <td>0:40</td>
@@ -2128,19 +2079,19 @@ stoppt das erste Intervall, es bleibt eines übrig.»</p>
 <td>0:55</td>
 <td>A</td>
 <td>«Link kopieren» zeigen</td>
-<td>«Für Teammitglieder, die die Home-Seite nicht nutzen.»</td>
+<td>«Für Teammitglieder, die direkt über den Link kommen.»</td>
 </tr>
 <tr>
 <td>1:05</td>
 <td>A</td>
 <td>Karte <strong>5</strong> klicken</td>
-<td>«PUT <code>…/vote</code>. Bei Ben erscheint nur eine verdeckte Karte, der Wert verlässt den Server nicht.»</td>
+<td>«<code>PUT …/vote</code>. Bei Ben erscheint nur eine verdeckte Karte, der Wert verlässt den Server nicht.»</td>
 </tr>
 <tr>
 <td>1:20</td>
 <td>B</td>
 <td>Karte <strong>8</strong> klicken → automatisch aufgedeckt</td>
-<td>«Alle haben gewählt → Auto-Reveal. Durchschnitt 6.5.»</td>
+<td>«Alle haben gewählt → der Server deckt auf. Durchschnitt 6.5.»</td>
 </tr>
 <tr>
 <td>1:35</td>
@@ -2151,34 +2102,41 @@ stoppt das erste Intervall, es bleibt eines übrig.»</p>
 <tr>
 <td>1:55</td>
 <td>B</td>
-<td>Deck auf <strong>T-Shirt</strong> wechseln, A wählt S, B wählt L</td>
-<td>«Deck-Wechsel startet für alle eine neue Runde. S=2, L=5, Durchschnitt 3.5 → M.»</td>
+<td>Deck auf <strong>T-Shirt</strong>, A wählt S, B wählt L</td>
+<td>«Ein Deck-Wechsel startet für alle eine neue Runde. S=2, L=5, Durchschnitt 3.5 → M.»</td>
 </tr>
 <tr>
-<td>2:20</td>
+<td>2:15</td>
+<td>B</td>
+<td>Seite neu laden (F5)</td>
+<td>«Ben sitzt noch am Tisch, mit derselben Stimme: Die <code>participantId</code> liegt im <code>sessionStorage</code>.»</td>
+</tr>
+<tr>
+<td>2:25</td>
 <td>B</td>
 <td>Tab schliessen</td>
-<td>«Ein Reload lässt Ben am Tisch, mit seiner Stimme. Schliesst er den Tab, kommen keine Polls mehr, und der Heartbeat-Timeout entfernt ihn nach höchstens 20 Sekunden.» (Vorher Reload zeigen, dann Tab schliessen.)</td>
+<td>«Jetzt kommen keine Polls mehr. Nach höchstens 20 Sekunden entfernt der Server Ben (Heartbeat).»</td>
 </tr>
 <tr>
 <td>2:35</td>
 <td>A</td>
-<td>DevTools → Network: alle 1.5 s ein <code>GET …?participantId=</code></td>
+<td>Entwicklertools → Network: alle 1.5 s ein <code>GET …?participantId=</code></td>
 <td>«Das Polling ist zugleich der Heartbeat.»</td>
 </tr>
 <tr>
 <td>2:50</td>
 <td>A</td>
 <td>«Verlassen» → Home</td>
-<td>«Das Cleanup im <code>useEffect</code> schickt den DELETE.»</td>
+<td>«Das Cleanup im <code>useEffect</code> von <code>SessionPage</code> schickt den DELETE.»</td>
 </tr>
 </tbody></table></div>
-<p>Plan B, falls etwas hängt: Seite neu laden. Wenn der Server abgestürzt ist: Terminal zeigen,
-<code>pnpm dev</code> neu starten, dabei die Fehlermeldung «Server nicht erreichbar.» als Feature erklären.</p>
+<p>Plan B, falls etwas hängt: Seite neu laden. Ist der Server abgestürzt: Terminal zeigen,
+<code>pnpm dev</code> neu starten und dabei die Meldung «Server nicht erreichbar.» als Teil der
+Fehlerbehandlung erklären.</p>
 <h3 id="d2-checkliste-für-den-tag">D.2 Checkliste für den Tag</h3>
 <p><strong>Am Vortag</strong></p>
 <ul>
-<li><input disabled="" type="checkbox"> Repo aktuell: <code>git pull</code>, dann <code>pnpm install</code></li>
+<li><input disabled="" type="checkbox"> Projekt aktuell, <code>pnpm install</code></li>
 <li><input disabled="" type="checkbox"> <code>pnpm test</code> und <code>pnpm lint</code> grün (optional auch <code>pnpm test:e2e</code>)</li>
 <li><input disabled="" type="checkbox"> Demo einmal komplett mit Stoppuhr durchgespielt</li>
 <li><input disabled="" type="checkbox"> Jede Person kann Teil B ohne Unterlagen beantworten</li>
@@ -2186,118 +2144,130 @@ stoppt das erste Intervall, es bleibt eines übrig.»</p>
 </ul>
 <p><strong>30 Minuten vorher</strong></p>
 <ul>
-<li><input disabled="" type="checkbox"> Alle anderen Programme schliessen, Benachrichtigungen aus (Fokus-Modus)</li>
-<li><input disabled="" type="checkbox"> Terminal 1: <code>pnpm dev</code> läuft, <code>[server]</code> und <code>[client]</code> ohne Fehler</li>
-<li><input disabled="" type="checkbox"> Browser A und privater Browser B auf <a href="http://localhost:5173">http://localhost:5173</a>, Zoom auf 125 % für den Beamer</li>
+<li><input disabled="" type="checkbox"> Alle anderen Programme schliessen, Benachrichtigungen aus</li>
+<li><input disabled="" type="checkbox"> Terminal: <code>pnpm dev</code> läuft, <code>[server]</code> und <code>[client]</code> ohne Fehler</li>
+<li><input disabled="" type="checkbox"> Browser A und privater Browser B auf <a href="http://localhost:5173">http://localhost:5173</a>, Zoom 125 % für den Beamer</li>
 <li><input disabled="" type="checkbox"> Alte Test-Sessions löschen (oder Server neu starten)</li>
-<li><input disabled="" type="checkbox"> Editor (VS Code) offen mit diesen Dateien in Tabs:
+<li><input disabled="" type="checkbox"> Editor offen mit diesen Dateien in Tabs:
 <code>shared/src/index.ts</code>, <code>server/src/routes/sessions.ts</code>, <code>server/src/store.ts</code>,
-<code>client/src/App.tsx</code>, <code>client/src/api/client.ts</code>, <code>client/src/hooks/usePolling.ts</code>,
-<code>client/src/context/UserContext.tsx</code>, <code>client/src/pages/SessionPage.tsx</code>,
+<code>client/src/App.tsx</code>, <code>client/src/api.ts</code>, <code>client/src/UserContext.tsx</code>,
+<code>client/src/pages/HomePage.tsx</code>, <code>client/src/pages/SessionPage.tsx</code>,
 <code>client/src/components/PokerRoom.tsx</code></li>
 <li><input disabled="" type="checkbox"> Zeilennummern im Editor eingeschaltet, Schrift gross genug</li>
-<li><input disabled="" type="checkbox"> Globale Suche (<code>Ctrl+Shift+F</code>) und «Go to Definition» (<code>F12</code>) geübt</li>
+<li><input disabled="" type="checkbox"> Globale Suche (<code>Ctrl+Shift+F</code>), «Go to Line» (<code>Ctrl+G</code>) und «Go to Definition» (<code>F12</code>) geübt</li>
 <li><input disabled="" type="checkbox"> <code>DOKUMENTATION.pdf</code> offen als Rückfallebene</li>
 </ul>
 <p><strong>Während des Gesprächs</strong></p>
 <ul>
-<li>Erst die Stelle im Code zeigen, dann erklären.</li>
+<li>Erst die Stelle im Code zeigen, dann erklären. Den deutschen Kommentar oben in der Datei
+vorlesen ist ein guter Einstieg.</li>
 <li>Ehrlich bleiben: «Das hat die KI so geschrieben, ich verstehe es so: …» ist besser als raten.</li>
 <li>Bei unbekannten Fragen laut denken und im Code nachsehen.</li>
 </ul>
 <hr>
 <h2 id="teil-e--übungsaufgaben-zum-selbsttest">Teil E – Übungsaufgaben zum Selbsttest</h2>
-<p>Jede Aufgabe: Vermutung aufschreiben → ändern → <code>pnpm dev</code> bzw. <code>pnpm test</code> → beobachten → mit
-<code>git checkout .</code> zurücksetzen (ohne Git, z. B. aus dem ZIP: vorher eine Kopie des Ordners anlegen). Die Lösung steht darunter, erst nachher lesen.</p>
-<p><strong>1. Polling-Intervall</strong> – Setze <code>POLL_INTERVAL_MS</code> in <code>client/src/config.ts</code> auf <code>20_000</code>. Was
-passiert nach 20 s am Tisch?</p>
+<p>Jede Aufgabe: Vermutung aufschreiben → ändern → <code>pnpm dev</code> bzw. <code>pnpm test</code> → beobachten →
+zurücksetzen mit <code>git checkout .</code> (ohne Git, z. B. aus dem ZIP: vorher eine Kopie des Ordners
+anlegen). Die Lösung steht darunter, erst nachher lesen.</p>
+<p><strong>1. Polling-Intervall</strong> – Setze <code>POLL_INTERVAL_MS</code> in <code>PokerRoom.tsx:19</code> auf <code>20_000</code>. Was passiert
+nach 20 s am Tisch?</p>
 <blockquote>
-<p>Der Server entfernt dich nach ca. 15–20 s, weil der Heartbeat zu selten kommt. Beim nächsten Poll
-fehlst du in der Liste → «Du bist nicht mehr am Tisch». Zeigt die Abhängigkeit Polling ↔ Timeout.</p>
+<p>Der Server entfernt dich nach 15–20 s, weil der Heartbeat zu selten kommt. Beim nächsten Poll
+fehlst du in der Liste → «Du bist nicht mehr am Tisch». Zeigt: Polling und Timeout hängen
+zusammen.</p>
 </blockquote>
-<p><strong>2. <code>useCallback</code> entfernen</strong> – Ersetze in <code>PokerRoom.tsx:30-33</code> das <code>useCallback</code> durch eine
-normale Arrow-Function. Beobachte den Network-Tab.</p>
+<p><strong>2. Cleanup weglassen</strong> – Lösche in <code>HomePage.tsx:62</code> die Zeile <code>clearInterval(intervalId)</code>. Geh
+von der Home-Seite an einen Tisch und schau in den Network-Tab. Starte dann <code>pnpm test</code>.</p>
 <blockquote>
-<p>Bei jedem Render entsteht eine neue Funktion, <code>usePolling</code> startet neu. Nach jeder Antwort kommt
-sofort der nächste Request (Endlosschleife von Requests). ESLint meldet das nicht, weil der Fehler
-in der Dependency-Logik des eigenen Hooks liegt – darum der Kommentar im Code.</p>
+<p>Die Liste wird weiter alle 3 s geladen, obwohl die Home-Seite gar nicht mehr zu sehen ist. Der
+Test «loads the list again every 3 seconds and stops polling after leaving the page» schlägt
+fehl.</p>
 </blockquote>
-<p><strong>3. Cleanup weglassen</strong> – Kommentiere in <code>usePolling.ts</code> die Zeilen 59-60 aus. Geh vom Tisch auf
-die Home-Seite.</p>
+<p><strong>3. StrictMode-Schutz entfernen</strong> – Lösche in <code>SessionPage.tsx:59-61</code> den Block, der den
+überflüssigen Teilnehmer wieder abmeldet. Tritt einer Session bei.</p>
 <blockquote>
-<p>Das Intervall läuft weiter: Im Network-Tab kommen weiter Requests für die Session, und weil sie
-die <code>participantId</code> enthalten, bleibst du als Teilnehmer «lebendig». Test «stops polling … on
-unmount» schlägt fehl.</p>
+<p>Im Dev-Modus sitzt du zweimal am Tisch (einmal als Karteileiche, die nach 20 s verschwindet). Der
+Test «leaves the first participant again in StrictMode, so that only one remains» schlägt fehl.</p>
 </blockquote>
-<p><strong>4. StrictMode-Schutz entfernen</strong> – Lösche in <code>SessionPage.tsx:67-72</code> den <code>if (cancelled)</code>-Block.
-Tritt einer Session bei.</p>
+<p><strong>4. Reload-Fortsetzung entfernen</strong> – Ersetze in <code>SessionPage.tsx:44</code>
+<code>sessionStorage.getItem(storageKey)</code> durch <code>null</code>. Wähle am Tisch eine Karte und lade die Seite neu
+(zweites Fenster offen lassen).</p>
 <blockquote>
-<p>Im Dev-Modus sitzt du zweimal am Tisch. Der StrictMode-Test schlägt fehl.</p>
+<p>Nach dem Reload sitzt du als neue Person am Tisch, deine Karte ist weg, und der alte Eintrag
+bleibt bis zu 20 s als Karteileiche sitzen. Der Test «continues as the same participant after a
+reload (sessionStorage)» schlägt fehl.</p>
 </blockquote>
-<p><strong>4b. Reload-Fortsetzung entfernen</strong> – Ersetze in <code>SessionPage.tsx:55</code> <code>sessionStorage.getItem(storageKey)</code>
-durch <code>null</code>. Wähle am Tisch eine Karte und lade die Seite neu (zweites Fenster offen lassen).</p>
+<p><strong>5. Kopie beim Sortieren</strong> – Ändere <code>HomePage.tsx:96</code> zu <code>sortedSessions = sessions</code>.</p>
 <blockquote>
-<p>Nach dem Reload tritt eine neue Person «Ben» bei, deine Karte ist weg, und der alte Eintrag bleibt
-bis zu 20 s als Karteileiche am Tisch. Der Test «continues as the same participant after a reload
-(sessionStorage)» schlägt fehl.</p>
+<p>Funktioniert scheinbar, <code>sort()</code> verändert jetzt aber den State direkt. Erkläre, warum das
+gefährlich ist (React bemerkt die Änderung nicht, der State ist nicht mehr der vom Server).</p>
 </blockquote>
-<p><strong>5. Kopie beim Sortieren</strong> – Ändere <code>SessionList.tsx:14</code> zu <code>sessions.sort(...)</code>.</p>
-<blockquote>
-<p>Funktioniert scheinbar, verändert aber den State von <code>usePolling</code> direkt (Mutation). Erkläre,
-warum das gefährlich ist (React merkt nichts, andere Leser sehen eine veränderte Liste).</p>
-</blockquote>
-<p><strong>6. Geheimhaltung brechen</strong> – Ändere <code>store.ts:45</code> zu <code>vote: participant.vote</code>.</p>
+<p><strong>6. Geheimhaltung brechen</strong> – Ersetze in <code>store.ts:37-40</code> die Bedingung, sodass <code>vote</code> immer
+<code>participant.vote</code> ist.</p>
 <blockquote>
 <p>Vor dem Aufdecken stehen alle Stimmen in der Antwort (Network-Tab). Die Oberfläche zeigt sie
-trotzdem verdeckt – zeigt, dass Geheimhaltung auf dem Server passieren muss. Zwei Server-Tests
-schlagen fehl.</p>
+trotzdem verdeckt. Das zeigt: Geheimhaltung muss auf dem Server passieren. Server-Tests schlagen
+fehl.</p>
 </blockquote>
-<p><strong>7. Auto-Reveal</strong> – Entferne <code>session.participants.length &gt; 0 &amp;&amp;</code> in <code>store.ts:152</code>. Was passiert
-in einer leeren Session, wenn die letzte Person geht?</p>
+<p><strong>7. Automatisch aufdecken</strong> – Lösche in <code>store.ts:148-150</code> die Prüfung auf eine leere Session.
+Was passiert, wenn die letzte Person eine Session verlässt? Welcher Test schlägt fehl?</p>
 <blockquote>
-<p><code>[].every(...)</code> ist <code>true</code> → die leere Session ist «aufgedeckt». Die nächste Person sieht einen
-aufgedeckten Tisch ohne Stimmen.</p>
+<p>Ohne Teilnehmer gibt es niemanden ohne Stimme, also wird die leere Session «aufgedeckt». Die
+nächste Person sieht einen aufgedeckten Tisch ohne Stimmen. Überraschung: <strong>Kein</strong> Test schlägt
+fehl. Schreibe einen supertest-Test, der das abdeckt (Session erstellen, beitreten, verlassen,
+<code>revealed</code> muss <code>false</code> sein).</p>
 </blockquote>
-<p><strong>8. Neue Karte</strong> – Füge <code>'40'</code> ins Fibonacci-Deck in <code>shared/src/index.ts</code> ein.</p>
+<p><strong>8. Neue Karte</strong> – Füge <code>'40'</code> ins Fibonacci-Deck in <code>shared/src/index.ts:20</code> ein.</p>
 <blockquote>
 <p>Die Karte erscheint sofort im Client <strong>und</strong> der Server akzeptiert sie, weil beide <code>DECKS</code> aus
-<code>shared</code> lesen. Durchschnitt funktioniert ohne weitere Änderung.</p>
+<code>shared</code> lesen. Der Durchschnitt funktioniert ohne weitere Änderung.</p>
 </blockquote>
-<p><strong>9. Neuer Deck-Typ</strong> – Ergänze <code>DeckType</code> um <code>'powers'</code> (ohne <code>DECKS</code> anzupassen). Starte
-<code>pnpm typecheck</code>.</p>
+<p><strong>9. Neuer Deck-Typ</strong> – Ergänze <code>DeckType</code> in <code>shared/src/index.ts:7</code> um <code>'powers'</code> (ohne <code>DECKS</code>
+anzupassen). Starte <code>pnpm typecheck</code>.</p>
 <blockquote>
-<p>TypeScript meldet, dass in <code>DECKS</code> der Schlüssel <code>powers</code> fehlt (<code>Record&lt;DeckType, Deck&gt;</code>). Danach
-fehlt er noch in <code>DECK_TYPES</code> in <code>DeckSwitcher.tsx</code> – das prüft TypeScript nicht. Gute Frage:
-Wie könnte man das absichern?</p>
+<p>TypeScript meldet Fehler überall, wo <code>DECKS[deck]</code> steht (z. B. <code>validation.ts:40</code>): Für
+<code>'powers'</code> gibt es in <code>DECKS</code> keinen Eintrag. So zeigt TypeScript alle Stellen, die man noch
+anpassen muss.</p>
 </blockquote>
-<p><strong>10. Statuscode</strong> – Ändere in <code>sessions.ts:116</code> den Code 409 zu 400. Welcher Test schlägt fehl,
+<p><strong>10. Statuscode</strong> – Ändere in <code>sessions.ts:139</code> den Code 409 zu 400. Welcher Test schlägt fehl,
 und warum ist 409 passender?</p>
-<p><strong>11. Fehler simulieren</strong> – Stoppe während einer Runde nur den Server (im Terminal <code>Ctrl+C</code>, dann
-nur den Client starten mit <code>pnpm --filter @scrum-poker/client dev</code>).</p>
+<p><strong>11. Fehler simulieren</strong> – Stoppe während einer Runde nur den Server (<code>Ctrl+C</code>, dann nur den Client
+starten mit <code>pnpm --filter @scrum-poker/client dev</code>).</p>
 <blockquote>
 <p>Meldung «Server nicht erreichbar. Neuer Versuch läuft …», der Tisch bleibt sichtbar. Server neu
 starten → Daten weg → «Diese Session existiert nicht (mehr)». Erkläre warum.</p>
 </blockquote>
-<p><strong>12. Context ohne Provider</strong> – Entferne <code>&lt;UserProvider&gt;</code> in <code>main.tsx</code>.</p>
+<p><strong>12. Context ohne Provider</strong> – Entferne <code>&lt;UserProvider&gt;</code> und <code>&lt;/UserProvider&gt;</code> in <code>main.tsx</code>.
+Versuche, einen Namen einzugeben.</p>
 <blockquote>
-<p>Die ErrorBoundary zeigt «Etwas ist schiefgelaufen», in der Konsole steht <code>useUser() must be used inside &lt;UserProvider&gt;.</code> Erkläre, warum der Default <code>undefined</code> hier hilft.</p>
+<p>Das Feld bleibt leer. Ohne Provider gilt der Startwert aus <code>UserContext.tsx:16</code>: Name <code>''</code> und ein
+<code>setName</code>, das nichts tut. Erkläre, warum der Provider über dem Router liegen muss.</p>
 </blockquote>
-<p><strong>13. Breakpoint</strong> – Ändere in <code>HomePage.css</code> <code>768px</code> auf <code>1200px</code> und verkleinere das Fenster
+<p><strong>13. <code>preventDefault</code> vergessen</strong> – Lösche <code>event.preventDefault()</code> in <code>NameForm.tsx:18</code> und
+drücke im Namensfeld Enter.</p>
+<blockquote>
+<p>Die Seite lädt neu (das Formular wird an den Browser geschickt). Der Name ist trotzdem da, weil er
+im <code>localStorage</code> liegt.</p>
+</blockquote>
+<p><strong>14. Breakpoint</strong> – Ändere in <code>HomePage.css:40</code> <code>768px</code> auf <code>1200px</code> und verkleinere das Fenster
 langsam. Wo springt das Layout um?</p>
-<p><strong>14. Box-Modell</strong> – Entferne <code>box-sizing: border-box</code> in <code>global.css:43</code>. Wo wird etwas breiter?</p>
+<p><strong>15. Box-Modell</strong> – Entferne <code>box-sizing: border-box</code> in <code>global.css:46</code>. Wo wird etwas breiter?</p>
 <blockquote>
-<p>Das Namensfeld und der Button «Neue Session erstellen» haben <code>width: 100%</code> plus Padding und Rahmen.
-Mit <code>content-box</code> werden sie breiter als ihre Karte und ragen über den Rand.</p>
+<p>Das Namensfeld und der Button «Neue Session erstellen» haben <code>width: 100%</code> plus Padding und
+Rahmen. Mit <code>content-box</code> werden sie breiter als ihre Karte und ragen über den Rand.</p>
 </blockquote>
-<p><strong>15. Neue Route</strong> – Füge eine Seite <code>/hilfe</code> hinzu (Komponente, Route in <code>App.tsx</code>, Link im
-Header). Erkläre jeden Schritt.</p>
-<p><strong>16. Neue API-Route</strong> – Baue <code>GET /api/sessions/:sessionId/result</code>, die <code>computeResult()</code> für eine
+<p><strong>16. Neue Route</strong> – Füge eine Seite <code>/hilfe</code> hinzu (Komponente in <code>pages/</code>, Route in <code>App.tsx</code>,
+Link im Header). Erkläre jeden Schritt.</p>
+<p><strong>17. Neue API-Route</strong> – Baue <code>GET /api/sessions/:sessionId/result</code>, die <code>computeResult()</code> für eine
 aufgedeckte Session zurückgibt (sonst 409). Welche Methode, welche Statuscodes, welcher Type in
 <code>shared</code>? Schreibe einen supertest-Test.</p>
-<p><strong>17. Test lesen</strong> – Erkläre den Test «hides the votes until the cards are revealed» in
+<p><strong>18. Test lesen</strong> – Erkläre den Test «hides the votes until the cards are revealed» in
 <code>server/src/app.test.ts</code> Zeile für Zeile.</p>
-<p><strong>18. Datenfluss rückwärts</strong> – Starte bei <code>RoundResult.tsx</code> und verfolge, woher <code>participants</code>
-kommt, bis zum <code>Map</code>-Eintrag im Server.</p>
+<p><strong>19. Datenfluss rückwärts</strong> – Starte bei <code>RoundResult.tsx</code> und verfolge, woher <code>participants</code>
+kommt, bis zum Eintrag in der <code>Map</code> im Server.</p>
+<p><strong>20. Zufällige Zeile</strong> – Eine Person öffnet eine beliebige Datei und zeigt auf eine beliebige
+Zeile. Die andere erklärt: Was passiert hier? Warum steht das hier? Was ginge kaputt, wenn man die
+Zeile löscht? So läuft das Fachgespräch ab.</p>
 
 <footer class="generated">Erzeugt aus docs/FACHGESPRAECH.md mit scripts/build-pdf.sh.</footer></main>
 

@@ -1,120 +1,116 @@
-import { useEffect, useState } from 'react'
+// Seite /sessions/:sessionId (Route in App.tsx). Tritt der Session beim Öffnen bei und
+// verlässt sie beim Schliessen der Seite. Entscheidet, was angezeigt wird: Namensformular,
+// «nicht gefunden», Fehler, Laden oder der Pokertisch (PokerRoom).
+import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { ApiError, getSession, joinSession, leaveSession } from '../api/client'
+import { validateName } from '@scrum-poker/shared'
+import { getErrorMessage, joinSession, leaveSession } from '../api'
 import ErrorMessage from '../components/ErrorMessage'
 import LoadingIndicator from '../components/LoadingIndicator'
-import SessionNameForm from '../components/SessionNameForm'
 import PokerRoom from '../components/PokerRoom'
+import SessionNameForm from '../components/SessionNameForm'
 import SessionNotFound from '../components/SessionNotFound'
-import { useUser } from '../context/useUser'
-import { validateName } from '../utils/validateName'
-
-// sessionStorage belongs to one tab: it survives a reload, but not closing the
-// tab, and a second tab gets its own participant.
-function participantStorageKey(sessionId: string): string {
-  return `scrum-poker:participant:${sessionId}`
-}
-
-// Continues as the saved participant if the server still knows them,
-// otherwise joins as a new participant. Returns the participantId.
-async function resumeOrJoin(sessionId: string, savedId: string | null, name: string): Promise<string> {
-  if (savedId) {
-    // Polling with the id also counts as heartbeat, so the seat is kept
-    const session = await getSession(sessionId, savedId)
-    if (session.participants.some((participant) => participant.id === savedId)) {
-      return savedId
-    }
-  }
-  const { participantId } = await joinSession(sessionId, name)
-  return participantId
-}
+import { UserContext } from '../UserContext'
+import './SessionPage.css'
 
 export default function SessionPage() {
   const { sessionId = '' } = useParams()
-  const { name } = useUser()
+  const { name } = useContext(UserContext)
 
-  // A shared link opened in a new browser has no name yet: then we ask for it
-  // first instead of joining with an empty name.
-  const trimmedName = name.trim()
+  // Wer einen geteilten Link in einem neuen Browser öffnet, hat noch keinen Namen.
+  // Dann fragen wir zuerst danach, statt mit leerem Namen beizutreten.
   const hasName = validateName(name) === null
+  const trimmedName = name.trim()
 
   const [participantId, setParticipantId] = useState<string | null>(null)
-  const [joinError, setJoinError] = useState<Error | null>(null)
-  // Increasing this number runs the join effect again ("Erneut versuchen", "Wieder beitreten")
+  const [notFound, setNotFound] = useState(false)
+  const [joinError, setJoinError] = useState<string | null>(null)
+  // Hochzählen startet den Join-Effekt neu («Erneut versuchen», «Wieder beitreten»)
   const [joinAttempt, setJoinAttempt] = useState(0)
 
-  // Join when the page opens, leave when it closes (navigating away, leave button
-  // in PokerRoom). Leaving only here guarantees exactly one leave request.
+  // Beitreten beim Öffnen der Seite, Verlassen im Cleanup beim Schliessen
+  // (wegnavigieren, Button «Verlassen» in PokerRoom). Nur hier wird verlassen,
+  // darum geht genau ein Leave-Request an den Server.
   useEffect(() => {
-    if (!hasName) return
+    if (!hasName) {
+      return
+    }
 
-    // A reload does not unmount React, so the cleanup below does not run and we
-    // are still at the table on the server. The id saved in sessionStorage lets
-    // the reloaded page continue as the same participant (same seat, same vote).
-    const storageKey = participantStorageKey(sessionId)
+    // sessionStorage gehört zu einem Tab: Es überlebt einen Reload, aber nicht das
+    // Schliessen des Tabs. Ein Reload ruft kein Cleanup auf, wir sitzen also auf dem
+    // Server noch am Tisch. Mit der gespeicherten ID setzt der Server uns fort
+    // (gleicher Platz, gleiche Stimme), statt einen zweiten Teilnehmer anzulegen (F28).
+    const storageKey = `scrum-poker:participant:${sessionId}`
     const savedId = sessionStorage.getItem(storageKey)
 
-    // StrictMode mounts, unmounts and mounts again in development, so this
-    // effect starts two joins. The flag tells each join whether its effect
-    // was cleaned up in the meantime. If so, a newly created participant is
-    // no longer needed and leaves at once: no duplicate, no orphan. The saved
-    // participant stays, because the second mount continues with it.
-    let cancelled = false
+    // ignore-Flag wie in der React-Doku: Wurde der Effekt schon aufgeräumt, bevor die
+    // Antwort kam, wird sie ignoriert. Das passiert z. B. im StrictMode, der den Effekt
+    // in der Entwicklung zweimal startet.
+    let ignore = false
     let joinedId: string | null = null
 
-    resumeOrJoin(sessionId, savedId, trimmedName)
-      .then((id) => {
-        if (cancelled) {
-          if (id !== savedId) {
-            void leaveSession(sessionId, id).catch(() => {})
+    async function join() {
+      try {
+        const newId = await joinSession(sessionId, trimmedName, savedId)
+        if (ignore) {
+          // Ein neu angelegter Teilnehmer wird nicht mehr gebraucht und geht gleich
+          // wieder, sonst sässe er doppelt am Tisch. Ein fortgesetzter bleibt sitzen,
+          // denn der zweite Effekt macht mit ihm weiter.
+          if (newId !== null && newId !== savedId) {
+            leaveSession(sessionId, newId).catch(() => {})
           }
           return
         }
-        joinedId = id
-        sessionStorage.setItem(storageKey, id)
-        setParticipantId(id)
-      })
-      .catch((err: unknown) => {
-        if (!cancelled) {
-          setJoinError(err instanceof Error ? err : new Error(String(err)))
+        if (newId === null) {
+          setNotFound(true)
+          return
         }
-      })
+        joinedId = newId
+        sessionStorage.setItem(storageKey, newId)
+        setParticipantId(newId)
+      } catch (error) {
+        if (!ignore) {
+          setJoinError(getErrorMessage(error))
+        }
+      }
+    }
 
+    join()
+
+    // Cleanup: läuft beim Verlassen der Seite und bevor der Effekt neu startet
     return () => {
-      cancelled = true
-      if (joinedId) {
-        // Leaving is idempotent on the server (always 204). If it fails, the
-        // heartbeat timeout removes us anyway, so the error can be ignored.
-        void leaveSession(sessionId, joinedId).catch(() => {})
+      ignore = true
+      if (joinedId !== null) {
+        // Verlassen ist auf dem Server idempotent. Schlägt es fehl, entfernt uns der
+        // Heartbeat-Timeout trotzdem, darum wird der Fehler ignoriert.
+        leaveSession(sessionId, joinedId).catch(() => {})
         sessionStorage.removeItem(storageKey)
       }
       setParticipantId(null)
+      setNotFound(false)
       setJoinError(null)
     }
   }, [sessionId, trimmedName, hasName, joinAttempt])
+
+  function joinAgain() {
+    setJoinAttempt(joinAttempt + 1)
+  }
 
   function renderContent() {
     if (!hasName) {
       return <SessionNameForm />
     }
-    if (joinError instanceof ApiError && joinError.status === 404) {
+    if (notFound) {
       return <SessionNotFound />
     }
-    if (joinError) {
-      return <ErrorMessage message={joinError.message} onRetry={() => setJoinAttempt((n) => n + 1)} />
+    if (joinError !== null) {
+      return <ErrorMessage message={joinError} onRetry={joinAgain} />
     }
-    if (!participantId) {
+    if (participantId === null) {
       return <LoadingIndicator label="Trete der Session bei …" />
     }
-    // key: a new participant (after rejoining) starts with a fresh poker room
-    return (
-      <PokerRoom
-        key={participantId}
-        sessionId={sessionId}
-        participantId={participantId}
-        onRejoin={() => setJoinAttempt((n) => n + 1)}
-      />
-    )
+    // key: Nach einem neuen Beitritt (neue ID) startet PokerRoom mit leerem State
+    return <PokerRoom key={participantId} sessionId={sessionId} participantId={participantId} onRejoin={joinAgain} />
   }
 
   return (

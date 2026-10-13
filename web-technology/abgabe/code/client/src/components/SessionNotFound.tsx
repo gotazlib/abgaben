@@ -1,5 +1,6 @@
+// Meldung für eine unbekannte oder gelöschte Session. Benutzt von SessionPage (Beitreten
+// schlägt fehl) und PokerRoom (Session während des Pollings gelöscht): gleicher Fehlerzustand.
 import { Link } from 'react-router-dom'
-import './SessionNotFound.css'
 
 export default function SessionNotFound() {
   return (

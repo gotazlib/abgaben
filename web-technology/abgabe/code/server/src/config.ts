@@ -1,19 +1,20 @@
+// Einstellungen des Servers an einem Ort. Benutzt von index.ts, app.ts und store.ts.
+
 import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
-// Can be changed with the environment variable PORT (the E2E tests use another port)
+// Port, änderbar mit der Umgebungsvariable PORT (die E2E-Tests nehmen einen anderen)
 export const PORT = Number(process.env.PORT ?? 3001)
 
-// How often the server looks for inactive participants
+// Wie oft der Server nach inaktiven Teilnehmern sucht
 export const CLEANUP_INTERVAL_MS = 5_000
 
-// A participant who has not polled for this long counts as gone.
-// The client polls every 1.5 seconds, so 15 seconds tolerates a few lost requests.
+// Wer sich so lange nicht gemeldet hat, gilt als weg.
+// Der Tisch fragt alle 1.5 Sekunden nach, 15 Sekunden verkraften also einige verlorene Anfragen.
 export const PARTICIPANT_TIMEOUT_MS = 15_000
 
-// In production (NODE_ENV=production) the server also delivers the built client
-// from client/dist, so browser and API share one origin without Vite.
-// CLIENT_DIST is only overridden by the tests.
+// Im Produktivbetrieb (NODE_ENV=production) liefert der Server auch den gebauten Client
+// aus client/dist aus, ohne Vite. CLIENT_DIST überschreiben nur die Tests.
 export const CLIENT_DIST =
   process.env.CLIENT_DIST ?? fileURLToPath(new URL('../../client/dist', import.meta.url))
 export const SERVE_CLIENT = process.env.NODE_ENV === 'production' && existsSync(CLIENT_DIST)

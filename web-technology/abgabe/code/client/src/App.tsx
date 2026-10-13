@@ -1,22 +1,29 @@
-import { Route, Routes } from 'react-router-dom'
+// Gerüst jeder Seite: Kopfzeile mit Link zur Startseite und darunter die Seite,
+// die zur aktuellen URL passt. Benutzt von main.tsx.
+
+import { Link, Route, Routes } from 'react-router-dom'
 import ErrorBoundary from './components/ErrorBoundary'
-import Layout from './components/Layout'
 import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import SessionPage from './pages/SessionPage'
 
 export default function App() {
   return (
-    // Shows a message instead of a white page if a page throws while rendering
+    // Zeigt eine Meldung statt einer weissen Seite, falls beim Rendern ein Fehler passiert
     <ErrorBoundary>
-      <Routes>
-        {/* All pages share the same header via <Layout> and its <Outlet> */}
-        <Route element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="sessions/:sessionId" element={<SessionPage />} />
+      <header className="app-header">
+        <Link to="/" className="app-title">
+          Scrum Poker
+        </Link>
+      </header>
+      <main className="app-main">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/sessions/:sessionId" element={<SessionPage />} />
+          {/* Alle anderen Adressen */}
           <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </Routes>
+        </Routes>
+      </main>
     </ErrorBoundary>
   )
 }

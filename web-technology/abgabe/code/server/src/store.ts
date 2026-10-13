@@ -1,17 +1,18 @@
-// In-memory storage of all sessions.
-// This file knows nothing about Express: it only holds the data and changes it.
-// All data is lost when the server restarts, which is fine for this project.
+// Speicher aller Sessions im Arbeitsspeicher (eine Map) und die Funktionen, die ihn ändern.
+// Benutzt von routes/sessions.ts (Routen) und index.ts (Aufräum-Timer).
+// Diese Datei kennt Express nicht. Nach einem Neustart des Servers sind alle Daten weg.
 
 import { randomUUID } from 'node:crypto'
-import type { CardValue, DeckType, SessionState, SessionSummary } from '@scrum-poker/shared'
+import type { CardValue, DeckType, Participant, SessionState, SessionSummary } from '@scrum-poker/shared'
 import { PARTICIPANT_TIMEOUT_MS } from './config'
 
-// Internal view of a participant: unlike the public `Participant` type it
-// holds the real vote and the time of the last request (heartbeat).
+// Teilnehmer, wie der Server ihn speichert: anders als der öffentliche Type `Participant`
+// mit der echten Stimme und dem Zeitpunkt der letzten Anfrage (Heartbeat).
 export interface StoredParticipant {
   id: string
   name: string
   vote: CardValue | null
+  // Zeitpunkt in Millisekunden (Date.now())
   lastSeen: number
 }
 
@@ -23,45 +24,50 @@ export interface Session {
   participants: StoredParticipant[]
 }
 
+// Schlüssel ist die Session-ID
 const sessions = new Map<string, Session>()
 
-// ---------------------------------------------------------------------------
-// Mapping to the public types
-// ---------------------------------------------------------------------------
-
-// Converts a session into what the client is allowed to see.
-// Before the reveal, votes are only sent whether someone has voted. The one
-// exception is the viewer's own vote: the client needs it to highlight the
-// chosen card, and it is no secret for the person who chose it.
-export function toSessionState(session: Session, viewerId?: string): SessionState {
+// Wandelt eine Session in das um, was der Client sehen darf (F23: Stimmen verdeckt).
+// Vor dem Aufdecken wird pro Person nur `hasVoted` geschickt, der Wert bleibt null.
+// Ausnahme: die eigene Stimme der fragenden Person (viewerId). Der Client braucht sie,
+// um die gewählte Karte zu markieren, und für diese Person ist sie kein Geheimnis.
+export function toSessionState(session: Session, viewerId: string | null): SessionState {
+  const participants: Participant[] = []
+  for (const participant of session.participants) {
+    let vote: CardValue | null = null
+    if (session.revealed || participant.id === viewerId) {
+      vote = participant.vote
+    }
+    participants.push({
+      id: participant.id,
+      name: participant.name,
+      hasVoted: participant.vote !== null,
+      vote,
+    })
+  }
   return {
     id: session.id,
     deck: session.deck,
     revealed: session.revealed,
-    participants: session.participants.map((participant) => ({
-      id: participant.id,
-      name: participant.name,
-      hasVoted: participant.vote !== null,
-      vote: session.revealed || participant.id === viewerId ? participant.vote : null,
-    })),
+    participants,
   }
 }
 
 export function listSessions(): SessionSummary[] {
-  return Array.from(sessions.values(), (session) => ({
-    id: session.id,
-    participantCount: session.participants.length,
-    createdAt: session.createdAt.toISOString(),
-  }))
+  const summaries: SessionSummary[] = []
+  for (const session of sessions.values()) {
+    summaries.push({
+      id: session.id,
+      participantCount: session.participants.length,
+      createdAt: session.createdAt.toISOString(),
+    })
+  }
+  return summaries
 }
 
-// ---------------------------------------------------------------------------
-// Sessions
-// ---------------------------------------------------------------------------
-
 export function createSession(): Session {
-  // 6 characters are short enough to share as a link. Because such a short
-  // ID can repeat, we generate a new one until it is unused.
+  // 6 Zeichen sind kurz genug für einen Link. Weil sich eine so kurze ID
+  // wiederholen kann, wird so lange neu gewürfelt, bis sie noch frei ist.
   let id = randomUUID().slice(0, 6)
   while (sessions.has(id)) {
     id = randomUUID().slice(0, 6)
@@ -78,6 +84,7 @@ export function createSession(): Session {
   return session
 }
 
+// undefined, wenn es die Session nicht gibt
 export function getSession(sessionId: string): Session | undefined {
   return sessions.get(sessionId)
 }
@@ -86,74 +93,67 @@ export function deleteSession(sessionId: string): void {
   sessions.delete(sessionId)
 }
 
-// Only used by the tests, so that every test starts with an empty store
+// Nur für die Tests: jeder Test beginnt mit einem leeren Speicher
 export function clearSessions(): void {
   sessions.clear()
 }
 
-// ---------------------------------------------------------------------------
-// Participants
-// ---------------------------------------------------------------------------
-
-export function findParticipant(
-  session: Session,
-  participantId: string,
-): StoredParticipant | undefined {
+// undefined, wenn die Person nicht (mehr) in der Session ist
+export function findParticipant(session: Session, participantId: string): StoredParticipant | undefined {
   return session.participants.find((participant) => participant.id === participantId)
 }
 
-export function addParticipant(session: Session, name: string, now: number): StoredParticipant {
-  const participant: StoredParticipant = { id: randomUUID(), name, vote: null, lastSeen: now }
+export function addParticipant(session: Session, name: string): StoredParticipant {
+  const participant: StoredParticipant = {
+    id: randomUUID(),
+    name,
+    vote: null,
+    lastSeen: Date.now(),
+  }
   session.participants.push(participant)
   return participant
 }
 
 export function removeParticipant(session: Session, participantId: string): void {
-  session.participants = session.participants.filter(
-    (participant) => participant.id !== participantId,
-  )
-  // The person who left may have been the last one still missing
+  session.participants = session.participants.filter((participant) => participant.id !== participantId)
+  // Vielleicht war die Person, die gegangen ist, die letzte ohne Stimme
   revealIfEveryoneVoted(session)
 }
 
-// Called on every poll of a participant: proves that the browser tab is still open
-export function markAsSeen(participant: StoredParticipant, now: number): void {
-  participant.lastSeen = now
-}
-
-// Strategy against "ghost" participants (closed tab, lost network, ...):
-// Nobody can rely on a "leave" request being sent when a tab closes. Instead,
-// every participant polls the session regularly and the poll counts as a
-// heartbeat. A timer removes everyone whose last heartbeat is too old.
-// Empty sessions are kept on purpose: they are deleted explicitly by the users.
-export function removeInactiveParticipants(now: number): void {
+// Strategie gegen Karteileichen (Tab geschlossen, Netz weg, ...):
+// Beim Schliessen eines Tabs kommt nicht sicher ein "Verlassen"-Request an. Darum fragt
+// jeder Tisch die Session regelmässig ab, und jede Abfrage zählt als Lebenszeichen
+// (lastSeen). index.ts ruft diese Funktion alle paar Sekunden auf und entfernt alle,
+// die sich zu lange nicht gemeldet haben. Leere Sessions bleiben: die löschen die Benutzer.
+export function removeInactiveParticipants(): void {
+  const now = Date.now()
   for (const session of sessions.values()) {
-    const inactive = session.participants.filter(
+    const inactiveParticipants = session.participants.filter(
       (participant) => now - participant.lastSeen > PARTICIPANT_TIMEOUT_MS,
     )
-    for (const participant of inactive) {
+    for (const participant of inactiveParticipants) {
       removeParticipant(session, participant.id)
     }
   }
 }
 
-// ---------------------------------------------------------------------------
-// Round
-// ---------------------------------------------------------------------------
-
+// value = null zieht die Stimme zurück
 export function castVote(session: Session, participant: StoredParticipant, value: CardValue | null): void {
   participant.vote = value
   revealIfEveryoneVoted(session)
 }
 
-// Auto-reveal: as soon as everybody has voted there is nothing left to wait for
+// Automatisch aufdecken: Haben alle gewählt, gibt es nichts mehr zu warten
 function revealIfEveryoneVoted(session: Session): void {
-  const everyoneVoted =
-    session.participants.length > 0 &&
-    session.participants.every((participant) => participant.vote !== null)
-  if (everyoneVoted) {
-    session.revealed = true
+  if (session.participants.length === 0) {
+    return
   }
+  for (const participant of session.participants) {
+    if (participant.vote === null) {
+      return
+    }
+  }
+  session.revealed = true
 }
 
 export function revealCards(session: Session): void {
@@ -172,6 +172,6 @@ export function changeDeck(session: Session, deck: DeckType): void {
     return
   }
   session.deck = deck
-  // Votes from the old deck would be invalid in the new one, so a new round starts
+  // Stimmen aus dem alten Deck passen nicht ins neue, darum beginnt eine neue Runde
   resetRound(session)
 }

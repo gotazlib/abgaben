@@ -1,18 +1,18 @@
-import { useState, type FormEvent } from 'react'
-import { MAX_NAME_LENGTH } from '@scrum-poker/shared'
-import { useUser } from '../context/useUser'
-import { validateName } from '../utils/validateName'
-import './SessionNameForm.css'
+// Fragt nach dem Namen, wenn jemand einen geteilten Link ohne gespeicherten Namen öffnet.
+// Benutzt von SessionPage. Den Namen in den Context zu schreiben reicht: SessionPage
+// sieht dann einen gültigen Namen und tritt von selbst bei.
+import { useContext, useState, type FormEvent } from 'react'
+import { MAX_NAME_LENGTH, validateName } from '@scrum-poker/shared'
+import { UserContext } from '../UserContext'
 
-// Shown when someone opens a shared link without a name in the context.
-// Saving the name in the context is enough: SessionPage then joins by itself.
 export default function SessionNameForm() {
-  const { setName } = useUser()
+  const { setName } = useContext(UserContext)
   const [draft, setDraft] = useState('')
-  // Same rules and message as on the home page
+  // Gleiche Regel und gleiche Meldung wie auf der Home-Seite und auf dem Server
   const error = validateName(draft)
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    // Sonst würde der Browser die Seite neu laden
     event.preventDefault()
     if (error === null) {
       setName(draft.trim())

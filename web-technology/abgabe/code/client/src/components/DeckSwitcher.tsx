@@ -1,5 +1,6 @@
-import { DECKS, type DeckType } from '@scrum-poker/shared'
-import './DeckSwitcher.css'
+// Umschalter zwischen den Decks (Fibonacci, T-Shirt). Benutzt von PokerRoom.
+// Jeder am Tisch darf wechseln; das Deck ist Server-Zustand und gilt für alle.
+import { DECKS, DECK_TYPES, type DeckType } from '@scrum-poker/shared'
 
 interface DeckSwitcherProps {
   deck: DeckType
@@ -7,26 +8,28 @@ interface DeckSwitcherProps {
   onChange: (deck: DeckType) => void
 }
 
-// Object.keys() returns string[], so we list the deck types ourselves
-const DECK_TYPES: DeckType[] = ['fibonacci', 'tshirt']
-
 export default function DeckSwitcher({ deck, disabled, onChange }: DeckSwitcherProps) {
+  function handleClick(deckType: DeckType) {
+    // Ein Klick auf das aktuelle Deck würde die Runde unnötig zurücksetzen
+    if (deckType !== deck) {
+      onChange(deckType)
+    }
+  }
+
   return (
     <fieldset className="deck-switcher">
       <legend className="deck-switcher__legend">Deck</legend>
       <div className="deck-switcher__options">
-        {DECK_TYPES.map((type) => (
+        {DECK_TYPES.map((deckType) => (
           <button
-            key={type}
+            key={deckType}
             type="button"
             className="deck-switcher__option"
-            aria-pressed={type === deck}
+            aria-pressed={deckType === deck}
             disabled={disabled}
-            onClick={() => {
-              if (type !== deck) onChange(type)
-            }}
+            onClick={() => handleClick(deckType)}
           >
-            {DECKS[type].label}
+            {DECKS[deckType].label}
           </button>
         ))}
       </div>

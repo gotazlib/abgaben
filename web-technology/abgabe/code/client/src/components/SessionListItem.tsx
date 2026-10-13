@@ -1,44 +1,46 @@
+// Ein Eintrag in der Liste der offenen Sessions auf der Startseite. Benutzt von HomePage.
+// Zeigt ID, Anzahl Personen und Erstellzeit und hat die Buttons «Beitreten» und «Löschen».
+
 import type { SessionSummary } from '@scrum-poker/shared'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ApiError, deleteSession } from '../api/client'
+import { deleteSession, getErrorMessage } from '../api'
 import ErrorMessage from './ErrorMessage'
-import './SessionListItem.css'
 
 interface SessionListItemProps {
   session: SessionSummary
+  // false, solange der Name ungültig ist
   canJoin: boolean
-  // Called after the session was deleted on the server
-  onDeleted: () => void
+  // Wird aufgerufen, nachdem der Server die Session gelöscht hat
+  onDeleted: (sessionId: string) => void
 }
 
 export default function SessionListItem({ session, canJoin, onDeleted }: SessionListItemProps) {
   const navigate = useNavigate()
+  // Eigener State pro Eintrag: Es kann immer nur dieser eine Eintrag gerade gelöscht werden
   const [isDeleting, setIsDeleting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [deleteError, setDeleteError] = useState<string | null>(null)
 
-  const participantLabel = session.participantCount === 1 ? '1 Person' : `${session.participantCount} Personen`
+  let participantLabel = session.participantCount + ' Personen'
+  if (session.participantCount === 1) {
+    participantLabel = '1 Person'
+  }
   const createdAt = new Date(session.createdAt).toLocaleTimeString('de-CH', { hour: '2-digit', minute: '2-digit' })
-  // Lets screen readers tell the many "Beitreten" and "Löschen" buttons apart
-  const titleId = `session-${session.id}`
+  // Damit Screenreader die vielen Buttons «Beitreten» und «Löschen» unterscheiden können
+  const titleId = 'session-' + session.id
 
   async function handleDelete() {
-    if (!window.confirm(`Session ${session.id} (${participantLabel}) wirklich löschen?`)) {
+    if (!window.confirm('Session ' + session.id + ' (' + participantLabel + ') wirklich löschen?')) {
       return
     }
     setIsDeleting(true)
-    setError(null)
+    setDeleteError(null)
     try {
       await deleteSession(session.id)
-      // No setIsDeleting(false): the entry stays disabled until the refreshed list no longer contains it
-      onDeleted()
-    } catch (err) {
-      // 404: someone else deleted it in the meantime, so the goal is reached anyway
-      if (err instanceof ApiError && err.status === 404) {
-        onDeleted()
-        return
-      }
-      setError(`Löschen fehlgeschlagen. ${err instanceof Error ? err.message : ''}`)
+      // Kein setIsDeleting(false): Der Eintrag verschwindet jetzt aus der Liste
+      onDeleted(session.id)
+    } catch (error) {
+      setDeleteError('Löschen fehlgeschlagen. ' + getErrorMessage(error))
       setIsDeleting(false)
     }
   }
@@ -56,24 +58,24 @@ export default function SessionListItem({ session, canJoin, onDeleted }: Session
       <div className="session-item__actions">
         <button
           type="button"
-          className="session-item__join"
+          className="button"
           disabled={!canJoin || isDeleting}
           aria-describedby={titleId}
-          onClick={() => navigate(`/sessions/${session.id}`)}
+          onClick={() => navigate('/sessions/' + session.id)}
         >
           Beitreten
         </button>
         <button
           type="button"
-          className="session-item__delete"
+          className="button button--danger"
           disabled={isDeleting}
           aria-describedby={titleId}
-          onClick={() => void handleDelete()}
+          onClick={handleDelete}
         >
           {isDeleting ? 'Wird gelöscht…' : 'Löschen'}
         </button>
       </div>
-      {error !== null && <ErrorMessage message={error} />}
+      {deleteError !== null && <ErrorMessage message={deleteError} />}
     </li>
   )
 }

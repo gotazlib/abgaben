@@ -1,13 +1,13 @@
 import { defineConfig, devices } from '@playwright/test'
 
-// End-to-end tests in a real browser (Chromium) against the real server.
-// Own ports, so that the tests also run while `pnpm dev` is open.
+// Konfiguration der End-to-End-Tests (e2e/) im echten Browser (Chromium) gegen den echten Server.
+// Eigene Ports, damit die Tests auch laufen, während `pnpm dev` offen ist.
 const API_PORT = '3101'
 const CLIENT_PORT = '5273'
 
 export default defineConfig({
   testDir: './e2e',
-  // The tests share one server, so they run one after the other
+  // Die Tests teilen sich einen Server, darum laufen sie nacheinander
   workers: 1,
   timeout: 60_000,
   use: {
@@ -22,8 +22,8 @@ export default defineConfig({
       reuseExistingServer: false,
     },
     {
-      // The dev server (and not the build) on purpose: only in development
-      // React StrictMode runs effects twice and prints its warnings.
+      // Bewusst der Dev-Server (nicht der Build): Nur in der Entwicklung startet der
+      // React-StrictMode Effekte doppelt und zeigt seine Warnungen.
       command: 'pnpm --filter @scrum-poker/client dev',
       url: `http://localhost:${CLIENT_PORT}`,
       env: { CLIENT_PORT, API_PORT },

@@ -80,33 +80,29 @@ scrum-poker/
 ├── docs/                   FACHGESPRAECH.md/.pdf/.html: Leitfaden fürs Fachgespräch
 ├── shared/                 @scrum-poker/shared
 │   └── src/
-│       ├── index.ts        Types (Session, Participant, Request/Response), DECKS, computeResult()
-│       └── computeResult.test.ts
+│       ├── index.ts        Types, DECKS, validateName(), computeResult()
+│       └── index.test.ts
 ├── server/                 @scrum-poker/server
 │   └── src/
 │       ├── index.ts        startet den Server und den Aufräum-Timer
-│       ├── app.ts          Express-App ohne listen() (für die Tests), 404- und Error-Handler,
-│       │                   in Produktion zusätzlich client/dist mit SPA-Fallback
+│       ├── app.ts          Express-App ohne listen() (für die Tests), 404- und Fehler-Handler,
+│       │                   in Produktion zusätzlich client/dist
 │       ├── config.ts       Port, Intervall, Timeout und Produktionsmodus als benannte Konstanten
 │       ├── routes/
-│       │   └── sessions.ts Router: HTTP ⇄ Store, Statuscodes
-│       ├── store.ts        In-memory Map und alle Zustandsänderungen (ohne Express)
+│       │   └── sessions.ts alle Routen unter /api/sessions
+│       ├── store.ts        Map im Arbeitsspeicher und alle Änderungen daran (ohne Express)
 │       ├── validation.ts   Prüfung der Request-Bodies
-│       ├── sendError.ts    einheitliche Fehlerantwort { error }
 │       ├── app.test.ts     Tests aller Routen (supertest)
-│       └── static.test.ts  Tests des Produktionsmodus (statische Dateien, SPA-Fallback)
+│       └── static.test.ts  Tests des Produktionsmodus
 └── client/                 @scrum-poker/client
     ├── vite.config.ts      Proxy /api → :3001, Vitest mit jsdom
     └── src/
-        ├── main.tsx        UserProvider → BrowserRouter → App
-        ├── App.tsx         Routen
-        ├── config.ts       Polling-Intervalle
-        ├── api/            client.ts: eine typisierte Funktion pro API-Route, ApiError
-        ├── components/     Layout, Bausteine der Seiten (je mit eigener .css-Datei)
-        ├── context/        UserContext (Name, in localStorage gespeichert) und useUser()
-        ├── hooks/          usePolling (generisches Polling mit Cleanup, refresh() und setData())
-        ├── pages/          HomePage, SessionPage, NotFoundPage
-        ├── styles/         global.css (CSS-Variablen, mobile first)
-        ├── test/           Setup für Vitest + React Testing Library
-        └── utils/          validateName (gleiche Regeln wie der Server)
+        ├── main.tsx        StrictMode → UserProvider → BrowserRouter → App
+        ├── App.tsx         Header und Routen
+        ├── UserContext.tsx Context für den Namen (in localStorage gespeichert)
+        ├── api.ts          eine Funktion pro API-Route, einzige Stelle mit fetch()
+        ├── components/     Bausteine der Seiten (Pokertisch, Karten, Fehler- und Ladeanzeige …)
+        ├── pages/          HomePage, SessionPage, NotFoundPage, dazu HomePage.css und SessionPage.css
+        ├── styles/         global.css (CSS-Variablen, Buttons, mobile first)
+        └── test/           Setup für Vitest + React Testing Library
 ```

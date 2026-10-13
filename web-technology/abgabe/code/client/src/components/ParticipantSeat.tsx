@@ -1,5 +1,6 @@
+// Ein Platz am Tisch: kleine Karte und Name. Benutzt von PokerTable.
+// Vor dem Aufdecken sieht man nur, OB jemand gewählt hat (Rückseite), nicht WAS.
 import type { Participant } from '@scrum-poker/shared'
-import './ParticipantSeat.css'
 
 interface ParticipantSeatProps {
   participant: Participant
@@ -7,28 +8,36 @@ interface ParticipantSeatProps {
   revealed: boolean
 }
 
-// Text for screen readers, because the card itself is only decoration
+// Text für Screenreader, denn die Karte selbst ist nur Dekoration
 function describeStatus(participant: Participant, revealed: boolean): string {
-  if (!participant.hasVoted) {
-    return revealed ? 'hat nicht gewählt' : 'wählt noch'
+  if (!participant.hasVoted && !revealed) {
+    return 'wählt noch'
   }
-  return revealed ? `Karte ${participant.vote}` : 'hat gewählt'
+  if (!participant.hasVoted) {
+    return 'hat nicht gewählt'
+  }
+  if (!revealed) {
+    return 'hat gewählt'
+  }
+  return `Karte ${participant.vote}`
 }
 
 export default function ParticipantSeat({ participant, isOwn, revealed }: ParticipantSeatProps) {
+  // Die eigene Stimme kennen wir schon vor dem Aufdecken, sie bleibt aber wie die anderen verdeckt
+  let cardClass = 'seat__card seat__card--empty'
+  let cardText = ''
+  if (participant.hasVoted && !revealed) {
+    cardClass = 'seat__card seat__card--covered'
+  }
+  if (participant.hasVoted && revealed) {
+    cardClass = 'seat__card seat__card--revealed'
+    cardText = participant.vote ?? ''
+  }
+
   return (
     <li className={isOwn ? 'seat seat--own' : 'seat'}>
-      <div className="seat__card" aria-hidden="true">
-        {participant.hasVoted ? (
-          // Two faces on top of each other. Revealing turns the card around (see CSS).
-          <div className={revealed ? 'seat__flip seat__flip--revealed' : 'seat__flip'}>
-            <div className="seat__face seat__face--back" />
-            {/* Our own vote is known before the reveal, but stays covered like the others */}
-            <div className="seat__face seat__face--front">{revealed ? participant.vote : ''}</div>
-          </div>
-        ) : (
-          <div className="seat__empty" />
-        )}
+      <div className={cardClass} aria-hidden="true">
+        {cardText}
       </div>
       <span className="seat__name">
         {participant.name}

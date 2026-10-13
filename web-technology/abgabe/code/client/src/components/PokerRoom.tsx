@@ -1,19 +1,22 @@
-import { useCallback, useState } from 'react'
+// Der Pokertisch eines beigetretenen Teilnehmers. Benutzt von SessionPage.
+// Hält den Zustand des Tisches (Lifting State Up): lädt ihn per Polling vom Server,
+// schickt die Aktionen (Karte, Deck, Aufdecken, Neue Runde) und gibt alles per Props weiter.
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import type { CardValue, DeckType, SessionState } from '@scrum-poker/shared'
-import { ApiError, castVote, changeDeck, getSession, resetRound, revealCards } from '../api/client'
-import { POLL_INTERVAL_MS } from '../config'
-import { usePolling } from '../hooks/usePolling'
+import { castVote, changeDeck, getErrorMessage, getSession, resetRound, revealCards } from '../api'
 import CardDeck from './CardDeck'
 import DeckSwitcher from './DeckSwitcher'
 import ErrorMessage from './ErrorMessage'
 import LoadingIndicator from './LoadingIndicator'
 import PokerTable from './PokerTable'
-import RoundControls from './RoundControls'
 import RoundResult from './RoundResult'
 import SessionNotFound from './SessionNotFound'
 import ShareLinkButton from './ShareLinkButton'
-import './PokerRoom.css'
+
+// Jeder Poll zählt auf dem Server als Heartbeat. Das Intervall muss darum deutlich
+// unter dem Server-Timeout von 15 s liegen, sonst würden wir vom Tisch entfernt.
+const POLL_INTERVAL_MS = 1500
 
 interface PokerRoomProps {
   sessionId: string
@@ -21,49 +24,86 @@ interface PokerRoomProps {
   onRejoin: () => void
 }
 
-type Action = 'vote' | 'deck' | 'reveal' | 'reset'
-
-// The poker table of one joined participant. The server state is the single
-// source of truth: own card, deck and "revealed" are all read from `session`.
 export default function PokerRoom({ sessionId, participantId, onRejoin }: PokerRoomProps) {
-  // useCallback keeps the function identity, otherwise usePolling would restart on every render
-  const fetchSession = useCallback(
-    (signal: AbortSignal) => getSession(sessionId, participantId, signal),
-    [sessionId, participantId],
-  )
-  // Every poll with our participantId is also our heartbeat for the server
-  const { data: session, error, setData } = usePolling(fetchSession, POLL_INTERVAL_MS)
   const navigate = useNavigate()
 
-  // Which action is waiting for the server (for the loading state of the buttons)
-  const [pendingAction, setPendingAction] = useState<Action | null>(null)
+  // Der Server ist die einzige Quelle der Wahrheit: eigene Karte, Deck und
+  // «aufgedeckt» werden alle aus `session` gelesen und nicht doppelt gespeichert.
+  const [session, setSession] = useState<SessionState | null>(null)
+  const [pollError, setPollError] = useState<string | null>(null)
+  const [notFound, setNotFound] = useState(false)
+  // true, solange eine Aktion dieses Benutzers beim Server läuft (Ladezustand)
+  const [isBusy, setIsBusy] = useState(false)
   const [actionError, setActionError] = useState<string | null>(null)
 
-  // Sends an action and shows the returned state right away instead of
-  // waiting for the next poll. Errors never escape: they become a message.
-  async function runAction(action: Action, send: () => Promise<SessionState>) {
-    setPendingAction(action)
+  // Polling: sofort laden, dann alle 1.5 s. So sehen wir die Änderungen der anderen.
+  useEffect(() => {
+    let ignore = false
+
+    async function loadSession() {
+      try {
+        const loadedSession = await getSession(sessionId, participantId)
+        if (ignore) {
+          return
+        }
+        if (loadedSession === null) {
+          // Die Session wurde gelöscht: gleicher Fehlerzustand wie bei einer unbekannten ID.
+          // Polling stoppen, sonst käme alle 1.5 s ein unnötiger Request mit 404.
+          clearInterval(intervalId)
+          setNotFound(true)
+          return
+        }
+        setSession(loadedSession)
+        setPollError(null)
+      } catch (error) {
+        if (!ignore) {
+          // Der letzte bekannte Stand bleibt sichtbar, der nächste Poll versucht es wieder
+          setPollError(getErrorMessage(error))
+        }
+      }
+    }
+
+    // Erst den Timer anlegen, dann sofort einmal laden: so kennt loadSession die intervalId
+    const intervalId = setInterval(loadSession, POLL_INTERVAL_MS)
+    loadSession()
+
+    // Cleanup beim Verlassen: sonst liefe das Polling weiter und würde uns als
+    // Teilnehmer am Leben halten; späte Antworten werden dank ignore verworfen.
+    return () => {
+      ignore = true
+      clearInterval(intervalId)
+    }
+  }, [sessionId, participantId])
+
+  // Schickt eine Aktion und zeigt die Antwort des Servers sofort an, statt auf den
+  // nächsten Poll zu warten. Ein Fehler wird zur Meldung, der Tisch bleibt bedienbar.
+  // Der Request läuft schon, wenn runAction ihn bekommt (z. B. runAction(revealCards(…))).
+  async function runAction(request: Promise<SessionState>) {
+    setIsBusy(true)
     setActionError(null)
     try {
-      setData(await send())
-    } catch (err) {
-      setActionError(err instanceof Error ? err.message : 'Aktion fehlgeschlagen.')
-    } finally {
-      setPendingAction(null)
+      const newSession = await request
+      setSession(newSession)
+    } catch (error) {
+      setActionError(getErrorMessage(error))
     }
+    setIsBusy(false)
   }
 
-  if (error instanceof ApiError && error.status === 404) {
+  if (notFound) {
     return <SessionNotFound />
   }
-  if (!session) {
-    // Before the first answer: still loading, or the first poll failed
-    return error ? <ErrorMessage message={error.message} /> : <LoadingIndicator label="Tisch wird geladen …" />
+  if (session === null) {
+    // Noch keine Antwort da: entweder lädt es noch, oder der erste Poll ist fehlgeschlagen
+    if (pollError !== null) {
+      return <ErrorMessage message={pollError} />
+    }
+    return <LoadingIndicator label="Tisch wird geladen …" />
   }
 
   const me = session.participants.find((participant) => participant.id === participantId)
-  if (!me) {
-    // The server removed us, e.g. after more than 15 s without polling (sleep mode, no network)
+  if (me === undefined) {
+    // Der Server hat uns entfernt, z. B. nach mehr als 15 s ohne Poll (Standby, kein Netz)
     return (
       <div role="alert">
         <h2>Du bist nicht mehr am Tisch</h2>
@@ -76,60 +116,78 @@ export default function PokerRoom({ sessionId, participantId, onRejoin }: PokerR
   }
 
   const myVote = me.vote
-  const busy = pendingAction !== null
-  const voteCount = session.participants.filter((participant) => participant.hasVoted).length
+  const votedParticipants = session.participants.filter((participant) => participant.hasVoted)
+  const voteCount = votedParticipants.length
+
+  // Die Mitte des Tisches: vor dem Aufdecken der Stand, danach das Ergebnis
+  let roundStatus = (
+    <p>
+      {voteCount} von {session.participants.length} haben gewählt
+    </p>
+  )
+  if (session.revealed) {
+    roundStatus = <RoundResult participants={session.participants} deck={session.deck} />
+  }
 
   function handleCardClick(value: CardValue) {
-    // Clicking the chosen card again takes the vote back
-    const newVote = value === myVote ? null : value
-    void runAction('vote', () => castVote(sessionId, participantId, newVote))
+    // Ein zweiter Klick auf die gewählte Karte zieht die Stimme zurück (null)
+    let newVote: CardValue | null = value
+    if (value === myVote) {
+      newVote = null
+    }
+    runAction(castVote(sessionId, participantId, newVote))
   }
 
   function handleDeckChange(deck: DeckType) {
-    void runAction('deck', () => changeDeck(sessionId, deck))
+    runAction(changeDeck(sessionId, deck))
   }
 
-  // aria-busy: tells screen readers that an action is being sent (the cards are greyed out meanwhile)
+  function handleReveal() {
+    runAction(revealCards(sessionId))
+  }
+
+  function handleReset() {
+    runAction(resetRound(sessionId))
+  }
+
+  // aria-busy: sagt Screenreadern, dass gerade eine Aktion läuft (Karten sind dann ausgegraut)
   return (
-    <div className="poker-room" aria-busy={busy}>
+    <div className="poker-room" aria-busy={isBusy}>
       <div className="poker-room__toolbar">
-        <DeckSwitcher deck={session.deck} disabled={busy} onChange={handleDeckChange} />
+        <DeckSwitcher deck={session.deck} disabled={isBusy} onChange={handleDeckChange} />
         <div className="poker-room__actions">
           <ShareLinkButton />
-          {/* Only navigates: SessionPage unmounts, and the cleanup of its
-              join effect sends the leave request (exactly once) */}
+          {/* Navigiert nur: SessionPage verschwindet, und das Cleanup ihres
+              Join-Effekts schickt den Leave-Request (genau einmal) */}
           <button type="button" className="button button--secondary" onClick={() => navigate('/')}>
             Verlassen
           </button>
         </div>
       </div>
-      {/* The last known state stays visible, polling simply tries again */}
-      {error && <ErrorMessage message={`${error.message} Neuer Versuch läuft …`} />}
-      {actionError && <ErrorMessage message={actionError} />}
+
+      {pollError !== null && <ErrorMessage message={`${pollError} Neuer Versuch läuft …`} />}
+      {actionError !== null && <ErrorMessage message={actionError} />}
 
       <PokerTable participants={session.participants} ownId={participantId} revealed={session.revealed}>
-        {session.revealed ? (
-          <RoundResult participants={session.participants} deck={session.deck} />
-        ) : (
-          <p>
-            {voteCount} von {session.participants.length} haben gewählt
-          </p>
-        )}
-        <RoundControls
-          revealed={session.revealed}
-          canReveal={voteCount > 0}
-          busy={busy}
-          revealing={pendingAction === 'reveal'}
-          resetting={pendingAction === 'reset'}
-          onReveal={() => void runAction('reveal', () => revealCards(sessionId))}
-          onReset={() => void runAction('reset', () => resetRound(sessionId))}
-        />
+        {roundStatus}
+        {/* Ladezustand der Aktionen (F29): Buttons und Karten sind dann zusätzlich gesperrt */}
+        {isBusy && <p>Wird gesendet …</p>}
+        <div className="round-controls">
+          {!session.revealed && (
+            <button type="button" className="button" disabled={voteCount === 0 || isBusy} onClick={handleReveal}>
+              Karten aufdecken
+            </button>
+          )}
+          <button type="button" className="button button--secondary" disabled={isBusy} onClick={handleReset}>
+            Neue Runde
+          </button>
+        </div>
       </PokerTable>
 
       <CardDeck
         deck={session.deck}
         selected={myVote}
-        disabled={session.revealed || busy}
+        disabled={session.revealed || isBusy}
         onCardClick={handleCardClick}
       />
     </div>

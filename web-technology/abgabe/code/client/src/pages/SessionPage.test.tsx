@@ -2,15 +2,13 @@ import { StrictMode } from 'react'
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import type { Participant, SessionState } from '@scrum-poker/shared'
-import { UserProvider } from '../context/UserContext'
-import { NAME_STORAGE_KEY } from '../context/UserContextValue'
+import type { ChangeDeckRequest, JoinSessionRequest, Participant, SessionState } from '@scrum-poker/shared'
+import { UserProvider } from '../UserContext'
 import SessionPage from './SessionPage'
 
-// ---------------------------------------------------------------------------
-// A tiny fake server: fetch is replaced by a function that answers like the
-// real API. Every test can change `state` or the answer of a single route.
-// ---------------------------------------------------------------------------
+// Tests für die Session-Seite mit dem ganzen Pokertisch (PokerRoom und seine Kinder).
+// Ein kleiner Fake-Server ersetzt fetch und antwortet wie die echte API.
+// Jeder Test kann `state` oder die Antwort einer einzelnen Route ändern.
 
 interface FetchCall {
   method: string
@@ -21,11 +19,12 @@ interface FetchCall {
 let state: SessionState
 let calls: FetchCall[]
 let nextParticipantNumber: number
-// Lets a test replace the answer of one route, e.g. with an error
+// Damit kann ein Test die Antwort einer Route ersetzen, z. B. durch einen Fehler
 let override: ((call: FetchCall) => Response | undefined) | null
 
-function participant(id: string, name: string, extra: Partial<Participant> = {}): Participant {
-  return { id, name, hasVoted: false, vote: null, ...extra }
+// Teilnehmer ohne Stimme (vote = null) oder mit Stimme
+function participant(id: string, name: string, vote: string | null = null): Participant {
+  return { id, name, hasVoted: vote !== null, vote }
 }
 
 function fakeFetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
@@ -41,8 +40,14 @@ function fakeFetch(input: RequestInfo | URL, init?: RequestInit): Promise<Respon
 
 function answerLikeTheServer({ method, url, body }: FetchCall): Response {
   if (method === 'POST' && url === '/api/sessions/abc/participants') {
-    const id = `p${nextParticipantNumber++}`
-    const { name } = body as { name: string }
+    const { name, participantId } = body as JoinSessionRequest
+    // Gespeicherte ID noch bekannt: Fortsetzen nach Reload (200, gleiche ID)
+    const known = state.participants.find((p) => p.id === participantId)
+    if (known) {
+      return Response.json({ participantId: known.id }, { status: 200 })
+    }
+    const id = `p${nextParticipantNumber}`
+    nextParticipantNumber = nextParticipantNumber + 1
     state = { ...state, participants: [...state.participants, participant(id, name)] }
     return Response.json({ participantId: id }, { status: 201 })
   }
@@ -63,7 +68,8 @@ function answerLikeTheServer({ method, url, body }: FetchCall): Response {
     return Response.json(state)
   }
   if (method === 'PUT' && url.endsWith('/deck')) {
-    state = { ...state, ...(body as Pick<SessionState, 'deck'>), revealed: false }
+    const { deck } = body as ChangeDeckRequest
+    state = { ...state, deck, revealed: false }
     return Response.json(state)
   }
   if (method === 'POST' && url.endsWith('/reveal')) {
@@ -82,7 +88,7 @@ function callsTo(method: string, urlPart: string): FetchCall[] {
 
 function renderSessionPage({ name = 'Anna', path = '/sessions/abc', strict = false } = {}) {
   if (name) {
-    localStorage.setItem(NAME_STORAGE_KEY, name)
+    localStorage.setItem('scrum-poker:name', name)
   }
   const page = (
     <UserProvider>
@@ -97,7 +103,7 @@ function renderSessionPage({ name = 'Anna', path = '/sessions/abc', strict = fal
   return render(strict ? <StrictMode>{page}</StrictMode> : page)
 }
 
-// Waits until the poker table of the joined participant is visible
+// Wartet, bis der Tisch mit dem eigenen Platz («Du») sichtbar ist
 async function findOwnSeat() {
   const table = await screen.findByRole('region', { name: 'Pokertisch' })
   return within(table).getByText('Du').closest('li') as HTMLElement
@@ -123,9 +129,9 @@ describe('SessionPage', () => {
     const ownSeat = await findOwnSeat()
     expect(ownSeat).toHaveTextContent('Anna')
     expect(callsTo('POST', '/participants')).toEqual([
-      { method: 'POST', url: '/api/sessions/abc/participants', body: { name: 'Anna' } },
+      { method: 'POST', url: '/api/sessions/abc/participants', body: { name: 'Anna', participantId: null } },
     ])
-    // Polling sends the participantId as heartbeat
+    // Das Polling schickt die participantId mit (Heartbeat)
     expect(callsTo('GET', '?participantId=p1')).not.toHaveLength(0)
 
     unmount()
@@ -133,16 +139,19 @@ describe('SessionPage', () => {
   })
 
   it('continues as the same participant after a reload (sessionStorage)', async () => {
-    // State before the reload: Anna sits at the table and has voted
-    state = { ...state, participants: [participant('p7', 'Anna', { hasVoted: true, vote: '8' })] }
+    // Stand vor dem Reload: Anna sitzt am Tisch und hat gewählt
+    state = { ...state, participants: [participant('p7', 'Anna', '8')] }
     sessionStorage.setItem('scrum-poker:participant:abc', 'p7')
     renderSessionPage({ strict: true })
 
     const ownSeat = await findOwnSeat()
     expect(ownSeat).toHaveTextContent('Anna')
     expect(screen.getByRole('button', { name: '8' })).toHaveAttribute('aria-pressed', 'true')
-    // No second join and nobody left the table, not even in StrictMode
-    expect(callsTo('POST', '/participants')).toHaveLength(0)
+    // Der Join schickt die gespeicherte ID mit, der Server setzt fort statt eine zweite Anna anzulegen.
+    // Niemand hat den Tisch verlassen, auch nicht im StrictMode.
+    for (const join of callsTo('POST', '/participants')) {
+      expect(join.body).toEqual({ name: 'Anna', participantId: 'p7' })
+    }
     expect(callsTo('DELETE', '/participants')).toHaveLength(0)
     expect(state.participants.map((p) => p.id)).toEqual(['p7'])
   })
@@ -182,7 +191,7 @@ describe('SessionPage', () => {
     expect(screen.getByRole('heading', { name: 'Wie heisst du?' })).toBeInTheDocument()
     expect(callsTo('POST', '/participants')).toHaveLength(0)
 
-    // Only spaces: visible message, joining is not possible
+    // Nur Leerzeichen: sichtbare Meldung, Beitreten nicht möglich
     fireEvent.change(screen.getByLabelText('Name'), { target: { value: '   ' } })
     expect(screen.getByText('Bitte gib deinen Namen ein.')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Beitreten' })).toBeDisabled()
@@ -191,7 +200,7 @@ describe('SessionPage', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Beitreten' }))
 
     expect(await findOwnSeat()).toHaveTextContent('Ben')
-    expect(callsTo('POST', '/participants')[0].body).toEqual({ name: 'Ben' })
+    expect(callsTo('POST', '/participants')[0].body).toEqual({ name: 'Ben', participantId: null })
   })
 
   it('shows a message with a link home for an unknown session', async () => {
@@ -211,6 +220,11 @@ describe('SessionPage', () => {
     expect(
       await screen.findByRole('heading', { name: 'Diese Session existiert nicht (mehr)' }, { timeout: 3000 }),
     ).toBeInTheDocument()
+
+    // Danach pollt der Tisch nicht mehr: auch nach mehr als einem Intervall kein neuer GET
+    const getCount = callsTo('GET', '/api/sessions/abc').length
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+    expect(callsTo('GET', '/api/sessions/abc')).toHaveLength(getCount)
   })
 
   it('casts a vote on click and takes it back on a second click', async () => {
@@ -239,7 +253,8 @@ describe('SessionPage', () => {
   })
 
   it('covers the cards of the others until they are revealed', async () => {
-    state.participants = [participant('x', 'Ben', { hasVoted: true }), participant('y', 'Cleo')]
+    // Wie der echte Server: vor dem Aufdecken nur hasVoted, ohne Wert
+    state.participants = [{ id: 'x', name: 'Ben', hasVoted: true, vote: null }, participant('y', 'Cleo')]
     renderSessionPage()
     await findOwnSeat()
 
@@ -249,20 +264,20 @@ describe('SessionPage', () => {
     expect(cleo).toHaveTextContent('wählt noch')
     expect(screen.getByText('1 von 3 haben gewählt')).toBeInTheDocument()
 
-    // Reveal: the server now sends the values
+    // Aufdecken: Erst jetzt schickt der Server den Wert
     state.participants[0].vote = '8'
     fireEvent.click(screen.getByRole('button', { name: 'Karten aufdecken' }))
 
     await waitFor(() => expect(ben).toHaveTextContent('Karte 8'))
     expect(cleo).toHaveTextContent('hat nicht gewählt')
-    // After the reveal the hand cards cannot be clicked anymore
+    // Nach dem Aufdecken lassen sich die Handkarten nicht mehr anklicken
     expect(screen.getByRole('button', { name: '5' })).toBeDisabled()
   })
 
   it('shows the average and highlights a consensus', async () => {
     state.participants = [
-      participant('x', 'Ben', { hasVoted: true, vote: '5' }),
-      participant('y', 'Cleo', { hasVoted: true, vote: '5' }),
+      participant('x', 'Ben', '5'),
+      participant('y', 'Cleo', '5'),
     ]
     state.revealed = true
     renderSessionPage()
@@ -275,9 +290,9 @@ describe('SessionPage', () => {
 
   it('leaves out "?" and "☕" from the average and shows no consensus for different votes', async () => {
     state.participants = [
-      participant('x', 'Ben', { hasVoted: true, vote: '3' }),
-      participant('y', 'Cleo', { hasVoted: true, vote: '8' }),
-      participant('z', 'Dan', { hasVoted: true, vote: '?' }),
+      participant('x', 'Ben', '3'),
+      participant('y', 'Cleo', '8'),
+      participant('z', 'Dan', '?'),
     ]
     state.revealed = true
     renderSessionPage()
@@ -315,7 +330,7 @@ describe('SessionPage', () => {
     renderSessionPage()
     await findOwnSeat()
 
-    // Timeout on the server: we are no longer in the list
+    // Timeout auf dem Server: wir sind nicht mehr in der Liste
     state.participants = []
 
     const rejoin = await screen.findByRole('button', { name: 'Wieder beitreten' }, { timeout: 3000 })
@@ -344,7 +359,7 @@ describe('SessionPage', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Link kopieren' }))
 
     expect(await screen.findByRole('button', { name: 'Kopiert!' })).toBeInTheDocument()
-    // jsdom's address; MemoryRouter does not change window.location
+    // Adresse von jsdom; MemoryRouter ändert window.location nicht
     expect(writeText).toHaveBeenCalledWith('http://localhost:3000/')
   })
 })

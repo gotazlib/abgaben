@@ -1,8 +1,10 @@
+// Tests für das Routing in App.tsx: welche Seite bei welcher URL erscheint.
+
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
-import { UserProvider } from './context/UserContext'
+import { UserProvider } from './UserContext'
 
 function renderAt(path: string) {
   render(
@@ -23,7 +25,7 @@ describe('routing', () => {
     vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(Response.json([]))))
     renderAt('/')
     expect(screen.getByRole('heading', { level: 1, name: 'Gemeinsam schätzen' })).toBeInTheDocument()
-    // Wait for the session list, so that no state changes after the test
+    // Auf die Liste warten, damit sich nach dem Test kein State mehr ändert
     await screen.findByText(/Noch keine offenen Sessions/)
   })
 

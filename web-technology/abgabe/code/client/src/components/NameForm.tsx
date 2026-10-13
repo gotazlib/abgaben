@@ -1,18 +1,20 @@
+// Eingabefeld für den Namen auf der Startseite. Benutzt von HomePage.
+// Der Name selbst liegt im Context; die Komponente bekommt ihn und die Fehlermeldung als Props
+// und meldet jede Änderung über onNameChange nach oben (Lifting State Up).
+
 import { MAX_NAME_LENGTH } from '@scrum-poker/shared'
 import type { FormEvent } from 'react'
-import './NameForm.css'
 
 interface NameFormProps {
   name: string
-  // Message shown below the field, null if the name is valid
+  // Meldung unter dem Feld, null wenn der Name gültig ist
   error: string | null
   onNameChange: (name: string) => void
 }
 
 export default function NameForm({ name, error, onNameChange }: NameFormProps) {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    // The name is already saved on every keystroke, so Enter only has to
-    // prevent the browser from reloading the page.
+    // Der Name ist bei jedem Tastendruck schon gespeichert. Enter darf nur die Seite nicht neu laden.
     event.preventDefault()
   }
 

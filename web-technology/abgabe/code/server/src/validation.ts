@@ -1,57 +1,57 @@
-// Checks request bodies. A body comes from outside and can contain anything,
-// so it arrives here as `unknown` and is only typed after it was checked.
+// Prüft die Request-Bodies, bevor eine Route den Store ändert. Benutzt von routes/sessions.ts.
+// Ein Body kommt von aussen und kann alles enthalten (auch Unsinn per curl), darum ist er hier
+// `unknown` und wird Schritt für Schritt mit typeof geprüft.
+// Jede Funktion gibt die Fehlermeldung zurück, oder null, wenn der Body in Ordnung ist.
 
-import {
-  DECKS,
-  MAX_NAME_LENGTH,
-  type CastVoteRequest,
-  type ChangeDeckRequest,
-  type DeckType,
-  type JoinSessionRequest,
-} from '@scrum-poker/shared'
+import { DECKS, DECK_TYPES, validateName, type DeckType } from '@scrum-poker/shared'
 
-export type ValidationResult<T> = { ok: true; value: T } | { ok: false; error: string }
-
-function isObject(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null
+// Erwartet { name: string, participantId?: string | null }
+export function getJoinError(body: unknown): string | null {
+  if (typeof body !== 'object' || body === null || !('name' in body)) {
+    return 'Name fehlt.'
+  }
+  if (typeof body.name !== 'string') {
+    return 'Name muss ein Text sein.'
+  }
+  // Gleiche Regel wie im Client, darum dieselbe Funktion aus shared
+  const nameError = validateName(body.name)
+  if (nameError !== null) {
+    return nameError
+  }
+  // participantId ist freiwillig (nur nach einem Reload dabei)
+  if ('participantId' in body) {
+    const participantId = body.participantId
+    if (participantId !== null && typeof participantId !== 'string') {
+      return 'participantId muss ein Text sein.'
+    }
+  }
+  return null
 }
 
-function isDeckType(value: unknown): value is DeckType {
-  // Object.hasOwn instead of `in`: `'toString' in DECKS` would be true as well
-  return typeof value === 'string' && Object.hasOwn(DECKS, value)
+// Erwartet { value: string | null }, und die Karte muss im aktuellen Deck vorkommen
+export function getVoteError(body: unknown, deck: DeckType): string | null {
+  if (typeof body !== 'object' || body === null || !('value' in body)) {
+    return 'Wert fehlt.'
+  }
+  // null zieht die Stimme zurück und ist erlaubt
+  if (body.value === null) {
+    return null
+  }
+  if (typeof body.value !== 'string' || !DECKS[deck].cards.includes(body.value)) {
+    return 'Diese Karte gibt es im aktuellen Deck nicht.'
+  }
+  return null
 }
 
-export function validateJoinBody(body: unknown): ValidationResult<JoinSessionRequest> {
-  if (!isObject(body) || typeof body.name !== 'string') {
-    return { ok: false, error: 'Name fehlt.' }
+// Erwartet { deck: 'fibonacci' | 'tshirt' }
+export function getDeckError(body: unknown): string | null {
+  if (typeof body !== 'object' || body === null || !('deck' in body)) {
+    return 'Deck fehlt.'
   }
-  const name = body.name.trim()
-  if (name === '') {
-    return { ok: false, error: 'Name darf nicht leer sein.' }
+  for (const deckType of DECK_TYPES) {
+    if (body.deck === deckType) {
+      return null
+    }
   }
-  if (name.length > MAX_NAME_LENGTH) {
-    return { ok: false, error: `Name darf höchstens ${MAX_NAME_LENGTH} Zeichen lang sein.` }
-  }
-  return { ok: true, value: { name } }
-}
-
-export function validateVoteBody(body: unknown, deck: DeckType): ValidationResult<CastVoteRequest> {
-  if (!isObject(body) || !('value' in body)) {
-    return { ok: false, error: 'Wert fehlt.' }
-  }
-  const { value } = body
-  if (value === null) {
-    return { ok: true, value: { value: null } }
-  }
-  if (typeof value !== 'string' || !DECKS[deck].cards.includes(value)) {
-    return { ok: false, error: 'Diese Karte gibt es im aktuellen Deck nicht.' }
-  }
-  return { ok: true, value: { value } }
-}
-
-export function validateDeckBody(body: unknown): ValidationResult<ChangeDeckRequest> {
-  if (!isObject(body) || !isDeckType(body.deck)) {
-    return { ok: false, error: 'Unbekanntes Deck.' }
-  }
-  return { ok: true, value: { deck: body.deck } }
+  return 'Unbekanntes Deck.'
 }

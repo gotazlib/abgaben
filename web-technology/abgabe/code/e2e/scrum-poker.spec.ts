@@ -1,8 +1,11 @@
 import { expect, test, type Page } from '@playwright/test'
 import type { SessionState } from '@scrum-poker/shared'
 
-// Collects everything the browser console reports as error or warning
-// (React warnings, uncaught exceptions, ...). Every test expects it to be empty.
+// End-to-End-Tests (Playwright) im echten Browser gegen den echten Server. Nachweis für den
+// ganzen Ablauf: zwei Personen am Tisch, Reload, Verlassen, Löschen, Fehlerfälle, Responsive.
+
+// Sammelt alles, was die Browser-Konsole als Fehler oder Warnung meldet
+// (React-Warnungen, unbehandelte Exceptions, …). Jeder Test erwartet eine leere Liste.
 function collectConsoleProblems(page: Page): string[] {
   const problems: string[] = []
   page.on('console', (message) => {
@@ -14,8 +17,8 @@ function collectConsoleProblems(page: Page): string[] {
   return problems
 }
 
-// The browser itself logs every HTTP error answer ("Failed to load resource: ...
-// 404"). In the error tests these answers are expected, so only they are ignored.
+// Der Browser meldet jede HTTP-Fehlerantwort selbst («Failed to load resource: …
+// 404»). In den Fehler-Tests sind diese Antworten erwartet, darum werden nur sie ignoriert.
 function withoutFailedRequests(problems: string[]): string[] {
   return problems.filter((problem) => !problem.startsWith('Failed to load resource'))
 }
@@ -30,13 +33,13 @@ async function enterName(page: Page, name: string) {
 }
 
 test('two people estimate together', async ({ browser }) => {
-  // Two contexts = two independent browsers (own localStorage)
+  // Zwei Kontexte = zwei unabhängige Browser (je eigener localStorage)
   const anna = await (await browser.newContext()).newPage()
   const ben = await (await browser.newContext()).newPage()
   const annaProblems = collectConsoleProblems(anna)
   const benProblems = collectConsoleProblems(ben)
 
-  // Anna creates a session and lands at the table
+  // Anna erstellt eine Session und landet am Tisch
   await enterName(anna, 'Anna')
   await anna.getByRole('button', { name: 'Neue Session erstellen' }).click()
   await expect(anna).toHaveURL(/\/sessions\/\w+$/)
@@ -44,14 +47,14 @@ test('two people estimate together', async ({ browser }) => {
   const sessionId = sessionUrl.split('/').pop()
   await expect(seatOf(anna, 'Anna')).toContainText('Du')
 
-  // Ben opens the shared link in a new browser without a name
+  // Ben öffnet den geteilten Link in einem neuen Browser ohne Namen
   await ben.goto(sessionUrl)
   await ben.getByLabel('Name').fill('Ben')
   await ben.getByRole('button', { name: 'Beitreten' }).click()
   await expect(seatOf(ben, 'Ben')).toContainText('Du')
   await expect(seatOf(anna, 'Ben')).toBeVisible()
 
-  // Anna votes: Ben only sees that she has voted, not her card
+  // Anna wählt: Ben sieht nur, dass sie gewählt hat, nicht ihre Karte
   await anna.getByRole('button', { name: '5', exact: true }).click()
   await expect(seatOf(ben, 'Anna')).toContainText('hat gewählt')
   const poll = await ben.waitForResponse(
@@ -61,21 +64,21 @@ test('two people estimate together', async ({ browser }) => {
   const annaForBen = stateForBen.participants.find((participant) => participant.name === 'Anna')
   expect(annaForBen).toMatchObject({ hasVoted: true, vote: null })
 
-  // Ben votes the same card: everybody has voted, so the cards are revealed for both
+  // Ben wählt dieselbe Karte: alle haben gewählt, also wird für beide aufgedeckt
   await ben.getByRole('button', { name: '5', exact: true }).click()
   for (const page of [anna, ben]) {
     await expect(page.getByText('Konsens! Alle haben 5 gewählt.')).toBeVisible()
     await expect(seatOf(page, 'Anna')).toContainText('Karte 5')
   }
 
-  // New round, then Ben switches to T-shirt sizes, which reaches Anna via the server
+  // Neue Runde, dann wechselt Ben auf T-Shirt-Grössen; Anna sieht es über den Server
   await anna.getByRole('button', { name: 'Neue Runde' }).click()
   await expect(ben.getByText('0 von 2 haben gewählt')).toBeVisible()
   await ben.getByRole('button', { name: 'T-Shirt' }).click()
   await expect(anna.getByRole('button', { name: 'XL', exact: true })).toBeVisible()
 
-  // A reload in the middle of a round keeps Ben at the table as the same person:
-  // no second "Ben", and the round is not revealed although Ben is the only one missing
+  // Ein Reload mitten in der Runde lässt Ben als dieselbe Person am Tisch: kein zweiter
+  // «Ben», und die Runde wird nicht aufgedeckt, obwohl nur noch Ben fehlt
   await anna.getByRole('button', { name: 'L', exact: true }).click()
   await expect(ben.getByText('1 von 2 haben gewählt')).toBeVisible()
   await ben.reload()
@@ -84,31 +87,31 @@ test('two people estimate together', async ({ browser }) => {
   await expect(anna.getByText('1 von 2 haben gewählt')).toBeVisible()
   await expect(seatOf(anna, 'Anna')).toContainText('hat gewählt')
 
-  // Revealing by hand before everybody voted, also visible for the other person
+  // Von Hand aufdecken, bevor alle gewählt haben; auch die andere Person sieht es
   await ben.getByRole('button', { name: 'Karten aufdecken' }).click()
   await expect(seatOf(anna, 'Anna')).toContainText('Karte L')
   await expect(anna.locator('.round-result__average')).toHaveText('L')
 
-  // Leaving navigates home and lowers the number of participants
+  // Verlassen führt nach Home und senkt die Teilnehmerzahl
   await ben.getByRole('button', { name: 'Verlassen' }).click()
   await expect(ben).toHaveURL(/\/$/)
   await expect(ben.getByLabel('Dein Name')).toHaveValue('Ben')
   await expect(ben.getByText(`Session ${sessionId}`)).toBeVisible()
   await expect(ben.getByText('1 Person')).toBeVisible()
 
-  // Joining from the list and going back with the browser button also leaves
+  // Beitreten aus der Liste und Zurück-Button des Browsers verlässt ebenfalls
   await ben.getByRole('button', { name: 'Beitreten' }).click()
   await expect(seatOf(anna, 'Ben')).toHaveCount(1)
   await ben.goBack()
   await expect(seatOf(anna, 'Ben')).toHaveCount(0)
 
-  // Deleting the session while Anna sits at the table shows her a message
+  // Wird die Session gelöscht, während Anna am Tisch sitzt, sieht sie eine Meldung
   ben.on('dialog', (dialog) => void dialog.accept())
   await ben.getByRole('button', { name: 'Löschen' }).click()
   await expect(ben.getByText('Noch keine offenen Sessions')).toBeVisible()
   await expect(anna.getByText('Diese Session existiert nicht (mehr)')).toBeVisible()
 
-  // The 404 of Anna's last poll is expected, nothing else may appear
+  // Der 404 von Annas letztem Poll ist erwartet, sonst darf nichts erscheinen
   expect(withoutFailedRequests(annaProblems)).toEqual([])
   expect(benProblems).toEqual([])
 })
@@ -124,8 +127,8 @@ test('closing the tab removes the participant after the heartbeat timeout', asyn
   await ben.goto(anna.url())
   await expect(seatOf(anna, 'Ben')).toBeVisible()
 
-  // Closing the tab sends no request. Ben stops polling, so the server removes
-  // him after PARTICIPANT_TIMEOUT_MS (15 s) plus at most one cleanup interval (5 s).
+  // Das Schliessen des Tabs schickt keinen Request. Ben pollt nicht mehr, darum entfernt ihn
+  // der Server nach PARTICIPANT_TIMEOUT_MS (15 s) plus höchstens einem Aufräum-Intervall (5 s).
   await ben.close({ runBeforeUnload: true })
   await expect(seatOf(anna, 'Ben')).toHaveCount(0, { timeout: 25_000 })
 })
@@ -133,22 +136,22 @@ test('closing the tab removes the participant after the heartbeat timeout', asyn
 test('shows errors instead of an empty page', async ({ page }) => {
   const problems = collectConsoleProblems(page)
 
-  // Invalid name: visible message, creating is not possible
+  // Ungültiger Name: sichtbare Meldung, Erstellen nicht möglich
   await enterName(page, '   ')
   await expect(page.getByText('Bitte gib deinen Namen ein.')).toBeVisible()
   await expect(page.getByRole('button', { name: 'Neue Session erstellen' })).toBeDisabled()
 
-  // Unknown session
+  // Unbekannte Session
   await enterName(page, 'Anna')
   await page.goto('/sessions/unknown')
   await expect(page.getByText('Diese Session existiert nicht (mehr)')).toBeVisible()
 
-  // Unknown address
+  // Unbekannte Adresse
   await page.goto('/does/not/exist')
   await expect(page.getByRole('heading', { name: 'Seite nicht gefunden' })).toBeVisible()
 
-  // Server not reachable: every API request fails. A function and not '**/api/**',
-  // because that pattern would also block the module /src/api/client.ts
+  // Server nicht erreichbar: jede API-Anfrage schlägt fehl. Geprüft wird der Pfad
+  // (beginnt mit /api/), damit die Quelldatei /src/api.ts weiter geladen wird.
   await page.route((url) => url.pathname.startsWith('/api/'), (route) => route.abort())
   await page.goto('/')
   await expect(page.getByText(/Server nicht erreichbar/)).toBeVisible()

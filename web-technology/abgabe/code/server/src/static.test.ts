@@ -1,3 +1,5 @@
+// Tests für die Auslieferung des gebauten Clients im Produktivbetrieb (app.ts, SERVE_CLIENT).
+
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
@@ -5,8 +7,8 @@ import request from 'supertest'
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 import type { app as App } from './app'
 
-// Production mode: the server also delivers the built client. A small fake
-// client/dist in a temporary folder replaces the real Vite build.
+// Produktivbetrieb: Der Server liefert auch den gebauten Client aus. Ein kleines,
+// falsches client/dist in einem temporären Ordner ersetzt den echten Vite-Build.
 describe('production: built client', () => {
   let dist: string
   let app: typeof App
@@ -17,7 +19,7 @@ describe('production: built client', () => {
     writeFileSync(join(dist, 'app.js'), 'console.log("app")')
     vi.stubEnv('NODE_ENV', 'production')
     vi.stubEnv('CLIENT_DIST', dist)
-    // config.ts reads the environment on import, so load the app fresh
+    // config.ts liest die Umgebung beim Import, darum die App neu laden
     vi.resetModules()
     app = (await import('./app')).app
   })

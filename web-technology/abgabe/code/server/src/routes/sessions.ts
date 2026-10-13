@@ -1,13 +1,14 @@
-// All routes below /api/sessions.
-// The handlers only translate between HTTP and the store: read the request,
-// validate it, call a store function and choose the status code.
+// Alle Routen unter /api/sessions (eingebunden in app.ts).
+// Jede Route liest sich von oben nach unten: Session holen → wenn es sie nicht gibt 404 →
+// Body prüfen (400) → Store ändern → mit Statuscode und JSON antworten.
 
-import { Router, type Response } from 'express'
+import { Router } from 'express'
 import type {
+  CastVoteRequest,
+  ChangeDeckRequest,
   CreateSessionResponse,
+  JoinSessionRequest,
   JoinSessionResponse,
-  ListSessionsResponse,
-  SessionState,
 } from '@scrum-poker/shared'
 import {
   addParticipant,
@@ -18,138 +19,174 @@ import {
   findParticipant,
   getSession,
   listSessions,
-  markAsSeen,
   removeParticipant,
   resetRound,
   revealCards,
   toSessionState,
-  type Session,
 } from '../store'
-import { sendError } from '../sendError'
-import { validateDeckBody, validateJoinBody, validateVoteBody } from '../validation'
+import { getDeckError, getJoinError, getVoteError } from '../validation'
 
 export const sessionsRouter = Router()
 
-// viewerId: the participant who asks, gets to see their own vote before the reveal
-function sendSession(res: Response, session: Session, viewerId?: string): void {
-  const body: SessionState = toSessionState(session, viewerId)
-  res.json(body)
-}
+const SESSION_NOT_FOUND = 'Session nicht gefunden.'
 
-// Returns the session, or sends a 404 and returns undefined.
-// Usage: `const session = findSessionOr404(...); if (!session) return`
-function findSessionOr404(sessionId: string, res: Response): Session | undefined {
-  const session = getSession(sessionId)
-  if (!session) {
-    sendError(res, 404, 'Session nicht gefunden.')
-  }
-  return session
-}
-
+// GET /api/sessions: Liste aller Sessions für die Home-Seite
 sessionsRouter.get('/', (_req, res) => {
-  const body: ListSessionsResponse = listSessions()
-  res.json(body)
+  res.json(listSessions())
 })
 
+// POST /api/sessions: neue Session erstellen, der Server vergibt die ID
 sessionsRouter.post('/', (_req, res) => {
   const session = createSession()
   const body: CreateSessionResponse = { id: session.id }
   res.status(201).json(body)
 })
 
+// DELETE /api/sessions/:sessionId: Session löschen, auch wenn noch Leute drin sind
 sessionsRouter.delete('/:sessionId', (req, res) => {
-  if (!findSessionOr404(req.params.sessionId, res)) return
-  deleteSession(req.params.sessionId)
+  const session = getSession(req.params.sessionId)
+  if (!session) {
+    res.status(404).json({ error: SESSION_NOT_FOUND })
+    return
+  }
+  deleteSession(session.id)
   res.status(204).end()
 })
 
+// GET /api/sessions/:sessionId?participantId=…: Zustand der Session (Polling des Tisches)
 sessionsRouter.get('/:sessionId', (req, res) => {
-  const session = findSessionOr404(req.params.sessionId, res)
-  if (!session) return
-
-  // Polling with a participantId doubles as heartbeat (see removeInactiveParticipants).
-  // An unknown participantId is not an error: the client sees in the
-  // participant list that it is no longer part of the session.
-  const { participantId } = req.query
-  if (typeof participantId === 'string') {
-    const participant = findParticipant(session, participantId)
-    if (participant) {
-      markAsSeen(participant, Date.now())
-    }
-  }
-  sendSession(res, session, typeof participantId === 'string' ? participantId : undefined)
-})
-
-sessionsRouter.post('/:sessionId/participants', (req, res) => {
-  const session = findSessionOr404(req.params.sessionId, res)
-  if (!session) return
-
-  const result = validateJoinBody(req.body)
-  if (!result.ok) {
-    sendError(res, 400, result.error)
+  const session = getSession(req.params.sessionId)
+  if (!session) {
+    res.status(404).json({ error: SESSION_NOT_FOUND })
     return
   }
-  const participant = addParticipant(session, result.value.name, Date.now())
+
+  let viewerId: string | null = null
+  if (typeof req.query.participantId === 'string') {
+    viewerId = req.query.participantId
+  }
+
+  // Heartbeat: Jede Abfrage mit participantId beweist, dass der Tab noch offen ist
+  // (siehe removeInactiveParticipants im Store). Eine unbekannte ID ist kein Fehler:
+  // Der Client sieht in der Liste selbst, dass er nicht mehr dabei ist.
+  if (viewerId !== null) {
+    const participant = findParticipant(session, viewerId)
+    if (participant) {
+      participant.lastSeen = Date.now()
+    }
+  }
+  res.json(toSessionState(session, viewerId))
+})
+
+// POST /api/sessions/:sessionId/participants: beitreten oder nach einem Reload fortsetzen
+sessionsRouter.post('/:sessionId/participants', (req, res) => {
+  const session = getSession(req.params.sessionId)
+  if (!session) {
+    res.status(404).json({ error: SESSION_NOT_FOUND })
+    return
+  }
+  const error = getJoinError(req.body)
+  if (error !== null) {
+    res.status(400).json({ error })
+    return
+  }
+  // Ab hier ist der Body geprüft und hat die erwartete Form
+  const joinRequest = req.body as JoinSessionRequest
+
+  // Fortsetzen nach einem Reload: Kennt der Server die gespeicherte ID noch,
+  // bleibt die Person mit ihrer Stimme am Tisch. Kein zweiter Eintrag, 200 statt 201.
+  if (typeof joinRequest.participantId === 'string') {
+    const existingParticipant = findParticipant(session, joinRequest.participantId)
+    if (existingParticipant) {
+      existingParticipant.lastSeen = Date.now()
+      const body: JoinSessionResponse = { participantId: existingParticipant.id }
+      res.status(200).json(body)
+      return
+    }
+  }
+
+  const participant = addParticipant(session, joinRequest.name.trim())
   const body: JoinSessionResponse = { participantId: participant.id }
   res.status(201).json(body)
 })
 
+// DELETE /api/sessions/:sessionId/participants/:participantId: Session verlassen
 sessionsRouter.delete('/:sessionId/participants/:participantId', (req, res) => {
-  const session = findSessionOr404(req.params.sessionId, res)
-  if (!session) return
-
-  // Idempotent: leaving twice (or after the timeout removed you) is not an error
+  const session = getSession(req.params.sessionId)
+  if (!session) {
+    res.status(404).json({ error: SESSION_NOT_FOUND })
+    return
+  }
+  // Idempotent: Zweimal verlassen (oder nach dem Timeout) ist kein Fehler
   removeParticipant(session, req.params.participantId)
   res.status(204).end()
 })
 
+// PUT /api/sessions/:sessionId/participants/:participantId/vote: Karte wählen oder zurückziehen
 sessionsRouter.put('/:sessionId/participants/:participantId/vote', (req, res) => {
-  const session = findSessionOr404(req.params.sessionId, res)
-  if (!session) return
-
+  const session = getSession(req.params.sessionId)
+  if (!session) {
+    res.status(404).json({ error: SESSION_NOT_FOUND })
+    return
+  }
   const participant = findParticipant(session, req.params.participantId)
   if (!participant) {
-    sendError(res, 404, 'Teilnehmer nicht gefunden.')
+    res.status(404).json({ error: 'Teilnehmer nicht gefunden.' })
     return
   }
+  // 409 Conflict: Die Anfrage passt nicht zum aktuellen Zustand der Runde
   if (session.revealed) {
-    sendError(res, 409, 'Die Karten sind schon aufgedeckt.')
+    res.status(409).json({ error: 'Die Karten sind schon aufgedeckt.' })
     return
   }
-  const result = validateVoteBody(req.body, session.deck)
-  if (!result.ok) {
-    sendError(res, 400, result.error)
+  const error = getVoteError(req.body, session.deck)
+  if (error !== null) {
+    res.status(400).json({ error })
     return
   }
-  castVote(session, participant, result.value.value)
-  sendSession(res, session, participant.id)
+  const voteRequest = req.body as CastVoteRequest
+
+  castVote(session, participant, voteRequest.value)
+  // Die Antwort zeigt der wählenden Person ihre eigene Stimme, die der anderen nicht
+  res.json(toSessionState(session, participant.id))
 })
 
+// PUT /api/sessions/:sessionId/deck: Deck wechseln (startet eine neue Runde)
 sessionsRouter.put('/:sessionId/deck', (req, res) => {
-  const session = findSessionOr404(req.params.sessionId, res)
-  if (!session) return
-
-  const result = validateDeckBody(req.body)
-  if (!result.ok) {
-    sendError(res, 400, result.error)
+  const session = getSession(req.params.sessionId)
+  if (!session) {
+    res.status(404).json({ error: SESSION_NOT_FOUND })
     return
   }
-  changeDeck(session, result.value.deck)
-  sendSession(res, session)
+  const error = getDeckError(req.body)
+  if (error !== null) {
+    res.status(400).json({ error })
+    return
+  }
+  const deckRequest = req.body as ChangeDeckRequest
+
+  changeDeck(session, deckRequest.deck)
+  res.json(toSessionState(session, null))
 })
 
+// POST /api/sessions/:sessionId/reveal: Karten für alle aufdecken
 sessionsRouter.post('/:sessionId/reveal', (req, res) => {
-  const session = findSessionOr404(req.params.sessionId, res)
-  if (!session) return
-
+  const session = getSession(req.params.sessionId)
+  if (!session) {
+    res.status(404).json({ error: SESSION_NOT_FOUND })
+    return
+  }
   revealCards(session)
-  sendSession(res, session)
+  res.json(toSessionState(session, null))
 })
 
+// POST /api/sessions/:sessionId/reset: neue Runde, alle Stimmen löschen
 sessionsRouter.post('/:sessionId/reset', (req, res) => {
-  const session = findSessionOr404(req.params.sessionId, res)
-  if (!session) return
-
+  const session = getSession(req.params.sessionId)
+  if (!session) {
+    res.status(404).json({ error: SESSION_NOT_FOUND })
+    return
+  }
   resetRound(session)
-  sendSession(res, session)
+  res.json(toSessionState(session, null))
 })

@@ -1,11 +1,13 @@
-import { act, render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
-import { UserProvider } from './UserContext'
-import { NAME_STORAGE_KEY } from './UserContextValue'
-import { useUser } from './useUser'
+// Tests für UserContext.tsx: Der Name kommt aus dem localStorage und wird dort sofort gespeichert.
 
+import { act, render, screen } from '@testing-library/react'
+import { useContext } from 'react'
+import { describe, expect, it } from 'vitest'
+import { UserContext, UserProvider } from './UserContext'
+
+// Kleine Testkomponente, die den Namen aus dem Context anzeigt und ändert
 function NameDisplay() {
-  const { name, setName } = useUser()
+  const { name, setName } = useContext(UserContext)
   return (
     <>
       <p>Name: {name}</p>
@@ -16,7 +18,7 @@ function NameDisplay() {
 
 describe('UserContext', () => {
   it('reads the initial name from localStorage', () => {
-    localStorage.setItem(NAME_STORAGE_KEY, 'Anna')
+    localStorage.setItem('scrum-poker:name', 'Anna')
 
     render(
       <UserProvider>
@@ -39,17 +41,6 @@ describe('UserContext', () => {
     })
 
     expect(screen.getByText('Name: Ben')).toBeInTheDocument()
-    expect(localStorage.getItem(NAME_STORAGE_KEY)).toBe('Ben')
-  })
-
-  it('throws a clear error outside of the provider', () => {
-    // React logs the thrown error to the console; silence it for this test
-    const originalError = console.error
-    console.error = () => {}
-    try {
-      expect(() => render(<NameDisplay />)).toThrow('useUser() must be used inside <UserProvider>.')
-    } finally {
-      console.error = originalError
-    }
+    expect(localStorage.getItem('scrum-poker:name')).toBe('Ben')
   })
 })

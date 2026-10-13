@@ -1,9 +1,8 @@
-// Types and logic shared by client and server.
-// Both sides import from '@scrum-poker/shared', so the API contract exists only once.
+// Gemeinsamer «Vertrag» zwischen Client und Server: Types, Decks, Namensprüfung und Durchschnitt.
+// Client und Server importieren diese Datei über den Paketnamen '@scrum-poker/shared'.
+// So gibt es jede Regel und jeden Type nur einmal.
 
-// ---------------------------------------------------------------------------
-// Decks and cards
-// ---------------------------------------------------------------------------
+// Decks und Karten
 
 export type DeckType = 'fibonacci' | 'tshirt'
 
@@ -11,10 +10,11 @@ export type CardValue = string
 
 export interface Deck {
   label: string
-  cards: readonly CardValue[]
+  cards: CardValue[]
 }
 
-export const DECKS: Record<DeckType, Deck> = {
+// Der Type sorgt dafür, dass jedes Deck ein label und eine Kartenliste hat
+export const DECKS: { fibonacci: Deck; tshirt: Deck } = {
   fibonacci: {
     label: 'Fibonacci',
     cards: ['0', '1', '2', '3', '5', '8', '13', '21', '?', '☕'],
@@ -25,8 +25,11 @@ export const DECKS: Record<DeckType, Deck> = {
   },
 }
 
-// T-shirt sizes have no numeric value, so we map them onto Fibonacci-like
-// numbers to be able to calculate an average.
+// Alle Decks als Liste: für die Auswahl im Client und die Prüfung im Server
+export const DECK_TYPES: DeckType[] = ['fibonacci', 'tshirt']
+
+// T-Shirt-Grössen haben keinen Zahlenwert. Damit wir trotzdem einen Durchschnitt
+// rechnen können, bekommt jede Grösse eine Zahl ähnlich wie bei Fibonacci.
 export const TSHIRT_VALUES: Record<string, number> = {
   XS: 1,
   S: 2,
@@ -35,18 +38,31 @@ export const TSHIRT_VALUES: Record<string, number> = {
   XL: 8,
 }
 
+// Name
+
 export const MAX_NAME_LENGTH = 30
 
-// ---------------------------------------------------------------------------
-// Session state as the client sees it
-// ---------------------------------------------------------------------------
+// Gibt die Fehlermeldung zurück, oder null, wenn der Name gültig ist.
+// Leerzeichen am Anfang und Ende zählen nicht ("  Anna " ist gültig, "   " nicht).
+export function validateName(name: string): string | null {
+  const trimmedName = name.trim()
+  if (trimmedName === '') {
+    return 'Bitte gib deinen Namen ein.'
+  }
+  if (trimmedName.length > MAX_NAME_LENGTH) {
+    return `Der Name darf höchstens ${MAX_NAME_LENGTH} Zeichen lang sein.`
+  }
+  return null
+}
+
+// Zustand einer Session, so wie der Client ihn sieht
 
 export interface Participant {
   id: string
   name: string
   hasVoted: boolean
-  // Only set after the cards are revealed. Before that it is null, except for
-  // your own vote (GET with ?participantId=… and the response to your vote)
+  // Vor dem Aufdecken immer null, ausser bei der eigenen Stimme.
+  // Erst nach dem Aufdecken sehen alle die Karten.
   vote: CardValue | null
 }
 
@@ -57,89 +73,85 @@ export interface SessionState {
   participants: Participant[]
 }
 
+// Ein Eintrag in der Session-Liste auf der Home-Seite
 export interface SessionSummary {
   id: string
   participantCount: number
-  // ISO 8601 date string, because JSON has no date type
+  // Datum als Text (ISO 8601), weil JSON keinen Datumstyp kennt
   createdAt: string
 }
 
-// ---------------------------------------------------------------------------
-// Requests and responses of the REST API
-// ---------------------------------------------------------------------------
+// Bodies der REST-API (nur die mit eigener Form; sonst wird SessionState geschickt)
 
-// GET /api/sessions
-export type ListSessionsResponse = SessionSummary[]
-
-// POST /api/sessions
+// Antwort auf POST /api/sessions
 export interface CreateSessionResponse {
   id: string
 }
 
-// GET /api/sessions/:sessionId
-export type GetSessionResponse = SessionState
-
-// POST /api/sessions/:sessionId/participants
+// Body von POST /api/sessions/:sessionId/participants
 export interface JoinSessionRequest {
   name: string
+  // Gespeicherte ID nach einem Reload: kennt der Server sie noch, geht es mit ihr weiter.
+  // null oder weggelassen = neu beitreten
+  participantId?: string | null
 }
+
+// Antwort auf POST /api/sessions/:sessionId/participants
 export interface JoinSessionResponse {
   participantId: string
 }
 
-// PUT /api/sessions/:sessionId/participants/:participantId/vote
+// Body von PUT /api/sessions/:sessionId/participants/:participantId/vote
 export interface CastVoteRequest {
-  // null takes the vote back
+  // null zieht die Stimme zurück
   value: CardValue | null
 }
-export type CastVoteResponse = SessionState
 
-// PUT /api/sessions/:sessionId/deck
+// Body von PUT /api/sessions/:sessionId/deck
 export interface ChangeDeckRequest {
   deck: DeckType
 }
-export type ChangeDeckResponse = SessionState
 
-// POST /api/sessions/:sessionId/reveal
-export type RevealCardsResponse = SessionState
-
-// POST /api/sessions/:sessionId/reset
-export type ResetRoundResponse = SessionState
-
-// Body of every error response (4xx and 5xx)
-export interface ApiErrorBody {
+// Body jeder Fehlerantwort (4xx und 5xx)
+export interface ErrorResponse {
   error: string
 }
 
-// ---------------------------------------------------------------------------
-// Result of a round
-// ---------------------------------------------------------------------------
+// Ergebnis einer Runde
 
 export interface RoundResult {
-  // null if nobody voted with a numeric card
+  // null, wenn niemand eine Karte mit Zahlenwert gewählt hat
   average: number | null
-  // Text to display, e.g. "4.5" or "M"
+  // Text für die Anzeige, z. B. "4.5" oder "M"
   averageLabel: string | null
   consensus: boolean
   voteCount: number
 }
 
+// Zahlenwert einer Karte, oder null, wenn die Karte keine Zahl ist ("?", "☕")
 function toNumber(card: CardValue, deck: DeckType): number | null {
   if (deck === 'tshirt') {
-    return TSHIRT_VALUES[card] ?? null
+    const value = TSHIRT_VALUES[card]
+    if (value === undefined) {
+      return null
+    }
+    return value
   }
-  // "?" and "☕" are not numbers and therefore do not count
   const value = Number(card)
-  return Number.isNaN(value) ? null : value
+  if (Number.isNaN(value)) {
+    return null
+  }
+  return value
 }
 
-function closestTshirtSize(value: number): string {
+// Sucht die T-Shirt-Grösse, deren Zahl am nächsten beim Durchschnitt liegt
+function closestTshirtSize(average: number): string {
   let bestSize = 'XS'
   let bestDistance = Infinity
-  for (const [size, sizeValue] of Object.entries(TSHIRT_VALUES)) {
-    const distance = Math.abs(sizeValue - value)
-    // "<=" picks the bigger size on a tie (e.g. 4 lies between M=3 and L=5).
-    // When estimating, rounding up is the safer choice.
+  for (const size in TSHIRT_VALUES) {
+    const distance = Math.abs(TSHIRT_VALUES[size] - average)
+    // "<=" nimmt bei Gleichstand die grössere Grösse (4 liegt genau zwischen M=3 und L=5).
+    // Beim Schätzen ist Aufrunden die sicherere Wahl.
     if (distance <= bestDistance) {
       bestSize = size
       bestDistance = distance
@@ -148,21 +160,36 @@ function closestTshirtSize(value: number): string {
   return bestSize
 }
 
+// Berechnet Durchschnitt und Konsens aus den Stimmen einer aufgedeckten Runde
 export function computeResult(votes: CardValue[], deck: DeckType): RoundResult {
-  const numbers = votes
-    .map((vote) => toNumber(vote, deck))
-    .filter((value) => value !== null)
+  // Konsens: mindestens zwei Stimmen, und alle sind gleich
+  let consensus = votes.length >= 2
+  for (const vote of votes) {
+    if (vote !== votes[0]) {
+      consensus = false
+    }
+  }
 
-  const consensus = votes.length >= 2 && votes.every((vote) => vote === votes[0])
+  // Nur Karten mit Zahlenwert zählen für den Durchschnitt
+  let sum = 0
+  let numberCount = 0
+  for (const vote of votes) {
+    const value = toNumber(vote, deck)
+    if (value !== null) {
+      sum = sum + value
+      numberCount = numberCount + 1
+    }
+  }
 
-  if (numbers.length === 0) {
+  if (numberCount === 0) {
     return { average: null, averageLabel: null, consensus, voteCount: votes.length }
   }
 
-  const sum = numbers.reduce((total, value) => total + value, 0)
-  // Round to one decimal place, e.g. 4.333 -> 4.3
-  const average = Math.round((sum / numbers.length) * 10) / 10
-  const averageLabel = deck === 'tshirt' ? closestTshirtSize(average) : String(average)
-
+  // Auf eine Nachkommastelle runden, z. B. 4.333 -> 4.3
+  const average = Math.round((sum / numberCount) * 10) / 10
+  let averageLabel = String(average)
+  if (deck === 'tshirt') {
+    averageLabel = closestTshirtSize(average)
+  }
   return { average, averageLabel, consensus, voteCount: votes.length }
 }

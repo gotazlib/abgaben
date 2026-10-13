@@ -1,5 +1,25 @@
+// Tests für die gemeinsamen Funktionen in index.ts: validateName() und computeResult().
+
 import { describe, expect, it } from 'vitest'
-import { computeResult } from './index'
+import { MAX_NAME_LENGTH, computeResult, validateName } from './index'
+
+describe('validateName', () => {
+  it('accepts a normal name', () => {
+    expect(validateName('Anna')).toBeNull()
+  })
+
+  it('rejects an empty name and a name with only spaces', () => {
+    expect(validateName('')).toBe('Bitte gib deinen Namen ein.')
+    expect(validateName('   ')).toBe('Bitte gib deinen Namen ein.')
+  })
+
+  it('ignores spaces at the start and end when checking the length', () => {
+    expect(validateName(` ${'a'.repeat(MAX_NAME_LENGTH)} `)).toBeNull()
+    expect(validateName('a'.repeat(MAX_NAME_LENGTH + 1))).toBe(
+      'Der Name darf höchstens 30 Zeichen lang sein.',
+    )
+  })
+})
 
 describe('computeResult', () => {
   it('calculates the average of a Fibonacci round', () => {
@@ -18,7 +38,7 @@ describe('computeResult', () => {
   })
 
   it('maps T-shirt sizes to numbers and back to the closest size', () => {
-    // S=2, L=5 -> 3.5 -> closest size is M (3)
+    // S=2, L=5 -> 3.5 -> nächste Grösse ist M (3)
     const result = computeResult(['S', 'L'], 'tshirt')
 
     expect(result.average).toBe(3.5)
@@ -26,7 +46,7 @@ describe('computeResult', () => {
   })
 
   it('rounds up to the bigger T-shirt size on a tie', () => {
-    // M=3, L=5 -> 4 lies exactly between M and L
+    // M=3, L=5 -> 4 liegt genau zwischen M und L
     expect(computeResult(['M', 'L'], 'tshirt').averageLabel).toBe('L')
   })
 
