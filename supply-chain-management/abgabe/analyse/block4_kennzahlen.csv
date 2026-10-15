@@ -1,0 +1,38 @@
+Kennzahl,Wert
+Picks pro Jahr,14000000.0
+Manntage Hochleistungssystem,28000.0
+Personal Soll Kommissionierung,100.0
+Picks pro Person und Tag (Ist),83.33333333333333
+Personalfreisetzung Kommissionierung,500.0
+"Lagerumschlag Lager 2 Ist, Spanne von",12.999999999999998
+"Lagerumschlag Lager 2 Ist, Spanne bis",25.999999999999996
+Lagerumschlag Lager 2 Soll (3 AT),93.33333333333333
+Lagerumschlag Supermarkt Ziel (1 AT),280.0
+"Bestandsabbau Lager 2 auf 3 AT, von",0.7214285714285715
+"Bestandsabbau Lager 2 auf 3 AT, bis",0.8607142857142858
+Gesamtumschlag Ziel bei -30 % Bestand,5.0
+Gesamtumschlag Ziel bei -40 % Bestand,5.833333333333334
+Steigerung Gesamtumschlag bei -30 % Bestand,0.4285714285714286
+Steigerung Gesamtumschlag bei -40 % Bestand,0.6666666666666667
+"Materialvorlauf Ist ab Lager 1, von (AT)",12.76923076923077
+"Materialvorlauf Ist ab Lager 1, bis (AT)",23.53846153846154
+"Verkürzung Material-DLZ auf 1 AT, von",0.9216867469879518
+"Verkürzung Material-DLZ auf 1 AT, bis",0.9575163398692811
+Rohmaterialien (bereinigt),23643.0
+Stück pro Jahr laut Summenzeile,14747833023.301401
+Bestellungen gesamt,62692.0
+A: Positionen,902.0
+A: Anteil Positionen,0.03815082688322125
+A: Anteil Wert,0.6999218133535368
+A: Anteil Stück,0.0005894234079180047
+A: Anteil Bestellungen,0.05541376890193326
+B: Positionen,2161.0
+B: Anteil Positionen,0.09140126041534492
+B: Anteil Wert,0.20005719156828652
+B: Anteil Stück,0.0010663977531581378
+B: Anteil Bestellungen,0.06771198877049703
+C: Positionen,20580.0
+C: Anteil Positionen,0.8704479127014338
+C: Anteil Wert,0.10002099507818082
+C: Anteil Stück,0.9983441788389239
+C: Anteil Bestellungen,0.8768742423275697

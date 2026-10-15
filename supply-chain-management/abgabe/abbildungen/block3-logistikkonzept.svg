@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820"
+ font-family="Liberation Sans, Arial, sans-serif">
+<rect width="1400" height="820" fill="white"/>
+<polygon points="60,230 700,40 1340,230" fill="#1F4E79"/>
+<text x="700" y="135" text-anchor="middle" font-size="26" font-weight="bold" fill="white">Leitbild «Fluss statt Bestand»</text>
+<text x="700" y="170" text-anchor="middle" font-size="16" font-weight="normal" fill="white">Bestandspotenzial 30–40 %  ·  Liefertreue ≥ 95 %  ·  Lieferzeit auf Wettbewerbsniveau</text>
+<text x="700" y="198" text-anchor="middle" font-size="16" font-weight="normal" fill="white">Kosten und Personal senken durch Automatisierung und Make-or-Buy</text>
+<rect x="70" y="250" width="236" height="300" rx="8" fill="#DEEAF6" stroke="#1F4E79" stroke-width="2"/>
+<text x="188.0" y="285" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">Pull-Steuerung</text>
+<text x="188.0" y="310" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">(Kanban)</text>
+<text x="188.0" y="370" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">X-Teile und SFG</text>
+<text x="188.0" y="410" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">Supermärkte ≤ 1 AT</text>
+<text x="188.0" y="450" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">rollierend für Y/Z</text>
+<text x="188.0" y="490" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">APO nur Grobplanung</text>
+<rect x="327" y="250" width="236" height="300" rx="8" fill="#DEEAF6" stroke="#1F4E79" stroke-width="2"/>
+<text x="445.0" y="285" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">Segmentierte</text>
+<text x="445.0" y="310" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">Fertigung</text>
+<text x="445.0" y="370" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">Inseln (SFG)</text>
+<text x="445.0" y="410" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">Takt (Endgeräte)</text>
+<text x="445.0" y="450" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">MtO-Zelle (Anlagen)</text>
+<text x="445.0" y="490" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">CODP: SFG-Supermarkt</text>
+<rect x="584" y="250" width="236" height="300" rx="8" fill="#DEEAF6" stroke="#1F4E79" stroke-width="2"/>
+<text x="702.0" y="285" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">Einstufige</text>
+<text x="702.0" y="310" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">Bereitstellung</text>
+<text x="702.0" y="370" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">1 Zentrallager</text>
+<text x="702.0" y="410" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">Milkrun</text>
+<text x="702.0" y="450" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">C-Teile lokal direkt</text>
+<text x="702.0" y="490" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">Lager 2 entfällt</text>
+<rect x="841" y="250" width="236" height="300" rx="8" fill="#DEEAF6" stroke="#1F4E79" stroke-width="2"/>
+<text x="959.0" y="285" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">Automatisierung</text>
+<text x="959.0" y="310" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">mit Augenmass</text>
+<text x="959.0" y="370" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">Ware-zur-Person</text>
+<text x="959.0" y="410" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">AKL/HRL, Taktlinie</text>
+<text x="959.0" y="450" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">manuell, wo Varianten</text>
+<text x="959.0" y="490" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">Flexibilität brauchen</text>
+<rect x="1098" y="250" width="236" height="300" rx="8" fill="#DEEAF6" stroke="#1F4E79" stroke-width="2"/>
+<text x="1216.0" y="285" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">Partnernetz</text>
+<text x="1216.0" y="310" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">(Make-or-Buy)</text>
+<text x="1216.0" y="370" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">C-Teile-Management</text>
+<text x="1216.0" y="410" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">3PL Zoll/Transport</text>
+<text x="1216.0" y="450" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">Kit-Kanban, dann</text>
+<text x="1216.0" y="490" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">Modular Sourcing</text>
+<rect x="70" y="575" width="298" height="105" rx="8" fill="#E2EFDA" stroke="#548235" stroke-width="2"/>
+<text x="219.0" y="607" text-anchor="middle" font-size="17" font-weight="bold" fill="#548235">Standardisierung</text>
+<text x="219.0" y="639" text-anchor="middle" font-size="14.5" font-weight="normal" fill="#1b1b1b">Behälter, Regelkreise, Arbeitsplätze</text>
+<rect x="392" y="575" width="298" height="105" rx="8" fill="#E2EFDA" stroke="#548235" stroke-width="2"/>
+<text x="541.0" y="607" text-anchor="middle" font-size="17" font-weight="bold" fill="#548235">Daten und EDI</text>
+<text x="541.0" y="639" text-anchor="middle" font-size="14.5" font-weight="normal" fill="#1b1b1b">≈ 96 % der Positionen EDI-fähig</text>
+<rect x="714" y="575" width="298" height="105" rx="8" fill="#E2EFDA" stroke="#548235" stroke-width="2"/>
+<text x="863.0" y="607" text-anchor="middle" font-size="17" font-weight="bold" fill="#548235">Qualität und KVP</text>
+<text x="863.0" y="639" text-anchor="middle" font-size="14.5" font-weight="normal" fill="#1b1b1b">QSV, Poka-Yoke, Kaizen</text>
+<rect x="1036" y="575" width="298" height="105" rx="8" fill="#E2EFDA" stroke="#548235" stroke-width="2"/>
+<text x="1185.0" y="607" text-anchor="middle" font-size="17" font-weight="bold" fill="#548235">Kennzahlen-Cockpit</text>
+<text x="1185.0" y="639" text-anchor="middle" font-size="14.5" font-weight="normal" fill="#1b1b1b">Umschlag, Reichweite, DLZ, Liefertreue</text>
+<rect x="60" y="700" width="1280" height="56" rx="6" fill="#F2F2F2" stroke="#7F7F7F"/>
+<text x="700" y="735" text-anchor="middle" font-size="15" font-weight="normal" fill="#333">Umsetzung in drei Phasen (Roadmap im Gesamtkonzept) · Risiken: Kanban-Störanfälligkeit, Lieferantenabhängigkeit, Importroute</text>
+<text x="700" y="795" text-anchor="middle" font-size="15" font-weight="bold" fill="#C55A11">Lean (Endgeräte) · reaktiv (Anlagenbau) · agil über modulare Standard-SFG</text>
+</svg>

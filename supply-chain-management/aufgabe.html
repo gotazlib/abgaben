@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de-CH" xml:lang="de-CH">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aufgabe und Bewertung – Leistungsnachweis Supply Chain Management</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">body { font-family: system-ui, 'Segoe UI', Arial, sans-serif; max-width: 52rem; margin: 0 auto; padding: 1.5rem 1rem; line-height: 1.6; color: #1f2333; background: #f5f6fa; }
+h1, h2 { color: #1F4E79; }
+h2 { border-bottom: 2px solid #1F4E79; padding-bottom: 0.2rem; }
+a { color: #1F4E79; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; background: #fff; font-size: 0.95rem; }
+th, td { border: 1px solid #c8ccd8; padding: 0.4rem 0.6rem; vertical-align: top; text-align: left; }
+th { background: #e8edf5; }
+header#title-block-header { display: none; }
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aufgabe und Bewertung – Leistungsnachweis Supply Chain
+Management</h1>
+</header>
+<h1 id="aufgabe-und-bewertung">Aufgabe und Bewertung</h1>
+<p>Leistungsnachweis im Fach <strong>Supply Chain Management</strong> an
+der HWZ Hochschule für Wirtschaft Zürich (Dozent Michael Fuchs). Diese
+Seite fasst die Fallstudie, den Auftrag und die Bewertungskriterien
+<strong>in eigenen Worten</strong> zusammen, damit die veröffentlichte
+Arbeit nachvollziehbar ist. Die Originalunterlagen (Fallstudie,
+Beurteilungsraster, Kursskript, Rohdaten) sind urheberrechtlich
+geschützt und darum nicht veröffentlicht.</p>
+<p><em>Nach: HWZ, Fallstudie Grofu AG V3.0 / Beurteilungsraster SCM,
+Dozent Michael Fuchs.</em></p>
+<p>Zur Arbeit selbst: <a href="index.html">Übersicht Supply Chain
+Management</a>.</p>
+<h2 id="die-fallstudie-grofu-ag-in-kürze">1 Die Fallstudie Grofu AG in
+Kürze</h2>
+<p><strong>Unternehmen.</strong> Die Grofu AG ist ein international
+tätiger Konzern, der in über 50 Ländern Infrastruktur baut, vor allem
+Anlagen für Solartechnik sowie Energie- und Datenübertragung. Über
+übernommene Zulieferer fertigt er elektronische Komponenten selbst. Die
+Tochter <em>Grofu AG Indien Ltd.</em> (mehrere Tausend Mitarbeitende,
+über 1 Mrd. $ Umsatz pro Jahr) produziert im Norden Indiens, rund 218 km
+von der pakistanischen Grenze entfernt, Systemkomponenten für Anlagen in
+Indien und vor allem im Nahen Osten. Weil das bisherige Werk an seine
+Kapazitätsgrenze stiess, baut das indische Management ein neues Werk –
+allerdings hat es zuerst gebaut und erst danach mit der Prozessplanung
+begonnen. Die Holding verlangt nun ein Konzept für die Inbound-Logistik
+und danach eine Potenzialanalyse der weltweiten Distribution. Kunden
+fordern schnellere und pünktlichere Lieferungen, mehr Flexibilität und
+bessere Kommunikation; der Preisvorteil der Fertigung in Indien genügt
+nicht mehr.</p>
+<p><strong>Materialfluss heute.</strong></p>
+<ul>
+<li>Materialstufen: Rohmaterial (RM) → Halbfabrikate/Komponenten (SFG) →
+Fertigprodukte (FG). SFG werden auf Lager produziert (Make-to-Stock),
+geplant mit SAP APO auf Basis des jährlichen Verkaufsbudgets und von
+Vergangenheitsdaten.</li>
+<li>Aus Kapazitätsgründen kauft Grofu zusätzlich SFG und FG bei anderen
+Herstellern in Indien zu. Outsourcing-Partner erhalten kommissionierte
+Rohmaterial-Lose, montieren vor und liefern Komponenten zurück.</li>
+<li><strong>Lager 1:</strong> automatisches Rohwarenlager mit 12 000
+Palettenplätzen und 30 000 Behältern.</li>
+<li><strong>Lager 2:</strong> Produktionslager vor der Fertigung;
+gedacht für 3 Tage Bedarf, tatsächlich liegt dort Material für mehrere
+Wochen. Nachschub aus Lager 1 wird 3 Tage vor der Produktion disponiert
+(Push), braucht etwa 2 Arbeitstage und fährt per täglichem
+LKW-Shuttle.</li>
+<li><strong>Lager 3:</strong> Zukaufteile für den Versand; laut Auftrag
+bei der Materialflussplanung nicht zu berücksichtigen.</li>
+<li><strong>Lager 4 (Karatschi, Pakistan):</strong> Importware wird am
+nächstgelegenen Seehafen zwischengelagert, konsolidiert und nach der
+Zollabwicklung an Lager 1 geliefert – rund 400 Sendungen pro Tag. Die
+Zollanmeldung und die eigentliche Verzollung lassen sich trennen, etwa
+über ein Zollfreilager (Bonded Warehouse), aus dem erst bei der Entnahme
+verzollt wird. Die Grenzformalitäten zwischen den beiden Ländern gelten
+als äusserst komplex.</li>
+</ul>
+<p><strong>Kennzahlen und Ziele der Holding.</strong></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Thema</th>
+<th>Ausgangslage / Ziel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bestände</td>
+<td>Senkungspotenzial ca. 30–40 %</td>
+</tr>
+<tr>
+<td>Lieferzeit</td>
+<td>heute ca. 30–50 % länger als beim Wettbewerb; Materialfluss deutlich
+beschleunigen</td>
+</tr>
+<tr>
+<td>Kosten</td>
+<td>spürbare Kostensenkung inkl. Personalabbau, möglichst viel
+automatisieren; Investitionen pauschal budgetiert</td>
+</tr>
+<tr>
+<td>Kommissionierung</td>
+<td>14 Mrd. Teile bzw. 14 Mio. Picks pro Jahr; mit Hochleistungssystemen
+(500 Picks pro Person und Schicht, 280 Arbeitstage) wären ca. 100
+Personen nötig, heute sind es 600</td>
+</tr>
+<tr>
+<td>Liefertreue Anlagenbau</td>
+<td>55 % (schon ein Tag Verzug kostet viel, Konventionalstrafen)</td>
+</tr>
+<tr>
+<td>Frachtkosten OEM-Geschäft</td>
+<td>Luftfracht zu den 4 Distributionszentren der Kunden; entspricht 84 %
+des Nettogewinns im Segment</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Strategische Vorgaben.</strong></p>
+<ol type="1">
+<li>Das neue Werk wird ein eigenständiges Unternehmen und «eigener
+Zulieferer» für Teile mit schützenswertem Know-how oder hohem
+Schwierigkeitsgrad – geschätzt rund 30 % der heute produzierten
+Teile.</li>
+<li>Die Inbound-Prozesse werden nach LEAN gestaltet: wenig Handling,
+kurze Wege, keine Verschwendung von Fläche, Zeit und Personal, weniger
+Lieferantenkontakte und Administration, platz- und zeitsparende Technik,
+Standardisierung.</li>
+<li>Prozesse ohne Wertschöpfung oder ausserhalb der Kernkompetenz werden
+mit einer Make-or-Buy-Analyse kritisch geprüft.</li>
+<li>Für die weltweite Distribution ist eine Potenzialmatrix zu
+erstellen, die Distributionswege je Markt nach Lieferzeit, Kosten,
+Flexibilität und Supply-Chain-Risiken bewertet. Ist-Daten dazu gibt es
+bewusst keine.</li>
+</ol>
+<p><strong>Kundensegmente.</strong> (1) Anlagenbau im Projektgeschäft:
+sehr kundenspezifisch, auftragsbezogene Fertigung, Luftfracht zum
+Montageort, Durchlaufzeit erfolgskritisch. (2) Endgeräte unter eigenem
+Label für den Fachhandel weltweit, stark standardisiert. (3) Endgeräte
+als OEM für zwei weltweit tätige Elektronikkonzerne.</p>
+<p>Zur Fallstudie gehören ausserdem Daten für eine ABC-Analyse des
+Rohmaterials (Wertanteile, Lieferanten, Bestellungen, EDI-Fähigkeit,
+Stückzahlen, Herkunft lokal/Übersee). Die Auswertung dazu ist Teil der
+Arbeit (Ordner <code>abgabe/analyse/</code>).</p>
+<h2 id="auftrag">2 Auftrag</h2>
+<p>Verlangt ist eine <strong>kursbegleitende, praxisorientierte
+Zusammenfassung</strong> mit zwei Teilen: einer persönlichen Reflexion
+der Kursinhalte (eigene Erkenntnisse) und dem Transfer auf die
+Fallstudie Grofu in vier Blöcken.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Block</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 – Supply Chain</td>
+<td>Den gesamten Materialfluss mit SCM-Ansätzen und -Methoden neu denken
+und optimieren, ohne sich in Details zu verlieren.</td>
+</tr>
+<tr>
+<td>2 – Operative Beschaffung</td>
+<td>Konkrete Beiträge der Beschaffung zu tiefen Beschaffungskosten,
+Qualitätssicherung, hohem Servicegrad und geringem Kapitalbedarf.</td>
+</tr>
+<tr>
+<td>3 – Produktionslogistik</td>
+<td>Soll-Zustand entwerfen, passende Produktionsform/Fertigungsart
+wählen und als Flussdiagramm darstellen; Massnahmen gegen Verschwendung
+sowie für Qualität, Servicegrad und geringen Kapitalbedarf;
+Logistikstrategie bzw. -konzept beschreiben.</td>
+</tr>
+<tr>
+<td>4 – Lagerlogistik</td>
+<td>Ausgangslage, Soll-Zustand und Massnahmen, um den Lagerumschlag zu
+erhöhen, die Lagerfläche zu verkleinern und die Durchlaufzeit zu
+verkürzen; Kennzahlen, mit denen sich die Verbesserung messen
+lässt.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Formale Anforderungen.</strong></p>
+<ul>
+<li>Umfang als Richtwert 15–20 A4-Seiten, ohne Verzeichnisse und
+Anhang.</li>
+<li>Quellen vollständig angeben, Zitate nach den Zitierrichtlinien der
+HWZ kennzeichnen.</li>
+<li>Erlaubte Hilfsmittel: Kursunterlagen, Online-Recherche,
+Fachliteratur und KI-Werkzeuge (deren Einsatz ist offenzulegen).</li>
+<li>Einzel- oder Gruppenarbeit mit höchstens drei Personen.</li>
+<li>Abgabe als PDF an den Dozenten innerhalb von zwei Wochen nach
+Kursende.</li>
+</ul>
+<h2 id="bewertungskriterien">3 Bewertungskriterien</h2>
+<p>Bewertet wird mit maximal <strong>75 Leistungspunkten (LLP)</strong>:
+25 für die Dokumentation, 50 für den fachlichen Inhalt. Die Leitfragen
+sind hier sinngemäss und gekürzt wiedergegeben.</p>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr>
+<th>Nr.</th>
+<th>Kriterium</th>
+<th>Leitfrage (sinngemäss)</th>
+<th style="text-align: right;">max. LLP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1</td>
+<td>Argumentation und Dokumentation</td>
+<td>Sind Argumente und Begründungen lückenlos und leicht
+nachvollziehbar, und sind alle verlangten Punkte behandelt?</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>Vor- und Nachteile</td>
+<td>Werden Vor- und Nachteile logisch hergeleitet – im besten Fall mit
+neuen Ansätzen und Erkenntnissen statt nur Standardargumenten?</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td>1.3</td>
+<td>Darstellung</td>
+<td>Sind Aufbau und Abbildungen übersichtlich, nach gängigen Standards
+gestaltet und klar auf den Text bezogen?</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>Sprache</td>
+<td>Ist die Arbeit verständlich und korrekt geschrieben, mit passenden
+Fachbegriffen?</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td>2.1</td>
+<td>Lösungsansätze</td>
+<td>Sind die Lösungsansätze offen und neuartig, aus mehreren
+Blickwinkeln verglichen und mit eigenen Analyseergebnissen
+verknüpft?</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>Entscheidungen</td>
+<td>Stützen sich Entscheide auf genügend Fakten, werden Auswirkungen
+sowie Vor- und Nachteile abgewogen, ohne das Ergebnis
+vorwegzunehmen?</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td>2.3</td>
+<td>Gehalt und Richtigkeit</td>
+<td>Sind die Lösungen realistisch und inhaltlich gehaltvoll?</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr>
+<td>2.4</td>
+<td>Argumentation</td>
+<td>Entwickelt die Arbeit einen eigenen Standpunkt auf aktuellem
+Wissensstand, und ist sie schlüssig und widerspruchsfrei?</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Total</strong></td>
+<td></td>
+<td style="text-align: right;"><strong>75</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Zusammenfassung und Kriterientabelle sind eigene Formulierungen
+nach: HWZ, Fallstudie Grofu AG V3.0 / Beurteilungsraster SCM, Dozent
+Michael Fuchs. Massgeblich sind allein die Originalunterlagen.</em></p>
+</body>
+</html>

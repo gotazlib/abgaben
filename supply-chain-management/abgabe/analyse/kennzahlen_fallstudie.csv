@@ -1,0 +1,34 @@
+Bereich;Kennzahl;Wert;Einheit;Berechnung;Quelle
+Kommissionierung;Picks pro Jahr;14000000.0;Picks;14 Mrd. Teile / 1'000;Fallstudie S. 6
+Kommissionierung;Picks pro Arbeitstag;50000.0;Picks/AT;Picks / 280 AT;eigene Berechnung
+Kommissionierung;Manntage Soll;28000.0;Manntage;Picks / 500 Picks je Person und Tag;Fallstudie S. 6
+Kommissionierung;Personalbedarf Soll;100.0;Personen;Manntage / 280 AT;Fallstudie S. 6
+Kommissionierung;Personal Ist;600;Personen;-;Fallstudie S. 6
+Kommissionierung;Leistung Ist;83.333;Picks/Person/Tag;Picks / (600 × 280);eigene Berechnung
+Kommissionierung;Produktivitätsfaktor Soll/Ist;6.0;Faktor;500 / Leistung Ist;eigene Berechnung
+Kommissionierung;Personalreduktion;500.0;Personen;600 − 100;eigene Berechnung
+Kommissionierung;Personalreduktion relativ;0.833;Anteil;1 − 100 / 600;eigene Berechnung
+Kommissionierung;Personalbedarf Soll mit Datei-Stückzahl;105.342;Personen;14.75 Mrd. / 1'000 / 500 / 280;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Kommissionierung;Anteil C-Teile an der Stückzahl (≈ Pickvolumen);0.998;Anteil;Stück C / Stück total;Daten-ABC-Analyse-Grofu.xls
+Lager 2;Reichweite Ist bei 2 Wochen (Annahme);10.769;AT;2 × 280/52;Annahme A1 zu «mehrere Produktionswochen» (Fallstudie S. 3)
+Lager 2;Bestandssenkung Lager 2 auf Soll bei 2 Wochen;0.721;Anteil;1 − 3 AT / Reichweite Ist;eigene Berechnung
+Lager 2;Umschlagshäufigkeit Ist bei 2 Wochen;26.0;pro Jahr;280 AT / Reichweite Ist;eigene Berechnung
+Lager 2;Reichweite Ist bei 4 Wochen (Annahme);21.538;AT;4 × 280/52;Annahme A1 zu «mehrere Produktionswochen» (Fallstudie S. 3)
+Lager 2;Bestandssenkung Lager 2 auf Soll bei 4 Wochen;0.861;Anteil;1 − 3 AT / Reichweite Ist;eigene Berechnung
+Lager 2;Umschlagshäufigkeit Ist bei 4 Wochen;13.0;pro Jahr;280 AT / Reichweite Ist;eigene Berechnung
+Lager 2;Umschlagshäufigkeit Soll;93.333;pro Jahr;280 AT / 3 AT;eigene Berechnung
+Lager 2;Puffer nach Ankunft in Lager 2;1;AT;3 AT Vorlauf − 2 AT Umlagerung;Fallstudie S. 3, eigene Berechnung
+Lager 2;Anteil Umlagerungszeit am Soll-Vorlauf;0.667;Anteil;2 AT / 3 AT;eigene Berechnung
+Lager 4;Sendungen pro Jahr (280 AT, Annahme Betriebstage);112000;Sendungen;400 × 280;Fallstudie S. 4, Annahme A22
+Lager 4;Sendungen je Overseas-Bestellung (280 AT);7.707;Sendungen/Bestellung;Sendungen p. a. / 14'533;Fallstudie S. 4 + Daten, Annahme A22
+Lager 4;Sendungen pro Jahr (365 Tage, Annahme Betriebstage);146000;Sendungen;400 × 365;Fallstudie S. 4, Annahme A22
+Lager 4;Sendungen je Overseas-Bestellung (365 Tage);10.046;Sendungen/Bestellung;Sendungen p. a. / 14'533;Fallstudie S. 4 + Daten, Annahme A22
+Lager 1;Kapazität Paletten / Behälter;12000 / 30000;Plätze;-;Fallstudie S. 3
+Service;Verspätete Lieferungen;0.45;Anteil;1 − 55 %;Fallstudie S. 6
+Service;Nötige Lieferzeitverkürzung bei 30 % über Wettbewerb;0.231;Anteil;1 − 1/1.3;Fallstudie S. 5, eigene Berechnung
+Service;Nötige Lieferzeitverkürzung bei 50 % über Wettbewerb;0.333;Anteil;1 − 1/1.5;Fallstudie S. 5, eigene Berechnung
+Distribution;Frachtkosten in % des Nettogewinns (OEM);0.84;Anteil;-;Fallstudie S. 7
+Distribution;Ergebnis vor Frachtkosten je 1 Einheit Nettogewinn (OEM);1.84;Faktor;1 + 0.84;eigene Berechnung
+Distribution;Gewinnhebel: Gewinnsteigerung bei 10 % Frachtkostensenkung;0.084;Anteil;10 % × 84 %;eigene Berechnung
+Bestand;Zielbestand nach Senkung um 30 %;0.7;Anteil von Ist;1 − 0.3;Fallstudie S. 5
+Bestand;Zielbestand nach Senkung um 40 %;0.6;Anteil von Ist;1 − 0.4;Fallstudie S. 5

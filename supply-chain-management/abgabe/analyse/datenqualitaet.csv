@@ -1,0 +1,16 @@
+Prüfung;Ergebnis;Bewertung
+Datensätze Rohmaterial (nach Bereinigung);23 643;Grundgesamtheit
+Fehlende Werte in Datenspalten;0;keine
+Doppelte Materialnummern;0;keine
+Summe der Wertanteile;1.000000;= 1, vollständig
+Sortierung absteigend nach Wertanteil;True;ja, Voraussetzung ABC erfüllt
+Materialien mit Wertanteil 0;6;Rundung/Kleinstwerte, bleiben in Klasse C
+Abweichung eigene ABC-Klasse vs. Datei;0;Klassen der Datei reproduziert
+Stückzahl p. a.: Median / Maximum;1 100 / 1 059 452 816;stark rechtsschief (Kleinteile in Grossmengen)
+Ausreisser Stückzahl > 100 Mio. p. a.;22;plausibel (Kleinstteile), nicht entfernt
+Bestellungen p. a.: Median / Maximum;2 / 141;Maximum 141 bei einem C-Teil: plausibel, nicht entfernt
+Lieferanten im RM-Blatt / im Lieferantenblatt;601 / 620;19 Lieferanten nur im Lieferantenblatt
+Lieferanten mit > 5 % Volumenabweichung RM- vs. Lieferantenblatt;591;Blätter beruhen nicht auf identischer Basis (z. B. SFG/FG-Zukauf?)
+Einheit der Wertgrösse;nicht angegeben;Auswertung daher in Wertanteilen (%) statt Geldbeträgen
+Perioden-/Zeitreihendaten;nicht vorhanden;keine XYZ-Analyse möglich
+Bestandsdaten;nicht vorhanden;Bestand nur modellhaft (Losgrössenbestand)

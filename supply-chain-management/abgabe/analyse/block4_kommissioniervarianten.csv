@@ -1,0 +1,4 @@
+Variante,Personalbedarf/Produktivität,Integration in Pull-Steuerung,Kapitalbedarf,Flexibilität (Menge/Varianten),Abhängigkeit/Know-how-Risiko,Nutzwert,Sensitivität gleiche Gewichte
+"K1 Mann-zur-Ware manuell (Ist, Eigenbetrieb)",1,2,5,4,4,2.9,3.2
+"K2 Ware-zur-Person automatisiert, Eigenbetrieb",5,5,2,3,4,4.05,3.8
+"K3 Ware-zur-Person, Betrieb durch 3PL",5,3,4,3,2,3.45,3.4

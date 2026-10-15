@@ -1,0 +1,140 @@
+Bereich;Kennzahl;Wert;Einheit;Berechnung;Quelle
+Daten;Rohmaterialien (RM-Positionen);23643.0;Anzahl;Datenzeilen ohne Summenzeilen;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Daten;Bestellungen p. a. total;62692.0;Anzahl;Summe Spalte Number of Orders;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Daten;Stückzahl p. a. total;14747833023.3014;Stück;Summe Purchased Number of Pieces p.a.;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Daten;Lieferanten im RM-Blatt;601.0;Anzahl;eindeutige Vendor-Nummern;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Daten;Lieferanten im Blatt Vendors + ABC;620.0;Anzahl;Zeilen Lieferantenblatt;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;A: Materialien;902.0;Anzahl;Grenzen 70/90 % kumuliert;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;A: Anteil Materialien;0.0382;Anteil;Materialien / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;A: Wertanteil;0.6999;Anteil;Summe % of Sales;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;A: Anteil Bestellungen;0.0554;Anteil;Bestellungen / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;A: Bestellungen je Material p. a.;3.8514;Anzahl;Bestellungen / Materialien;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;A: Anteil Stückzahl;0.0006;Anteil;Stück / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;A: Lieferanten;41.0;Anzahl;eindeutige Vendor-Nummern;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;B: Materialien;2161.0;Anzahl;Grenzen 70/90 % kumuliert;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;B: Anteil Materialien;0.0914;Anteil;Materialien / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;B: Wertanteil;0.2001;Anteil;Summe % of Sales;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;B: Anteil Bestellungen;0.0677;Anteil;Bestellungen / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;B: Bestellungen je Material p. a.;1.9644;Anzahl;Bestellungen / Materialien;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;B: Anteil Stückzahl;0.0011;Anteil;Stück / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;B: Lieferanten;31.0;Anzahl;eindeutige Vendor-Nummern;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;C: Materialien;20580.0;Anzahl;Grenzen 70/90 % kumuliert;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;C: Anteil Materialien;0.8704;Anteil;Materialien / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;C: Wertanteil;0.1;Anteil;Summe % of Sales;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;C: Anteil Bestellungen;0.8769;Anteil;Bestellungen / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;C: Bestellungen je Material p. a.;2.6712;Anzahl;Bestellungen / Materialien;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;C: Anteil Stückzahl;0.9983;Anteil;Stück / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Material;C: Lieferanten;583.0;Anzahl;eindeutige Vendor-Nummern;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Sensitivität 80/15/5;A: Materialien;1561.0;Anzahl;Grenzen 80/95 % kumuliert;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Sensitivität 80/15/5;B: Materialien;3312.0;Anzahl;Grenzen 80/95 % kumuliert;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Sensitivität 80/15/5;C: Materialien;18770.0;Anzahl;Grenzen 80/95 % kumuliert;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (massgeblich);A: Lieferanten;44.0;Anzahl;Spalte ABC im Blatt Vendors + ABC;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (massgeblich);A: Anteil Lieferanten;0.071;Anteil;n / 620;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (massgeblich);A: Wertanteil;0.6967;Anteil;Sales / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (massgeblich);B: Lieferanten;81.0;Anzahl;Spalte ABC im Blatt Vendors + ABC;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (massgeblich);B: Anteil Lieferanten;0.1306;Anteil;n / 620;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (massgeblich);B: Wertanteil;0.2026;Anteil;Sales / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (massgeblich);C: Lieferanten;495.0;Anzahl;Spalte ABC im Blatt Vendors + ABC;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (massgeblich);C: Anteil Lieferanten;0.7984;Anteil;n / 620;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (massgeblich);C: Wertanteil;0.1007;Anteil;Sales / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (Prüfung RM-Blatt);A: Lieferanten;11.0;Anzahl;Neuberechnung aus RM-Wertanteilen, 70/90 %;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (Prüfung RM-Blatt);A: Wertanteil;0.6822;Anteil;Neuberechnung aus RM-Wertanteilen;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (Prüfung RM-Blatt);B: Lieferanten;19.0;Anzahl;Neuberechnung aus RM-Wertanteilen, 70/90 %;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (Prüfung RM-Blatt);B: Wertanteil;0.2162;Anteil;Neuberechnung aus RM-Wertanteilen;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (Prüfung RM-Blatt);C: Lieferanten;571.0;Anzahl;Neuberechnung aus RM-Wertanteilen, 70/90 %;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (Prüfung RM-Blatt);C: Wertanteil;0.1017;Anteil;Neuberechnung aus RM-Wertanteilen;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Lieferanten;Lieferanten mit nur 1 Materialnummer;118.0;Anzahl;RM-Blatt;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Lieferanten;Lieferanten mit Wertanteil < 0.01 %;450.0;Anzahl;RM-Blatt;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Local: Materialien;18342.0;Anzahl;RM-Blatt, Spalte Origin;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Local: Bestellungen;48159.0;Anzahl;RM-Blatt, Spalte Origin;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Local: Stückzahl;12751193650.3014;Stück;RM-Blatt, Spalte Origin;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Local: Lieferanten;342.0;Anzahl;RM-Blatt, Spalte Origin;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Local: Anteil Materialien;0.7758;Anteil;Anteil am Total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Local: Anteil Einkaufswert;0.9728;Anteil;Anteil am Total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Local: Anteil Bestellungen;0.7682;Anteil;Anteil am Total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Local: Anteil Stückzahl;0.8646;Anteil;Anteil am Total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Local: Anteil Lieferanten;0.5691;Anteil;Anteil am Total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Overseas: Materialien;5301.0;Anzahl;RM-Blatt, Spalte Origin;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Overseas: Bestellungen;14533.0;Anzahl;RM-Blatt, Spalte Origin;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Overseas: Stückzahl;1996639373.0;Stück;RM-Blatt, Spalte Origin;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Overseas: Lieferanten;259.0;Anzahl;RM-Blatt, Spalte Origin;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Overseas: Anteil Materialien;0.2242;Anteil;Anteil am Total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Overseas: Anteil Einkaufswert;0.0272;Anteil;Anteil am Total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Overseas: Anteil Bestellungen;0.2318;Anteil;Anteil am Total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Overseas: Anteil Stückzahl;0.1354;Anteil;Anteil am Total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Overseas: Anteil Lieferanten;0.4309;Anteil;Anteil am Total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Overseas-Materialien in Klasse A;20.0;Anzahl;ABC × Origin;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Herkunft;Overseas-Materialien in Klasse C;5281.0;Anzahl;ABC × Origin;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+EDI;EDI-fähig: Anteil Materialien;0.9598;Anteil;Vendor EDI Ability = Y;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+EDI;EDI-fähig: Anteil Wert;0.9782;Anteil;Vendor EDI Ability = Y;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Bestellhäufigkeit;Materialien mit 1× Bestellungen p. a.;9656.0;Anzahl;Hilfsgrösse statt XYZ;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Bestellhäufigkeit;Materialien mit 2–3× Bestellungen p. a.;9660.0;Anzahl;Hilfsgrösse statt XYZ;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Bestellhäufigkeit;Materialien mit 4–11× Bestellungen p. a.;3914.0;Anzahl;Hilfsgrösse statt XYZ;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Bestellhäufigkeit;Materialien mit ≥ 12× Bestellungen p. a.;413.0;Anzahl;Hilfsgrösse statt XYZ;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Bestandsmodell;A: Losgrössenbestand Ist;0.1902;Anteil Jahresvolumen;Σ Wertanteil / (2 × Bestellungen);Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;A: Reichweite Ist;76.0985;AT;Bestand / Wert × 280 AT;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;A: Umschlag Ist;3.6794;pro Jahr;Wert / Bestand;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;A: Reichweite Soll (A ≥ 24, B ≥ 12 Abrufe);5.833;AT;wie Ist mit Soll-Abrufen;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;A: Umschlag Soll;48.0031;pro Jahr;Wert / Bestand Soll;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;A: Senkung Losgrössenbestand;0.9233;Anteil;1 − Soll/Ist;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;B: Losgrössenbestand Ist;0.0676;Anteil Jahresvolumen;Σ Wertanteil / (2 × Bestellungen);Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;B: Reichweite Ist;94.5603;AT;Bestand / Wert × 280 AT;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;B: Umschlag Ist;2.9611;pro Jahr;Wert / Bestand;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;B: Reichweite Soll (A ≥ 24, B ≥ 12 Abrufe);11.6575;AT;wie Ist mit Soll-Abrufen;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;B: Umschlag Soll;24.0189;pro Jahr;Wert / Bestand Soll;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;B: Senkung Losgrössenbestand;0.8767;Anteil;1 − Soll/Ist;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;C: Losgrössenbestand Ist;0.0254;Anteil Jahresvolumen;Σ Wertanteil / (2 × Bestellungen);Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;C: Reichweite Ist;71.1207;AT;Bestand / Wert × 280 AT;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;C: Umschlag Ist;3.937;pro Jahr;Wert / Bestand;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;C: Reichweite Soll (A ≥ 24, B ≥ 12 Abrufe);71.1207;AT;wie Ist mit Soll-Abrufen;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;C: Umschlag Soll;3.937;pro Jahr;Wert / Bestand Soll;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;C: Senkung Losgrössenbestand;0.0;Anteil;1 − Soll/Ist;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;Total: Losgrössenbestand Ist;0.2832;Anteil Jahresvolumen;Σ Wertanteil / (2 × Bestellungen);Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;Total: Reichweite Ist;79.294;AT;Bestand / Wert × 280 AT;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;Total: Umschlag Ist;3.5312;pro Jahr;Wert / Bestand;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;Total: Reichweite Soll (A ≥ 24, B ≥ 12 Abrufe);13.5283;AT;wie Ist mit Soll-Abrufen;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;Total: Umschlag Soll;20.6973;pro Jahr;Wert / Bestand Soll;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;Total: Senkung Losgrössenbestand;0.8294;Anteil;1 − Soll/Ist;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;A: Anteil am Losgrössenbestand Ist;0.6717;Anteil;Bestand A / Bestand total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;Senkung Losgrössenbestand konservativ (A 12 / B 6);0.7497;Anteil;1 − Soll/Ist;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;Senkung Gesamtbestand, konservativ (A 12 / B 6), Losgrössenanteil 30 %;0.2249;Anteil;Losgrössenanteil × Senkung Losgrössenbestand;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahmen A20/A21
+Bestandsmodell;Senkung Gesamtbestand, Szenario (A 24 / B 12), Losgrössenanteil 30 %;0.2488;Anteil;Losgrössenanteil × Senkung Losgrössenbestand;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahmen A20/A21
+Bestandsmodell;Senkung Gesamtbestand, konservativ (A 12 / B 6), Losgrössenanteil 40 %;0.2999;Anteil;Losgrössenanteil × Senkung Losgrössenbestand;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahmen A20/A21
+Bestandsmodell;Senkung Gesamtbestand, Szenario (A 24 / B 12), Losgrössenanteil 40 %;0.3318;Anteil;Losgrössenanteil × Senkung Losgrössenbestand;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahmen A20/A21
+Bestandsmodell;Senkung Gesamtbestand, konservativ (A 12 / B 6), Losgrössenanteil 50 %;0.3749;Anteil;Losgrössenanteil × Senkung Losgrössenbestand;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahmen A20/A21
+Bestandsmodell;Senkung Gesamtbestand, Szenario (A 24 / B 12), Losgrössenanteil 50 %;0.4147;Anteil;Losgrössenanteil × Senkung Losgrössenbestand;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahmen A20/A21
+Bestandsmodell;Senkung Gesamtbestand, konservativ (A 12 / B 6), Losgrössenanteil 60 %;0.4498;Anteil;Losgrössenanteil × Senkung Losgrössenbestand;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahmen A20/A21
+Bestandsmodell;Senkung Gesamtbestand, Szenario (A 24 / B 12), Losgrössenanteil 60 %;0.4976;Anteil;Losgrössenanteil × Senkung Losgrössenbestand;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahmen A20/A21
+Kommissionierung;Picks pro Jahr;14000000.0;Picks;14 Mrd. Teile / 1'000;HWZ, o. J., S. 6
+Kommissionierung;Picks pro Arbeitstag;50000.0;Picks/AT;Picks / 280 AT;eigene Berechnung
+Kommissionierung;Manntage Soll;28000.0;Manntage;Picks / 500 Picks je Person und Tag;HWZ, o. J., S. 6
+Kommissionierung;Personalbedarf Soll;100.0;Personen;Manntage / 280 AT;HWZ, o. J., S. 6
+Kommissionierung;Personal Ist;600;Personen;-;HWZ, o. J., S. 6
+Kommissionierung;Leistung Ist;83.333;Picks/Person/Tag;Picks / (600 × 280);eigene Berechnung
+Kommissionierung;Produktivitätsfaktor Soll/Ist;6.0;Faktor;500 / Leistung Ist;eigene Berechnung
+Kommissionierung;Personalreduktion;500.0;Personen;600 − 100;eigene Berechnung
+Kommissionierung;Personalreduktion relativ;0.833;Anteil;1 − 100 / 600;eigene Berechnung
+Kommissionierung;Personalbedarf Soll mit Datei-Stückzahl;105.342;Personen;14.75 Mrd. / 1'000 / 500 / 280;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+Kommissionierung;Anteil C-Teile an der Stückzahl (≈ Pickvolumen);0.998;Anteil;Stück C / Stück total;Daten-ABC-Analyse-Grofu.xls
+Lager 2;Reichweite Ist bei 2 Wochen (Annahme);10.769;AT;2 × 280/52;Annahme A1 zu «mehrere Produktionswochen» (HWZ, o. J., S. 3)
+Lager 2;Bestandssenkung Lager 2 auf Soll bei 2 Wochen;0.721;Anteil;1 − 3 AT / Reichweite Ist;eigene Berechnung
+Lager 2;Umschlagshäufigkeit Ist bei 2 Wochen;26.0;pro Jahr;280 AT / Reichweite Ist;eigene Berechnung
+Lager 2;Reichweite Ist bei 4 Wochen (Annahme);21.538;AT;4 × 280/52;Annahme A1 zu «mehrere Produktionswochen» (HWZ, o. J., S. 3)
+Lager 2;Bestandssenkung Lager 2 auf Soll bei 4 Wochen;0.861;Anteil;1 − 3 AT / Reichweite Ist;eigene Berechnung
+Lager 2;Umschlagshäufigkeit Ist bei 4 Wochen;13.0;pro Jahr;280 AT / Reichweite Ist;eigene Berechnung
+Lager 2;Umschlagshäufigkeit Soll;93.333;pro Jahr;280 AT / 3 AT;eigene Berechnung
+Lager 2;Puffer nach Ankunft in Lager 2;1;AT;3 AT Vorlauf − 2 AT Umlagerung;HWZ, o. J., S. 3, eigene Berechnung
+Lager 2;Anteil Umlagerungszeit am Soll-Vorlauf;0.667;Anteil;2 AT / 3 AT;eigene Berechnung
+Lager 4;Sendungen pro Jahr (280 AT, Annahme Betriebstage);112000;Sendungen;400 × 280;HWZ, o. J., S. 4, Annahme A22
+Lager 4;Sendungen je Overseas-Bestellung (280 AT);7.707;Sendungen/Bestellung;Sendungen p. a. / 14'533;HWZ, o. J., S. 4 + Daten, Annahme A22
+Lager 4;Sendungen pro Jahr (365 Tage, Annahme Betriebstage);146000;Sendungen;400 × 365;HWZ, o. J., S. 4, Annahme A22
+Lager 4;Sendungen je Overseas-Bestellung (365 Tage);10.046;Sendungen/Bestellung;Sendungen p. a. / 14'533;HWZ, o. J., S. 4 + Daten, Annahme A22
+Lager 1;Kapazität Paletten / Behälter;12000 / 30000;Plätze;-;HWZ, o. J., S. 3
+Service;Verspätete Lieferungen;0.45;Anteil;1 − 55 %;HWZ, o. J., S. 6
+Service;Nötige Lieferzeitverkürzung bei 30 % über Wettbewerb;0.231;Anteil;1 − 1/1.3;HWZ, o. J., S. 5, eigene Berechnung
+Service;Nötige Lieferzeitverkürzung bei 50 % über Wettbewerb;0.333;Anteil;1 − 1/1.5;HWZ, o. J., S. 5, eigene Berechnung
+Distribution;Frachtkosten in % des Nettogewinns (OEM);0.84;Anteil;-;HWZ, o. J., S. 7
+Distribution;Ergebnis vor Frachtkosten je 1 Einheit Nettogewinn (OEM);1.84;Faktor;1 + 0.84;eigene Berechnung
+Distribution;Gewinnhebel: Gewinnsteigerung bei 10 % Frachtkostensenkung;0.084;Anteil;10 % × 84 %;eigene Berechnung
+Bestand;Zielbestand nach Senkung um 30 %;0.7;Anteil von Ist;1 − 0.3;HWZ, o. J., S. 5
+Bestand;Zielbestand nach Senkung um 40 %;0.6;Anteil von Ist;1 − 0.4;HWZ, o. J., S. 5

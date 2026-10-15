@@ -1,0 +1,4 @@
+Variante,Bestand/Lagerumschlag,Fläche,Durchlaufzeit,Versorgungssicherheit,Investition/Umsetzung,Nutzwert,Sensitivität gleiche Gewichte
+"L1 Zweistufig, Lager 2 auf Soll begrenzt",2,2,2,4,5,2.75,3.0
+L2 Einstufig: Zentrallager + Supermarkt,5,5,5,4,3,4.55,4.4
+L3 Fremdlager/3PL für Lager 1,3,4,3,2,2,2.9,2.8

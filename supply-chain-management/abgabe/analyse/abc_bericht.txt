@@ -1,0 +1,82 @@
+ABC-Analyse Grofu AG – Bericht (erzeugt von analyse/abc_analyse.py)
+
+1. Datenbeschreibung
+Datei: Daten-ABC-Analyse-Grofu.xls
+Blätter: 'RM + ABC' (Rohmaterialien), 'Vendors + ABC' (Lieferanten), 'Tabelle3' (leer)
+Spalten RM: Materialnr., Wertanteil ('% of Sales'), kumuliert, ABC, Lieferant, Lieferanten-ABC, Bestellungen p. a., EDI-Fähigkeit, Stück p. a., Herkunft
+Materialarten: nur Rohmaterial (RM); SFG/FG und Lagerort sind nicht enthalten.
+Klassengrenzen-Tabelle in der Datei (kumuliert): [[0.7, 'A'], [0.9, 'B']]
+Entfernte Summen-/Leerzeilen am Ende des Blatts 'RM + ABC': 4
+  - {'rm': 23644.0, 'abc_datei': 'C', 'stueck': 14747833023.301401, 'herkunft': 18342}
+  - {'rm': 23645.0, 'abc_datei': 'C', 'herkunft': 'Local'}
+  - {'rm': 23646.0, 'abc_datei': 'C'}
+  - {'bestellungen': 141.0}
+
+2. Datenqualität
+- Datensätze Rohmaterial (nach Bereinigung): 23 643 (Grundgesamtheit)
+- Fehlende Werte in Datenspalten: 0 (keine)
+- Doppelte Materialnummern: 0 (keine)
+- Summe der Wertanteile: 1.000000 (= 1, vollständig)
+- Sortierung absteigend nach Wertanteil: True (ja, Voraussetzung ABC erfüllt)
+- Materialien mit Wertanteil 0: 6 (Rundung/Kleinstwerte, bleiben in Klasse C)
+- Abweichung eigene ABC-Klasse vs. Datei: 0 (Klassen der Datei reproduziert)
+- Stückzahl p. a.: Median / Maximum: 1 100 / 1 059 452 816 (stark rechtsschief (Kleinteile in Grossmengen))
+- Ausreisser Stückzahl > 100 Mio. p. a.: 22 (plausibel (Kleinstteile), nicht entfernt)
+- Bestellungen p. a.: Median / Maximum: 2 / 141 (Maximum 141 bei einem C-Teil: plausibel, nicht entfernt)
+- Lieferanten im RM-Blatt / im Lieferantenblatt: 601 / 620 (19 Lieferanten nur im Lieferantenblatt)
+- Lieferanten mit > 5 % Volumenabweichung RM- vs. Lieferantenblatt: 591 (Blätter beruhen nicht auf identischer Basis (z. B. SFG/FG-Zukauf?))
+- Einheit der Wertgrösse: nicht angegeben (Auswertung daher in Wertanteilen (%) statt Geldbeträgen)
+- Perioden-/Zeitreihendaten: nicht vorhanden (keine XYZ-Analyse möglich)
+- Bestandsdaten: nicht vorhanden (Bestand nur modellhaft (Losgrössenbestand))
+
+3. ABC-Analyse Rohmaterial (Grenzen 70/20/10 % des Wertes)
+- A: 902 Materialien (3,8 %), Wert 70,0 %, Bestellungen 3 474 (5,5 %), Ø 3.85 Bestellungen/Material, Stück 0.009 Mrd. (0,06 %), Lieferanten 41, Overseas-Materialien 20
+- B: 2 161 Materialien (9,1 %), Wert 20,0 %, Bestellungen 4 245 (6,8 %), Ø 1.96 Bestellungen/Material, Stück 0.016 Mrd. (0,11 %), Lieferanten 31, Overseas-Materialien 0
+- C: 20 580 Materialien (87,0 %), Wert 10,0 %, Bestellungen 54 973 (87,7 %), Ø 2.67 Bestellungen/Material, Stück 14.723 Mrd. (99,83 %), Lieferanten 583, Overseas-Materialien 5281
+- Total: 23 643 Materialien (100,0 %), Wert 100,0 %, Bestellungen 62 692 (100,0 %), Ø 2.65 Bestellungen/Material, Stück 14.748 Mrd. (100,00 %), Lieferanten 601, Overseas-Materialien 5301
+Sensitivität 80/15/5: A 1 561 (6,6 %), B 3 312 (14,0 %), C 18 770 (79,4 %)
+
+4. Herkunft (Local = Indien, Overseas = Import über Lager 4 Karatschi)
+- Local: Materialien 18 342(77,6 %), Einkaufswert (97,3 %), Bestellungen 48 159(76,8 %), Stückzahl 12 751 193 650(86,5 %), Lieferanten 342(56,9 %)
+- Overseas: Materialien 5 301(22,4 %), Einkaufswert (2,7 %), Bestellungen 14 533(23,2 %), Stückzahl 1 996 639 373(13,5 %), Lieferanten 259(43,1 %)
+- Overseas-Materialien nach Klasse: {'A': 20, 'B': 0, 'C': 5281}
+- EDI-fähige Lieferanten: 96,0 % der Materialien, 97,8 % des Wertes
+
+5. Lieferanten-ABC – Neuberechnung aus RM-Daten (nur Plausibilitätsprüfung, 70/20/10)
+- A: 11 Lieferanten (1,8 %), Wert 68,2 %, Materialien 4 107, Bestellungen 13 708
+- B: 19 Lieferanten (3,2 %), Wert 21,6 %, Materialien 2 056, Bestellungen 5 088
+- C: 571 Lieferanten (95,0 %), Wert 10,2 %, Materialien 17 480, Bestellungen 43 896
+- Lieferanten mit nur 1 Materialnummer: 118; mit Wertanteil < 0.01 %: 450
+- MASSGEBLICH im Text: Blatt 'Vendors + ABC' (620 Lieferanten): Anzahl {'A': 44, 'B': 81, 'C': 495}, Wertanteil {'A': 0.697, 'B': 0.203, 'C': 0.101}
+- Overseas-Lieferanten: 259 von 601
+
+6. ABC × Bestellhäufigkeit p. a. (Hilfsgrösse, keine XYZ-Analyse)
+Materialien:
+freq    1×  2–3×  4–11×  ≥ 12×
+abc                           
+A      217   314    345     26
+B      998   964    191      8
+C     8441  8382   3378    379
+Wertanteil:
+freq      1×    2–3×   4–11×   ≥ 12×
+abc                                 
+A     0.2359  0.2441  0.1946  0.0253
+B     0.0883  0.0921  0.0186  0.0010
+C     0.0278  0.0413  0.0293  0.0016
+
+7. Bestandsmodell (Losgrössenbestand = Jahreswert / (2 × Anlieferungen); Soll: A mind. 24, B mind. 12 Anlieferungen p. a., C unverändert)
+- A: Bestand Ist 19,02 % des Jahresvolumens (Anteil am Gesamtbestand 67,2 %), Reichweite Ist 76 AT -> Soll 6 AT, Umschlag 3.7 -> 48.0, Senkung 92,3 %
+- B: Bestand Ist 6,76 % des Jahresvolumens (Anteil am Gesamtbestand 23,9 %), Reichweite Ist 95 AT -> Soll 12 AT, Umschlag 3.0 -> 24.0, Senkung 87,7 %
+- C: Bestand Ist 2,54 % des Jahresvolumens (Anteil am Gesamtbestand 9,0 %), Reichweite Ist 71 AT -> Soll 71 AT, Umschlag 3.9 -> 3.9, Senkung 0,0 %
+- Total: Bestand Ist 28,32 % des Jahresvolumens (Anteil am Gesamtbestand 100,0 %), Reichweite Ist 79 AT -> Soll 14 AT, Umschlag 3.5 -> 20.7, Senkung 82,9 %
+- Variante A 12 / B 6: Senkung 75,0 %
+- Variante A 52 / B 12: Senkung 85,7 %
+- Variante A 24 / B 12 / C 4: Senkung 87,9 %
+- Senkung des GESAMTbestands (Annahme: Anteil Losgrössenbestand am Gesamtbestand):
+                                                    konservativ (A 12 / B 6) Szenario (A 24 / B 12)
+Anteil Losgrössenbestand am Gesamtbestand (Annahme)                                                
+30 %                                                                    22 %                   25 %
+40 %                                                                    30 %                   33 %
+50 %                                                                    37 %                   41 %
+60 %                                                                    45 %                   50 %
+
