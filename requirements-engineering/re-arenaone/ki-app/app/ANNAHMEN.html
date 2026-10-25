@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Annahmen und offene Fragen</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="annahmen-und-offene-fragen">Annahmen und offene Fragen</h1>
+<p>Grundlage: Anforderungsspezifikation ArenaOne v0.5. Die Spezifikation
+führt viele Werte selbst als Annahme (<code>A</code>) oder Simulation
+(<code>S</code>). Diese Werte (PA-01 bis PA-10) habe ich unverändert
+übernommen und hier <strong>nicht</strong> nochmals als eigene Annahme
+gezählt. Unten stehen nur die Stellen, an denen ich für die Umsetzung
+zusätzlich entscheiden musste.</p>
+<h2 id="a-annahmen-für-die-umsetzung">A. Annahmen für die Umsetzung</h2>
+<table>
+<thead>
+<tr>
+<th>Nr.</th>
+<th>Stelle / ID</th>
+<th>Was war unklar, widersprüchlich oder lückenhaft</th>
+<th>Getroffene Annahme</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A-01</td>
+<td>RB-03, QA-05, QA-07, QA-08, QA-16</td>
+<td>Die Spezifikation ist lösungsneutral; der Auftrag verlangt eine
+statische Browser-App ohne Server. Verfügbarkeit 99,5 %, Lasttest mit
+100 Personen, Verschlüsselung und tägliche Sicherung lassen sich so
+nicht erfüllen.</td>
+<td>Alle Daten liegen in <code>localStorage</code> eines Browsers.
+«Mehrere Sitzungen» = mehrere Tabs desselben Browsers (über das
+<code>storage</code>-Ereignis). QA-16 nur teilweise: HTTPS liefert
+GitHub Pages; Sicherung als manueller JSON-Download/-Upload. QA-05/07/08
+nicht prüfbar.</td>
+</tr>
+<tr>
+<td>A-02</td>
+<td>FA-21, FA-22, FA-14, FA-23, FA-35</td>
+<td>Kein Mailserver und kein SMS-Dienst in einer statischen App.</td>
+<td>Versand wird simuliert: jede Nachricht landet im Postausgang (Seite
+«Nachrichten»). Kundschaft sieht ihre eigenen, Empfang/GL alle.</td>
+</tr>
+<tr>
+<td>A-03</td>
+<td>QA-14</td>
+<td>Zweiter Faktor für Mitarbeitende verlangt, aber kein Verfahren
+genannt. Passwortregeln nur für Mitarbeitende genannt.</td>
+<td>Simulierter Einmalcode, der bei der Anmeldung als «SMS» angezeigt
+wird. Mitarbeitende ≥ 12 Zeichen, Kundschaft ≥ 8 Zeichen (eigene
+Festlegung). Passwörter liegen in der Demo im Klartext im Browser –
+keine echte Sicherheit.</td>
+</tr>
+<tr>
+<td>A-04</td>
+<td>FA-06, Glossar «Mehrzweckhalle», OP-13</td>
+<td>Ob Hallen geteilt werden, ist offen. Das Glossar sagt nur «ganze
+Halle reserviert = alle Hallenteile belegt». Ob umgekehrt ein Hallenteil
+die ganze Halle blockiert, steht nicht da.</td>
+<td>Mehrzweckhalle 1 hat drei Hallenteile (A, B, C), Mehrzweckhalle 2
+ist ungeteilt. Die Sperre gilt in beide Richtungen: Ist ein Teil belegt,
+kann die ganze Halle nicht reserviert werden. Hallenteile untereinander
+kollidieren nicht. Sperrzeiten und Kontingente wirken genauso.</td>
+</tr>
+<tr>
+<td>A-05</td>
+<td>FA-01, PA-01</td>
+<td>«Zeitfenster» ist ein Raster von 30 Minuten mit mindestens 60
+Minuten Dauer. Was die Verfügbarkeit genau als «freies Zeitfenster»
+zeigt, ist nicht festgelegt.</td>
+<td>Angezeigt wird jeder Beginn im 30-Minuten-Raster, ab dem mindestens
+60 Minuten frei sind. Die Dauer wählt man beim Reservieren. Belegte
+Zeitfenster bleiben sichtbar (durchgestrichen), damit man sich auf die
+Warteliste setzen kann. Anonyme Besucher sehen keine Namen.</td>
+</tr>
+<tr>
+<td>A-06</td>
+<td>FA-01, Glossar</td>
+<td>Sportart «Mehrzweckhalle» ist keine Sportart. Welche Sportarten in
+den Hallen gespielt werden, ist offen.</td>
+<td>Für Filter und Auswertung gilt «Mehrzweckhalle» als eigene Kategorie
+neben Padel, Tennis und Badminton.</td>
+</tr>
+<tr>
+<td>A-07</td>
+<td>OP-01, Kapitel 2.1</td>
+<td>Anzahl Anlagen unbekannt.</td>
+<td>Demo-Anlagen: 3 Padel-, 3 Tennis- und 4 Badmintonplätze,
+Mehrzweckhalle 1 mit 3 Hallenteilen, Mehrzweckhalle 2. Öffnungszeiten
+aus PA-08 gelten als reservierbare Zeiten (FA-32).</td>
+</tr>
+<tr>
+<td>A-08</td>
+<td>FA-27 vs. QA-13</td>
+<td>FA-27 erlaubt «Empfang und Betrieb der Anlage» das Sperren; die
+Matrix QA-13 kennt keine Rolle «Betrieb», nur Empfang und GL.</td>
+<td>Zusätzliche Rolle «Betrieb der Anlage», die nur Sperrzeiten erfassen
+und aufheben darf. GL darf ebenfalls sperren (Matrix).</td>
+</tr>
+<tr>
+<td>A-09</td>
+<td>QA-13, Zeile «Verfügbarkeit sehen»</td>
+<td>Die Administration darf laut Matrix die Verfügbarkeit nicht sehen,
+nach QA-14 darf sie aber jede Person ohne Anmeldung sehen.</td>
+<td>Matrix wörtlich umgesetzt: Angemeldete Administratorinnen erhalten
+«Keine Berechtigung». Nach dem Abmelden ist die Seite sichtbar.
+Widerspruch als Frage F-08 notiert.</td>
+</tr>
+<tr>
+<td>A-10</td>
+<td>QA-13, Zeile «Gesamtbelegung», OP-08</td>
+<td>«Trainer: nur eigene Gruppen» – nicht definiert, welche Gruppen
+einem Trainer gehören.</td>
+<td>Ein Trainer wird als berechtigte Person einer Kundin der Gruppe
+«Trainingsgruppe» zugeordnet (wie FA-08). In der Gesamtbelegung sieht er
+alle Belegungen, Namen und Details aber nur bei seinen eigenen
+Gruppen.</td>
+</tr>
+<tr>
+<td>A-11</td>
+<td>FA-07, QA-13</td>
+<td>Wer Kundenkonten anlegt und bearbeitet, steht nicht in der
+Matrix.</td>
+<td>Empfang und GL verwalten Kundenkonten. Kundschaft kann ihre eigenen
+Kontaktdaten ändern, die Kundengruppe nicht. Privatkundschaft kann sich
+online registrieren (mit Datenschutzhinweis, RB-01 Art. 19). Vereine,
+Firmen und Trainingsgruppen erfasst der Empfang.</td>
+</tr>
+<tr>
+<td>A-12</td>
+<td>FA-25, Kapitel 7.3</td>
+<td>Die maximale Dauer einer Reservation ist eine Regelart von FA-25,
+aber in 7.3 fehlt ein Wert.</td>
+<td>Privat 120 Min., Verein 240 Min., Firma 480 Min. (Anlässe),
+Trainingsgruppe 180 Min. Die GL kann die Werte ändern.</td>
+</tr>
+<tr>
+<td>A-13</td>
+<td>FA-05, FA-11, FA-25</td>
+<td>Ob die Buchungsregeln auch für den Empfang gelten, wenn er im
+Auftrag reserviert, ist offen.</td>
+<td>Regeln gelten auch am Empfang. Der Empfang darf eine
+Kundengruppenregel mit Häkchen bewusst übersteuern; das wird im Verlauf
+protokolliert. Nie übersteuerbar: Doppelbuchung, Vergangenheit,
+Öffnungszeit, Raster, deaktivierte Anlage.</td>
+</tr>
+<tr>
+<td>A-14</td>
+<td>FA-25, PA-02, FA-16</td>
+<td>Buchungsvorlauf Verein 90 Tage, Serien gehen aber über eine Saison
+(Beispiel FA-16: 20.08. bis 30.06.).</td>
+<td>Der Buchungsvorlauf gilt nur für Einzelreservationen. Für Serien
+gelten maximale Dauer und reservierbare Anlagen; den Rest kontrolliert
+die Bestätigung durch den Empfang. «Gleichzeitig offene
+Einzelreservationen» zählt Serientermine nicht.</td>
+</tr>
+<tr>
+<td>A-15</td>
+<td>UC-05, FA-16</td>
+<td>Für welche Kundengruppen Serien möglich sind, ist nicht ganz klar
+(Vorbedingung nennt Verein/Firma, FA-16 auch Trainer).</td>
+<td>Serien sind für Kundenkonten mit Organisationsnamen möglich (Verein,
+Firma, Trainingsgruppe). Beantragen dürfen ihre berechtigten Personen
+und der Empfang (für alle).</td>
+</tr>
+<tr>
+<td>A-16</td>
+<td>FA-18</td>
+<td>«Ganz bestätigen» bei vorhandenen Konflikten würde Doppelbuchungen
+erzeugen und FA-06 verletzen.</td>
+<td>«Ganz bestätigen» ist nur möglich, wenn es keinen Konflikttermin
+gibt; sonst nur «ohne Konflikttermine» oder Ablehnen. Termine in der
+Vergangenheit und ausserhalb der Öffnungszeit zählen als Konflikt und
+werden ausgelassen.</td>
+</tr>
+<tr>
+<td>A-17</td>
+<td>FA-26 vs. PA-10</td>
+<td>Das Akzeptanzbeispiel von FA-26 («Mo–Fr 18–21 Uhr» = 15 von 25
+Abendstunden = 60 %) verstösst gegen PA-10 (höchstens 50 %).</td>
+<td>PA-10 wird als harte Grenze für Kontingente umgesetzt. Das Beispiel
+aus FA-26 wird deshalb abgelehnt. Das Demo-Kontingent ist Mo–Do 18–21
+Uhr (48 %), wie im Glossar-Beispiel. Berechnung je Anlage über die
+Werktage Mo–Fr, 17–22 Uhr, Überlappungen nur einmal gezählt.</td>
+</tr>
+<tr>
+<td>A-18</td>
+<td>PA-10 «für Kontingente und Serien»</td>
+<td>Wie die Grenze bei Serien wirkt, steht nicht in FA-18.</td>
+<td>Bei Serien nur eine Warnung im Antrag («über dem Höchstanteil,
+Entscheid GL»), keine Sperre, weil die GL laut S-06/OP-09 neue
+Abendzeiten selbst steuert.</td>
+</tr>
+<tr>
+<td>A-19</td>
+<td>FA-26</td>
+<td>Wer in einem Kontingent reservieren darf.</td>
+<td>Im Kontingentband dürfen nur Kundinnen der berechtigten Gruppe
+reservieren (einzeln und als Serie). Andere sehen die Zeit als
+«Kontingent anderer Gruppe». Anonym gilt jedes Kontingent als nicht
+frei.</td>
+</tr>
+<tr>
+<td>A-20</td>
+<td>FA-12, FA-14, FA-15, PA-05</td>
+<td>Ist das Zeitfenster während der Annahmefrist für alle frei oder für
+die Warteliste reserviert? Was ist bei unterschiedlich langen
+Wünschen?</td>
+<td>Während der Annahmefrist (30 Min., höchstens bis Beginn) ist das
+Zeitfenster nur für die benachrichtigten Personen reservierbar; danach
+wieder für alle frei. Benachrichtigt werden Einträge, deren gewünschter
+Zeitraum nach der Freigabe vollständig frei ist. Wer zuerst bestätigt,
+erhält die Zeit; alle anderen überlappenden Einträge werden geschlossen
+und informiert. Einträge verfallen bei Beginn.</td>
+</tr>
+<tr>
+<td>A-21</td>
+<td>FA-10, FA-11, Glossar «kurzfristige Stornierung»</td>
+<td>Ob Stornierungen durch den Empfang nach der Frist und Stornierungen
+wegen einer Sperrzeit «kurzfristig» zählen.</td>
+<td>Nach Ablauf der Stornofrist ist jede Stornierung kurzfristig, auch
+am Empfang. Ausnahme: Stornierungen wegen einer Sperrzeit (durch
+ArenaOne) sind nie kurzfristig. Gebühren werden nicht berechnet (OP-05,
+WO-01).</td>
+</tr>
+<tr>
+<td>A-22</td>
+<td>FA-09, FA-19</td>
+<td>Gilt die Stornofrist auch fürs Verschieben von Serienterminen durch
+Vereine?</td>
+<td>Ja, für alle Kundenrollen gilt dieselbe Frist; nach Ablauf
+verschiebt nur der Empfang. Stornieren geht bis zum Beginn.</td>
+</tr>
+<tr>
+<td>A-23</td>
+<td>FA-22</td>
+<td>Erinnerung «wenn noch die Erinnerungsfrist verbleibt» – auch bei
+Reservationen, die erst kurz vor Beginn erfasst werden?</td>
+<td>Keine Erinnerung, wenn die Reservation erst innerhalb der
+Erinnerungsfrist entsteht. Nach dem Verschieben wird neu geprüft.
+Organisationen können Erinnerungen für Serientermine abschalten (Häkchen
+im Kundenkonto).</td>
+</tr>
+<tr>
+<td>A-24</td>
+<td>FA-28</td>
+<td>Was «verschieben» bei einer Sperrzeit konkret bedeutet.</td>
+<td>Für jede betroffene Reservation schlägt das System freie
+Alternativen am selben Tag vor (gleiche Sportart, gleiche Zeit oder
+gleiche Anlage, andere Zeit), ohne Kundengruppenregeln. Ohne Alternative
+bleibt nur «stornieren».</td>
+</tr>
+<tr>
+<td>A-25</td>
+<td>FA-29</td>
+<td>Wie Hallenteile in die Auslastung eingehen; nach welchem Datum
+Stornierungen gezählt werden (FA-30).</td>
+<td>Eine Anlage gilt als belegt, wenn sie selbst oder die zugehörige
+ganze Halle bzw. ein Hallenteil reserviert ist; Summen je Sportart
+zählen Halle und Teile deshalb mehrfach. Zeitraumfilter nach Datum des
+reservierten Termins, nicht nach Stornierungszeitpunkt. «Je
+Kundengruppe» = Anteil an der gesamten reservierbaren Zeit. Deaktivierte
+Anlagen zählen nur, wenn sie im Zeitraum Reservationen haben.</td>
+</tr>
+<tr>
+<td>A-26</td>
+<td>QA-11 vs. QA-15</td>
+<td>Verlaufseinträge sind unveränderlich (QA-15), Konten müssen aber
+gelöscht werden (QA-11).</td>
+<td>Beim Löschen werden Reservationen anonymisiert, Wartelisten und
+Nachrichten gelöscht und reine Kundenlogins entfernt. Im Protokoll wird
+nur der Benutzername durch «gelöschtes Konto» ersetzt (Ausnahme von
+QA-15). Der «nächtliche Lauf» startet beim ersten Aufruf der App an
+einem neuen Tag, zusätzlich manuell. Konten mit laufender Serie werden
+nicht gelöscht.</td>
+</tr>
+<tr>
+<td>A-27</td>
+<td>QA-15</td>
+<td>Wo der Verlauf einsehbar ist, sagt die Spezifikation nicht.</td>
+<td>Verlauf je Reservation im Detail (Empfang, GL, eigene Kundschaft)
+und Gesamtprotokoll für GL und Administration. An- und Abmeldungen sowie
+Regeländerungen werden ebenfalls protokolliert.</td>
+</tr>
+<tr>
+<td>A-28</td>
+<td>FA-34, OP-15</td>
+<td>Format der alten Listen unbekannt.</td>
+<td>Übernahme als CSV-Text (Semikolon) mit den Spalten
+<code>typ;anlage;datum;letzter_termin;beginn;ende;kunde;organisation;kundengruppe;email;telefon</code>.
+Probelauf vorher; Konflikte und fehlerhafte Zeilen als Liste und CSV,
+nichts überschrieben. Übernommene Serien gelten als bestätigt;
+Buchungsregeln werden nicht geprüft; es werden keine Bestätigungen
+versandt.</td>
+</tr>
+<tr>
+<td>A-29</td>
+<td>FA-33</td>
+<td>Ob man sich selbst Rollen entziehen darf.</td>
+<td>Die Administration kann sich die Rolle «Administration» nicht selbst
+entziehen (damit es immer eine Administration gibt).</td>
+</tr>
+<tr>
+<td>A-30</td>
+<td>FA-08</td>
+<td>Wer die berechtigten Personen einer Organisation festlegt.</td>
+<td>Empfang/GL im Kundenkonto (Liste der Logins mit Kundenrolle) oder
+die Administration in der Benutzerverwaltung.</td>
+</tr>
+<tr>
+<td>A-31</td>
+<td>QA-12</td>
+<td>Format der Auskunft.</td>
+<td>Download als JSON und als CSV; die Erstellung wird
+protokolliert.</td>
+</tr>
+<tr>
+<td>A-32</td>
+<td>Demo-Daten</td>
+<td>Für den ersten Start braucht es Beispieldaten; Gruppe 2 hat keine
+Zahlen genannt (OP-01).</td>
+<td>Erfundene Kundschaft und rund 35 Tage Vergangenheit bis 13 Tage
+Zukunft mit zufälliger, aber reproduzierbarer Belegung; drei bestätigte
+Serien, ein offener Serienantrag mit zwei Konflikten, zwei Sperrzeiten,
+ein Kontingent, ein Wartelisteneintrag, ein inaktives Konto für den
+Löschlauf. Eine Seite «Hilfe» erlaubt das Zurücksetzen der Demo.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="b-fragen-an-die-auftraggeberin">B. Fragen an die
+Auftraggeberin</h2>
+<table>
+<thead>
+<tr>
+<th>Nr.</th>
+<th>Bezug</th>
+<th>Frage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F-01</td>
+<td>OP-02, FA-04</td>
+<td>Soll Self-Service (Online-Reservation) zum Start dabei sein? Die App
+enthält ihn, er lässt sich aber nicht abschalten.</td>
+</tr>
+<tr>
+<td>F-02</td>
+<td>OP-13, A-04</td>
+<td>Werden Mehrzweckhallen in Teilen vermietet? Wie viele Teile?
+Blockiert ein belegter Hallenteil die ganze Halle? Liegen
+Badmintonplätze in einer Mehrzweckhalle?</td>
+</tr>
+<tr>
+<td>F-03</td>
+<td>FA-26, PA-10, A-17</td>
+<td>Das Beispiel in FA-26 (Mo–Fr 18–21 Uhr) überschreitet den
+Höchstanteil von 50 %. Was gilt: das Beispiel, die Hälfte oder ein
+Drittel? Gilt die Grenze auch hart für Serien?</td>
+</tr>
+<tr>
+<td>F-04</td>
+<td>A-12</td>
+<td>Wie lange darf eine Reservation je Kundengruppe höchstens
+dauern?</td>
+</tr>
+<tr>
+<td>F-05</td>
+<td>A-13</td>
+<td>Darf der Empfang Buchungsregeln übersteuern (z. B. ein Stammkunde
+ruft für in drei Wochen an)?</td>
+</tr>
+<tr>
+<td>F-06</td>
+<td>A-21, OP-05</td>
+<td>Zählt eine Stornierung durch den Empfang nach der Frist als
+kurzfristig? Gibt es Kulanz für Vereine?</td>
+</tr>
+<tr>
+<td>F-07</td>
+<td>A-20, OP-06</td>
+<td>Soll das freie Zeitfenster während der Annahmefrist für die
+Warteliste reserviert bleiben oder sofort für alle frei sein?</td>
+</tr>
+<tr>
+<td>F-08</td>
+<td>A-09</td>
+<td>Soll die Administration die Verfügbarkeit wirklich nicht sehen,
+obwohl sie ohne Anmeldung öffentlich ist?</td>
+</tr>
+<tr>
+<td>F-09</td>
+<td>A-08</td>
+<td>Gibt es eine Rolle «Betrieb der Anlage» (Hauswart), die nur
+sperrt?</td>
+</tr>
+<tr>
+<td>F-10</td>
+<td>A-26, QA-11/QA-15</td>
+<td>Darf beim Löschen eines Kontos der Name im Änderungsprotokoll
+ersetzt werden, oder muss das Protokoll unverändert bleiben (dann:
+anonymisieren statt löschen)?</td>
+</tr>
+<tr>
+<td>F-11</td>
+<td>A-14</td>
+<td>Gilt der Buchungsvorlauf auch für Serien? Gibt es eine Saison mit
+festen Start- und Enddaten?</td>
+</tr>
+<tr>
+<td>F-12</td>
+<td>A-02, OP-07</td>
+<td>Welche Absenderadresse und welcher SMS-Anbieter sollen verwendet
+werden? Wie werden SMS-Kosten getragen?</td>
+</tr>
+<tr>
+<td>F-13</td>
+<td>A-28, OP-15</td>
+<td>In welcher Form liegen die heutigen Listen vor? Dürfen wir eine
+Beispieldatei sehen?</td>
+</tr>
+<tr>
+<td>F-14</td>
+<td>A-05</td>
+<td>Sollen anonyme Besucher belegte Zeitfenster sehen oder nur die
+freien?</td>
+</tr>
+<tr>
+<td>F-15</td>
+<td>A-01</td>
+<td>Für den Echtbetrieb braucht es einen Server mit gemeinsamer
+Datenbank (QA-05, QA-09, QA-16). Mieten (Buy) oder bauen (Make)?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Anzahl protokollierter Annahmen: 32</strong> (A-01 bis A-32),
+<strong>Fragen: 15</strong> (F-01 bis F-15).</p>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

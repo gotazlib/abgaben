@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>ArenaOne – Requirements Engineering für Gruppe 2</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="arenaone--requirements-engineering-für-gruppe-2">ArenaOne –
+Requirements Engineering für Gruppe 2</h1>
+<p>Gruppenarbeit Requirements Engineering HS26, HWZ Hochschule für
+Wirtschaft Zürich, BWI-A24-5, Dozent Dr. Joachim Steinwendner.
+<strong>Gruppe 9: Görkem Taspinar und Ardian Ibrahimaj</strong> in der
+Rolle als Requirements Engineers für Gruppe 2.</p>
+<p>Auftraggeber ist Gruppe 2 in der Rolle der <strong>ArenaOne
+Sportzentrum AG</strong>, eines fiktiven Sportzentrums im Raum Zürich
+(Padel, Tennis, Badminton, Mehrzweckhallen). Heute laufen Reservationen
+über Telefon, E-Mail, Empfang und interne Listen; gesucht sind die
+Anforderungen an ein zentrales Buchungs- und Belegungssystem.</p>
+<blockquote>
+<p><strong>Stand: Spezifikation v0.6 – Annahmen noch in PVA 5 zu
+validieren.</strong> Das Interview mit Gruppe 2 hat noch nicht
+stattgefunden. Belegt ist nur, was in der Projektvorstellung von Gruppe
+2 steht. Alles andere ist als Annahme (<code>A</code>), Benchmark
+(<code>B</code>) oder <strong>Simulation</strong> (<code>S</code>)
+gekennzeichnet. Das <a href="simuliertes-interview-pva5.html">simulierte
+Interview</a> ist ein Rollenspiel zur Vorbereitung und ersetzt nicht die
+Ermittlung mit Gruppe 2; nichts daraus ist eine Aussage von Gruppe
+2.</p>
+</blockquote>
+<h2 id="abgabe">Abgabe</h2>
+<table>
+<thead>
+<tr>
+<th>Dokument</th>
+<th>Lesen</th>
+<th>Dateien</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Anforderungsspezifikation</strong> (Lastenheft, 35
+funktionale und 16 Qualitätsanforderungen, 9 Use Cases)</td>
+<td><a href="anforderungsspezifikation-arenaone.html">Webseite</a></td>
+<td><a href="anforderungsspezifikation-arenaone.pdf">PDF</a> · <a href="anforderungsspezifikation-arenaone.docx">Word</a> · <a href="anforderungsspezifikation-arenaone.html">Markdown</a></td>
+</tr>
+<tr>
+<td><strong>Lösungspräsentation PVA 9/10</strong> (20 min,
+Sprechernotizen in der PPTX)</td>
+<td><a href="praesentation-pva9-10/RE_ArenaOne_Loesung.pdf">PDF</a></td>
+<td><a href="praesentation-pva9-10/RE_ArenaOne_Loesung.pptx">PowerPoint</a></td>
+</tr>
+<tr>
+<td>Diskussion PVA 9/10: Leitfragen und Moderationsplan (15 min)</td>
+<td><a href="praesentation-pva9-10/diskussion-moderation.html">Webseite</a></td>
+<td><a href="praesentation-pva9-10/diskussion-moderation.pdf">PDF</a> ·
+<a href="praesentation-pva9-10/diskussion-moderation.html">Markdown</a></td>
+</tr>
+<tr>
+<td>Zwischenstand PVA 6</td>
+<td><a href="zwischenstand-pva6.html">Webseite</a> · <a href="praesentation-pva9-10/RE_ArenaOne_Zwischenstand_PVA6.pdf">Folien
+(PDF)</a></td>
+<td><a href="praesentation-pva9-10/RE_ArenaOne_Zwischenstand_PVA6.pptx">PowerPoint</a>
+· <a href="zwischenstand-pva6.pdf">PDF</a> · <a href="zwischenstand-pva6.html">Markdown</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="ermittlung-und-planung">Ermittlung und Planung</h2>
+<table>
+<thead>
+<tr>
+<th>Dokument</th>
+<th>Lesen</th>
+<th>Dateien</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RE-Vorgehensplan</td>
+<td><a href="re-plan.html">Webseite</a></td>
+<td><a href="re-plan.pdf">PDF</a> · <a href="re-plan.html">Markdown</a></td>
+</tr>
+<tr>
+<td>Analyse der Projektvorstellung (Ziele, Scope, Lücken, Hypothesen,
+Benchmark)</td>
+<td><a href="analyse-arenaone.html">Webseite</a></td>
+<td><a href="analyse-arenaone.pdf">PDF</a> · <a href="analyse-arenaone.html">Markdown</a></td>
+</tr>
+<tr>
+<td>Stakeholder-Analyse</td>
+<td><a href="stakeholder-analyse.html">Webseite</a></td>
+<td><a href="stakeholder-analyse.pdf">PDF</a> · <a href="stakeholder-analyse.html">Markdown</a></td>
+</tr>
+<tr>
+<td>Kontextdiagramm (Hypothese)</td>
+<td><a href="kontextdiagramm.html">Webseite</a></td>
+<td><a href="kontextdiagramm.pdf">PDF</a> · <a href="modelle/kontextdiagramm.png">Bild</a> · <a href="kontextdiagramm.html">Markdown</a></td>
+</tr>
+<tr>
+<td>Zielhierarchie</td>
+<td><a href="zielhierarchie.html">Webseite</a></td>
+<td><a href="zielhierarchie.pdf">PDF</a> · <a href="zielhierarchie.html">Markdown</a></td>
+</tr>
+<tr>
+<td>Glossar</td>
+<td><a href="glossar.html">Webseite</a></td>
+<td><a href="glossar.pdf">PDF</a> · <a href="glossar.html">Markdown</a></td>
+</tr>
+<tr>
+<td>Interviewleitfaden PVA 5 mit Protokollvorlage</td>
+<td><a href="interviewleitfaden-pva5.html">Webseite</a></td>
+<td><a href="interviewleitfaden-pva5.pdf">PDF</a> · <a href="interviewleitfaden-pva5.html">Markdown</a></td>
+</tr>
+<tr>
+<td>Fragenliste an Gruppe 2</td>
+<td><a href="fragenliste-gruppe2.html">Webseite</a></td>
+<td><a href="fragenliste-gruppe2.pdf">PDF</a> · <a href="fragenliste-gruppe2.html">Markdown</a></td>
+</tr>
+<tr>
+<td><strong>Simuliertes Interview</strong> (Rollenspiel zur
+Vorbereitung, kein Protokoll)</td>
+<td><a href="simuliertes-interview-pva5.html">Webseite</a></td>
+<td><a href="simuliertes-interview-pva5.pdf">PDF</a> · <a href="simuliertes-interview-pva5.html">Markdown</a></td>
+</tr>
+<tr>
+<td>Merkblatt-Checkliste (jede Vorgabe mit Artefakt und Stand)</td>
+<td><a href="merkblatt-checkliste.html">Webseite</a></td>
+<td><a href="merkblatt-checkliste.pdf">PDF</a> · <a href="merkblatt-checkliste.html">Markdown</a></td>
+</tr>
+<tr>
+<td>Modelle (Kontext- und Use-Case-Diagramm)</td>
+<td><a href="modelle/use-case-diagramm-arenaone.png">Use-Case-Diagramm</a></td>
+<td><a href="https://github.com/gotazlib/abgaben/tree/main/requirements-engineering/re-arenaone/modelle">Ordner</a></td>
+</tr>
+<tr>
+<td>Leere Vorlagen und Spezifikationsvorlage</td>
+<td><a href="anforderungsspezifikation-vorlage.html">Spezifikationsvorlage</a></td>
+<td><a href="https://github.com/gotazlib/abgaben/tree/main/requirements-engineering/re-arenaone/vorlagen">Ordner
+vorlagen</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="ki-experiment-optionale-aufgabe-des-merkblatts">KI-Experiment
+(optionale Aufgabe des Merkblatts)</h2>
+<p>Ein KI-Agent bekam nur die Spezifikation v0.5 und sollte daraus ohne
+Rückfragen eine App bauen. Jede Stelle, an der er raten musste, zeigt
+eine Lücke der Spezifikation; die Befunde sind in v0.6
+eingearbeitet.</p>
+<table>
+<tbody>
+<tr>
+<td><strong>App ausprobieren</strong> (läuft im Browser, Daten bleiben
+im Browser)</td>
+<td><a href="ki-app/app/index.html">ki-app/app/</a> – Kundschaft
+<code>anna</code> / <code>demo1234</code>, Mitarbeitende
+<code>empfang</code>, <code>gl</code>, <code>admin</code> /
+<code>arenaone-demo</code></td>
+</tr>
+<tr>
+<td>Auswertung: Hatte der Agent alle nötigen Requirements?</td>
+<td><a href="ki-app/analyse.html">Webseite</a> · <a href="ki-app/analyse.pdf">PDF</a> · <a href="ki-app/analyse.html">Markdown</a></td>
+</tr>
+<tr>
+<td>Versuchsaufbau, Auftrag an den Agenten, KI-Deklaration</td>
+<td><a href="ki-app/README.html">Webseite</a> · <a href="ki-app/README.pdf">PDF</a></td>
+</tr>
+<tr>
+<td>Protokoll des Agenten, seine Annahmen und Fragen</td>
+<td><a href="ki-app/agent-protokoll.html">Protokoll</a> · <a href="ki-app/app/ANNAHMEN.html">Annahmen</a></td>
+</tr>
+<tr>
+<td>Screenshots und Testskript</td>
+<td><a href="https://github.com/gotazlib/abgaben/tree/main/requirements-engineering/re-arenaone/ki-app/screenshots">Screenshots</a>
+· <a href="https://github.com/gotazlib/abgaben/tree/main/requirements-engineering/re-arenaone/ki-app/test">Test</a></td>
+</tr>
+</tbody>
+</table>
+<p>Die App ist ein Test der Spezifikation, kein Lösungsvorschlag für
+ArenaOne.</p>
+<h2 id="nicht-veröffentlicht">Nicht veröffentlicht</h2>
+<ul>
+<li>die Projektvorstellung von Gruppe 2 (fremde Gruppenarbeit) – zitiert
+als «Gruppe 2 (2026), Folie n»,</li>
+<li>Kursunterlagen der HWZ,</li>
+<li>interne Arbeitsnotizen, Prüfprotokolle und Werkzeuge der
+Gruppe.</li>
+</ul>
+<p>Verweise in den Dokumenten auf solche Dateien sind hier als Text ohne
+Link stehen geblieben.</p>
+<p>Zurück zu <a href="../index.html">Requirements Engineering</a>.</p>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

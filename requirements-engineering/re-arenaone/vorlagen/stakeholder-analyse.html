@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Vorlage: Stakeholder-Liste und Stakeholder-Analyse</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="vorlage-stakeholder-liste-und-stakeholder-analyse">Vorlage:
+Stakeholder-Liste und Stakeholder-Analyse</h1>
+<p>Artefakt <strong>R2</strong> (Fahrplan 3.2), Phase
+<strong>Ermitteln</strong> (Folie 28: «Stakeholder, Quellen,
+Bedürfnisse»).</p>
+<blockquote>
+<p><strong>Hinweis:</strong> Die Stakeholder-Analyse kommt im Kurs erst
+in Block 3 («Ermittlung – Stakeholder &amp; Kontext», Roadmap Folie 2).
+Spalten und Raster unten sind eine Arbeitsvorlage (gängige Praxis der
+RE-Literatur). Nach Block 3 an die Vorlage des Dozenten angleichen. Die
+Spalte <strong>Entscheidungsbefugnis</strong> ist bewusst drin: Folie 47
+nennt «unklare Verantwortung – wer entscheidet bei Widerspruch?» als
+typisches Problem.</p>
+</blockquote>
+<h2 id="ausfüllhinweise">Ausfüllhinweise</h2>
+<ol type="1">
+<li>Zuerst <strong>breit sammeln</strong> (alle, die vom System
+betroffen sind, es nutzen, bezahlen, betreiben, prüfen oder regulieren),
+dann bewerten.</li>
+<li>Pro Stakeholder notieren, <strong>woher</strong> die Information
+stammt (Projektvorstellung, Interview, Annahme). Bei einem virtuellen
+Unternehmen spricht Gruppe 2 für alle Rollen – trotzdem jede Rolle
+einzeln betrachten.</li>
+<li>Nicht nur Personen: auch <strong>Dokumente und Systeme</strong> sind
+Quellen von Anforderungen (Gesetze, Normen, interne Weisungen,
+bestehende Systeme) → Abschnitt C.</li>
+<li>Stakeholder-Ziele später in die Zielhierarchie der Spezifikation
+übernehmen (Folie 37).</li>
+</ol>
+<h2 id="a-stakeholder-liste">A. Stakeholder-Liste</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Stakeholder (Rolle)</th>
+<th>Vertreten durch</th>
+<th>Beziehung zum System</th>
+<th>Interessen / Ziele</th>
+<th>Erwartete Probleme heute</th>
+<th>Einfluss (h/m/g)</th>
+<th>Interesse (h/m/g)</th>
+<th>Entscheidungsbefugnis</th>
+<th>Erreichbarkeit / Kanal</th>
+<th>Quelle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SH-01</td>
+<td><code>[Auftraggeber / Geschäftsleitung]</code></td>
+<td><code>[G2: Person/Rolle]</code></td>
+<td>finanziert, gibt frei</td>
+<td><code>[…]</code></td>
+<td><code>[…]</code></td>
+<td>h</td>
+<td>h</td>
+<td>gibt Spezifikation frei, entscheidet Konflikte</td>
+<td><code>[…]</code></td>
+<td>PVA 2</td>
+</tr>
+<tr>
+<td>SH-02</td>
+<td><code>[Hauptnutzer:innen]</code></td>
+<td></td>
+<td>nutzen das System täglich</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SH-03</td>
+<td><code>[weitere Nutzergruppe]</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SH-04</td>
+<td><code>[Betrieb / IT]</code></td>
+<td></td>
+<td>betreibt, wartet</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SH-05</td>
+<td><code>[Datenschutz / Recht / Compliance]</code></td>
+<td></td>
+<td>prüft Vorgaben</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Veto bei Rechtsverletzung</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SH-06</td>
+<td><code>[Kund:innen / externe Nutzer]</code></td>
+<td></td>
+<td>indirekt betroffen</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SH-07</td>
+<td><code>[Lieferant / Umsystem-Verantwortliche]</code></td>
+<td></td>
+<td>Schnittstelle</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="b-einfluss-interesse-raster">B. Einfluss-Interesse-Raster</h2>
+<p>Einordnung für die Planung der Ermittlung (wen wir wie intensiv
+einbinden).</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Interesse gering</strong></th>
+<th><strong>Interesse hoch</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Einfluss hoch</strong></td>
+<td>zufriedenstellen, informiert halten: <code>[SH-…]</code></td>
+<td><strong>eng einbinden</strong> (Interview, Review, Freigabe):
+<code>[SH-…]</code></td>
+</tr>
+<tr>
+<td><strong>Einfluss gering</strong></td>
+<td>beobachten: <code>[SH-…]</code></td>
+<td>informieren, Anliegen aufnehmen: <code>[SH-…]</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="c-weitere-anforderungsquellen">C. Weitere
+Anforderungsquellen</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Quelle</th>
+<th>Art (Gesetz, Norm, Weisung, Dokument, bestehendes System)</th>
+<th>Relevanz</th>
+<th>verifiziert?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q-01</td>
+<td><code>[z. B. Datenschutzgesetz (DSG)]</code></td>
+<td>Gesetz</td>
+<td><code>[welche Daten betroffen]</code></td>
+<td><code>[Quelle/Link prüfen]</code></td>
+</tr>
+<tr>
+<td>Q-02</td>
+<td><code>[Projektvorstellung Gruppe 2, PVA 2]</code></td>
+<td>Dokument</td>
+<td>Ausgangslage, Ziele</td>
+<td>ja</td>
+</tr>
+<tr>
+<td>Q-03</td>
+<td><code>[bestehendes System X]</code></td>
+<td>System</td>
+<td>Schnittstelle, Datenbestand</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Regel: Gesetze und Normen nur mit geprüfter Quelle aufführen
+(HWZ-Zitierleitfaden). Fiktive Angaben von Gruppe 2 in der Spezifikation
+als <strong>Annahme</strong> kennzeichnen (Facette «Rolle», Folie
+40/42).</p>
+<h2 id="d-offene-punkte-zu-stakeholdern">D. Offene Punkte zu
+Stakeholdern</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Frage</th>
+<th>an wen</th>
+<th>bis</th>
+<th>Antwort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>[Wer entscheidet, wenn Nutzergruppe A und B Widersprüchliches wollen?]</code></td>
+<td>SH-01</td>
+<td><code>[Datum]</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

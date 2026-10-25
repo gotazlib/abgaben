@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>KI-Experiment: App aus der Anforderungsspezifikation (R13)</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="ki-experiment-app-aus-der-anforderungsspezifikation-r13">KI-Experiment:
+App aus der Anforderungsspezifikation (R13)</h1>
+<p>Optionale Aufgabe aus dem Merkblatt (S. 1, Checkliste M8): «aus der
+Anforderungsspezifikation mit KI-Agenten eine Applikation erstellen und
+analysieren, ob der Agent alle nötigen Requirements hat». Durchgeführt
+am 25.10.2026 mit der Spezifikation <strong>v0.5</strong> (Stand vor dem
+Interview in PVA 5).</p>
+<table>
+<thead>
+<tr>
+<th>Datei</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="analyse.html"><code>analyse.md</code></a></td>
+<td><strong>Auswertung:</strong> Abdeckung je Anforderung, Annahmen des
+Agenten als Lücken der Spezifikation, Fazit, Änderungen für v0.6,
+Lessons Learned</td>
+</tr>
+<tr>
+<td><a href="app/index.html"><code>app/</code></a></td>
+<td>die App, wie der Agent sie abgegeben hat (unverändert), mit seiner
+<a href="app/index.html"><code>README.md</code></a> und <a href="app/ANNAHMEN.html"><code>ANNAHMEN.md</code></a></td>
+</tr>
+<tr>
+<td><a href="agent-protokoll.html"><code>agent-protokoll.md</code></a></td>
+<td>alle Werkzeugaufrufe des Agenten mit Zeit, sein Abschlussbericht
+wörtlich</td>
+</tr>
+<tr>
+<td><a href="https://github.com/gotazlib/abgaben/tree/main/requirements-engineering/re-arenaone/ki-app/screenshots"><code>screenshots/</code></a></td>
+<td>26 Bildschirmfotos unseres Testlaufs</td>
+</tr>
+<tr>
+<td><a href="https://github.com/gotazlib/abgaben/tree/main/requirements-engineering/re-arenaone/ki-app/test"><code>test/</code></a></td>
+<td>unser Testskript (Playwright) und das Ergebnis des Laufs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ziel">Ziel</h2>
+<p>Wir wollten wissen, ob unsere Spezifikation für sich allein
+verständlich und vollständig genug ist, dass jemand ohne unser
+Hintergrundwissen daraus ein System bauen kann. Ein KI-Agent eignet sich
+als Testleser, weil er nur hat, was im Dokument steht, und weil er jede
+Stelle, an der er raten muss, protokollieren kann. <strong>Jede geratene
+Stelle ist eine Lücke oder Mehrdeutigkeit der
+Spezifikation.</strong></p>
+<p>Die App selbst ist kein Lösungsvorschlag für ArenaOne. Make-or-Buy
+entscheidet Gruppe 2 (RB-03).</p>
+<h2 id="agent-und-modell">Agent und Modell</h2>
+<table>
+<tbody>
+<tr>
+<td>Werkzeug</td>
+<td>Claude Code (Anthropic), Agent-Werkzeug: ein neu gestarteter
+Subagent vom Typ «general-purpose»</td>
+</tr>
+<tr>
+<td>Modell</td>
+<td>Claude Opus 5.5 (<code>claude-opus-5-5</code>)</td>
+</tr>
+<tr>
+<td>Umgebung</td>
+<td>Linux-Rechner mit Node.js 22 und Python 3; Werkzeuge: Dateien
+lesen/schreiben, Shell. Internetzugang vorhanden (der Agent hat ihn nur
+genutzt, um Prüfwerkzeuge für seinen eigenen Browsertest zu laden).</td>
+</tr>
+<tr>
+<td>Datum</td>
+<td>25.10.2026, 14:52–15:20 UTC (15:52–16:20 Uhr Zürich)</td>
+</tr>
+</tbody>
+</table>
+<p>Wer den Versuch aufgesetzt und ausgewertet hat: ebenfalls ein
+KI-Assistent (Claude Code) im Auftrag von Görkem Taspinar. Die
+Auswertung (<code>analyse.md</code>) stützt sich auf Testlauf,
+Logiktests und Quelltext der App; die Bewertungen sind ein Vorschlag,
+den Görkem Taspinar und Ardian Ibrahimaj vor der Präsentation
+gegenlesen.</p>
+<h2 id="was-der-agent-bekam">Was der Agent bekam</h2>
+<ul>
+<li><strong>Nur</strong> die Datei
+<code>anforderungsspezifikation-arenaone.md</code> v0.5 (identisch mit
+dem Stand auf <code>main</code> nach PR #52, SHA-256
+<code>0b85db8a…5740</code>), kopiert in einen leeren Arbeitsordner
+ausserhalb des Repos.</li>
+<li>Keine Bilder (Kontext- und Use-Case-Diagramm sind in der
+Markdown-Datei nur verlinkt und lagen nicht bei), keine anderen
+Dokumente aus <code>re-gruppe2/</code> (Analyse, Glossar, simuliertes
+Interview), keine Präsentation von Gruppe 2, kein Gespräch.</li>
+<li>Der Subagent startet ohne den Verlauf unserer Sitzung. Das Protokoll
+(<a href="agent-protokoll.html"><code>agent-protokoll.md</code></a>)
+zeigt, dass er ausser der Spezifikation keine Datei gelesen hat.</li>
+<li>Rückfragen waren nicht möglich: ein Auftrag, eine Abgabe.</li>
+</ul>
+<h2 id="auftrag-an-den-agenten-wörtlich">Auftrag an den Agenten
+(wörtlich)</h2>
+<p>Pfade gekürzt: <code>&lt;scratchpad&gt;</code> steht für das
+temporäre Verzeichnis der Sitzung.</p>
+<pre class="text"><code>Du bekommst eine Anforderungsspezifikation und sollst daraus eine Applikation bauen.
+
+Spezifikation: &lt;scratchpad&gt;/ki-versuch/input/anforderungsspezifikation-arenaone.md
+Arbeitsordner (nur hier schreiben): &lt;scratchpad&gt;/ki-versuch/app/
+
+Auftrag:
+- Baue aus der Spezifikation eine lauffähige Web-App.
+- Form: statische Web-App (HTML, CSS, JavaScript) ohne Build-Schritt und ohne Server, sodass sie direkt auf GitHub Pages läuft. Daten im Browser (localStorage), mit Demo-Daten beim ersten Start.
+- Wo die Spezifikation unklar, widersprüchlich oder lückenhaft ist, triff eine Annahme und protokolliere sie in ANNAHMEN.md (je Annahme: betroffene Stelle/ID in der Spezifikation, was unklar war, was du angenommen hast). Fragen, die du einer Auftraggeberin stellen würdest, notierst du ebenfalls dort.
+- Lege eine kurze README.md in den Arbeitsordner (wie starten, was umgesetzt ist).
+- Verwende ausschliesslich die Spezifikation als Grundlage. Lies keine anderen Dateien ausserhalb des Arbeitsordners und der Spezifikation und such nicht im Dateisystem nach weiterem Material.
+- Externe Bibliotheken nur, wenn nötig, und dann lokal im Ordner oder über ein CDN.
+
+Antworte am Ende mit einer kurzen Zusammenfassung: was gebaut wurde, welche Teile der Spezifikation du nicht umgesetzt hast und warum, und wie viele Annahmen du protokolliert hast.</code></pre>
+<p>Die Zielform (statisch, localStorage) haben wir vorgegeben, damit die
+App ohne Server auf GitHub Pages läuft. Das ist eine Einschränkung des
+Versuchs, nicht der Spezifikation: Anforderungen an Betrieb, Last und
+gemeinsame Daten (QA-05, QA-07 bis QA-09, QA-16) kann eine solche App
+nicht erfüllen. In der Analyse sind sie deshalb getrennt
+ausgewiesen.</p>
+<h2 id="vorgehen">Vorgehen</h2>
+<ol type="1">
+<li>Spezifikation in einen leeren Ordner kopiert, Prüfsumme
+festgehalten.</li>
+<li>Subagent mit dem Auftrag oben gestartet und bis zur Abgabe nicht
+eingegriffen.</li>
+<li>Ergebnis unverändert nach <code>app/</code> kopiert (Vergleich mit
+<code>diff -r</code>: identisch), Protokoll und Abschlussbericht
+gesichert.</li>
+<li>Die Logiktests des Agenten laufen lassen
+(<code>node app/tests/logik-test.js</code>: 28 bestanden, 0
+fehlgeschlagen).</li>
+<li>Eigener Testlauf mit Playwright und Chromium entlang der
+Hauptabläufe, Uhr fest auf Montag, 26.10.2026, 08:00 Uhr, damit die
+Demo-Daten reproduzierbar sind (<code>test/szenario.js</code>, Ergebnis
+<code>test/testlauf-ergebnis.txt</code>: 19 Abläufe ohne Fehler, keine
+JavaScript-Fehler).</li>
+<li>Jede Anforderung (35 FA, 16 QA, 9 Use Cases) gegen App, Tests und
+Screenshots bewertet; die 32 Annahmen und 15 Fragen des Agenten den
+Kapiteln der Spezifikation zugeordnet (<a href="analyse.html"><code>analyse.md</code></a>).</li>
+<li>Befunde in die Spezifikation übernommen (v0.6: Kapitel 10.2, 11.3,
+13).</li>
+</ol>
+<h2 id="zeitaufwand">Zeitaufwand</h2>
+<p>Gemessen an den Zeitstempeln der Sitzung (25.10.2026, UTC).
+Aufsetzen, Testlauf und Auswertung hat ebenfalls ein KI-Assistent
+erledigt; für Menschen wären diese Schritte deutlich länger.</p>
+<table>
+<thead>
+<tr>
+<th>Schritt</th>
+<th>Zeit (UTC)</th>
+<th>Dauer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Versuch aufsetzen (Spezifikation kopieren, Auftrag formulieren)</td>
+<td>14:47–14:52</td>
+<td>ca. 5 min</td>
+</tr>
+<tr>
+<td>Agent baut die App, ohne Eingriff</td>
+<td>14:52–15:20</td>
+<td>28 min (35 Werkzeugaufrufe, rund 290 000 Tokens)</td>
+</tr>
+<tr>
+<td>Testlauf mit Screenshots (Skript schreiben, Selektoren
+anpassen)</td>
+<td>15:20–15:35</td>
+<td>ca. 15 min</td>
+</tr>
+<tr>
+<td>Auswertung, Spezifikation v0.6, Folien, PDFs</td>
+<td>15:35–15:50</td>
+<td>ca. 15 min, teils parallel zum Testlauf vorbereitet</td>
+</tr>
+<tr>
+<td>Gegenlesen der Auswertung im Team</td>
+<td>offen</td>
+<td>geschätzt 30–45 min</td>
+</tr>
+</tbody>
+</table>
+<p>Zum Vergleich: Die Spezifikation v0.5 selbst hat ein Mehrfaches davon
+gekostet. Der Agent ersetzt die Ermittlung nicht, er prüft nur, ob das
+Ergebnis lesbar und eindeutig ist.</p>
+<h2 id="app-starten">App starten</h2>
+<p><code>app/index.html</code> im Browser öffnen (auch direkt als
+Datei). Anmeldung und Demo-Konten stehen auf der Anmeldeseite;
+Kundschaft <code>anna</code> / <code>demo1234</code>, Mitarbeitende
+<code>empfang</code>, <code>gl</code>, <code>admin</code> /
+<code>arenaone-demo</code> mit simuliertem zweitem Faktor. Alle Daten
+bleiben im Browser.</p>
+<p>Testlauf wiederholen (Node.js und Playwright, Chromium):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">APP</span><span class="op">=</span><span class="va">$PWD</span>/app <span class="va">OUT</span><span class="op">=</span><span class="va">$PWD</span>/screenshots <span class="ex">node</span> test/szenario.js</span></code></pre></div>
+<p><code>test/h.js</code> erwartet Chromium unter
+<code>~/.cache/ms-playwright/chromium-1248/</code>; auf einem anderen
+Rechner dort den Pfad anpassen.</p>
+<h2 id="ki-deklaration">KI-Deklaration</h2>
+<p>In diesem Teil ist KI der Gegenstand des Versuchs: Die App unter
+<code>app/</code> ist vollständig von einem KI-Agenten geschrieben, ohne
+Änderung durch uns. Auch Testskript, Auswertung und die Änderungen an
+der Spezifikation sind mit KI-Unterstützung (Claude Code) entstanden;
+das Team liest sie vor der Abgabe gegen. Ob und in welcher Form die HWZ
+eine Deklaration verlangt, ist noch offen (FAHRPLAN O10).</p>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

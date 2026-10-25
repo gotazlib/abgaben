@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Stakeholder-Analyse ArenaOne</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="stakeholder-analyse-arenaone">Stakeholder-Analyse ArenaOne</h1>
+<p>Artefakt <strong>R2</strong> (Fahrplan 3.2), Phase
+<strong>Ermitteln</strong> (Folie 28: «Stakeholder, Quellen,
+Bedürfnisse»). Stand: 25.10.2026, <strong>Hypothese vor PVA 5</strong>.
+Aufbau nach der Vorlage <a href="vorlagen/stakeholder-analyse.html"><code>vorlagen/stakeholder-analyse.md</code></a>;
+nach Block 3 («Stakeholder &amp; Kontext») an die Dozentenvorlage
+angleichen.</p>
+<blockquote>
+<p><strong>Lesart:</strong> Die Stakeholder in den Zeilen mit Quelle
+<code>F5</code> hat Gruppe 2 selbst genannt. Interessen, Einfluss und
+Interesse sind <strong>unsere Einschätzung</strong> (<code>A</code>),
+solange nichts anderes steht. Gruppe 2 spielt alle Rollen; im Interview
+fragen wir trotzdem Rolle für Rolle. Ergebnisse aus dem <a href="simuliertes-interview-pva5.html">simulierten Interview</a> sind mit
+<code>S</code> markiert – Simulation zur Vorbereitung, ersetzt nicht die
+Ermittlung mit Gruppe 2.</p>
+</blockquote>
+<h2 id="a-stakeholder-liste">A. Stakeholder-Liste</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Stakeholder (Rolle)</th>
+<th>Beziehung zum System</th>
+<th>Interessen / Ziele</th>
+<th>Probleme heute</th>
+<th>Einfluss / Interesse</th>
+<th>Entscheidungsbefugnis</th>
+<th>Quelle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SH-01</td>
+<td><strong>Geschäftsleitung</strong> ArenaOne</td>
+<td>Auftraggeber, finanziert, priorisiert</td>
+<td>Auslastung und Umsatz steigern, Aufwand am Empfang senken, Überblick
+über Belegung und Kundengruppen</td>
+<td>keine Zahlen zu Auslastung und Stornos, Konflikte zwischen
+Kundengruppen landen bei ihr</td>
+<td>hoch / hoch</td>
+<td>gibt die Spezifikation frei, entscheidet Regeln und Konflikte,
+Make-or-Buy (<code>N5</code>)</td>
+<td><code>F5</code>, <code>N5</code></td>
+</tr>
+<tr>
+<td>SH-02</td>
+<td><strong>Empfang</strong> (Mitarbeitende)</td>
+<td>Hauptnutzer intern, bucht für Kunden</td>
+<td>weniger Telefon und Nachtragen, eine Quelle der Wahrheit, schnelle
+Erfassung</td>
+<td>prüft und trägt jede Reservation von Hand nach, Doppelbuchungen,
+Rückfragen (<code>F3</code>)</td>
+<td>mittel / hoch</td>
+<td>Fachauskunft zum Ablauf; keine Freigabe</td>
+<td><code>F2</code>, <code>F5</code>, <code>N5</code></td>
+</tr>
+<tr>
+<td>SH-03</td>
+<td><strong>Privatkunden</strong></td>
+<td>buchen Einzelstunden (Padel, Tennis, Badminton)</td>
+<td>spontan freie Zeit finden und buchen, auch abends und am Wochenende,
+einfache Absage</td>
+<td>müssen anrufen oder mailen, wissen nicht, was frei ist</td>
+<td>gering (einzeln), hoch (gesamt: Umsatz) / hoch</td>
+<td>keine</td>
+<td><code>F2</code>, <code>F5</code>, <code>N5</code></td>
+</tr>
+<tr>
+<td>SH-04</td>
+<td><strong>Vereine</strong> (Vereinsverantwortliche)</td>
+<td>buchen Serien für Training und Meisterschaft</td>
+<td>feste Zeiten über die ganze Saison, Ausnahmen (Ferien, Turniere)
+ohne viel Aufwand</td>
+<td>Serien heute in internen Listen; Absagen einzelner Termine
+unklar</td>
+<td>mittel bis hoch (langfristige, planbare Umsätze) / hoch</td>
+<td>keine; verhandeln Kontingente mit der GL</td>
+<td><code>F2</code>, <code>F5</code></td>
+</tr>
+<tr>
+<td>SH-05</td>
+<td><strong>Firmen</strong></td>
+<td>buchen Firmenanlässe, Teamevents, evtl. regelmässige
+Firmenstunden</td>
+<td>grössere Buchungen (mehrere Plätze, Halle), Rechnung statt
+Sofortzahlung</td>
+<td>Anfragen per E-Mail, Abstimmung dauert</td>
+<td>mittel / mittel</td>
+<td>keine</td>
+<td><code>F2</code>, <code>F5</code> (zusammen mit Vereinen)</td>
+</tr>
+<tr>
+<td>SH-06</td>
+<td><strong>Trainer</strong></td>
+<td>buchen Plätze für Lektionen und Trainingsgruppen, evtl. im Auftrag
+von Kunden</td>
+<td>eigene Lektionen planen, kurzfristig verschieben, Übersicht ihrer
+Platzzeiten</td>
+<td>Abhängigkeit vom Empfang</td>
+<td>mittel / hoch</td>
+<td>keine; ob sie selbst buchen dürfen, ist offen (V-23)</td>
+<td><code>F5</code></td>
+</tr>
+<tr>
+<td>SH-07</td>
+<td><strong>Trainingsgruppen</strong> (Teilnehmende)</td>
+<td>nutzen gebuchte Zeiten, buchen selbst eher nicht</td>
+<td>wissen, wann und wo trainiert wird; bei Ausfall informiert
+werden</td>
+<td>–</td>
+<td>gering / mittel</td>
+<td>keine</td>
+<td><code>F2</code> (auf <code>F5</code> nicht genannt)</td>
+</tr>
+<tr>
+<td>SH-08</td>
+<td><strong>IT</strong> (intern oder externer Dienstleister – offen,
+L-09)</td>
+<td>betreibt bzw. beschafft das System</td>
+<td>betreibbar, sicher, wenig Eigenentwicklung, Schnittstellen
+beherrschbar</td>
+<td><code>[offen]</code></td>
+<td>mittel / mittel</td>
+<td>Veto bei Betrieb/Sicherheit; Mitsprache Make-or-Buy</td>
+<td><code>F5</code></td>
+</tr>
+<tr>
+<td>SH-09</td>
+<td><strong>Betrieb der Anlage</strong> (Platzwart/Hauswart)</td>
+<td>sperrt Anlagen für Unterhalt, baut Hallen um</td>
+<td>Sperrzeiten eintragen, wissen, was wann belegt ist</td>
+<td>Unterhalt kollidiert mit Buchungen</td>
+<td>gering / mittel</td>
+<td>keine</td>
+<td><code>A</code></td>
+</tr>
+<tr>
+<td>SH-10</td>
+<td><strong>Gäste / Mitspielende</strong> ohne eigenes Konto</td>
+<td>spielen mit, buchen nicht</td>
+<td>evtl. Bestätigung, Teilnahme</td>
+<td>–</td>
+<td>gering / gering</td>
+<td>keine</td>
+<td><code>A</code>, <code>B</code> (Playtomic: Gäste als
+Teilnehmende)</td>
+</tr>
+<tr>
+<td>SH-11</td>
+<td><strong>Datenschutz</strong> (Verantwortung bei der GL; in einer AG
+dieser Grösse kein eigener Datenschutzbeauftragter angenommen)</td>
+<td>prüft Bearbeitung von Personendaten</td>
+<td>DSG einhalten, nur nötige Daten</td>
+<td>–</td>
+<td>mittel (Vorschrift) / gering</td>
+<td>Veto bei Rechtsverletzung</td>
+<td><code>A</code>, DSG</td>
+</tr>
+<tr>
+<td>SH-12</td>
+<td><strong>Buchhaltung</strong> (ausserhalb Scope)</td>
+<td>erhält evtl. Buchungs- oder Rechnungsdaten</td>
+<td>korrekte Übergabe, keine Doppelerfassung</td>
+<td><code>[offen]</code></td>
+<td>gering / gering</td>
+<td>keine</td>
+<td><code>F4</code> (Finanzbuchhaltung nicht im Scope) +
+<code>A</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="b-einfluss-interesse-matrix">B. Einfluss-Interesse-Matrix</h2>
+<p>Einordnung für die Planung der Ermittlung: wen wir wie intensiv
+einbinden.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Interesse gering bis mittel</strong></th>
+<th><strong>Interesse hoch</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Einfluss hoch</strong></td>
+<td><strong>zufriedenstellen</strong>: SH-08 IT (Betrieb, Make-or-Buy),
+SH-11 Datenschutz (Veto)</td>
+<td><strong>eng einbinden</strong> (Interview, Review, Freigabe): SH-01
+Geschäftsleitung, SH-04 Vereine</td>
+</tr>
+<tr>
+<td><strong>Einfluss mittel bis gering</strong></td>
+<td><strong>beobachten</strong>: SH-07 Trainingsgruppen, SH-09 Betrieb
+der Anlage, SH-10 Gäste, SH-12 Buchhaltung</td>
+<td><strong>informieren, Anliegen aufnehmen</strong>: SH-02 Empfang,
+SH-03 Privatkunden, SH-05 Firmen, SH-06 Trainer</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>quadrantChart
+  title Hypothese vor PVA 5
+  x-axis &quot;Interesse gering&quot; --&gt; &quot;Interesse hoch&quot;
+  y-axis &quot;Einfluss gering&quot; --&gt; &quot;Einfluss hoch&quot;
+  quadrant-1 &quot;eng einbinden&quot;
+  quadrant-2 &quot;zufriedenstellen&quot;
+  quadrant-3 &quot;beobachten&quot;
+  quadrant-4 &quot;informieren&quot;
+  &quot;SH-01 GL&quot;: [0.9, 0.92]
+  &quot;SH-04 Vereine&quot;: [0.85, 0.66]
+  &quot;SH-02 Empfang&quot;: [0.92, 0.45]
+  &quot;SH-03 Privat&quot;: [0.8, 0.3]
+  &quot;SH-06 Trainer&quot;: [0.7, 0.42]
+  &quot;SH-05 Firmen&quot;: [0.58, 0.38]
+  &quot;SH-08 IT&quot;: [0.4, 0.62]
+  &quot;SH-11 Datenschutz&quot;: [0.2, 0.7]
+  &quot;SH-09 Anlage&quot;: [0.4, 0.2]
+  &quot;SH-07 Trainingsgr.&quot;: [0.45, 0.12]
+  &quot;SH-12 Buchhaltung&quot;: [0.15, 0.22]
+  &quot;SH-10 Gäste&quot;: [0.12, 0.08]</code></pre>
+<p><strong>Begründung der zwei auffälligen Einordnungen:</strong></p>
+<ul>
+<li><strong>Empfang</strong> hat hohes Interesse, aber nur mittleren
+formalen Einfluss. Trotzdem ist er laut <code>N5</code> direkt betroffen
+und kennt den Ablauf am besten → im Interview ausführlich (Ist-Ablauf,
+Ausnahmen).</li>
+<li><strong>Vereine</strong> stufen wir beim Einfluss höher als
+Privatkunden ein (Annahme <code>A</code>): Sie bringen planbare
+Saisonumsätze und blockieren die begehrten Abendzeiten. Ob die GL das
+auch so sieht, ist eine Kernfrage für PVA 5 (V-06).</li>
+</ul>
+<h2 id="c-zielkonflikte-hypothesen">C. Zielkonflikte (Hypothesen)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Konflikt</th>
+<th>Beteiligte</th>
+<th>Warum es wichtig ist</th>
+<th>Entscheidet</th>
+<th>Quelle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K-01</td>
+<td>Feste Vereinsserien zur Primetime vs. freie Buchung für
+Privatkunden</td>
+<td>SH-04 vs. SH-03</td>
+<td>bestimmt Kontingente und Buchungsvorlauf</td>
+<td>SH-01</td>
+<td><code>F3</code> (Herausforderung 5/6) + <code>A</code></td>
+</tr>
+<tr>
+<td>K-02</td>
+<td>Strenge Stornoregeln (Umsatz sichern) vs. Kulanz
+(Kundenzufriedenheit, Vereine)</td>
+<td>SH-01 vs. SH-03/SH-04</td>
+<td>Stornofrist, Gebühr, Ausnahmen</td>
+<td>SH-01</td>
+<td><code>F3</code> (Herausforderung 4) + <code>A</code></td>
+</tr>
+<tr>
+<td>K-03</td>
+<td>Self-Service online vs. persönliche Buchung am Empfang</td>
+<td>SH-03 vs. SH-02 (und ältere Kundschaft)</td>
+<td>Umfang der Kundenoberfläche, Rolle des Empfangs</td>
+<td>SH-01</td>
+<td><code>F4</code> + <code>A</code></td>
+</tr>
+<tr>
+<td>K-04</td>
+<td>Trainer buchen selbst vs. Kontrolle durch Empfang</td>
+<td>SH-06 vs. SH-02</td>
+<td>Berechtigungen</td>
+<td>SH-01</td>
+<td><code>A</code></td>
+</tr>
+<tr>
+<td>K-05</td>
+<td>möglichst viele Kundendaten für Auswertungen vs. Datensparsamkeit
+und «kein CRM»</td>
+<td>SH-01 vs. SH-11</td>
+<td>Datenumfang, Abgrenzung CRM</td>
+<td>SH-01 unter Einhaltung DSG</td>
+<td><code>F4</code>, <code>A</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="d-weitere-anforderungsquellen">D. Weitere
+Anforderungsquellen</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Quelle</th>
+<th>Art</th>
+<th>Relevanz</th>
+<th>verifiziert?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q-01</td>
+<td>Präsentation Gruppe 2, PVA 2 (5 Folien + Notizen)</td>
+<td>Dokument</td>
+<td>Ausgangslage, Ziele, Scope, offene Fragen</td>
+<td>ja (<code>material/</code>)</td>
+</tr>
+<tr>
+<td>Q-02</td>
+<td>Bundesgesetz über den Datenschutz (DSG), SR 235.1, in Kraft seit
+1.9.2023</td>
+<td>Gesetz</td>
+<td>Kundendaten, Buchungsverlauf, Auskunft, Löschung</td>
+<td>Gesetz ja; Anwendung auf ArenaOne mit Gruppe 2 klären</td>
+</tr>
+<tr>
+<td>Q-03</td>
+<td>Benchmark Playtomic, GotCourts, eTermin</td>
+<td>Marktvergleich</td>
+<td>Fragen zu Zahlung, Warteliste, Serien, Rollen</td>
+<td>Quellen in <a href="analyse-arenaone.html"><code>analyse-arenaone.md</code></a>
+Abschnitt 12</td>
+</tr>
+<tr>
+<td>Q-04</td>
+<td>heutige interne Listen und laufende Serien von ArenaOne</td>
+<td>Dokument (fiktiv)</td>
+<td>Datenübernahme, Ist-Ablauf</td>
+<td>nein – bei Gruppe 2 erfragen (V-25)</td>
+</tr>
+<tr>
+<td>Q-05</td>
+<td>Hausordnung / Benutzungsreglement ArenaOne (falls vorhanden)</td>
+<td>interne Weisung</td>
+<td>Buchungs- und Stornoregeln</td>
+<td>nein – erfragen (V-09)</td>
+</tr>
+<tr>
+<td>Q-06</td>
+<td>Simuliertes Interview (Probelauf im Team)</td>
+<td><strong>Simulation</strong></td>
+<td>Hypothesen schärfen, Fragen testen</td>
+<td><strong>keine Quelle für bestätigte Anforderungen</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="e-offene-punkte-zu-stakeholdern">E. Offene Punkte zu
+Stakeholdern</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Frage</th>
+<th>an wen</th>
+<th>bis</th>
+<th>Antwort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Wer spricht in PVA 5 für welche Rolle (GL, Empfang, Verein, Trainer,
+IT, Privatkunde)?</td>
+<td>Gruppe 2</td>
+<td>vor PVA 5</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Wer gibt die Spezifikation frei und entscheidet Konflikte K-01 …
+K-05? (Annahme: GL)</td>
+<td>Gruppe 2 (GL)</td>
+<td>PVA 5</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Ist «IT» intern oder extern?</td>
+<td>Gruppe 2</td>
+<td>PVA 5</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Sind Vereine und Firmen für ArenaOne eine Gruppe oder zwei
+(<code>F2</code> vs. <code>F5</code>)?</td>
+<td>Gruppe 2</td>
+<td>PVA 5</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Gehören Trainingsgruppen und Trainer zu ArenaOne (angestellt) oder
+sind sie externe Kunden?</td>
+<td>Gruppe 2</td>
+<td>PVA 5</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

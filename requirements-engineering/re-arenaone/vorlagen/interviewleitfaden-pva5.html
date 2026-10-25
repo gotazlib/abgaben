@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Interviewleitfaden PVA 5 – direkter Austausch mit Gruppe 2</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="interviewleitfaden-pva-5--direkter-austausch-mit-gruppe-2">Interviewleitfaden
+PVA 5 – direkter Austausch mit Gruppe 2</h1>
+<p>Artefakt <strong>R5</strong> (Fahrplan 3.2), Phase
+<strong>Ermitteln</strong>. Teilstrukturiertes Interview: die Fragen
+sind ein Gerüst, die Reihenfolge folgt dem Gespräch.</p>
+<blockquote>
+<p><strong>Vor PVA 5 anpassen:</strong> Fragen streichen, die die
+Projektvorstellung von Gruppe 2 schon beantwortet (Dokumentenanalyse),
+und projektspezifische Fragen in die Lücken <code>[G2: …]</code>
+einsetzen. Ziel: <strong>max. 25 Fragen</strong> auswählen – lieber
+nachhaken als abhaken. Die mit ★ markierten Fragen sind Pflicht.</p>
+<p>Ermittlungstechniken sind erst in Block 3 Thema; Aufbau und Fragen
+stützen sich auf Block 1: Kundenorientierung (Folie 21, 46), Ziele vs.
+Anforderungen (Folie 35–37), Klassifikation (Folie 38–42), Priorisierung
+(Folie 43) und die Problemliste von Folie 47.</p>
+</blockquote>
+<h2 id="0-organisation">0. Organisation</h2>
+<table>
+<thead>
+<tr>
+<th>Punkt</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Datum / Ort / Dauer</td>
+<td><code>[Datum PVA 5]</code>, <code>[Raum/online]</code>,
+<code>[z. B. 45 min]</code></td>
+</tr>
+<tr>
+<td>Gruppe 2 (Stakeholder-Rolle)</td>
+<td><code>[Namen, welche Rolle spricht wer: Geschäftsleitung, Nutzer, IT …]</code></td>
+</tr>
+<tr>
+<td>Gruppe 9 (RE)</td>
+<td>Interview und Zeit: Görkem Taspinar · Protokoll und Messbarkeit:
+Ardian Ibrahimaj</td>
+</tr>
+<tr>
+<td>Unterlagen dabei</td>
+<td>Projektvorstellung Gruppe 2, Kontextdiagramm-Entwurf,
+Stakeholder-Liste, Glossar-Entwurf, diese Fragenliste</td>
+</tr>
+<tr>
+<td>Einverständnis</td>
+<td>Notizen werden protokolliert; Protokoll geht zur Bestätigung an
+Gruppe 2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="zeitplan-45-min-anpassen">Zeitplan (45 min, anpassen)</h3>
+<table>
+<thead>
+<tr>
+<th>Minute</th>
+<th>Block</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0–3</td>
+<td>Einstieg: Zweck, Ablauf, Rollen, «es gibt keine falschen
+Antworten»</td>
+</tr>
+<tr>
+<td>3–10</td>
+<td>A Ziele und Erfolg</td>
+</tr>
+<tr>
+<td>10–18</td>
+<td>B Ist-Zustand und Probleme</td>
+</tr>
+<tr>
+<td>18–30</td>
+<td>C Nutzer, Abläufe, Daten, Schnittstellen</td>
+</tr>
+<tr>
+<td>30–38</td>
+<td>D Qualität, Randbedingungen</td>
+</tr>
+<tr>
+<td>38–43</td>
+<td>E Priorisierung, Abnahme</td>
+</tr>
+<tr>
+<td>43–45</td>
+<td>Zusammenfassen, offene Punkte, nächste Schritte</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gesprächsregeln-für-uns">Gesprächsregeln für uns</h3>
+<ul>
+<li><strong>Offen fragen</strong> («Wie läuft … ab?», «Was passiert,
+wenn …?»), nicht suggestiv («Sie wollen doch sicher …?»).</li>
+<li>Bei Lösungsvorschlägen («Wir brauchen eine App mit grossem Knopf»)
+nach dem <strong>Warum</strong> fragen und das Bedürfnis dahinter
+notieren (Folie 47: Lösungs- statt Anforderungsdenken).</li>
+<li>Bei Adjektiven wie «schnell», «einfach», «sicher» sofort
+<strong>nach einem Mass fragen</strong> (Folie 47: unmessbare NFR).
+Ardian Ibrahimaj achtet darauf.</li>
+<li>Begriffe sofort klären und ins Glossar notieren («Was genau
+verstehen Sie unter ‹Fall›?» – Folie 47: uneinheitliche
+Terminologie).</li>
+<li>Zum Schluss jedes Frageblocks kurz zusammenfassen: «Habe ich richtig
+verstanden, dass …?»</li>
+</ul>
+<h2 id="a-ziele-und-erfolg">A. Ziele und Erfolg</h2>
+<ol type="1">
+<li>★ Was ist das wichtigste Ziel des Projekts – was soll nach der
+Einführung anders sein als heute?</li>
+<li>★ Woran merken Sie in einem Jahr, dass sich das Projekt gelohnt hat?
+Welche Zahl soll sich wie verändern (Zeit, Kosten, Fehler,
+Zufriedenheit)?</li>
+<li>Welches übergeordnete Geschäftsziel steht dahinter (Wachstum,
+Kosten, Qualität, Vorschriften, Image)? <em>(→ Zielhierarchie, Folie
+37)</em></li>
+<li>Gibt es Termine oder ein Budget, die fix sind? <em>(→
+Projektanforderungen, Folie 38 – nicht Systemanforderungen)</em></li>
+<li>Was soll das System ausdrücklich <strong>nicht</strong> tun bzw. was
+gehört nicht zum Projekt? <em>(→ Abgrenzung; Folie 13: keine Merkmale,
+die der Kunde nicht will)</em></li>
+</ol>
+<h2 id="b-ist-zustand-und-probleme">B. Ist-Zustand und Probleme</h2>
+<ol start="6" type="1">
+<li>★ Wie läuft der heutige Ablauf von Anfang bis Ende ab? Können Sie
+ihn an einem typischen Fall von gestern erzählen?</li>
+<li>★ Wo verlieren Sie heute am meisten Zeit oder Geld? Wo passieren
+Fehler?</li>
+<li>Welche Hilfsmittel, Listen, Systeme werden heute benutzt (Excel,
+Papier, E-Mail, Fachsoftware)?</li>
+<li>Was funktioniert heute gut und darf auf keinen Fall verloren
+gehen?</li>
+<li>Gibt es Ausnahmen und Sonderfälle, die selten, aber aufwendig sind?
+Was passiert bei Abwesenheit oder Stellvertretung? <em>(→ versteckte
+Anforderungen, Folie 47)</em></li>
+<li><code>[G2: Frage zu einem in der Projektvorstellung genannten Problem]</code></li>
+</ol>
+<h2 id="c-nutzer-abläufe-daten-schnittstellen">C. Nutzer, Abläufe,
+Daten, Schnittstellen</h2>
+<p><strong>Nutzer und Rollen</strong></p>
+<ol start="12" type="1">
+<li>★ Wer arbeitet künftig mit dem System? Wie viele Personen pro Rolle?
+Wie technikaffin sind sie, wie oft nutzen sie es (täglich /
+gelegentlich)?</li>
+<li>Wer darf was sehen, erfassen, ändern, freigeben, löschen? Wer
+vergibt die Berechtigungen?</li>
+<li>Gibt es externe Nutzer (Kund:innen, Partner)? Was dürfen sie?</li>
+</ol>
+<p><strong>Abläufe (Soll)</strong></p>
+<ol start="15" type="1">
+<li>★ Wie stellen Sie sich den künftigen Ablauf vor – Schritt für
+Schritt? Wer löst ihn aus, was ist das Ergebnis?</li>
+<li>Was passiert, wenn etwas schiefgeht (fehlende Angaben, Fehler,
+Abbruch, doppelte Erfassung)?</li>
+<li>Gibt es Fristen, Eskalationen, Erinnerungen, Freigaben
+(Vier-Augen-Prinzip)?</li>
+</ol>
+<p><strong>Daten</strong></p>
+<ol start="18" type="1">
+<li>★ Welche Informationen werden erfasst, gespeichert, ausgewertet? Was
+ist der wichtigste «Gegenstand» (Auftrag, Fall, Kunde, Dokument …)?
+<em>(→ Glossar, Facette «Datum», Folie 40)</em></li>
+<li>Woher kommen die Daten heute, wer ist dafür verantwortlich, wie
+lange müssen sie aufbewahrt werden?</li>
+<li>Sind Personendaten oder vertrauliche Daten dabei? Wer darf sie nicht
+sehen?</li>
+<li>Welche Auswertungen oder Berichte brauchen Sie (wer, wie oft, welche
+Kennzahlen)?</li>
+</ol>
+<p><strong>Schnittstellen</strong></p>
+<ol start="22" type="1">
+<li>★ Mit welchen bestehenden Systemen oder Organisationen muss das neue
+System Daten austauschen? In welche Richtung, wie oft?</li>
+<li>Was davon ist schon vorhanden und bleibt unverändert, was muss
+angepasst werden? <em>(→ Teilsysteme neu/geändert/unverändert, Folie
+17/18)</em></li>
+</ol>
+<h2 id="d-qualität-und-randbedingungen">D. Qualität und
+Randbedingungen</h2>
+<p>Für jede Antwort: <strong>Wert + Messgrösse + Bedingung</strong>
+erfragen (z. B. «95 % der Suchanfragen in unter 2 s bei 50
+gleichzeitigen Nutzern»).</p>
+<ol start="24" type="1">
+<li>★ Wie schnell muss das System reagieren – wo stört Warten am
+meisten?</li>
+<li>★ Wann muss das System verfügbar sein (Bürozeiten, 24/7)? Was
+passiert, wenn es einen halben Tag ausfällt?</li>
+<li>Wie viele Fälle/Nutzer erwarten Sie heute und in drei Jahren? <em>(→
+Leistungsanforderung)</em></li>
+<li>Wie schnell soll eine neue Person das System bedienen können
+(Einarbeitungszeit, Schulung)?</li>
+<li>Welche Sicherheitsanforderungen gelten (Anmeldung, Protokollierung,
+wer hat was wann geändert)?</li>
+<li>Auf welchen Geräten soll es laufen (PC, Smartphone, Tablet,
+Browser), Sprachen, Barrierefreiheit?</li>
+<li>Gibt es Vorgaben, die wir einhalten müssen: Gesetze (z. B.
+Datenschutz), Branchenregeln, interne Weisungen, IT-Standards,
+vorgegebene Produkte? <em>(→ Randbedingungen, Folie 38; Facette Rolle
+«Vorschrift/Tatsache», Folie 42)</em></li>
+<li><code>[G2: projektspezifische Qualitätsfrage]</code></li>
+</ol>
+<h2 id="e-priorisierung-und-abnahme">E. Priorisierung und Abnahme</h2>
+<ol start="32" type="1">
+<li>★ Wenn Sie nur drei Funktionen bekommen könnten – welche? <em>(→
+Muss)</em> Was wäre schön, aber verzichtbar? <em>(→ Soll/Wunsch, Folie
+43)</em></li>
+<li>Welche Funktion bringt den grössten Nutzen im Verhältnis zum
+Aufwand? <em>(→ wertbasierte Priorisierung, Folie 44)</em></li>
+<li>★ Woran prüfen Sie bei der Abnahme, ob eine Anforderung erfüllt ist?
+Haben Sie Testfälle oder Beispielfälle für uns? <em>(→ prüfbar, Folie
+45)</em></li>
+<li>Wer gibt die Spezifikation frei, und wer entscheidet bei
+Widersprüchen zwischen Stakeholdern? <em>(→ Folie 47: unklare
+Verantwortung)</em></li>
+<li>Wie und wann können wir Rückfragen stellen und Ihnen Zwischenstände
+zeigen?</li>
+</ol>
+<h2 id="abschluss-immer">Abschluss (immer)</h2>
+<ul>
+<li>Zusammenfassung der 3–5 wichtigsten Erkenntnisse vorlesen und
+bestätigen lassen.</li>
+<li>Offene Punkte mit Verantwortlichen und Frist festhalten.</li>
+<li>«Gibt es etwas, das wir nicht gefragt haben, aber wissen
+sollten?»</li>
+<li>Nächster Kontakt: <code>[Datum, Kanal]</code>; Protokoll bis
+<code>[Datum]</code> an Gruppe 2.</li>
+</ul>
+<hr />
+<h2 id="protokollvorlage">Protokollvorlage</h2>
+<table>
+<thead>
+<tr>
+<th>Feld</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Datum, Dauer</td>
+<td></td>
+</tr>
+<tr>
+<td>Teilnehmende</td>
+<td>Gruppe 2: <code>[…]</code> · Gruppe 9: <code>[…]</code></td>
+</tr>
+<tr>
+<td>Protokoll</td>
+<td>Ardian Ibrahimaj</td>
+</tr>
+<tr>
+<td>Version / bestätigt durch Gruppe 2 am</td>
+<td>v0.1 / <code>[Datum]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="erkenntnisse">Erkenntnisse</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Aussage (möglichst wörtlich)</th>
+<th>Wer (Rolle)</th>
+<th>Thema (Ziel / Ist / Problem / Funktion / Datum / Qualität /
+Randbedingung)</th>
+<th>Rolle der Aussage (Vorschrift / Tatsache / Annahme, Folie 42)</th>
+<th>→ Anforderung / Ziel (ID)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="neue-glossarbegriffe">Neue Glossarbegriffe</h3>
+<table>
+<thead>
+<tr>
+<th>Begriff</th>
+<th>Bedeutung laut Gruppe 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="offene-punkte">Offene Punkte</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Frage</th>
+<th>verantwortlich</th>
+<th>bis</th>
+<th>erledigt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

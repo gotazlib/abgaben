@@ -1,0 +1,13 @@
+flowchart LR
+  PK["Privatkunden"] <-- "Reservation, Änderung, Storno /<br/>freie Zeiten, Bestätigung" --> S(("Buchungs- und<br/>Belegungssystem<br/>ArenaOne"))
+  VF["Vereine & Firmen"] <-- "Serien, Ausnahmen /<br/>Terminliste, Konflikte" --> S
+  TR["Trainer"] <-- "Platzbedarf Lektionen /<br/>eigene Platzzeiten" --> S
+  EM["Empfang"] <-- "Buchungen für Kunden /<br/>Gesamtübersicht" --> S
+  WS[/"Website ArenaOne<br/>(offen)"/] -. "Einstieg zur Buchung" .-> S
+  S <-- "Regeln, Kontingente /<br/>Auslastung, Auswertungen" --> GL["Geschäftsleitung"]
+  S <-- "Sperrzeiten /<br/>Belegungsplan" --> BA["Betrieb der Anlage"]
+  S <-- "Ressourcen, Rollen,<br/>Benutzer" --> IT["IT / Administration"]
+  S -- "Bestätigung, Erinnerung" --> NV[/"E-Mail / SMS"/]
+  S <-. "Zahlung (offen)" .-> ZA[/"Zahlungsanbieter<br/>(offen)"/]
+  S -. "abrechnungsrelevante<br/>Buchungen (offen)" .-> BH[/"Buchhaltung<br/>(nicht im Scope)"/]
+  S -. "Zutritt (offen)" .-> ZU[/"Zutritt / Licht<br/>(offen)"/]

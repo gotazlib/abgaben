@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>RE-Vorgehensplan – Gruppe 9 als Requirements Engineers für Gruppe 2 (ArenaOne)</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="re-vorgehensplan--gruppe-9-als-requirements-engineers-für-gruppe-2-arenaone">RE-Vorgehensplan
+– Gruppe 9 als Requirements Engineers für Gruppe 2 (ArenaOne)</h1>
+<p>Artefakt <strong>R1</strong> aus dem Fahrplan (Abschnitt 3.2). Stand:
+25.10.2026, <strong>befüllt</strong> auf Grundlage der
+Projektvorstellung von Gruppe 2 (Analyse: <a href="analyse-arenaone.html"><code>analyse-arenaone.md</code></a>).
+Begriffe und Folien-Nummern wie in <code>notizen/kurs-konzepte.md</code>
+(Folie = Seite in <code>material/RE_Block1.pdf</code>). Quellenkürzel
+<code>F</code>/<code>N</code>/<code>A</code>/<code>B</code>/<code>S</code>
+wie in der Analyse, Abschnitt «Quellenkürzel».</p>
+<blockquote>
+<p><strong>Noch offen:</strong> Daten der PVA
+(<code>[Datum PVA n]</code>, nichts davon ist bekannt), Namen und
+Kontaktkanal der Ansprechpersonen bei Gruppe 2
+(<code>[G2: …]</code>).</p>
+</blockquote>
+<h2 id="1-auftrag-und-projekt">1. Auftrag und Projekt</h2>
+<table>
+<thead>
+<tr>
+<th>Punkt</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Auftraggeber</td>
+<td>Gruppe 2 in der Rolle als Stakeholder: <strong>ArenaOne Sportzentrum
+AG</strong>, fiktives mittelgrosses Sportzentrum im Raum Zürich
+(<code>F2</code>, <code>N1</code>)</td>
+</tr>
+<tr>
+<td>Projekt</td>
+<td><strong>Buchungs- und Belegungsmanagement für Sportplätze und
+Hallen</strong> (Padel, Tennis, Badminton, Mehrzweckhallen)
+(<code>F1</code>, <code>F2</code>)</td>
+</tr>
+<tr>
+<td>Auftrag ans RE-Team</td>
+<td>«Anforderungen ermitteln · dokumentieren · validieren · verwalten»
+(<code>F5</code>); die konkrete Lösung soll im RE-Prozess ermittelt
+werden, nicht vorgegeben (<code>N1</code>, <code>N5</code>)</td>
+</tr>
+<tr>
+<td>Ziel laut Auftraggeber</td>
+<td>Buchungs- und Belegungsprozess vereinfachen, Transparenz über
+verfügbare Kapazitäten erhöhen, administrativen Aufwand reduzieren,
+Kapazitäten besser nutzen (<code>F4</code>)</td>
+</tr>
+<tr>
+<td>Umfang</td>
+<td>im Scope: Verfügbarkeiten, Reservationen, Änderungen, Stornierungen,
+wiederkehrende Buchungen; nicht im Scope: Finanz- und Lohnbuchhaltung,
+Personalplanung, Gastronomie, vollständiges CRM, technische Architektur
+(<code>F4</code>, <code>N4</code>)</td>
+</tr>
+<tr>
+<td>Ansprechpersonen</td>
+<td><code>[G2: Namen/Rollen in Gruppe 2, Kanal (E-Mail, Teams, WhatsApp)]</code>
+– an PVA 5 spätestens klären</td>
+</tr>
+<tr>
+<td>Unterlagen</td>
+<td>Präsentation PVA 2:
+<code>material/Praesentation_ArenaOne.pptx</code> (+ PDF), privat</td>
+</tr>
+<tr>
+<td>Neues System oder Änderung?</td>
+<td><strong>Neu</strong>: heute gibt es kein Buchungssystem, sondern
+Telefon, E-Mail, Empfang und interne Listen (<code>F2</code>). Das
+Teilsystem-Vorgehen nach Folie 17/18 ist deshalb nur am Rand nötig
+(Abgrenzung zu bestehender Website, Telefon, Buchhaltung – siehe <a href="kontextdiagramm.html">Kontextdiagramm</a>, Abschnitt C)</td>
+</tr>
+<tr>
+<td>Art der Spezifikation</td>
+<td>Anforderungsspezifikation aus Anwendersicht, inhaltlich ein
+<strong>Lastenheft</strong> (<em>Was? Wofür?</em>, Folie 26). Gruppe 2
+will danach Make-or-Buy beurteilen (<code>N5</code>) – die Spezifikation
+muss also auch als Grundlage für den Vergleich mit Standardprodukten (z.
+B. Playtomic, GotCourts, eTermin) taugen, ohne eines vorzugeben</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-prozessmodell-der-re-kreislauf">2. Prozessmodell: der
+RE-Kreislauf</h2>
+<p>Wir arbeiten nach dem <strong>Kreislauf von Folie 28</strong> und
+ordnen die vier Phasen des Merkblatts darin ein. Der Kreislauf ist «kein
+linearer Fluss»: Wir durchlaufen ihn mindestens zweimal – einmal vor PVA
+5 (Hypothesen aus der Präsentation, Probelauf mit dem simulierten
+Interview) und einmal nach PVA 5 (echte Antworten von Gruppe 2).</p>
+<table>
+<thead>
+<tr>
+<th>Kreislauf (Folie 28)</th>
+<th>Merkblatt-Phase</th>
+<th>Aufgaben laut Folie 27</th>
+<th>Ergebnis für ArenaOne</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 Ermitteln – Stakeholder, Quellen, Bedürfnisse</td>
+<td><strong>Ermitteln</strong></td>
+<td>gewinnen, analysieren</td>
+<td><a href="analyse-arenaone.html">Analyse der Präsentation</a>, <a href="stakeholder-analyse.html">Stakeholder-Analyse</a>, <a href="kontextdiagramm.html">Kontextdiagramm</a>, <a href="zielhierarchie.html">Zielhierarchie</a>, <a href="fragenliste-gruppe2.html">Fragenliste</a>, <a href="interviewleitfaden-pva5.html">Interviewleitfaden</a>, Protokoll PVA
+5</td>
+</tr>
+<tr>
+<td>2 Dokumentieren – schriftlich, modellhaft, eindeutig</td>
+<td><strong>Dokumentieren</strong></td>
+<td>dokumentieren</td>
+<td>Anforderungsspezifikation (Kernabgabe), <a href="glossar.html">Glossar</a>, Modelle (Kontext, später Use Cases)</td>
+</tr>
+<tr>
+<td>3 Prüfen &amp; Abstimmen – Qualität, Konsistenz, Akzeptanz</td>
+<td><strong>Validieren</strong> (Teil 1)</td>
+<td>validieren</td>
+<td>interne Prüfung gegen Folie 45/47, Abstimmung mit Gruppe 2</td>
+</tr>
+<tr>
+<td>4 Verwalten – versionieren, verfolgen, ändern</td>
+<td><strong>Verwalten</strong></td>
+<td>freigeben, ändern, rückverfolgen</td>
+<td>Versionen v0.1 … v1.0, Änderungsliste, Nachverfolgbarkeit Ziel →
+Anforderung → Quelle</td>
+</tr>
+<tr>
+<td>5 Validieren – «Hält die Spec im System?»</td>
+<td><strong>Validieren</strong> (Teil 2)</td>
+<td>validieren</td>
+<td>Szenarien mit Gruppe 2 durchspielen (z. B. «Verein bucht
+Wintersaison», «Absage 2 h vorher»), optional KI-App als Test (R13)</td>
+</tr>
+</tbody>
+</table>
+<p>Massstab für den Umfang ist <strong>risikogerecht</strong> (Folie
+22/23): «Wie viel müssen wir tun, damit das Risiko eine Grösse annimmt,
+die wir bereit sind zu akzeptieren?» Für ArenaOne heisst das (Abschnitt
+4): genau spezifizieren, wo Konflikte und Regeln stecken (Kundengruppen,
+Serien, Stornos, Ressourcen in Mehrzweckhallen), knapp, wo es Standard
+ist (Anmelden, Bestätigungs-E-Mail).</p>
+<h2 id="3-rollen-in-unserem-re-team">3. Rollen in unserem RE-Team</h2>
+<p>Gruppe 9 besteht aus <strong>zwei Personen</strong>. Jede Person muss
+trotzdem den ganzen Prozess erklären können (Bewertung «Zusammenhänge
+verstehen» 40 %).</p>
+<table>
+<thead>
+<tr>
+<th>Rolle</th>
+<th>Person</th>
+<th>Verantwortung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RE-Lead, Moderation, Präsentation</strong></td>
+<td>Görkem Taspinar</td>
+<td>Kontakt zu Gruppe 2, führt das Interview in PVA 5, entscheidet bei
+Uneinigkeit im Team, Zwischenstand PVA 6, Präsentation und Moderation
+der Diskussion PVA 9/10, Zeitplan</td>
+</tr>
+<tr>
+<td><strong>Spezifikation, Qualität</strong></td>
+<td>Ardian Ibrahimaj</td>
+<td>protokolliert das Interview und achtet auf Messbarkeit, Glossar,
+Anforderungsspezifikation, Versionen und Änderungsliste, Prüfung gegen
+Qualitätsmerkmale (Folie 45) und Problemliste (Folie 47), Validierung
+mit Gruppe 2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Präsentation PVA 9/10:</strong> Sprechanteile ungefähr
+hälftig (Görkem ca. 10 min, Ardian ca. 9,5 min) – Görkem: Titel,
+Auftrag, Vorgehen, Stakeholder und Kontext, Ziele, Lessons Learned,
+Überleitung; Ardian: funktionale Anforderungen, Qualitätsanforderungen,
+Priorisierung, Validierung und Verwaltung. Die Diskussion moderiert
+Görkem, Ardian führt die Zeit und beantwortet Detailfragen zur
+Spezifikation (Gliederung).</p>
+<h2 id="4-risikoeinschätzung">4. Risikoeinschätzung</h2>
+<p>Entscheidungsbaum Folie 22: Anforderungen schon bekannt? → Risiko
+tolerabel gering, dass der Kunde das System nicht akzeptiert? → sonst
+Spezifikation notwendig. Einschätzung nach Dokumentenanalyse (vor PVA
+5).</p>
+<table>
+<thead>
+<tr>
+<th>Bereich</th>
+<th>bekannt?</th>
+<th>Risiko bei Missverständnis</th>
+<th>Spezifikationstiefe</th>
+<th>Begründung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Belegungsübersicht, Einzelreservation</td>
+<td>teilweise (<code>F3</code>, <code>F4</code>)</td>
+<td>mittel</td>
+<td>genau bei Doppelbuchung/Ressourcenbegriff, sonst knapp</td>
+<td>Kern des Systems; Doppelbuchungen sind ein genanntes Problem</td>
+</tr>
+<tr>
+<td>Kundengruppen, Regeln, Berechtigungen</td>
+<td>nein (von Gruppe 2 offen gelassen, <code>F5</code>)</td>
+<td><strong>hoch</strong></td>
+<td><strong>genau</strong></td>
+<td>Zielkonflikte zwischen Gruppen, wirkt auf Akzeptanz und Umsatz</td>
+</tr>
+<tr>
+<td>Serien (Vereine, Trainings)</td>
+<td>nein (<code>F5</code>)</td>
+<td><strong>hoch</strong></td>
+<td><strong>genau</strong></td>
+<td>Ausnahmen (Ferien, einzelne Absage) sind typische versteckte
+Anforderungen</td>
+</tr>
+<tr>
+<td>Stornierung, Warteliste</td>
+<td>nein (<code>F5</code>)</td>
+<td><strong>hoch</strong></td>
+<td><strong>genau</strong></td>
+<td>Geld (Stornogebühr?) und Kapazitätsnutzung</td>
+</tr>
+<tr>
+<td>Benachrichtigungen</td>
+<td>nein (<code>F5</code>)</td>
+<td>gering</td>
+<td>knapp</td>
+<td>Standardfunktion</td>
+</tr>
+<tr>
+<td>Auswertungen für die GL</td>
+<td>nein (<code>F5</code>)</td>
+<td>mittel</td>
+<td>Kennzahlen genau, Darstellung knapp</td>
+<td>messbare Ziele hängen daran</td>
+</tr>
+<tr>
+<td>Daten (Kundendaten, Aufbewahrung)</td>
+<td>nein</td>
+<td>mittel</td>
+<td>genau bei Abgrenzung zum CRM und beim Datenschutz</td>
+<td>Scope-Grenze «vollständiges CRM» ist unscharf (L-03)</td>
+</tr>
+<tr>
+<td>Schnittstellen (Website, Zahlung, Buchhaltung, Zutritt)</td>
+<td>nein</td>
+<td>mittel</td>
+<td>Grenze genau, Inhalt knapp</td>
+<td>Zahlung ist nicht geklärt (L-02)</td>
+</tr>
+<tr>
+<td>Qualität (Verfügbarkeit, Antwortzeit, Bedienbarkeit,
+Mobilgeräte)</td>
+<td>nein</td>
+<td>mittel</td>
+<td>messbare Fit-Kriterien</td>
+<td>sonst «unmessbare NFR» (Folie 47)</td>
+</tr>
+<tr>
+<td>Rechtliche Randbedingungen (DSG)</td>
+<td>ja (Gesetz)</td>
+<td>mittel</td>
+<td>knapp, mit Quelle</td>
+<td>Vorschrift, nicht verhandelbar</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-ermittlungstechniken-mit-begründung">5. Ermittlungstechniken
+mit Begründung</h2>
+<blockquote>
+<p>Ermittlungstechniken werden laut Roadmap (Folie 2) in Block 3
+behandelt. Die Auswahl ist mit Block 1 begründet; nach Block 3 Namen und
+Vorgehen an die Folien angleichen.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Technik</th>
+<th>Wann</th>
+<th>Wozu</th>
+<th>Begründung (Block 1)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dokumentenanalyse</strong> der Präsentation PVA 2</td>
+<td>erledigt 25.10.2026</td>
+<td>Ziele, Scope, Probleme, offene Fragen, Lücken</td>
+<td>Quellen sind Teil von «Ermitteln» (Folie 28); im Interview nichts
+abfragen, was schon auf den Folien steht → <a href="analyse-arenaone.html"><code>analyse-arenaone.md</code></a></td>
+</tr>
+<tr>
+<td><strong>Benchmark</strong> (Playtomic, GotCourts, eTermin)</td>
+<td>erledigt, kurz</td>
+<td>Fragen finden, an die Gruppe 2 vielleicht nicht gedacht hat
+(Zahlung, Warteliste, Erinnerungen)</td>
+<td>gegen «unvollständige» und «versteckte» Anforderungen (Folie 47);
+Benchmark liefert nur <strong>Fragen</strong>, keine Anforderungen
+(Kundenorientierung, Folie 21)</td>
+</tr>
+<tr>
+<td><strong>Schriftliche Vorab-Fragen</strong></td>
+<td>vor PVA 5</td>
+<td>Zahlen und Fakten, die man nachschlagen muss (Anzahl Plätze,
+Öffnungszeiten), damit das Interview Zeit für Regeln und Konflikte
+hat</td>
+<td>→ <a href="fragenliste-gruppe2.html"><code>fragenliste-gruppe2.md</code></a></td>
+</tr>
+<tr>
+<td><strong>Probelauf: simuliertes Interview</strong> (Rollenspiel im
+Team)</td>
+<td>vor PVA 5</td>
+<td>Leitfaden testen (Zeit, Reihenfolge, Lücken), Gesprächsführung üben,
+erwartbare Konflikte vorab durchdenken</td>
+<td>→ <a href="simuliertes-interview-pva5.html"><code>simuliertes-interview-pva5.md</code></a>.
+<strong>Ersetzt nicht die Ermittlung mit Gruppe 2</strong>; Antworten
+daraus haben die Quelle <code>S</code> und gelten bis zur Bestätigung
+als Annahme</td>
+</tr>
+<tr>
+<td><strong>Interview</strong> (teilstrukturiert, nach
+Stakeholder-Rollen)</td>
+<td>PVA 5</td>
+<td>Regeln, Abläufe, Ausnahmen, Qualitätsziele mit Mass,
+Prioritäten</td>
+<td>Leitfaden <a href="interviewleitfaden-pva5.html"><code>interviewleitfaden-pva5.md</code></a>;
+gezielt nach versteckten und unmessbaren Anforderungen fragen (Folie
+47)</td>
+</tr>
+<tr>
+<td><strong>Szenario-Walkthrough</strong> (statt Beobachtung, da
+ArenaOne fiktiv ist)</td>
+<td>PVA 5, letzter Teil, oder online danach</td>
+<td>einen typischen Tag am Empfang und eine Vereinsserie Schritt für
+Schritt durchspielen</td>
+<td>«Integration von Erstellung und Prüfung» (Folie 46); <a href="vorlagen/workshop-beobachtung.html"><code>vorlagen/workshop-beobachtung.md</code></a></td>
+</tr>
+<tr>
+<td><strong>Review der Spezifikation</strong> durch Gruppe 2</td>
+<td>nach v0.5</td>
+<td>Akzeptanz, Korrekturen, Freigabe</td>
+<td>Prüfen &amp; Abstimmen, Validieren (Folie 28); Fehler früh finden
+(Folie 33/34)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-ablauf-entlang-der-pva">6. Ablauf entlang der PVA</h2>
+<p>Termine laut Merkblatt fett; die übrigen Zeilen sind unsere Planung.
+Daten sind noch nicht bekannt.</p>
+<table>
+<thead>
+<tr>
+<th>Wann</th>
+<th>Kreislauf-Phase</th>
+<th>Aktivitäten RE-Team</th>
+<th>Ergebnis (Fahrplan-ID)</th>
+<th>verantwortlich</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PVA 2</strong></td>
+<td>Ermitteln</td>
+<td>Projektvorstellung von Gruppe 2 erhalten</td>
+<td>Präsentation in <code>material/</code></td>
+<td>– (erledigt)</td>
+</tr>
+<tr>
+<td>bis 25.10.2026</td>
+<td>Ermitteln</td>
+<td>Dokumentenanalyse, Benchmark, RE-Plan, Stakeholder-Analyse,
+Kontextdiagramm, Zielhierarchie, Glossar, Leitfaden, Fragenliste,
+simuliertes Interview</td>
+<td>R1–R5 (Entwurf)</td>
+<td>Görkem, Ardian</td>
+</tr>
+<tr>
+<td>vor PVA 5</td>
+<td>Ermitteln</td>
+<td>Fragenliste an Gruppe 2 schicken, Kanal und Ansprechpersonen klären;
+Leitfaden nach dem Probelauf kürzen</td>
+<td>Antworten auf Vorab-Fragen</td>
+<td>Görkem</td>
+</tr>
+<tr>
+<td>vor PVA 5</td>
+<td>Dokumentieren</td>
+<td>Spezifikation v0.1: Gliederung, Ziele, Hypothesen als Entwurf
+(Quelle <code>F</code>/<code>A</code>/<code>B</code>/<code>S</code>
+sichtbar)</td>
+<td>R6 v0.1</td>
+<td>Ardian</td>
+</tr>
+<tr>
+<td><strong>PVA 5</strong> <code>[Datum PVA 5]</code></td>
+<td>Ermitteln</td>
+<td><strong>Interview mit Gruppe 2</strong> (Leitfaden, ca. 45 min),
+Szenario-Walkthrough, Prioritäten; Protokoll am selben Tag</td>
+<td>Protokoll, offene Punkte</td>
+<td>Görkem führt, Ardian protokolliert und prüft Messbarkeit</td>
+</tr>
+<tr>
+<td>PVA 5 → 6</td>
+<td>Dokumentieren, Prüfen &amp; Abstimmen</td>
+<td>Protokoll an Gruppe 2 zur Bestätigung; Hypothesen und Simulation
+gegen das echte Protokoll abgleichen (bestätigt / geändert / verworfen);
+Spezifikation v0.3; interne Prüfung gegen Folie 45</td>
+<td>R6 v0.3</td>
+<td>Ardian</td>
+</tr>
+<tr>
+<td><strong>PVA 6</strong> <code>[Datum PVA 6]</code></td>
+<td>(Standortbestimmung)</td>
+<td><strong>Kurzvorstellung Zwischenstand gemeinsam mit Gruppe
+2</strong>: Phase im Kreislauf, erste Erkenntnisse (<a href="zwischenstand-pva6.html"><code>zwischenstand-pva6.md</code></a>)</td>
+<td>R9</td>
+<td>Görkem (spricht), Ardian (Folien)</td>
+</tr>
+<tr>
+<td>PVA 6 → 7</td>
+<td>Prüfen &amp; Abstimmen, Verwalten</td>
+<td>Rückmeldungen einarbeiten, v0.5 an Gruppe 2 zum Review;
+Änderungsliste</td>
+<td>R6 v0.5, R8</td>
+<td>Ardian</td>
+</tr>
+<tr>
+<td>PVA 7</td>
+<td>Validieren</td>
+<td>Review-Befunde bearbeiten, Szenarien gegen die Spezifikation prüfen,
+Konflikte von der GL (Gruppe 2) entscheiden lassen</td>
+<td>R7</td>
+<td>Ardian, Görkem</td>
+</tr>
+<tr>
+<td>PVA 8</td>
+<td>Verwalten, Validieren</td>
+<td>Freigabe v1.0, Nachverfolgbarkeit vervollständigen; optional KI-App
+(R13); Präsentation und Diskussion vorbereiten, Probelauf mit
+Stoppuhr</td>
+<td>R6 v1.0, R10, R11, R12</td>
+<td>beide</td>
+</tr>
+<tr>
+<td><strong>PVA 9/10</strong> <code>[Datum PVA 9/10]</code></td>
+<td>–</td>
+<td><strong>ca. 20 min Präsentation, ca. 15 min Diskussion moderieren,
+Spezifikation einreichen</strong></td>
+<td>Abgabe</td>
+<td>beide</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-werkzeuge-und-ablage">7. Werkzeuge und Ablage</h2>
+<table>
+<thead>
+<tr>
+<th>Zweck</th>
+<th>Werkzeug</th>
+<th>Ort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arbeitsstände, Versionen</td>
+<td>Git-Repository (privat)</td>
+<td><code>re-gruppe2/</code></td>
+</tr>
+<tr>
+<td>Präsentation von Gruppe 2</td>
+<td>Original + PDF, nur intern</td>
+<td><code>re-gruppe2/material/</code></td>
+</tr>
+<tr>
+<td>Spezifikation</td>
+<td>Markdown als Quelle, daraus PDF und Word</td>
+<td><code>anforderungsspezifikation-vorlage.md</code> →
+<code>anforderungsspezifikation.md</code></td>
+</tr>
+<tr>
+<td>Modelle</td>
+<td>Mermaid im Markdown, als PNG exportiert</td>
+<td><code>re-gruppe2/modelle/</code></td>
+</tr>
+<tr>
+<td>Austausch mit Gruppe 2</td>
+<td><code>[G2: Kanal]</code>; Entscheide schriftlich bestätigen
+lassen</td>
+<td>Protokolle in <code>re-gruppe2/protokolle/</code> (nur echte
+Protokolle, keine Simulation)</td>
+</tr>
+<tr>
+<td>Präsentation</td>
+<td>PowerPoint (PPTX) + PDF</td>
+<td><code>re-gruppe2/praesentation-pva9-10/</code></td>
+</tr>
+<tr>
+<td>Qualitätsprüfung</td>
+<td>Checklisten Folie 45 und 47, <a href="merkblatt-checkliste.html">Merkblatt-Checkliste</a></td>
+<td>Spezifikation Kapitel 10</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-artefakte-übersicht">8. Artefakte (Übersicht)</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Artefakt</th>
+<th>Datei</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1</td>
+<td>RE-Plan</td>
+<td>dieses Dokument</td>
+<td>befüllt</td>
+</tr>
+<tr>
+<td>–</td>
+<td>Merkblatt-Checkliste</td>
+<td><a href="merkblatt-checkliste.html"><code>merkblatt-checkliste.md</code></a></td>
+<td>fertig</td>
+</tr>
+<tr>
+<td>–</td>
+<td>Analyse der Präsentation</td>
+<td><a href="analyse-arenaone.html"><code>analyse-arenaone.md</code></a></td>
+<td>fertig</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>Stakeholder-Analyse</td>
+<td><a href="stakeholder-analyse.html"><code>stakeholder-analyse.md</code></a></td>
+<td>Hypothese, Validierung PVA 5</td>
+</tr>
+<tr>
+<td>R3</td>
+<td>Systemkontext / Kontextdiagramm</td>
+<td><a href="kontextdiagramm.html"><code>kontextdiagramm.md</code></a>, <a href="modelle/kontextdiagramm.png"><code>modelle/kontextdiagramm.png</code></a></td>
+<td>Hypothese</td>
+</tr>
+<tr>
+<td>R4</td>
+<td>Zielhierarchie</td>
+<td><a href="zielhierarchie.html"><code>zielhierarchie.md</code></a></td>
+<td>Hypothese, Zielwerte = Annahmen</td>
+</tr>
+<tr>
+<td>R5</td>
+<td>Interviewleitfaden, Fragenliste, Probelauf</td>
+<td><a href="interviewleitfaden-pva5.html"><code>interviewleitfaden-pva5.md</code></a>,
+<a href="fragenliste-gruppe2.html"><code>fragenliste-gruppe2.md</code></a>,
+<a href="simuliertes-interview-pva5.html"><code>simuliertes-interview-pva5.md</code></a></td>
+<td>fertig; echtes Protokoll nach PVA 5</td>
+</tr>
+<tr>
+<td>–</td>
+<td>Glossar</td>
+<td><a href="glossar.html"><code>glossar.md</code></a></td>
+<td>Entwurf, Begriffe von Gruppe 2 bestätigen lassen</td>
+</tr>
+<tr>
+<td>R6</td>
+<td>Anforderungsspezifikation</td>
+<td><a href="anforderungsspezifikation-vorlage.html"><code>anforderungsspezifikation-vorlage.md</code></a>
+(+ DOCX)</td>
+<td>Vorlage; v0.1 als Nächstes</td>
+</tr>
+<tr>
+<td>R7, R8</td>
+<td>Validierung, Versionen, Nachverfolgbarkeit</td>
+<td>in der Spezifikation, Kapitel 9–11</td>
+<td>ab v0.3</td>
+</tr>
+<tr>
+<td>R9</td>
+<td>Zwischenstand PVA 6</td>
+<td><a href="zwischenstand-pva6.html"><code>zwischenstand-pva6.md</code></a></td>
+<td>Gerüst</td>
+</tr>
+<tr>
+<td>R10–R12</td>
+<td>Präsentation, Diskussion, Q&amp;A</td>
+<td><a href="https://github.com/gotazlib/abgaben/tree/main/requirements-engineering/re-arenaone/praesentation-pva9-10"><code>praesentation-pva9-10/</code></a></td>
+<td>Gerüst / generisch</td>
+</tr>
+<tr>
+<td>R13</td>
+<td>optional: KI-App</td>
+<td>–</td>
+<td>offen (O7)</td>
+</tr>
+</tbody>
+</table>
+<p>Die leeren Vorlagen in <a href="https://github.com/gotazlib/abgaben/tree/main/requirements-engineering/re-arenaone/vorlagen"><code>vorlagen/</code></a>
+bleiben als Muster stehen; die befüllten Fassungen liegen direkt in
+<code>re-gruppe2/</code>.</p>
+<h2 id="9-risiken-für-unsere-re-arbeit">9. Risiken für unsere
+RE-Arbeit</h2>
+<table>
+<thead>
+<tr>
+<th>Risiko</th>
+<th>Gegenmassnahme</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ArenaOne ist fiktiv; Gruppe 2 erfindet Antworten und widerspricht
+sich später</td>
+<td>Protokoll schriftlich bestätigen lassen; Widersprüche als offene
+Punkte mit Entscheider (GL)</td>
+</tr>
+<tr>
+<td>Antworten aus dem simulierten Interview werden versehentlich als
+Kundenaussage behandelt</td>
+<td>Quelle <code>S</code> in jeder Tabelle; Spezifikation zeigt den
+Status «Simulation – zu validieren»; im echten Interview gezielt
+nachfragen</td>
+</tr>
+<tr>
+<td>Benchmark-Funktionen schleichen sich als Anforderungen ein</td>
+<td>Quelle <code>B</code> reicht nie allein; im Interview nur als
+Frage</td>
+</tr>
+<tr>
+<td>Zeit in PVA 5 reicht nicht</td>
+<td>Vorab-Fragenliste; Interview nach Prioritäten (★)</td>
+</tr>
+<tr>
+<td>Nur zwei Personen: Ausfall einer Person</td>
+<td>beide kennen alle Artefakte; alles im Repository, nichts nur im
+Kopf</td>
+</tr>
+<tr>
+<td>Format der Spezifikation weicht von der Dozentenvorlage ab</td>
+<td>IEEE 830 + Volere-Attribute als Arbeitsannahme, nach Block 2
+anpassen</td>
+</tr>
+<tr>
+<td>PVA-Daten unbekannt</td>
+<td>Rückwärtsplanung, sobald Datum PVA 9/10 bekannt</td>
+</tr>
+</tbody>
+</table>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

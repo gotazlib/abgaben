@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Analyse der Projektvorstellung ArenaOne (Gruppe 2)</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="analyse-der-projektvorstellung-arenaone-gruppe-2">Analyse der
+Projektvorstellung ArenaOne (Gruppe 2)</h1>
+<p>Dokumentenanalyse der Präsentation, die Gruppe 2 in PVA 2 als
+Stakeholder gehalten hat. Ermittlungstechnik «Dokumentenanalyse» aus dem
+<a href="re-plan.html">RE-Plan</a>, Abschnitt 5. Stand: 25.10.2026.</p>
+<p><strong>Grundlage:</strong>
+<code>material/Praesentation_ArenaOne.pptx</code> (5 Folien mit
+Sprechernotizen; PDF-Rendering daneben). Die Datei ist fremde
+Gruppenarbeit und bleibt privat in diesem Repository.</p>
+<blockquote>
+<p><strong>Wichtig:</strong> Das Interview mit Gruppe 2 (PVA 5) hat
+<strong>noch nicht stattgefunden</strong>. Bestätigt ist nur, was auf
+den Folien oder in den Sprechernotizen steht. Alles andere in diesem
+Dokument ist eine <strong>Annahme</strong> oder stammt aus dem
+<strong>Benchmark</strong> und muss in PVA 5 validiert werden.</p>
+</blockquote>
+<p><strong>Quellenkürzel</strong> (gelten für alle Ermittlungsdokumente
+in <code>re-gruppe2/</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Kürzel</th>
+<th>Bedeutung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>F2</code></td>
+<td>Präsentation Gruppe 2, Folie 2 (sichtbarer Folieninhalt)</td>
+</tr>
+<tr>
+<td><code>N5</code></td>
+<td>Präsentation Gruppe 2, Sprechernotiz zu Folie 5 (vorgetragen bzw.
+vorbereitet, nicht auf der Folie)</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>Annahme von uns (Gruppe 9) – nicht von Gruppe 2 bestätigt</td>
+</tr>
+<tr>
+<td><code>B</code></td>
+<td>Benchmark (Playtomic, GotCourts, eTermin) – zeigt, was üblich ist,
+ist aber <strong>keine</strong> Anforderung von Gruppe 2</td>
+</tr>
+<tr>
+<td><code>S</code></td>
+<td><strong>Simulation</strong>: Antwort aus unserem <a href="simuliertes-interview-pva5.html">simulierten Interview</a>
+(Rollenspiel zur Vorbereitung, von uns gespielt) – <strong>ersetzt nicht
+die Ermittlung mit Gruppe 2</strong> und gilt bis zur Bestätigung wie
+eine Annahme</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-inhalt-der-präsentation-in-kürze">1. Inhalt der Präsentation
+in Kürze</h2>
+<table>
+<thead>
+<tr>
+<th>Folie</th>
+<th>Titel</th>
+<th>Kernaussage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Titel</td>
+<td>ArenaOne Sportzentrum AG – Buchungs- und Belegungsmanagement für
+Sportplätze und Hallen. Notiz: ArenaOne ist <strong>fiktiv</strong>; im
+Fokus steht das Geschäftsproblem, nicht eine fertige App.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Unternehmen &amp; Ausgangslage</td>
+<td>Mittelgrosses Sportzentrum im Raum Zürich; Padel, Tennis, Badminton,
+Mehrzweckhallen; Kundschaft Privatpersonen, Vereine, Firmen,
+Trainingsgruppen; der Empfang koordiniert einen grossen Teil der
+Reservationen. Heute vier Eingangskanäle (Telefon, E-Mail, Empfang,
+interne Listen) → Abstimmungs- und Administrationsaufwand. «Es fehlt
+eine zentrale und einheitliche Buchungs- und Belegungsverwaltung.»</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Kernproblem &amp; Herausforderungen</td>
+<td>Kein zentraler, einheitlicher Prozess. Sechs Herausforderungen: (1)
+hoher manueller Aufwand, (2) fehlende Gesamtübersicht, (3)
+Fehl-/Doppelbuchungen, (4) kurzfristige Stornierungen – frei werdende
+Kapazität schwer neu zu vermitteln, (5) unterschiedliche Kundengruppen
+mit verschiedenen Bedürfnissen und Buchungsmustern, (6) wiederkehrende
+Reservationen müssen anders behandelt werden als Einzelbuchungen.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Projektziel &amp; Scope</td>
+<td>Ziel: Buchungs- und Belegungsprozess vereinfachen, Transparenz über
+verfügbare Kapazitäten erhöhen, administrativen Aufwand reduzieren,
+Kapazitäten besser nutzen. Nutzen: komfortabler für Kunden, bessere
+Anlagennutzung, weniger Fehler und Rückfragen, einfachere Koordination.
+<strong>Im Scope:</strong> Verfügbarkeiten, Reservationen, Änderungen,
+Stornierungen, wiederkehrende Buchungen, Bedürfnisse von Kunden und
+Betrieb. <strong>Nicht im Scope:</strong> Finanz- und Lohnbuchhaltung,
+Personalplanung, Gastronomie, vollständiges CRM. Technische Lösung noch
+nicht festgelegt (Notiz: auch technische Architektur nicht Teil).</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Stakeholder &amp; offene Fragen</td>
+<td>Stakeholder: Privatkunden, Vereine &amp; Firmen, Empfang, Trainer,
+Geschäftsleitung, IT. Offene Fragen: Buchung (wie, wie weit im Voraus),
+Regeln (Berechtigungen je Kundengruppe und Rolle), Stornierung
+(kurzfristige Absagen, Warteliste?), Serien
+(Vereins-/Trainingsbuchungen), Information (Benachrichtigungen),
+Steuerung (Übersichten, Auswertungen für die Geschäftsleitung). Auftrag:
+Anforderungen ermitteln, dokumentieren, validieren, verwalten. Notiz:
+Make-or-Buy ist möglich, aber erst nach bekannten Anforderungen;
+wichtigste Stakeholder sind Kunden und Empfang, für Priorisierung
+zusätzlich die Geschäftsleitung.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-ausgangslage">2. Ausgangslage</h2>
+<ul>
+<li>ArenaOne Sportzentrum AG ist ein <strong>fiktives</strong>
+(<code>N1</code>), mittelgrosses Sportzentrum im Raum Zürich
+(<code>F2</code>).</li>
+<li>Angebot: Padel, Tennis, Badminton, Mehrzweckhallen
+(<code>F2</code>). Wie viele Plätze und Hallen es gibt, ob Tennis auch
+draussen gespielt wird und wie die Öffnungszeiten sind, ist nicht
+gesagt.</li>
+<li>Kundschaft: Privatpersonen, Vereine, Firmen, Trainingsgruppen
+(<code>F2</code>).</li>
+<li>Reservationen kommen heute über <strong>Telefon, E-Mail, den Empfang
+und interne Listen</strong> (<code>F2</code>, <code>N2</code>). Das
+«funktioniert grundsätzlich» (<code>N2</code>), kostet aber
+Abstimmungsaufwand und verhindert einen schnellen Überblick.</li>
+<li>Der <strong>Empfang</strong> koordiniert einen grossen Teil der
+Reservationen (<code>F2</code>) – er ist heute der Engpass und das
+«System».</li>
+</ul>
+<h2 id="3-problem">3. Problem</h2>
+<p>Kernproblem laut Gruppe 2 (<code>F3</code>, wörtlich): «ArenaOne hat
+heute keinen zentralen und einheitlichen Prozess für die Buchung und
+Belegung seiner Sportplätze und Hallen.» Gruppe 2 betont, das Problem
+sei <strong>nicht</strong> «wir brauchen eine App» (<code>N3</code>).
+Daraus folgen die sechs Herausforderungen von Folie 3. Wir lesen sie als
+Wirkungskette:</p>
+<pre><code>mehrere Eingangskanäle, keine zentrale Belegung
+  → keine Gesamtübersicht (2)
+      → Fehl-/Doppelbuchungen (3), Rückfragen
+      → frei werdende Zeiten nach Storno werden nicht neu vergeben (4) → Kapazität bleibt ungenutzt
+  → jede Buchung, Änderung, Absage wird von Hand geprüft und nachgeführt (1)
+  verschärft durch: verschiedene Kundengruppen mit eigenen Regeln (5), Serien statt Einzeltermine (6)</code></pre>
+<h2 id="4-ziele-wie-von-gruppe-2-formuliert">4. Ziele (wie von Gruppe 2
+formuliert)</h2>
+<table>
+<thead>
+<tr>
+<th>Ziel / Nutzen</th>
+<th>Quelle</th>
+<th>Bemerkung (RE-Sicht, Folie 35/37)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Buchungs- und Belegungsprozess vereinfachen</td>
+<td><code>F4</code></td>
+<td>Prozessziel, nicht messbar formuliert</td>
+</tr>
+<tr>
+<td>Transparenz über verfügbare Kapazitäten erhöhen</td>
+<td><code>F4</code></td>
+<td>Produkt-/Prozessziel; für wen (Kunden, Empfang, GL)?</td>
+</tr>
+<tr>
+<td>administrativen Aufwand reduzieren</td>
+<td><code>F4</code></td>
+<td>Prozessziel; Ausgangswert fehlt</td>
+</tr>
+<tr>
+<td>vorhandene Kapazitäten besser nutzen</td>
+<td><code>F4</code></td>
+<td>Geschäftsziel (Auslastung → Umsatz); Ausgangswert fehlt</td>
+</tr>
+<tr>
+<td>komfortablerer Buchungsprozess für Kunden</td>
+<td><code>F4</code></td>
+<td>lässt offen, ob Kunden selbst buchen sollen</td>
+</tr>
+<tr>
+<td>weniger Fehler und Rückfragen im Tagesgeschäft</td>
+<td><code>F4</code></td>
+<td>messbar machbar (Doppelbuchungen pro Monat, Rückfragen pro Tag)</td>
+</tr>
+<tr>
+<td>einfachere Koordination für Mitarbeitende</td>
+<td><code>F4</code></td>
+<td>weich; Messgrösse z. B. Zeit pro Buchung am Empfang</td>
+</tr>
+</tbody>
+</table>
+<p>Die Zielhierarchie mit unseren Vorschlägen für Messgrössen steht in
+<a href="zielhierarchie.html"><code>zielhierarchie.md</code></a>.
+<strong>Alle Zielwerte dort sind Annahmen.</strong></p>
+<h2 id="5-scope">5. Scope</h2>
+<table>
+<thead>
+<tr>
+<th>im Scope (<code>F4</code>)</th>
+<th>nicht im Scope (<code>F4</code>, <code>N4</code>)</th>
+<th>von uns unklar eingestuft (→ Fragenliste)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verfügbarkeiten</td>
+<td>Finanz- und Lohnbuchhaltung</td>
+<td><strong>Preise, Tarife, Bezahlung</strong> (nicht erwähnt;
+Buchhaltung ist ausgeschlossen, Zahlung aber nicht)</td>
+</tr>
+<tr>
+<td>Reservationen</td>
+<td>Personalplanung</td>
+<td><strong>Trainer-Einsatz</strong> (Trainer sind Stakeholder,
+Personalplanung ist ausgeschlossen)</td>
+</tr>
+<tr>
+<td>Änderungen</td>
+<td>Gastronomie</td>
+<td><strong>Kundendaten / Kundenkonto</strong> («vollständiges CRM»
+ausgeschlossen – wie viel Kundenverwaltung braucht die Buchung
+trotzdem?)</td>
+</tr>
+<tr>
+<td>Stornierungen</td>
+<td>vollständiges CRM</td>
+<td><strong>Zutritt, Licht, Hallenteilung</strong> (Steuerung der
+Anlage)</td>
+</tr>
+<tr>
+<td>wiederkehrende Buchungen</td>
+<td>technische Architektur (<code>N4</code>)</td>
+<td><strong>Warteliste</strong> (als Frage genannt,
+<code>F5</code>)</td>
+</tr>
+<tr>
+<td>Bedürfnisse von Kunden und Betrieb</td>
+<td></td>
+<td><strong>Benachrichtigungen, Auswertungen</strong> (als Fragen
+genannt, <code>F5</code>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-stakeholder">6. Stakeholder</h2>
+<p>Genannt (<code>F5</code>): Privatkunden, Vereine &amp; Firmen,
+Empfang, Trainer, Geschäftsleitung, IT. Laut <code>N5</code> sind Kunden
+und Empfang direkt betroffen, die Geschäftsleitung ist für Priorisierung
+und Wirtschaftlichkeit zentral. Von uns ergänzt (Annahme
+<code>A</code>): Platzwart/Hauswart bzw. Betrieb der Anlage,
+Trainingsgruppen als eigene Kundengruppe (auf <code>F2</code> genannt,
+auf <code>F5</code> fehlend), Datenschutz (DSG als Randbedingung),
+Vereinsverantwortliche als Kontaktperson einer Serie, Gäste/Mitspielende
+ohne eigenes Konto. Ausführlich mit Einfluss/Interesse: <a href="stakeholder-analyse.html"><code>stakeholder-analyse.md</code></a>.</p>
+<h2 id="7-offene-fragen-von-gruppe-2-selbst-f5">7. Offene Fragen von
+Gruppe 2 selbst (<code>F5</code>)</h2>
+<table>
+<thead>
+<tr>
+<th>Thema</th>
+<th>Frage laut Folie 5</th>
+<th>unsere Fragen dazu (Fragenliste)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Buchung</td>
+<td>Wie und wie weit im Voraus soll gebucht werden?</td>
+<td>V-01 bis V-04</td>
+</tr>
+<tr>
+<td>Regeln</td>
+<td>Welche Regeln und Berechtigungen gelten für welche Kundengruppen und
+Rollen?</td>
+<td>V-05 bis V-08</td>
+</tr>
+<tr>
+<td>Stornierung</td>
+<td>Wie werden kurzfristige Absagen behandelt – sind Wartelisten
+sinnvoll?</td>
+<td>V-09 bis V-11</td>
+</tr>
+<tr>
+<td>Serien</td>
+<td>Wie funktionieren regelmässige Vereins- oder
+Trainingsbuchungen?</td>
+<td>V-12 bis V-14</td>
+</tr>
+<tr>
+<td>Information</td>
+<td>Welche Benachrichtigungen und Informationen sind erforderlich?</td>
+<td>V-15, V-16</td>
+</tr>
+<tr>
+<td>Steuerung</td>
+<td>Welche Übersichten und Auswertungen benötigt die
+Geschäftsleitung?</td>
+<td>V-17, V-18</td>
+</tr>
+</tbody>
+</table>
+<p>Gruppe 2 lässt diese Punkte laut <code>N5</code> <strong>bewusst
+offen</strong>, damit wir sie ermitteln. Das heisst für uns: Hier dürfen
+wir nichts vorwegnehmen, sondern müssen fragen – und die Antworten als
+Entscheide von Gruppe 2 dokumentieren.</p>
+<h2 id="8-lücken-widersprüche-unklarheiten">8. Lücken, Widersprüche,
+Unklarheiten</h2>
+<p>Geprüft gegen die Problemliste von Folie 47 (Block 1).</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Befund</th>
+<th>Art (Folie 47)</th>
+<th>Warum es zählt</th>
+<th>Frage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L-01</td>
+<td><strong>Keine Zahlen</strong>: Anzahl Plätze/Hallen, Buchungen pro
+Woche, Öffnungszeiten, Mitarbeitende am Empfang, Anteil Doppelbuchungen,
+Auslastung</td>
+<td>unmessbare Ziele / NFR</td>
+<td>ohne Ausgangswerte sind die Ziele von <code>F4</code> nicht prüfbar
+(Folie 45 «prüfbar»)</td>
+<td>V-19, V-20</td>
+</tr>
+<tr>
+<td>L-02</td>
+<td><strong>Bezahlung und Preise</strong> fehlen ganz; Finanzbuchhaltung
+ist ausgeschlossen, die Zahlung bei der Buchung nicht</td>
+<td>unvollständig</td>
+<td>Online-Zahlung, Rechnung an Firmen/Vereine, Stornogebühren ändern
+den Umfang stark</td>
+<td>V-21</td>
+</tr>
+<tr>
+<td>L-03</td>
+<td>«vollständiges CRM» ausgeschlossen, aber <strong>Kundengruppen mit
+eigenen Regeln</strong> sind im Scope → irgendeine Kundenverwaltung
+(Konto, Gruppe, Kontakt) ist nötig</td>
+<td>potenziell inkonsistent</td>
+<td>Grenze zwischen «Kundenkonto für Buchung» und «CRM» festlegen, sonst
+Streit bei der Abnahme</td>
+<td>V-22</td>
+</tr>
+<tr>
+<td>L-04</td>
+<td><strong>Trainer</strong> sind Stakeholder, Personalplanung ist
+ausgeschlossen. Buchen Trainer selbst? Wird ein Trainer einer Buchung
+zugeordnet?</td>
+<td>unklare Abgrenzung</td>
+<td>Trainerstunde = Platz + Person; wenn Person dazugehört, berührt das
+die Personalplanung</td>
+<td>V-23</td>
+</tr>
+<tr>
+<td>L-05</td>
+<td>«Komfortablerer Buchungsprozess für Kunden» – <strong>buchen Kunden
+selbst (Self-Service) oder weiterhin über den Empfang?</strong></td>
+<td>Lösungs- vs. Anforderungsdenken (nicht entschieden)</td>
+<td>grösste Weiche für den ganzen Umfang (Kundenoberfläche,
+Registrierung, Regeln)</td>
+<td>V-01</td>
+</tr>
+<tr>
+<td>L-06</td>
+<td>Kundengruppen: <code>F2</code> nennt vier (Privat, Vereine, Firmen,
+Trainingsgruppen), <code>F5</code> fasst «Vereine &amp; Firmen» zusammen
+und nennt Trainingsgruppen nicht</td>
+<td>uneinheitliche Terminologie</td>
+<td>Vereine (Serien, Saison) und Firmen (Events, Rechnung) buchen
+vermutlich verschieden</td>
+<td>V-05</td>
+</tr>
+<tr>
+<td>L-07</td>
+<td><strong>Mehrzweckhallen</strong>: ganze Halle oder Teile (z. B.
+Hallendrittel)? Ein Hallenfeld kann mehrere Badmintonfelder
+enthalten</td>
+<td>versteckte Anforderung</td>
+<td>bestimmt, was eine «Ressource» ist und wann eine Doppelbuchung
+vorliegt</td>
+<td>V-24</td>
+</tr>
+<tr>
+<td>L-08</td>
+<td>«interne Listen» – Papier, Excel, Kalender? Was davon muss
+übernommen werden (bestehende Serien, Vereinsverträge)?</td>
+<td>unvollständig</td>
+<td>Datenübernahme beim Start</td>
+<td>V-25</td>
+</tr>
+<tr>
+<td>L-09</td>
+<td>Stakeholder «IT»: hat ein mittelgrosses Sportzentrum eine eigene IT
+oder einen externen Dienstleister?</td>
+<td>unklare Verantwortung</td>
+<td>wer betreibt das System, wer entscheidet Make-or-Buy</td>
+<td>V-26</td>
+</tr>
+<tr>
+<td>L-10</td>
+<td>Wer <strong>gibt die Spezifikation frei</strong> und entscheidet bei
+Konflikten zwischen Kundengruppen? (<code>N5</code> nennt GL für
+Priorisierung)</td>
+<td>unklare Verantwortung</td>
+<td>ohne Entscheider bleiben Zielkonflikte offen</td>
+<td>V-27</td>
+</tr>
+<tr>
+<td>L-11</td>
+<td><strong>Datenschutz</strong> wird nicht erwähnt, obwohl
+Personendaten (Name, Telefon, E-Mail, Buchungsverlauf) bearbeitet
+werden</td>
+<td>versteckte Anforderung</td>
+<td>Randbedingung DSG (siehe Abschnitt 11)</td>
+<td>V-28</td>
+</tr>
+<tr>
+<td>L-12</td>
+<td><strong>Saison und Wetter</strong> (Aussenplätze? Hallenumbau
+Sommer/Winter?) nicht erwähnt</td>
+<td>versteckte Anforderung</td>
+<td>Sperrzeiten, wetterbedingte Absagen, Saisonserien</td>
+<td>V-29</td>
+</tr>
+<tr>
+<td>L-13</td>
+<td>«Bedürfnisse von Kunden und Betrieb» steht als Scope-Punkt – das ist
+kein Gegenstand, sondern der Auftrag selbst</td>
+<td>unscharfe Abgrenzung</td>
+<td>nicht als Scope-Element verwenden; durch konkrete Funktionsbereiche
+ersetzen</td>
+<td>– (in Spezifikation bereinigen)</td>
+</tr>
+<tr>
+<td>L-14</td>
+<td>Ziele ohne Zeitpunkt und ohne Zielwert</td>
+<td>unmessbar</td>
+<td>Zielhierarchie braucht Messgrösse und Termin</td>
+<td>V-19</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-risiken">9. Risiken</h2>
+<h3 id="91-risiken-im-projekt-arenaone-fachlich">9.1 Risiken im Projekt
+ArenaOne (fachlich)</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Risiko</th>
+<th>Wirkung</th>
+<th>Gegenmassnahme in der Spezifikation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R-P1</td>
+<td>Regeln für Kundengruppen widersprechen sich (Vereine wollen feste
+Primetime-Slots, Privatkunden wollen dieselben Zeiten frei buchen)</td>
+<td>Akzeptanzproblem, Konflikte am Empfang</td>
+<td>Konflikt explizit machen, Entscheid durch GL dokumentieren
+(Kontingente als Hypothese H-07)</td>
+</tr>
+<tr>
+<td>R-P2</td>
+<td>Übergangsphase: alte Kanäle (Telefon, E-Mail) laufen parallel
+weiter</td>
+<td>Doppelbuchungen bleiben, wenn nicht alle Kanäle ins gleiche System
+buchen</td>
+<td>Anforderung «jede Buchung, egal über welchen Kanal, wird im System
+erfasst» (H-02)</td>
+</tr>
+<tr>
+<td>R-P3</td>
+<td>Stornoregeln zu streng oder zu lasch</td>
+<td>Umsatzverlust oder verärgerte Kundschaft</td>
+<td>Stornofrist und Folgen als messbare Regel mit GL-Entscheid</td>
+</tr>
+<tr>
+<td>R-P4</td>
+<td>Self-Service überfordert Teile der Kundschaft (z. B. ältere
+Vereinsmitglieder)</td>
+<td>weiter viele Anrufe am Empfang</td>
+<td>Empfang bucht stellvertretend (H-03), Bedienbarkeits-NFR</td>
+</tr>
+<tr>
+<td>R-P5</td>
+<td>Datenübernahme der bestehenden Serien vergessen</td>
+<td>Chaos am ersten Tag</td>
+<td>Anforderung zur Übernahme der laufenden Serien (H-17)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="92-risiken-für-unsere-re-arbeit">9.2 Risiken für unsere
+RE-Arbeit</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Risiko</th>
+<th>Gegenmassnahme</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R-R1</td>
+<td>ArenaOne ist fiktiv (<code>N1</code>); Gruppe 2 erfindet Antworten
+spontan und widerspricht sich später</td>
+<td>Antworten protokollieren, Protokoll schriftlich bestätigen lassen;
+Widersprüche als offene Punkte führen</td>
+</tr>
+<tr>
+<td>R-R2</td>
+<td>Wir übernehmen unbemerkt Funktionen aus Playtomic &amp; Co. als
+«Anforderungen»</td>
+<td>jede Anforderung mit Quelle; <code>B</code> allein reicht nie für
+«bestätigt»; Benchmark nur als Frage verwenden</td>
+</tr>
+<tr>
+<td>R-R3</td>
+<td>Interviewzeit in PVA 5 reicht nicht für sechs offene Themen</td>
+<td>Fragenliste vorab schicken; im Interview nur priorisierte Fragen;
+Rest schriftlich</td>
+</tr>
+<tr>
+<td>R-R4</td>
+<td>Gruppe 2 hat bewusst keine Zahlen geliefert; Ziele bleiben
+unmessbar</td>
+<td>gezielt nach Grössenordnungen fragen; wenn Gruppe 2 keine Zahlen
+festlegen will: als Annahme mit Begründung kennzeichnen und von Gruppe 2
+freigeben lassen</td>
+</tr>
+<tr>
+<td>R-R5</td>
+<td>PVA-Daten unbekannt, Zeitplan kippt</td>
+<td>Platzhalter im RE-Plan, Rückwärtsplanung ab PVA 9/10 sobald Datum
+bekannt</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-erste-anforderungshypothesen">10. Erste
+Anforderungshypothesen</h2>
+<p><strong>Alle Hypothesen sind unbestätigt.</strong> Sie dienen als
+Gesprächsgrundlage für PVA 5 und werden erst nach Bestätigung durch
+Gruppe 2 zu Anforderungen in der Spezifikation (mit neuer ID
+<code>FA-…</code>/<code>QA-…</code>/<code>RB-…</code>). Priorität =
+unser Vorschlag, zu validieren.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Hypothese (Anforderung im Entwurf)</th>
+<th>Art (Folie 38)</th>
+<th>abgeleitet aus</th>
+<th>Quelle</th>
+<th>Prio-Vorschlag</th>
+<th>prüfen mit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H-01</td>
+<td>Das System zeigt die Belegung aller Plätze und Hallen in einer
+gemeinsamen Übersicht (Tag/Woche, je Anlage).</td>
+<td>funktional</td>
+<td>Herausforderung 2</td>
+<td><code>F3</code>, <code>F4</code></td>
+<td>Muss</td>
+<td>V-24</td>
+</tr>
+<tr>
+<td>H-02</td>
+<td>Jede Reservation, egal über welchen Kanal sie eingeht (Telefon,
+E-Mail, Empfang, online), wird im System erfasst; ausserhalb des Systems
+gibt es keine verbindliche Reservation.</td>
+<td>funktional / Randbedingung (organisatorisch)</td>
+<td>Herausforderungen 1–3</td>
+<td><code>F2</code>, <code>F3</code> + <code>A</code></td>
+<td>Muss</td>
+<td>V-01</td>
+</tr>
+<tr>
+<td>H-03</td>
+<td>Mitarbeitende am Empfang können Reservationen für Kunden erfassen,
+ändern und stornieren.</td>
+<td>funktional</td>
+<td>Empfang koordiniert</td>
+<td><code>F2</code>, <code>N5</code></td>
+<td>Muss</td>
+<td>V-01</td>
+</tr>
+<tr>
+<td>H-04</td>
+<td>Das System verhindert, dass dieselbe Ressource zur selben Zeit
+zweimal reserviert wird.</td>
+<td>funktional (hart)</td>
+<td>Herausforderung 3</td>
+<td><code>F3</code></td>
+<td>Muss</td>
+<td>V-24</td>
+</tr>
+<tr>
+<td>H-05</td>
+<td>Kunden können freie Zeiten selbst sehen und online reservieren.</td>
+<td>funktional</td>
+<td>Nutzen «komfortabler für Kunden»</td>
+<td><code>F4</code> + <code>A</code> (Self-Service nicht gesagt)</td>
+<td>Soll (offen)</td>
+<td>V-01</td>
+</tr>
+<tr>
+<td>H-06</td>
+<td>Für jede Kundengruppe gelten eigene Buchungsregeln (z. B.
+Buchungsvorlauf, maximale Dauer, Anzahl offener Buchungen).</td>
+<td>funktional</td>
+<td>Herausforderung 5, Frage «Regeln»</td>
+<td><code>F3</code>, <code>F5</code></td>
+<td>Muss</td>
+<td>V-02, V-05</td>
+</tr>
+<tr>
+<td>H-07</td>
+<td>Die Geschäftsleitung kann Zeitfenster für bestimmte Kundengruppen
+reservieren (Kontingente, z. B. Vereinstraining am Abend).</td>
+<td>funktional</td>
+<td>Herausforderung 5/6</td>
+<td><code>A</code></td>
+<td>Soll</td>
+<td>V-06</td>
+</tr>
+<tr>
+<td>H-08</td>
+<td>Eine wiederkehrende Reservation (Serie) wird einmal erfasst
+(Wochentag, Zeit, Ressource, Zeitraum) und erzeugt alle Einzeltermine;
+Konflikte werden vor dem Speichern angezeigt.</td>
+<td>funktional</td>
+<td>Herausforderung 6, Frage «Serien»</td>
+<td><code>F3</code>, <code>F5</code>; Konfliktanzeige <code>B</code>
+(Playtomic)</td>
+<td>Muss</td>
+<td>V-12, V-13</td>
+</tr>
+<tr>
+<td>H-09</td>
+<td>Ein einzelner Termin einer Serie kann abgesagt oder verschoben
+werden, ohne die Serie zu ändern.</td>
+<td>funktional</td>
+<td>Herausforderung 6</td>
+<td><code>A</code></td>
+<td>Muss</td>
+<td>V-14</td>
+</tr>
+<tr>
+<td>H-10</td>
+<td>Eine Stornierung gibt die Zeit sofort wieder als frei frei.</td>
+<td>funktional</td>
+<td>Herausforderung 4</td>
+<td><code>F3</code></td>
+<td>Muss</td>
+<td>V-09</td>
+</tr>
+<tr>
+<td>H-11</td>
+<td>Für ausgebuchte Zeiten können sich Kunden auf eine Warteliste setzen
+und werden benachrichtigt, wenn die Zeit frei wird.</td>
+<td>funktional</td>
+<td>Herausforderung 4, Frage «Stornierung»</td>
+<td><code>F5</code> (als Frage), <code>B</code> (eTermin)</td>
+<td>Soll (offen)</td>
+<td>V-11</td>
+</tr>
+<tr>
+<td>H-12</td>
+<td>Für kurzfristige Stornierungen gilt eine Frist; was bei späterer
+Absage passiert, ist je Kundengruppe festgelegt.</td>
+<td>funktional / Randbedingung (Geschäftsregel)</td>
+<td>Frage «Stornierung»</td>
+<td><code>F5</code> + <code>A</code></td>
+<td>Muss</td>
+<td>V-09, V-10</td>
+</tr>
+<tr>
+<td>H-13</td>
+<td>Kunden erhalten eine Bestätigung bei Reservation, Änderung und
+Stornierung.</td>
+<td>funktional</td>
+<td>Frage «Information»</td>
+<td><code>F5</code> + <code>A</code></td>
+<td>Muss</td>
+<td>V-15</td>
+</tr>
+<tr>
+<td>H-14</td>
+<td>Kunden erhalten vor dem Termin eine Erinnerung.</td>
+<td>funktional</td>
+<td>Frage «Information», Herausforderung 4</td>
+<td><code>B</code> (eTermin)</td>
+<td>Wunsch</td>
+<td>V-15</td>
+</tr>
+<tr>
+<td>H-15</td>
+<td>Die Geschäftsleitung sieht eine Auslastungsauswertung je Anlage,
+Zeitfenster und Kundengruppe.</td>
+<td>funktional</td>
+<td>Ziel «Kapazitäten besser nutzen», Frage «Steuerung»</td>
+<td><code>F4</code>, <code>F5</code></td>
+<td>Soll</td>
+<td>V-17</td>
+</tr>
+<tr>
+<td>H-16</td>
+<td>Die Geschäftsleitung (oder Administration) kann Anlagen sperren
+(Unterhalt, Turnier, Wetter).</td>
+<td>funktional</td>
+<td>Gesamtübersicht</td>
+<td><code>A</code></td>
+<td>Muss</td>
+<td>V-29</td>
+</tr>
+<tr>
+<td>H-17</td>
+<td>Laufende Serien und bestehende Reservationen aus den heutigen Listen
+werden vor dem Start übernommen.</td>
+<td>Projekt-/Prozessanforderung</td>
+<td>interne Listen</td>
+<td><code>F2</code> + <code>A</code></td>
+<td>Muss</td>
+<td>V-25</td>
+</tr>
+<tr>
+<td>H-18</td>
+<td>Rollen und Berechtigungen: Kunde, Vereins-/Firmenverantwortliche,
+Trainer, Empfang, Geschäftsleitung, Administration.</td>
+<td>funktional (Berechtigung)</td>
+<td>Frage «Regeln»</td>
+<td><code>F5</code> + <code>A</code></td>
+<td>Muss</td>
+<td>V-07, V-08</td>
+</tr>
+<tr>
+<td>H-19</td>
+<td>Eine Reservation am Empfang ist in höchstens <code>[x]</code>
+Sekunden erfasst.</td>
+<td>Leistung / Qualität</td>
+<td>Ziel «Aufwand reduzieren»</td>
+<td><code>A</code></td>
+<td>Soll</td>
+<td>V-20</td>
+</tr>
+<tr>
+<td>H-20</td>
+<td>Die Belegungsübersicht ist während der Öffnungszeiten verfügbar
+(Zielwert <code>[x] %</code>); auch auf dem Smartphone nutzbar.</td>
+<td>Qualität</td>
+<td>«jederzeit zentral ersichtlich»</td>
+<td><code>F3</code> + <code>A</code></td>
+<td>Muss</td>
+<td>V-30</td>
+</tr>
+<tr>
+<td>H-21</td>
+<td>Personendaten werden nach DSG bearbeitet (Zweckbindung, Auskunft,
+Löschung nach Frist).</td>
+<td>Randbedingung (Vorschrift)</td>
+<td>Personendaten im System</td>
+<td><code>A</code> (DSG, siehe 11)</td>
+<td>Muss</td>
+<td>V-28</td>
+</tr>
+<tr>
+<td>H-23</td>
+<td>Der Empfang kann die Tagesbelegung ausdrucken bzw. offline einsehen,
+falls das System ausfällt.</td>
+<td>Qualität (Ausfallsicherheit)</td>
+<td>Rückfall bei Ausfall</td>
+<td><code>S</code> (Simulation) + <code>A</code></td>
+<td>Soll</td>
+<td>V-30</td>
+</tr>
+<tr>
+<td>H-22</td>
+<td>Das System ist nicht für Finanz-/Lohnbuchhaltung, Personalplanung,
+Gastronomie und CRM zuständig.</td>
+<td>Abgrenzung</td>
+<td>Scope</td>
+<td><code>F4</code></td>
+<td>–</td>
+<td>–</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-randbedingungen-die-schon-jetzt-gelten">11. Randbedingungen,
+die schon jetzt gelten</h2>
+<table>
+<thead>
+<tr>
+<th>Randbedingung</th>
+<th>Rolle (Folie 42)</th>
+<th>Quelle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Technische Lösung ist offen; Make-or-Buy wird nach der Spezifikation
+beurteilt → wir schreiben ein <strong>Lastenheft</strong> (Was/Wofür,
+Folie 26), keine Produktwahl</td>
+<td>Tatsache</td>
+<td><code>F4</code>, <code>N5</code></td>
+</tr>
+<tr>
+<td>Scope-Ausschlüsse (Finanz-/Lohnbuchhaltung, Personalplanung,
+Gastronomie, vollständiges CRM, technische Architektur)</td>
+<td>Vorschrift (des Auftraggebers)</td>
+<td><code>F4</code>, <code>N4</code></td>
+</tr>
+<tr>
+<td>Schweizer Datenschutzrecht: Bundesgesetz über den Datenschutz (DSG)
+vom 25. September 2020, SR 235.1, in Kraft seit 1. September 2023</td>
+<td>Vorschrift</td>
+<td>Fedlex, SR 235.1 – Anwendung auf ArenaOne mit Gruppe 2 klären</td>
+</tr>
+<tr>
+<td>Standort Raum Zürich, Sprache Deutsch (weitere Sprachen?)</td>
+<td>Tatsache / offen</td>
+<td><code>F2</code> + <code>A</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-benchmark-kurz">12. Benchmark (kurz)</h2>
+<p>Die drei Lösungen zeigen, was am Markt üblich ist. Sie liefern
+<strong>Fragen</strong>, keine Anforderungen: Ob ArenaOne etwas davon
+braucht, entscheidet Gruppe 2.</p>
+<table>
+<thead>
+<tr>
+<th>Lösung</th>
+<th>Schwerpunkt</th>
+<th>was für unsere Fragen interessant ist</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Playtomic</strong> (Spieler-App + «Playtomic Manager» für
+Clubs)</td>
+<td>Padel und Tennis, internationale Plattform</td>
+<td>Belegungskalender je Platz und Sportart; wiederkehrende
+Reservationen mit Enddatum, Konfliktmeldung bei belegten Zeiten;
+Online-Zahlung; Kunden mit Guthaben («Wallet»);
+Mitglieder-Preiskategorien; Mitarbeitende mit Lese- oder
+Schreibrechten</td>
+</tr>
+<tr>
+<td><strong>GotCourts</strong> (GotCourts AG, Schweiz)</td>
+<td>Tennisplätze für Clubs, Anlagen, Trainer, Spielende</td>
+<td>Buchung per Web und Smartphone, auch für Nicht-Mitglieder; Clubs
+zahlen ein Abo je nach Anzahl Plätze; Anlagen setzen eigene Preise je
+Nutzergruppe (Beispiel ASVZ: gestaffelte Stundenpreise nach
+Zugehörigkeit)</td>
+</tr>
+<tr>
+<td><strong>eTermin</strong> (eTermin GmbH, Wallisellen)</td>
+<td>allgemeine Online-Terminbuchung, nicht sportspezifisch</td>
+<td>Buchen, Umbuchen und Stornieren online; Ressourcen- und
+Mitarbeiterpläne; Erinnerungen per E-Mail und SMS; Warteliste;
+Online-Zahlung; Einbindung in die eigene Website</td>
+</tr>
+</tbody>
+</table>
+<p>Folgerungen für die Ermittlung: (1) Ob ArenaOne eine sportspezifische
+Plattform (Playtomic, GotCourts) oder ein allgemeines Buchungswerkzeug
+(eTermin) braucht, hängt von Antworten zu Serien, Hallenteilung und
+Kundengruppen ab – genau deshalb dort genau spezifizieren
+(risikogerecht, Folie 23). (2) Zahlung und Preise sind bei allen drei
+zentral; bei ArenaOne fehlen sie (L-02). (3) Die Benchmarks dürfen im
+Interview nur als Frage auftauchen («Andere Anlagen bieten X – ist das
+für Sie ein Thema?»), nie als Vorschlag.</p>
+<h3 id="quellen-benchmark-abgerufen-am-25102026">Quellen Benchmark
+(abgerufen am 25.10.2026)</h3>
+<ul>
+<li>Playtomic (o. J.). <em>Recurring booking</em>. <a href="https://help.playtomic.com/en/articles/5689381-recurring-booking">https://help.playtomic.com/en/articles/5689381-recurring-booking</a></li>
+<li>Playtomic (o. J.). <em>Brief introduction to Playtomic Manager</em>.
+<a href="https://helpmanager.playtomic.com/hc/en-gb/articles/20535516949009-Brief-introduction-to-Playtomic-Manager">https://helpmanager.playtomic.com/hc/en-gb/articles/20535516949009-Brief-introduction-to-Playtomic-Manager</a></li>
+<li>Playtomic (o. J.). <em>Schedule basics</em>. <a href="https://helpmanager.playtomic.com/hc/en-gb/articles/20560058451985-Schedule-basics">https://helpmanager.playtomic.com/hc/en-gb/articles/20560058451985-Schedule-basics</a></li>
+<li>startupticker.ch (o. J.). <em>GotCourts AG – Company profile</em>.
+<a href="https://www.startupticker.ch/en/company/gotcourts-ag">https://www.startupticker.ch/en/company/gotcourts-ag</a></li>
+<li>ASVZ (o. J.). <em>Stundenpreise Tennisplätze ganzes Jahr</em> [PDF].
+<a href="https://www.asvz.ch/sites/default/files/imce/documents/_SPORTARTEN/Tennis/Stundenpreise%20Tennispl%C3%A4tze%20ganzes%20Jahr.pdf">https://www.asvz.ch/sites/default/files/imce/documents/_SPORTARTEN/Tennis/Stundenpreise%20Tennispl%C3%A4tze%20ganzes%20Jahr.pdf</a></li>
+<li>Softguide (o. J.). <em>eTermin</em>. <a href="https://www.softguide.de/programm/etermin">https://www.softguide.de/programm/etermin</a></li>
+<li>IT Reseller (2016). <em>eTermin sahnt Innovationspreis-IT Schweiz
+ab</em>. <a href="https://www.itreseller.ch/Artikel/81931/eTermin_sahnt_Innovationspreis-IT_Schweiz_ab.html">https://www.itreseller.ch/Artikel/81931/eTermin_sahnt_Innovationspreis-IT_Schweiz_ab.html</a></li>
+</ul>
+<p>Die Angaben stammen aus Herstellerhilfen und Drittquellen; vor
+Verwendung in der Spezifikation oder Präsentation auf den
+Herstellerseiten nachprüfen.</p>
+<h2 id="13-nächste-schritte">13. Nächste Schritte</h2>
+<ol type="1">
+<li>Fragenliste <a href="fragenliste-gruppe2.html"><code>fragenliste-gruppe2.md</code></a> an
+Gruppe 2 schicken (Kanal klären, O9), Antworten vor PVA 5
+einarbeiten.</li>
+<li>Interview PVA 5 mit dem <a href="interviewleitfaden-pva5.html">Leitfaden</a> führen; Hypothesen H-01
+… H-22 bestätigen, verwerfen oder ändern.</li>
+<li>Danach Spezifikation v0.1 → v0.3 aus der <a href="anforderungsspezifikation-vorlage.html">Vorlage</a>; Hypothesen mit
+Status «bestätigt» werden Anforderungen, der Rest wandert in «Offene
+Punkte».</li>
+</ol>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Zielhierarchie ArenaOne</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="zielhierarchie-arenaone">Zielhierarchie ArenaOne</h1>
+<p>Artefakt <strong>R4</strong> (Fahrplan 3.2), Phase
+<strong>Ermitteln</strong>. Stand: 25.10.2026, <strong>Hypothese vor PVA
+5</strong>. Wird in Kapitel 3 der Anforderungsspezifikation
+übernommen.</p>
+<p>Zielmodell nach Folie 37: <strong>Geschäftsziele</strong>
+determinieren und werden verfeinert in <strong>Prozess-</strong>,
+<strong>Produkt-</strong> und <strong>Projektziele</strong>. Ziel = «ein
+erwünschter Zustand» (Folie 35); Anforderungen sind die konkreten
+Eigenschaften, die für ein Ziel nötig sind. Projektziele (Kosten,
+Termine) sind Projektanforderungen, keine Systemanforderungen (Folie
+38).</p>
+<blockquote>
+<p><strong>Was belegt ist und was nicht:</strong> Die Ziele selbst
+(Spalte «Ziel») stammen bis auf die markierten Ausnahmen aus der
+Präsentation von Gruppe 2 (<code>F4</code>). Gruppe 2 hat <strong>keine
+Zahlen</strong> genannt. Alle Messgrössen und Zielwerte sind
+<strong>unser Vorschlag</strong> (<code>A</code>) und werden in PVA 5
+mit Gruppe 2 festgelegt (Fragen V-19, V-20). <code>[x]</code> = Wert
+muss Gruppe 2 liefern.</p>
+</blockquote>
+<h2 id="a-zielbaum">A. Zielbaum</h2>
+<pre class="mermaid"><code>flowchart LR
+  GZ1[&quot;GZ-1 Vorhandene Kapazitäten&lt;br/&gt;besser nutzen&quot;]
+  GZ2[&quot;GZ-2 Administrativen Aufwand&lt;br/&gt;reduzieren&quot;]
+  GZ3[&quot;GZ-3 Kundschaft bucht&lt;br/&gt;komfortabler und bleibt&quot;]
+  PZ1[&quot;PZ-1 Ein zentraler, einheitlicher&lt;br/&gt;Buchungsprozess für alle Kanäle&quot;]
+  PZ2[&quot;PZ-2 Frei werdende Zeiten&lt;br/&gt;werden neu vergeben&quot;]
+  PZ3[&quot;PZ-3 Weniger Fehler und&lt;br/&gt;Rückfragen im Tagesgeschäft&quot;]
+  PZ4[&quot;PZ-4 Serien und Kundengruppen&lt;br/&gt;nach klaren Regeln&quot;]
+  PDZ1[&quot;PDZ-1 Gesamtübersicht über&lt;br/&gt;Verfügbarkeit und Belegung&quot;]
+  PDZ2[&quot;PDZ-2 Reservation, Änderung,&lt;br/&gt;Storno an einem Ort&quot;]
+  PDZ3[&quot;PDZ-3 Regeln je Kundengruppe&lt;br/&gt;und Rolle&quot;]
+  PDZ4[&quot;PDZ-4 Wiederkehrende Buchungen&quot;]
+  PDZ5[&quot;PDZ-5 Benachrichtigungen&quot;]
+  PDZ6[&quot;PDZ-6 Übersichten und&lt;br/&gt;Auswertungen für die GL&quot;]
+  GZ1 --&gt; PZ2 &amp; PZ4
+  GZ2 --&gt; PZ1 &amp; PZ3
+  GZ3 --&gt; PZ1 &amp; PZ2
+  PZ1 --&gt; PDZ1 &amp; PDZ2
+  PZ2 --&gt; PDZ1 &amp; PDZ5
+  PZ3 --&gt; PDZ1 &amp; PDZ2
+  PZ4 --&gt; PDZ3 &amp; PDZ4
+  GZ1 --&gt; PDZ6
+  classDef gz fill:#0b3d6b,color:#fff,stroke:#0b3d6b
+  classDef pz fill:#d6e4ff,stroke:#1f3f8f,color:#000
+  classDef pdz fill:#d8f5d0,stroke:#2e8b2e,color:#000
+  class GZ1,GZ2,GZ3 gz
+  class PZ1,PZ2,PZ3,PZ4 pz
+  class PDZ1,PDZ2,PDZ3,PDZ4,PDZ5,PDZ6 pdz</code></pre>
+<p>Pfeil = «wird verfeinert in» (Folie 37, Beziehung v). Dunkelblau =
+Geschäftsziel, hellblau = Prozessziel, grün = Produktziel.</p>
+<h2 id="b-ziele-mit-messgrössen">B. Ziele mit Messgrössen</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Ebene (Folie 37)</th>
+<th>Ziel</th>
+<th>Quelle Ziel</th>
+<th>Messgrösse (Vorschlag)</th>
+<th>Zielwert (Vorschlag)</th>
+<th>Quelle Messgrösse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GZ-1</td>
+<td>Geschäftsziel</td>
+<td>Vorhandene Kapazitäten besser nutzen</td>
+<td><code>F4</code></td>
+<td>Auslastung der Plätze und Hallen in den Öffnungszeiten, je
+Anlage</td>
+<td>von <code>[x] %</code> auf <code>[x] %</code> innert 12 Monaten nach
+Einführung</td>
+<td><code>A</code></td>
+</tr>
+<tr>
+<td>GZ-2</td>
+<td>Geschäftsziel</td>
+<td>Administrativen Aufwand reduzieren</td>
+<td><code>F4</code></td>
+<td>Arbeitszeit am Empfang für Reservationen pro Woche</td>
+<td>− <code>[x] %</code> gegenüber heute</td>
+<td><code>A</code></td>
+</tr>
+<tr>
+<td>GZ-3</td>
+<td>Geschäftsziel</td>
+<td>Komfortablerer Buchungsprozess für Kunden</td>
+<td><code>F4</code> (Nutzen)</td>
+<td>Kundenzufriedenheit mit der Buchung (Kurzumfrage, Skala 1–5)</td>
+<td>≥ <code>[x]</code></td>
+<td><code>A</code></td>
+</tr>
+<tr>
+<td>PZ-1</td>
+<td>Prozessziel</td>
+<td>Ein zentraler, einheitlicher Buchungsprozess, egal über welchen
+Kanal</td>
+<td><code>F3</code> (Kernproblem)</td>
+<td>Anteil verbindlicher Reservationen, die im System erfasst sind</td>
+<td>100 % ab Einführung</td>
+<td><code>A</code></td>
+</tr>
+<tr>
+<td>PZ-2</td>
+<td>Prozessziel</td>
+<td>Frei werdende Zeiten nach kurzfristigen Stornos werden neu
+vergeben</td>
+<td><code>F3</code> (Herausforderung 4)</td>
+<td>Anteil stornierter Zeiten, die wieder gebucht werden</td>
+<td>≥ <code>[x] %</code></td>
+<td><code>A</code></td>
+</tr>
+<tr>
+<td>PZ-3</td>
+<td>Prozessziel</td>
+<td>Weniger Fehler und Rückfragen im Tagesgeschäft</td>
+<td><code>F4</code> (Nutzen)</td>
+<td>Anzahl Doppelbuchungen pro Monat; Rückfragen am Empfang pro Tag</td>
+<td>0 Doppelbuchungen; Rückfragen − <code>[x] %</code></td>
+<td><code>A</code></td>
+</tr>
+<tr>
+<td>PZ-4</td>
+<td>Prozessziel</td>
+<td>Serien und Kundengruppen werden nach klaren, bekannten Regeln
+behandelt</td>
+<td><code>F3</code> (Herausforderungen 5, 6), <code>F5</code> (Regeln,
+Serien)</td>
+<td>Anteil Konflikte zwischen Kundengruppen, die nach dokumentierter
+Regel statt im Einzelfall entschieden werden</td>
+<td><code>[x] %</code></td>
+<td><code>A</code></td>
+</tr>
+<tr>
+<td>PDZ-1</td>
+<td>Produktziel</td>
+<td>Gesamtübersicht über Verfügbarkeit und Belegung aller Anlagen</td>
+<td><code>F3</code> (Herausforderung 2), <code>F4</code></td>
+<td>– (wird durch Anforderungen konkretisiert, H-01)</td>
+<td>–</td>
+<td>–</td>
+</tr>
+<tr>
+<td>PDZ-2</td>
+<td>Produktziel</td>
+<td>Reservation, Änderung, Stornierung an einem Ort</td>
+<td><code>F4</code> (Scope)</td>
+<td>– (H-02 … H-04, H-10)</td>
+<td>–</td>
+<td>–</td>
+</tr>
+<tr>
+<td>PDZ-3</td>
+<td>Produktziel</td>
+<td>Buchungsregeln und Berechtigungen je Kundengruppe und Rolle</td>
+<td><code>F5</code> (Regeln)</td>
+<td>– (H-06, H-07, H-18)</td>
+<td>–</td>
+<td>–</td>
+</tr>
+<tr>
+<td>PDZ-4</td>
+<td>Produktziel</td>
+<td>Wiederkehrende Buchungen</td>
+<td><code>F4</code> (Scope), <code>F5</code> (Serien)</td>
+<td>– (H-08, H-09)</td>
+<td>–</td>
+<td>–</td>
+</tr>
+<tr>
+<td>PDZ-5</td>
+<td>Produktziel</td>
+<td>Benachrichtigungen an Kunden</td>
+<td><code>F5</code> (Information)</td>
+<td>– (H-11, H-13, H-14)</td>
+<td>–</td>
+<td>–</td>
+</tr>
+<tr>
+<td>PDZ-6</td>
+<td>Produktziel</td>
+<td>Übersichten und Auswertungen für die Geschäftsleitung</td>
+<td><code>F5</code> (Steuerung)</td>
+<td>– (H-15)</td>
+<td>–</td>
+<td>–</td>
+</tr>
+<tr>
+<td>PJ-1</td>
+<td>Projektziel</td>
+<td>Lösung ist noch nicht festgelegt; Make-or-Buy nach Vorliegen der
+Anforderungen</td>
+<td><code>F4</code>, <code>N5</code></td>
+<td>Spezifikation v1.0 als Entscheidungsgrundlage</td>
+<td>bis PVA 9/10</td>
+<td><code>F5</code> (Auftrag)</td>
+</tr>
+<tr>
+<td>PJ-2</td>
+<td>Projektziel</td>
+<td>Einführungstermin, Budget</td>
+<td>– (nicht genannt)</td>
+<td><code>[x]</code></td>
+<td><code>[x]</code></td>
+<td>V-32</td>
+</tr>
+</tbody>
+</table>
+<p>Die Hypothesen <code>H-…</code> stehen in der <a href="analyse-arenaone.html">Analyse</a>, Abschnitt 10. Über die Spalte
+«abgeleitet aus» dort und die Spalte «Quelle Ziel» hier entsteht später
+die Nachverfolgbarkeit Ziel → Anforderung → Quelle (Spezifikation
+Kapitel 9).</p>
+<h2 id="c-zielkonflikte">C. Zielkonflikte</h2>
+<table>
+<thead>
+<tr>
+<th>Ziele</th>
+<th>Spannung</th>
+<th>Wer entscheidet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GZ-1 vs. GZ-3</td>
+<td>Auslastung maximieren (Serien, Stornogebühren) kann Komfort für
+Privatkunden senken (weniger freie Abendzeiten, strenge Regeln)</td>
+<td>Geschäftsleitung (Annahme, V-27)</td>
+</tr>
+<tr>
+<td>GZ-2 vs. GZ-3</td>
+<td>Self-Service senkt Aufwand am Empfang, kann aber Kunden ohne
+digitale Gewohnheit ausschliessen</td>
+<td>Geschäftsleitung</td>
+</tr>
+<tr>
+<td>PZ-4 vs. GZ-3</td>
+<td>Klare Regeln je Kundengruppe vs. Wunsch nach Ausnahmen
+(«Stammkunden»)</td>
+<td>Geschäftsleitung</td>
+</tr>
+</tbody>
+</table>
+<h2 id="d-fragen-zur-zielhierarchie-für-pva-5">D. Fragen zur
+Zielhierarchie für PVA 5</h2>
+<ol type="1">
+<li>Stimmt die Reihenfolge? Was ist der Geschäftsleitung am wichtigsten:
+Auslastung (GZ-1), Aufwand (GZ-2) oder Kundenkomfort (GZ-3)? (V-19)</li>
+<li>Welche Ausgangswerte kennt ArenaOne heute (Auslastung, Buchungen pro
+Woche, Zeit am Empfang, Doppelbuchungen pro Monat)? (V-20)</li>
+<li>Bis wann soll die Wirkung sichtbar sein? Gibt es einen
+Einführungstermin oder ein Budget? (V-32)</li>
+</ol>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

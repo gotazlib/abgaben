@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Vorlage: Systemkontext und Kontextdiagramm</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="vorlage-systemkontext-und-kontextdiagramm">Vorlage:
+Systemkontext und Kontextdiagramm</h1>
+<p>Artefakt <strong>R3</strong> (Fahrplan 3.2), Phase
+<strong>Ermitteln</strong>.</p>
+<blockquote>
+<p><strong>Hinweis:</strong> Systemkontext und Kontextdiagramm kommen im
+Kurs in Block 3 («Stakeholder &amp; Kontext», Roadmap Folie 2). Die
+Darstellung unten ist eine Arbeitsvorlage. Aus Block 1 übernehmen wir
+zwei Dinge, die der Dozent schon gezeigt hat:</p>
+<ul>
+<li><strong>Systembegriff</strong> (Folie 20): eine zusammengehörige,
+<em>von ihrer Umgebung abgrenzbare</em> Menge von Komponenten – das
+Kontextdiagramm zieht genau diese Grenze.</li>
+<li><strong>Anwendungsgebiet vs. Lösungsgebiet</strong> (Folie 12):
+Prozess und Ziele (Ist → Soll) auf der einen Seite, das System auf der
+anderen; Anforderungen verbinden beide.</li>
+<li>Wird eine <strong>bestehende Lösung geändert</strong>, zusätzlich
+das Teilsystem-Bild nach Folie 18 (Abschnitt C).</li>
+</ul>
+</blockquote>
+<h2 id="a-abgrenzung-in-tabellenform-zuerst-ausfüllen">A. Abgrenzung in
+Tabellenform (zuerst ausfüllen)</h2>
+<table>
+<thead>
+<tr>
+<th>Gehört zum System (wird gebaut/geändert)</th>
+<th>Gehört zum Kontext (beeinflusst das System, wird nicht gebaut)</th>
+<th>Ausserhalb, irrelevant</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[Funktionen, Daten, die das neue System verwaltet]</code></td>
+<td><code>[Benutzer, Umsysteme, Organisationen, Gesetze]</code></td>
+<td><code>[bewusst ausgeklammert – im Kapitel «Abgrenzung» der Spezifikation nennen]</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="b-kontextdiagramm">B. Kontextdiagramm</h2>
+<p>System als Kasten in der Mitte, Akteure und Umsysteme aussen, Pfeile
+mit den <strong>fachlichen</strong> Daten, die fliessen (nicht
+technische Protokolle). Vorlage in Mermaid (rendert auf GitHub; für die
+Spezifikation als Bild exportieren):</p>
+<pre class="mermaid"><code>flowchart LR
+  N1[&quot;[Nutzergruppe 1]&quot;] -- &quot;[Eingabe, z. B. Antrag]&quot; --&gt; S((&quot;[Name des Systems]&quot;))
+  S -- &quot;[Ausgabe, z. B. Bestätigung]&quot; --&gt; N1
+  N2[&quot;[Nutzergruppe 2]&quot;] -- &quot;[…]&quot; --&gt; S
+  S -- &quot;[…]&quot; --&gt; N2
+  U1[/&quot;[Umsystem A]&quot;/] -- &quot;[Stammdaten]&quot; --&gt; S
+  S -- &quot;[Buchung / Meldung]&quot; --&gt; U2[/&quot;[Umsystem B]&quot;/]
+  A[&quot;[Administration]&quot;] -- &quot;[Berechtigungen, Konfiguration]&quot; --&gt; S</code></pre>
+<p>Legende: Rechteck = Person/Rolle, Parallelogramm = Umsystem, Kreis =
+betrachtetes System.</p>
+<h3 id="schnittstellenliste-zum-diagramm">Schnittstellenliste (zum
+Diagramm)</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Partner (Akteur/Umsystem)</th>
+<th>Richtung</th>
+<th>Fachliche Daten</th>
+<th>Häufigkeit / Menge</th>
+<th>Quelle</th>
+<th>offene Fragen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IF-01</td>
+<td><code>[Nutzergruppe 1]</code></td>
+<td>→ System</td>
+<td><code>[…]</code></td>
+<td><code>[z. B. 200 pro Tag]</code></td>
+<td><code>[Interview PVA 5]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>IF-02</td>
+<td><code>[Umsystem A]</code></td>
+<td>→ System</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>IF-03</td>
+<td><code>[Umsystem B]</code></td>
+<td>System →</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Prüffragen: Hat jede Schnittstelle mindestens eine Anforderung in der
+Spezifikation? Ist jeder Akteur in der Stakeholder-Liste? Ist jede
+Datenart im Glossar?</p>
+<h2 id="c-nur-bei-änderung-einer-bestehenden-lösung-teilsysteme-nach-folie-18">C.
+Nur bei Änderung einer bestehenden Lösung: Teilsysteme nach Folie
+18</h2>
+<p>Vorgehen laut Folie 17/18: (1) Service-Anforderungen (Business)
+erfassen, (2) betroffene Teilsysteme markieren, (3) Anforderungen an
+diese Teilsysteme spezifizieren. Farbcode des Dozenten: <strong>neu =
+grün</strong>, <strong>zu ändern = blau mit grünem Einschlag</strong>,
+<strong>unverändert = blau</strong>.</p>
+<pre class="mermaid"><code>flowchart LR
+  T1[&quot;[Teilsystem neu]&quot;]:::neu --&gt; T2[&quot;[Teilsystem wird geändert]&quot;]:::geaendert
+  T2 --&gt; T3[&quot;[Teilsystem unverändert]&quot;]:::alt
+  T3 --&gt; T2
+  classDef neu fill:#d8f5d0,stroke:#2e8b2e,color:#000
+  classDef geaendert fill:#d6e4ff,stroke:#2e8b2e,stroke-width:3px,color:#000
+  classDef alt fill:#d6e4ff,stroke:#1f3f8f,color:#000</code></pre>
+<table>
+<thead>
+<tr>
+<th>Teilsystem</th>
+<th>neu / geändert / unverändert</th>
+<th>Was ändert sich fachlich?</th>
+<th>Anforderungen (IDs)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[…]</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>ArenaOne – Buchungs- und Belegungssystem (Demo)</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="arenaone--buchungs--und-belegungssystem-demo">ArenaOne –
+Buchungs- und Belegungssystem (Demo)</h1>
+<p>Statische Web-App (HTML, CSS, JavaScript) nach der
+Anforderungsspezifikation ArenaOne v0.5. Sie hat keinen Build-Schritt,
+keinen Server und keine externen Bibliotheken. Alle Daten liegen im
+<code>localStorage</code> des Browsers; beim ersten Start werden
+Demo-Daten erzeugt.</p>
+<h2 id="starten">Starten</h2>
+<ul>
+<li><strong>Lokal:</strong> <code>index.html</code> im Browser öffnen
+(funktioniert auch per <code>file://</code>). Oder
+<code>python3 -m http.server</code> im Ordner starten und
+<code>http://localhost:8000</code> öffnen.</li>
+<li><strong>GitHub Pages:</strong> Ordnerinhalt in ein Repository legen
+und Pages auf diesen Ordner einstellen. Es braucht keine
+Konfiguration.</li>
+<li><strong>Anmelden:</strong> Die Demo-Konten stehen auf der
+Anmeldeseite (ein Klick füllt die Felder aus).
+<ul>
+<li>Kundschaft: <code>anna</code>, <code>marco</code>, <code>lea</code>,
+<code>peter</code>/<code>sandra</code> (TC Seefeld), <code>lisa</code>
+(Badminton Club), <code>thomas</code> (Firma), <code>laura</code>
+(Trainerin), Passwort <code>demo1234</code>.</li>
+<li>Mitarbeitende: <code>empfang</code>, <code>gl</code>,
+<code>admin</code>, <code>betrieb</code>, Passwort
+<code>arenaone-demo</code>. Der zweite Faktor wird als simulierte SMS
+angezeigt.</li>
+</ul></li>
+<li><strong>Zurücksetzen:</strong> «Hilfe» → «Alle Daten
+zurücksetzen».</li>
+<li><strong>Logik-Tests:</strong> <code>node tests/logik-test.js</code>
+(28 Prüfungen entlang der Akzeptanzkriterien).</li>
+</ul>
+<h2 id="umgesetzt">Umgesetzt</h2>
+<table>
+<thead>
+<tr>
+<th>Bereich</th>
+<th>Anforderungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verfügbarkeit nach Datum und Sportart, auch ohne Anmeldung</td>
+<td>FA-01, FA-03, QA-14</td>
+</tr>
+<tr>
+<td>Gesamtbelegung Tag/Woche (Zeitachse) mit Kanal, Art und Sperrzeiten;
+Druckliste für 7 Tage (A4 quer)</td>
+<td>FA-02, FA-20, QA-06</td>
+</tr>
+<tr>
+<td>Online-Reservation, Reservation im Auftrag mit Kanal,
+Doppelbuchungsschutz mit Alternativen, Kundenkonten</td>
+<td>FA-04 bis FA-08</td>
+</tr>
+<tr>
+<td>Verschieben und Stornieren (Stornofrist, «kurzfristig»), sofortige
+Freigabe</td>
+<td>FA-09 bis FA-12</td>
+</tr>
+<tr>
+<td>Warteliste: alle benachrichtigen, wer zuerst bestätigt,
+Annahmefrist</td>
+<td>FA-13 bis FA-15</td>
+</tr>
+<tr>
+<td>Serien: Antrag, Konfliktliste, Bestätigung ganz oder ohne
+Konflikttermine, Ablehnung mit Grund, Einzeltermine
+absagen/verschieben</td>
+<td>FA-16 bis FA-20</td>
+</tr>
+<tr>
+<td>Bestätigungen, Erinnerungen, Sperrzeit-Infos, SMS-Option (Versand
+simuliert, Seite «Nachrichten»)</td>
+<td>FA-21 bis FA-23, FA-35</td>
+</tr>
+<tr>
+<td>Kundengruppen, Buchungsregeln, Kontingente mit PA-10-Grenze, alle
+Parameter PA-01 bis PA-10</td>
+<td>FA-24 bis FA-26, Kap. 7.3</td>
+</tr>
+<tr>
+<td>Sperrzeiten mit Pflichtentscheid je betroffener Reservation</td>
+<td>FA-27, FA-28</td>
+</tr>
+<tr>
+<td>Auswertungen (Anlage, Sportart, Kundengruppe, Wochentag, Stunde;
+Stornierungen), CSV-Export</td>
+<td>FA-29 bis FA-31</td>
+</tr>
+<tr>
+<td>Anlagen und Öffnungszeiten, Benutzer und Rollen, Übernahme alter
+Listen (CSV mit Probelauf)</td>
+<td>FA-32 bis FA-34</td>
+</tr>
+<tr>
+<td>Rollen und Berechtigungsmatrix, Anmeldung, Verlauf/Protokoll,
+Datensparsamkeit, Löschlauf, Datenauskunft, Deutsch, Smartphone ab 360
+px</td>
+<td>QA-02 bis QA-04, QA-10 bis QA-15</td>
+</tr>
+</tbody>
+</table>
+<h2 id="nicht-oder-nur-teilweise-umgesetzt">Nicht oder nur teilweise
+umgesetzt</h2>
+<ul>
+<li><strong>QA-05, QA-07, QA-08, QA-09 (Betrieb, Last,
+Antwortzeiten):</strong> In einer reinen Browser-App gibt es keinen
+gemeinsamen Server. Mehrere Sitzungen sind nur Tabs desselben Browsers;
+sie werden über das <code>storage</code>-Ereignis sofort
+abgeglichen.</li>
+<li><strong>QA-16:</strong> HTTPS liefert GitHub Pages. Die
+Datensicherung ist nur ein manueller JSON-Download und -Upload, ohne
+tägliche Automatik.</li>
+<li><strong>QA-14:</strong> Anmeldung und zweiter Faktor sind simuliert;
+Passwörter liegen im Browser – das ist keine echte Sicherheit.</li>
+<li><strong>FA-21 bis FA-23, FA-35:</strong> Es werden keine echten
+E-Mails oder SMS versandt (Postausgang-Simulation).</li>
+<li><strong>QA-01, QA-02:</strong> Sie sind auf schnelle Bedienung
+ausgelegt (Kundensuche, erstes freies Zeitfenster vorgewählt), aber
+nicht mit Testpersonen gemessen.</li>
+<li><strong>WO-01 bis WO-05:</strong> Sie sind bewusst nicht umgesetzt
+(Won&#39;t in v1).</li>
+</ul>
+<p>Alle Annahmen und Fragen an die Auftraggeberin: <a href="ANNAHMEN.html">ANNAHMEN.md</a>.</p>
+<h2 id="aufbau">Aufbau</h2>
+<pre><code>index.html          Seite und Skript-Reihenfolge
+css/style.css       Layout, Smartphone, Druck
+js/util.js          Datum/Zeit, CSV, Download
+js/store.js         localStorage, Sitzung, Rollen und Berechtigungsmatrix (QA-13)
+js/logic.js         Fachlogik (Regeln, Konflikte, Warteliste, Serien, Sperrzeiten, Auswertungen, Datenschutz)
+js/seed.js          Demo-Daten
+js/ui.js            Router, Navigation, Dialoge
+js/views-kunde.js   Verfügbarkeit, Meine Reservationen, Anmeldung, Nachrichten
+js/views-betrieb.js Gesamtbelegung, Serien, Kunden, Sperrzeiten, Regeln, Auswertungen, Administration
+tests/logik-test.js Node-Tests der Fachlogik</code></pre>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

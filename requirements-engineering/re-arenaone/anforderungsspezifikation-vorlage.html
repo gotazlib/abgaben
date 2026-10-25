@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Anforderungsspezifikation – [Projekt von Gruppe 2]</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="anforderungsspezifikation--projekt-von-gruppe-2">Anforderungsspezifikation
+– [Projekt von Gruppe 2]</h1>
+<p>Vorlage für Artefakt <strong>R6</strong> (Kernabgabe, Bewertung 30 %:
+Format, Inhalt, Schwierigkeitsgrad). Stand: 18.10.2026.</p>
+<p><strong>So ist die Vorlage aufgebaut:</strong> Jedes Kapitel enthält
+einen <strong>Ausfüllhinweis</strong> (was hinein gehört, mit
+Folien-Verweis) und ein <strong>Beispiel</strong> aus einem
+durchgespielten Mini-Projekt. Das Mini-Projekt ist frei erfunden –
+<em>Velowerkstatt «Speiche», Online-Terminbuchung</em> – und dient nur
+dazu, Format und Schwierigkeitsgrad sichtbar zu machen. Beim Befüllen:
+Platzhalter <code>[…]</code> ersetzen, Ausfüllhinweise und Beispiele
+löschen, Datei als <code>anforderungsspezifikation.md</code>
+speichern.</p>
+<p><strong>Grundlage des Formats:</strong> Die Gliederung folgt vorerst
+IEEE 830 (Einleitung – allgemeine Beschreibung – spezifische
+Anforderungen), die Anforderungsattribute dem Volere-Stil –
+Arbeitsannahme aus <code>notizen/kurs-konzepte.md</code> Abschnitt 14,
+weil die Spezifikationsvorlagen erst in Block 2 («IEEE 830, Volere»,
+Roadmap Folie 2) behandelt werden. Begriffe, Klassifikation,
+Priorisierung und Qualitätsmerkmale stammen aus Block 1. Nach Block 2
+Gliederung an die Dozentenvorlage anpassen.</p>
+<table>
+<thead>
+<tr>
+<th>Feld</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Auftraggeber (Stakeholder-Rolle)</td>
+<td>Gruppe 2: <code>[Namen]</code></td>
+</tr>
+<tr>
+<td>Requirements Engineers</td>
+<td>Gruppe 9: Görkem Taspinar, Ardian Ibrahimaj</td>
+</tr>
+<tr>
+<td>Version / Status</td>
+<td><code>[v0.1 Entwurf / v0.5 im Review / v1.0 freigegeben]</code></td>
+</tr>
+<tr>
+<td>Freigabe durch Auftraggeber</td>
+<td><code>[Name, Datum]</code></td>
+</tr>
+<tr>
+<td>Modul</td>
+<td>Requirements Engineering, HWZ BWI-A24-5, Dr. Joachim
+Steinwendner</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-einleitung">1. Einleitung</h2>
+<h3 id="11-zweck-des-dokuments">1.1 Zweck des Dokuments</h3>
+<p><code>[Wozu dient die Spezifikation, für wen ist sie geschrieben?]</code></p>
+<blockquote>
+<p><strong>Ausfüllhinweis:</strong> Die Spezifikation ist die
+«Zusammenstellung aller Anforderungen an ein System» (Folie 24) aus
+Anwendersicht – inhaltlich ein <strong>Lastenheft</strong> (<em>Was?
+Wofür?</em>, Folie 26). Sie beschreibt nicht, <em>wie</em> das System
+gebaut wird (keine Architektur, kein Design, Folie 14). Kurz halten:
+kein Roman, keine wissenschaftliche Arbeit (Folie 14).</p>
+</blockquote>
+<blockquote>
+<p><strong>Beispiel (Velowerkstatt):</strong> Dieses Dokument beschreibt
+die Anforderungen an eine Online-Terminbuchung der Velowerkstatt
+«Speiche». Es richtet sich an die Inhaberin (Auftraggeberin), das
+Werkstatt-Team und an einen künftigen Software-Lieferanten, der auf
+dieser Grundlage ein Angebot erstellt.</p>
+</blockquote>
+<h3 id="12-geltungsbereich-und-abgrenzung">1.2 Geltungsbereich und
+Abgrenzung</h3>
+<p><code>[Was gehört zum System, was ausdrücklich nicht?]</code></p>
+<blockquote>
+<p><strong>Ausfüllhinweis:</strong> Abgrenzung aus dem Kontextdiagramm
+(Kapitel 2.3) übernehmen. Ausdrücklich Ausgeschlossenes nennen – ein
+gutes Produkt hat «keine Merkmale, die vom Kunden nicht gewünscht sind»
+(Folie 13).</p>
+</blockquote>
+<blockquote>
+<p><strong>Beispiel (Velowerkstatt):</strong> Im Umfang: Buchen,
+Verschieben und Stornieren von Reparaturterminen durch Kund:innen;
+Pflege der buchbaren Zeitfenster durch die Werkstatt. <strong>Nicht im
+Umfang:</strong> Online-Bezahlung, Ersatzteil-Lager, Verkauf von
+Velos.</p>
+</blockquote>
+<h3 id="13-referenzen">1.3 Referenzen</h3>
+<p><code>[Projektvorstellung Gruppe 2 (PVA 2), Interviewprotokolle, Gesetze, Normen – vollständige Angaben im Quellenverzeichnis]</code></p>
+<h3 id="14-aufbau-des-dokuments">1.4 Aufbau des Dokuments</h3>
+<p>Kapitel 2–4 beschreiben Ausgangslage, Ziele und Stakeholder, Kapitel
+5–7 die Anforderungen, Kapitel 8–11 Priorisierung, Nachverfolgbarkeit,
+Validierung und Änderungsmanagement, Kapitel 12–13 Glossar und offene
+Punkte.</p>
+<h2 id="2-ausgangslage-und-systemkontext">2. Ausgangslage und
+Systemkontext</h2>
+<h3 id="21-ist-zustand-und-probleme">2.1 Ist-Zustand und Probleme</h3>
+<p><code>[Heutiger Ablauf, Probleme mit Zahlen, soweit bekannt]</code></p>
+<blockquote>
+<p><strong>Ausfüllhinweis:</strong> Trennung Anwendungsgebiet (Prozess,
+Ist → Soll) und Lösungsgebiet (System) wie auf Folie 12. Probleme
+möglichst mit Zahlen belegen; diese Zahlen werden später zu
+Zielwerten.</p>
+</blockquote>
+<blockquote>
+<p><strong>Beispiel (Velowerkstatt):</strong> Termine werden heute
+telefonisch vereinbart. Laut Inhaberin (Interview, Annahme der
+Stakeholder-Rolle) gehen pro Woche rund 60 Anrufe ein, etwa ein Drittel
+während der Reparaturarbeit; Montag und Samstag sind überbucht, Mittwoch
+halb leer.</p>
+</blockquote>
+<h3 id="22-soll-zustand-überblick">2.2 Soll-Zustand (Überblick)</h3>
+<p><code>[Wie soll der Ablauf künftig aussehen – in Sätzen, ohne Lösungsdetails]</code></p>
+<h3 id="23-systemkontext">2.3 Systemkontext</h3>
+<p><code>[Kontextdiagramm aus vorlagen/kontextdiagramm.md als Bild + Schnittstellenliste]</code></p>
+<blockquote>
+<p><strong>Ausfüllhinweis:</strong> Jede Schnittstelle braucht
+mindestens eine Anforderung (Kapitel 5–7). Wird eine bestehende Lösung
+geändert: Teilsysteme neu / geändert / unverändert nach Folie 17/18
+kennzeichnen.</p>
+</blockquote>
+<blockquote>
+<p><strong>Beispiel (Velowerkstatt):</strong> Akteure: Kund:in (bucht),
+Werkstatt-Team (pflegt Zeitfenster, sieht Tagesliste), Inhaberin
+(Auswertungen). Umsystem: E-Mail-Versand (Bestätigungen). Kein Umsystem
+für Kalender oder Kasse.</p>
+</blockquote>
+<h2 id="3-ziele">3. Ziele</h2>
+<p><code>[Zielhierarchie: Geschäftsziele → Prozess- und Produktziele, je messbar]</code></p>
+<blockquote>
+<p><strong>Ausfüllhinweis:</strong> Ziel = «ein erwünschter Zustand»
+(Folie 35), Anforderung = eine konkrete, zu erreichende Eigenschaft, die
+für ein Ziel notwendig ist. Zielmodell nach Folie 37: Geschäftsziele
+<em>determinieren</em> und <em>werden verfeinert in</em> Prozess-,
+Produkt- und Projektziele. Projektziele (Kosten, Termine) sind
+Projektanforderungen, keine Systemanforderungen (Folie 38) – kurz
+nennen, aber getrennt halten. Jedes Ziel bekommt eine ID; jede
+Anforderung verweist auf mindestens ein Ziel (Kapitel 9).</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Ebene (Folie 37)</th>
+<th>Ziel</th>
+<th>Messgrösse / Zielwert</th>
+<th>Quelle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[GZ-1]</code></td>
+<td>Geschäftsziel</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>[PZ-1]</code></td>
+<td>Prozessziel</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>[PDZ-1]</code></td>
+<td>Produktziel</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>[PJ-1]</code></td>
+<td>Projektziel (Kosten/Termine)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Beispiel (Velowerkstatt):</strong></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Ebene</th>
+<th>Ziel</th>
+<th>Messgrösse / Zielwert</th>
+<th>Quelle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GZ-1</td>
+<td>Geschäftsziel</td>
+<td>Werkstatt gleichmässiger auslasten</td>
+<td>Auslastung Mi ≥ 70 % (heute ca. 50 %) nach 6 Monaten</td>
+<td>Inhaberin</td>
+</tr>
+<tr>
+<td>PZ-1</td>
+<td>Prozessziel</td>
+<td>Termine ohne Telefon vereinbaren</td>
+<td>Anteil Online-Buchungen ≥ 60 % nach 6 Monaten</td>
+<td>Inhaberin</td>
+</tr>
+<tr>
+<td>PDZ-1</td>
+<td>Produktziel</td>
+<td>Kund:innen sehen freie Zeitfenster und buchen selbst</td>
+<td>– (wird durch FA-01 … FA-03 konkretisiert)</td>
+<td>Interview</td>
+</tr>
+<tr>
+<td>PJ-1</td>
+<td>Projektziel</td>
+<td>Betrieb ab Saisonstart</td>
+<td>produktiv bis <code>[Datum]</code></td>
+<td>Inhaberin</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h2 id="4-stakeholder-und-benutzer">4. Stakeholder und Benutzer</h2>
+<p><code>[Stakeholder-Liste aus vorlagen/stakeholder-analyse.md, gekürzt: Rolle, Interesse, Entscheidungsbefugnis; Benutzergruppen mit Anzahl und Nutzungshäufigkeit]</code></p>
+<blockquote>
+<p><strong>Ausfüllhinweis:</strong> Entscheidungsbefugnis ausdrücklich
+nennen (Folie 47: «Wer entscheidet bei Widerspruch?»). Benutzergruppen
+mit Merkmalen beschreiben, die Anforderungen beeinflussen (Häufigkeit,
+Vorkenntnisse, Gerät).</p>
+</blockquote>
+<blockquote>
+<p><strong>Beispiel (Velowerkstatt):</strong> Kund:innen (ca. 40
+Buchungen/Woche, Gelegenheitsnutzer, meist Smartphone); Werkstatt-Team
+(3 Personen, täglich, PC in der Werkstatt); Inhaberin (gibt frei,
+entscheidet bei Konflikten).</p>
+</blockquote>
+<h2 id="5-funktionale-anforderungen">5. Funktionale Anforderungen</h2>
+<blockquote>
+<p><strong>Ausfüllhinweis – Format jeder Anforderung:</strong></p>
+<ul>
+<li><strong>Klassifikation</strong> nach Folie 38: funktionale
+Anforderungen beschreiben <em>Funktionen, Verhalten und Daten</em>.</li>
+<li><strong>Formulierung</strong> mit einer
+<strong>Satzschablone</strong> (eine Anforderung pro Satz, aktiv, mit
+Verbindlichkeit). Arbeitsvorlage bis Block 4 («Sprache – natürlich vs.
+formal»): <em>«Das System muss / soll / wird <code>&lt;wem?&gt;</code>
+die Möglichkeit bieten, <code>&lt;Objekt&gt;</code> zu
+<code>&lt;Prozesswort&gt;</code>.»</em> (Schablone nach Rupp &amp; die
+SOPHISTen, 2014). Verbindlichkeit passend zur Priorität: <em>muss</em> =
+Muss, <em>soll</em> = Soll, <em>wird</em> = Wunsch.</li>
+<li>Alternativ oder ergänzend <strong>User Story</strong> mit
+<strong>Akzeptanzkriterien</strong> («Als <code>&lt;Rolle&gt;</code>
+möchte ich <code>&lt;Funktion&gt;</code>, damit
+<code>&lt;Nutzen&gt;</code>»). User Stories sind in Block 1 nicht
+eingeführt (Folie 23 warnt: «grobe Stories» allein genügen nicht) –
+deshalb immer mit prüfbaren Akzeptanzkriterien.</li>
+<li><strong>Attribute</strong> (Volere-Stil): ID, Titel, Beschreibung,
+Begründung, Quelle, Ziel-Bezug, Priorität (Muss/Soll/Wunsch, Folie 43),
+Facetten (Repräsentation, Erfüllung, Rolle, Folie 40–42),
+Abnahmekriterium, Status, Version.</li>
+<li>Prüfen gegen Folie 45: jede Anforderung <strong>eindeutig</strong>,
+<strong>prüfbar</strong>, <strong>adäquat</strong> (der Kunde braucht
+das wirklich).</li>
+<li>Gliederung nach Funktionsbereichen oder Abläufen; Use Cases/UML
+ergänzen, sobald Block 5 behandelt ist.</li>
+</ul>
+</blockquote>
+<h3 id="51-funktionsbereich-1">5.1
+<code>[Funktionsbereich 1]</code></h3>
+<table>
+<thead>
+<tr>
+<th>Attribut</th>
+<th>FA-<code>[nn]</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Titel</td>
+<td></td>
+</tr>
+<tr>
+<td>Beschreibung (Satzschablone)</td>
+<td>Das System muss <code>[wem]</code> die Möglichkeit bieten,
+<code>[Objekt]</code> zu <code>[Prozesswort]</code>.</td>
+</tr>
+<tr>
+<td>Begründung</td>
+<td></td>
+</tr>
+<tr>
+<td>Quelle</td>
+<td><code>[SH-…, Interview PVA 5 Nr. …]</code></td>
+</tr>
+<tr>
+<td>Ziel-Bezug</td>
+<td><code>[PZ-…]</code></td>
+</tr>
+<tr>
+<td>Priorität</td>
+<td><code>[Muss / Soll / Wunsch]</code></td>
+</tr>
+<tr>
+<td>Facetten</td>
+<td>Repräsentation
+<code>[operational/quantitativ/qualitativ/deklarativ]</code> · Erfüllung
+<code>[hart/weich]</code> · Rolle
+<code>[Vorschrift/Tatsache/Annahme]</code></td>
+</tr>
+<tr>
+<td>Abnahmekriterium</td>
+<td><code>[überprüfbare Bedingung]</code></td>
+</tr>
+<tr>
+<td>Status / Version</td>
+<td><code>[entworfen / abgestimmt / freigegeben]</code> /
+<code>[v0.x]</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Beispiel (Velowerkstatt) – 5.1 Termin buchen:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Attribut</th>
+<th>FA-01</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Titel</td>
+<td>Reparaturtermin buchen</td>
+</tr>
+<tr>
+<td>Beschreibung</td>
+<td>Das System muss Kund:innen die Möglichkeit bieten, für eine gewählte
+Leistung einen freien Termin aus den nächsten 21 Tagen zu buchen.</td>
+</tr>
+<tr>
+<td>Begründung</td>
+<td>Telefonanrufe während der Reparaturarbeit reduzieren</td>
+</tr>
+<tr>
+<td>Quelle</td>
+<td>Inhaberin, Interview Nr. 4</td>
+</tr>
+<tr>
+<td>Ziel-Bezug</td>
+<td>PZ-1, PDZ-1</td>
+</tr>
+<tr>
+<td>Priorität</td>
+<td>Muss</td>
+</tr>
+<tr>
+<td>Facetten</td>
+<td>operational · hart · Vorschrift</td>
+</tr>
+<tr>
+<td>Abnahmekriterium</td>
+<td>Nach der Buchung ist das Zeitfenster für andere Kund:innen nicht
+mehr buchbar und in der Tagesliste (FA-03) sichtbar.</td>
+</tr>
+<tr>
+<td>Status / Version</td>
+<td>abgestimmt / v0.3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Schlecht → gut formuliert (zeigt den
+Schwierigkeitsgrad):</strong></p>
+<table>
+<thead>
+<tr>
+<th>✗ ursprüngliche Aussage</th>
+<th>Problem (Folie 45/47)</th>
+<th>✓ spezifiziert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>«Kunden sollen einfach online einen Termin machen können.»</td>
+<td>nicht eindeutig (welcher Zeitraum?), nicht prüfbar («einfach»),
+Funktion und Qualität vermischt</td>
+<td>FA-01 (Funktion) + QA-01 (Bedienbarkeit, messbar)</td>
+</tr>
+<tr>
+<td>«Wir brauchen einen grossen grünen Buchen-Knopf.»</td>
+<td>Lösungs- statt Anforderungsdenken</td>
+<td>Bedürfnis dahinter: Buchung auch für Erstnutzer schnell möglich →
+QA-01</td>
+</tr>
+<tr>
+<td>«Das System zeigt die Termine.»</td>
+<td>unvollständig: wem? welche?</td>
+<td>FA-03</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Weitere Anforderungen im Beispiel (Kurzform):</strong></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Beschreibung</th>
+<th>Prio</th>
+<th>Facetten</th>
+<th>Ziel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FA-02</td>
+<td>Das System muss dem Werkstatt-Team die Möglichkeit bieten, einzelne
+Zeitfenster für die Buchung zu sperren und wieder freizugeben.</td>
+<td>Muss</td>
+<td>operational · hart · Vorschrift</td>
+<td>GZ-1</td>
+</tr>
+<tr>
+<td>FA-04</td>
+<td>Das System soll Kund:innen 24 Stunden vor dem Termin eine Erinnerung
+per E-Mail senden.</td>
+<td>Soll</td>
+<td>operational · hart · Vorschrift</td>
+<td>GZ-1</td>
+</tr>
+<tr>
+<td>FA-05</td>
+<td>Das System wird der Inhaberin die Möglichkeit bieten, die Auslastung
+pro Wochentag als Monatsübersicht anzuzeigen.</td>
+<td>Wunsch</td>
+<td>operational · hart · Vorschrift</td>
+<td>GZ-1</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="52-funktionsbereich-2--als-user-story-mit-akzeptanzkriterien">5.2
+<code>[Funktionsbereich 2]</code> – als User Story mit
+Akzeptanzkriterien</h3>
+<table>
+<thead>
+<tr>
+<th>Attribut</th>
+<th>FA-<code>[nn]</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User Story</td>
+<td>Als <code>[Rolle]</code> möchte ich <code>[Funktion]</code>, damit
+<code>[Nutzen]</code>.</td>
+</tr>
+<tr>
+<td>Akzeptanzkriterien</td>
+<td>1. Gegeben <code>[Ausgangslage]</code>, wenn <code>[Aktion]</code>,
+dann <code>[Ergebnis]</code>. 2. …</td>
+</tr>
+<tr>
+<td>Quelle / Ziel / Priorität / Facetten / Status</td>
+<td>wie oben</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Beispiel (Velowerkstatt) – 5.2 Tagesliste:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Attribut</th>
+<th>FA-03</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User Story</td>
+<td>Als Mechaniker:in möchte ich am Vorabend alle Termine des nächsten
+Arbeitstags mit Leistung und Velotyp sehen, damit ich Ersatzteile
+vorbereiten kann.</td>
+</tr>
+<tr>
+<td>Akzeptanzkriterien</td>
+<td>1. Gegeben drei Buchungen für morgen, wenn ich die Tagesliste öffne,
+dann sehe ich alle drei, nach Uhrzeit sortiert, mit Leistung und
+Velotyp. 2. Gegeben eine stornierte Buchung, dann erscheint sie nicht in
+der Liste. 3. Gegeben ein gesperrtes Zeitfenster (FA-02), dann ist es
+als «gesperrt» markiert.</td>
+</tr>
+<tr>
+<td>Quelle / Ziel / Priorität</td>
+<td>Werkstatt-Team, Workshop / PDZ-1 / Muss</td>
+</tr>
+<tr>
+<td>Facetten</td>
+<td>operational · hart · Vorschrift</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h2 id="6-qualitätsanforderungen">6. Qualitätsanforderungen</h2>
+<blockquote>
+<p><strong>Ausfüllhinweis:</strong> Nach Folie 38 gehören dazu
+<strong>Leistungsanforderungen</strong> (Antwortzeit, Durchsatz, Mengen)
+und <strong>besondere Qualitäten</strong> (z. B. Bedienbarkeit,
+Verfügbarkeit, Sicherheit). «Schnell», «sicher», «benutzerfreundlich»
+ohne Mass sind unbrauchbar (Folie 47). Deshalb
+<strong>qualitative</strong> Aussagen (Folie 41: «hohe Verfügbarkeit»)
+in <strong>quantitative</strong> überführen (Folie 41: «Antwortzeit &lt;
+0,5 s»): <em>Messgrösse + Zielwert + Bedingung + Messmethode</em>.
+Weiche Anforderungen (graduell erfüllbar, Folie 41) brauchen einen
+Schwellenwert, ab dem sie als erfüllt gelten. Was genau
+«nicht-funktional» heisst, vertieft Block 6 – danach prüfen.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Qualität</th>
+<th>Anforderung</th>
+<th>Messgrösse</th>
+<th>Zielwert</th>
+<th>Bedingung</th>
+<th>Messmethode</th>
+<th>Prio</th>
+<th>Ziel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QA-<code>[nn]</code></td>
+<td><code>[Leistung / Bedienbarkeit / Verfügbarkeit / Sicherheit / …]</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Beispiel (Velowerkstatt):</strong></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Qualität</th>
+<th>Anforderung</th>
+<th>Messgrösse</th>
+<th>Zielwert</th>
+<th>Bedingung</th>
+<th>Messmethode</th>
+<th>Prio</th>
+<th>Ziel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QA-01</td>
+<td>Bedienbarkeit</td>
+<td>Erstnutzer:innen können ohne Hilfe einen Termin buchen.</td>
+<td>Zeit vom Öffnen bis zur Bestätigung</td>
+<td>≤ 3 min für 9 von 10 Testpersonen</td>
+<td>Smartphone, erste Nutzung</td>
+<td>Test mit 10 Personen vor Abnahme</td>
+<td>Muss</td>
+<td>PZ-1</td>
+</tr>
+<tr>
+<td>QA-02</td>
+<td>Leistung</td>
+<td>Die freien Zeitfenster werden rasch angezeigt.</td>
+<td>Antwortzeit</td>
+<td>≤ 2 s in 95 % der Aufrufe</td>
+<td>bis 20 gleichzeitige Nutzer</td>
+<td>Lasttest</td>
+<td>Soll</td>
+<td>PDZ-1</td>
+</tr>
+<tr>
+<td>QA-03</td>
+<td>Verfügbarkeit</td>
+<td>Die Buchung ist ausserhalb der Öffnungszeiten erreichbar.</td>
+<td>Verfügbarkeit pro Monat</td>
+<td>≥ 99 %</td>
+<td>ohne angekündigte Wartung</td>
+<td>Monitoring-Bericht</td>
+<td>Soll</td>
+<td>PZ-1</td>
+</tr>
+</tbody>
+</table>
+<p><em>Vorher (qualitativ, nicht prüfbar):</em> «Die Buchung muss
+einfach und schnell sein.» → <em>nachher:</em> QA-01 und QA-02.</p>
+</blockquote>
+<h2 id="7-randbedingungen-annahmen-und-abhängigkeiten">7.
+Randbedingungen, Annahmen und Abhängigkeiten</h2>
+<blockquote>
+<p><strong>Ausfüllhinweis:</strong> <strong>Randbedingungen</strong>
+schränken den Lösungsraum ein (Folie 38; Beispiel deklarativ, Folie 41:
+«Das System soll auf einer Linux-Plattform laufen»): Gesetze, Normen,
+interne Vorgaben, vorgegebene Technik, Budget. Mit der Facette
+<strong>Rolle</strong> (Folie 42) trennen: <strong>Vorschrift</strong>
+(Forderung an das System), <strong>Tatsache</strong> (Fakt in der
+Umgebung), <strong>Annahme</strong> (über das Verhalten von Akteuren).
+Gesetze und Normen nur mit geprüfter Quelle (HWZ-Zitierleitfaden);
+fiktive Angaben der Stakeholder-Rolle als <em>Annahme</em>
+kennzeichnen.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Randbedingung / Annahme</th>
+<th>Rolle (Vorschrift / Tatsache / Annahme)</th>
+<th>Quelle</th>
+<th>Auswirkung auf Anforderungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RB-<code>[nn]</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Beispiel (Velowerkstatt):</strong></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Randbedingung / Annahme</th>
+<th>Rolle</th>
+<th>Quelle</th>
+<th>Auswirkung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RB-01</td>
+<td>Die Bearbeitung der Personendaten (Name, E-Mail, Telefon) muss dem
+Bundesgesetz über den Datenschutz (DSG) entsprechen.</td>
+<td>Vorschrift</td>
+<td>DSG, SR 235.1</td>
+<td>Datenumfang minimal halten, Löschfrist festlegen (offener Punkt
+OP-2)</td>
+</tr>
+<tr>
+<td>RB-02</td>
+<td>Die Buchung muss in den aktuellen Versionen der gängigen Smartphone-
+und Desktop-Browser funktionieren; keine App-Installation.</td>
+<td>Vorschrift</td>
+<td>Inhaberin</td>
+<td>–</td>
+</tr>
+<tr>
+<td>RB-03</td>
+<td>Die Werkstatt ist Dienstag bis Samstag geöffnet.</td>
+<td>Tatsache (im Beispiel fiktiv)</td>
+<td>Inhaberin</td>
+<td>buchbare Tage in FA-01</td>
+</tr>
+<tr>
+<td>RB-04</td>
+<td>Kund:innen haben eine E-Mail-Adresse und geben sie bei der Buchung
+an.</td>
+<td>Annahme</td>
+<td>Workshop</td>
+<td>Voraussetzung für FA-04; falls falsch → SMS prüfen (siehe
+CR-01)</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h2 id="8-priorisierung">8. Priorisierung</h2>
+<blockquote>
+<p><strong>Ausfüllhinweis:</strong> Jede Anforderung hat eine Priorität
+nach Folie 43: <strong>Muss</strong> (unverzichtbar),
+<strong>Soll</strong> (wichtig, aber bei zu hohen Kosten verzichtbar),
+<strong>Wunsch</strong> (schön zu haben). Priorisiert der Auftraggeber,
+nicht das RE-Team. Für viele Soll-Anforderungen optional eine grobe
+<strong>wertbasierte</strong> Einschätzung Nutzen vs. Kosten (Folie 44).
+Die Prioritäten bestimmen den Inhalt eines ersten Release (Folie 43:
+«nützlich bei Releaseplanung»).</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Priorität</th>
+<th>Anzahl</th>
+<th>Anforderungen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Muss</td>
+<td><code>[n]</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Soll</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Wunsch</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Beispiel (Velowerkstatt):</strong> Muss: FA-01, FA-02, FA-03,
+QA-01, RB-01, RB-02 → Release 1. Soll: FA-04, QA-02, QA-03 → Release 1,
+falls im Budget. Wunsch: FA-05 → später. Wertbasierte Einschätzung für
+FA-04: Nutzen 4 (weniger vergessene Termine), Kosten 2 → behalten.</p>
+</blockquote>
+<h2 id="9-nachverfolgbarkeit">9. Nachverfolgbarkeit</h2>
+<blockquote>
+<p><strong>Ausfüllhinweis:</strong> Jede Anforderung lässt sich
+<strong>rückwärts</strong> zu Quelle und Ziel und
+<strong>vorwärts</strong> zu Abnahmekriterium bzw. Testfall verfolgen.
+Das macht Lücken sichtbar: ein Ziel ohne Anforderung = unvollständig;
+eine Anforderung ohne Ziel = evtl. nicht gewünscht (Folie 13, 45).
+«Rückverfolgen» ist eine Aufgabe des Verwaltens (Folie 27); Traceability
+wird in Block 7 vertieft.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Ziel</th>
+<th>Anforderung</th>
+<th>Quelle</th>
+<th>Abnahme / Testfall</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Beispiel (Velowerkstatt):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Ziel</th>
+<th>Anforderung</th>
+<th>Quelle</th>
+<th>Abnahme / Testfall</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PZ-1, PDZ-1</td>
+<td>FA-01</td>
+<td>Interview Nr. 4</td>
+<td>Abnahmekriterium FA-01</td>
+<td>abgestimmt</td>
+</tr>
+<tr>
+<td>GZ-1</td>
+<td>FA-02</td>
+<td>Workshop</td>
+<td>T-02 Zeitfenster sperren</td>
+<td>abgestimmt</td>
+</tr>
+<tr>
+<td>PDZ-1</td>
+<td>FA-03</td>
+<td>Workshop</td>
+<td>Akzeptanzkriterien 1–3</td>
+<td>abgestimmt</td>
+</tr>
+<tr>
+<td>PZ-1</td>
+<td>QA-01</td>
+<td>Interview Nr. 7</td>
+<td>Test mit 10 Personen</td>
+<td>entworfen</td>
+</tr>
+<tr>
+<td>GZ-1</td>
+<td>FA-05</td>
+<td>Inhaberin</td>
+<td>–</td>
+<td>Wunsch, zurückgestellt</td>
+</tr>
+</tbody>
+</table>
+<p><em>Befund aus der Matrix:</em> GZ-1 (Auslastung Mittwoch) wird nur
+indirekt unterstützt → offener Punkt OP-1: Soll die Buchung schwach
+ausgelastete Tage vorschlagen?</p>
+</blockquote>
+<h2 id="10-validierung">10. Validierung</h2>
+<blockquote>
+<p><strong>Ausfüllhinweis:</strong> Zwei Schritte des Kreislaufs (Folie
+28): <strong>Prüfen &amp; Abstimmen</strong> (Qualität, Konsistenz,
+Akzeptanz) und <strong>Validieren</strong> («Hält die Spec im System?»).
+Prüfmassstab sind die <strong>Qualitätsmerkmale</strong> von Folie 45
+und die <strong>Problemliste</strong> von Folie 47. Fehler früh finden
+ist am billigsten (Folie 33/34). Validierungstechniken werden in der
+Roadmap nicht eigens genannt; bis dahin: Review durch Gruppe 2 und
+Szenario-Durchgang.</p>
+</blockquote>
+<h3 id="101-checkliste-qualitätsmerkmale-folie-45">10.1 Checkliste
+Qualitätsmerkmale (Folie 45)</h3>
+<table>
+<thead>
+<tr>
+<th>Merkmal</th>
+<th>Frage</th>
+<th>erfüllt?</th>
+<th>Befund / Massnahme</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>adäquat</td>
+<td>Beschreibt die Spezifikation, was der Auftraggeber will bzw.
+braucht?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>vollständig</td>
+<td>Hat jedes Ziel, jede Schnittstelle, jeder Akteur Anforderungen?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>widerspruchsfrei</td>
+<td>Widersprechen sich Anforderungen?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>verständlich</td>
+<td>Versteht Gruppe 2 jede Anforderung ohne Erklärung?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>eindeutig</td>
+<td>Lässt jede Anforderung nur eine Auslegung zu (Glossar)?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>prüfbar</td>
+<td>Hat jede Anforderung ein Abnahmekriterium bzw. einen Messwert?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>risikogerecht</td>
+<td>Ist die Detailtiefe dort hoch, wo das Risiko hoch ist (Folie
+23)?</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="102-problemliste-folie-47-und-befunde">10.2 Problemliste (Folie
+47) und Befunde</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Befund</th>
+<th>Problemtyp (Folie 47)</th>
+<th>betroffene IDs</th>
+<th>Massnahme</th>
+<th>erledigt in Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Beispiel (Velowerkstatt):</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Befund</th>
+<th>Problemtyp</th>
+<th>IDs</th>
+<th>Massnahme</th>
+<th>erledigt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V-1</td>
+<td>«Einfach zu bedienen» ohne Mass</td>
+<td>unmessbare NFR</td>
+<td>QA-01</td>
+<td>Messgrösse und Test definiert</td>
+<td>v0.3</td>
+</tr>
+<tr>
+<td>V-2</td>
+<td>FA-01 erlaubt Buchung am selben Tag, das Team braucht aber einen Tag
+Vorlauf für Ersatzteile (FA-03)</td>
+<td>inkonsistente Anforderungen</td>
+<td>FA-01, FA-03</td>
+<td>Inhaberin entscheidet: frühestens nächster Öffnungstag</td>
+<td>v0.4</td>
+</tr>
+<tr>
+<td>V-3</td>
+<td>«Termin» meint bei Kund:innen die Uhrzeit, beim Team die ganze
+Reparatur</td>
+<td>uneinheitliche Terminologie</td>
+<td>alle</td>
+<td>Glossar: «Termin» = gebuchtes Zeitfenster; «Auftrag» =
+Reparatur</td>
+<td>v0.4</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="103-freigabe">10.3 Freigabe</h3>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>geprüft durch</th>
+<th>Ergebnis</th>
+<th>Datum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[v0.5]</code></td>
+<td>Gruppe 2 <code>[Name]</code></td>
+<td><code>[Änderungen nötig / freigegeben]</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-änderungsmanagement-und-versionshistorie">11.
+Änderungsmanagement und Versionshistorie</h2>
+<blockquote>
+<p><strong>Ausfüllhinweis:</strong> Verwalten heisst laut Folie 27/28
+freigeben, ändern, rückverfolgen bzw. versionieren, verfolgen, ändern.
+Jede Änderung nach einer Freigabe läuft über einen Änderungsantrag mit
+Entscheid des Auftraggebers – instabile Anforderungen waren ein Grund
+für das Scheitern von Insieme (Folie 9). Wenn eine Anforderung noch
+nicht entscheidbar ist, bleibt sie bewusst «t. b. d.» (Folie 16) und
+steht in Kapitel 13.</p>
+</blockquote>
+<h3 id="111-änderungsanträge">11.1 Änderungsanträge</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Antrag</th>
+<th>von</th>
+<th>Datum</th>
+<th>betroffene IDs</th>
+<th>Auswirkung</th>
+<th>Entscheid (wer)</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CR-<code>[nn]</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Beispiel (Velowerkstatt):</strong> CR-01 – Inhaberin wünscht
+zusätzlich SMS-Erinnerung, weil nicht alle Kund:innen E-Mails lesen
+(stellt Annahme RB-04 in Frage). Auswirkung: FA-04 erweitern, Kosten für
+SMS-Versand. Entscheid Inhaberin: SMS als Wunsch, E-Mail bleibt Soll.
+Umgesetzt in v0.5.</p>
+</blockquote>
+<h3 id="112-versionshistorie">11.2 Versionshistorie</h3>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Datum</th>
+<th>Änderung</th>
+<th>Autor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.1</td>
+<td><code>[Datum]</code></td>
+<td>Gliederung, Ziele und erste Anforderungen aus der Projektvorstellung
+PVA 2</td>
+<td>Ardian Ibrahimaj</td>
+</tr>
+<tr>
+<td>0.3</td>
+<td></td>
+<td>Ergebnisse Interview PVA 5 eingearbeitet</td>
+<td></td>
+</tr>
+<tr>
+<td>0.5</td>
+<td></td>
+<td>Zwischenstand PVA 6 und Prüfung Folie 45/47; zum Review an Gruppe
+2</td>
+<td></td>
+</tr>
+<tr>
+<td>1.0</td>
+<td></td>
+<td>Freigabe durch Gruppe 2</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-glossar">12. Glossar</h2>
+<p><code>[Fachbegriffe aus vorlagen/glossar.md, Teil A]</code></p>
+<blockquote>
+<p><strong>Beispiel (Velowerkstatt):</strong> <strong>Termin</strong> –
+gebuchtes Zeitfenster von 30 Minuten für die Abgabe des Velos.
+<strong>Auftrag</strong> – die Reparatur selbst, kann über mehrere Tage
+gehen. <strong>Zeitfenster</strong> – vom Werkstatt-Team freigegebene,
+buchbare Halbstunde. <strong>Leistung</strong> – Art der Reparatur aus
+einer festen Liste (z. B. Service, Platten, Bremsen).</p>
+</blockquote>
+<h2 id="13-offene-punkte">13. Offene Punkte</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Frage</th>
+<th>an wen</th>
+<th>bis</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OP-<code>[nn]</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Beispiel (Velowerkstatt):</strong> OP-1 Sollen schwach
+ausgelastete Tage bei der Buchung vorgeschlagen werden (GZ-1)? –
+Inhaberin – offen. OP-2 Wie lange werden Kundendaten nach dem Termin
+aufbewahrt (RB-01)? – Inhaberin – offen.</p>
+</blockquote>
+<h2 id="quellenverzeichnis">Quellenverzeichnis</h2>
+<p>Nach HWZ-Zitierleitfaden. Projektspezifische Quellen ergänzen.</p>
+<ul>
+<li>Steinwendner, J. (2026). <em>Requirements Engineering – Grundlagen
+und Einführung</em> (Foliensatz Block 1). HWZ Hochschule für Wirtschaft
+Zürich.</li>
+<li>Steinwendner, J. (2026). <em>Merkblatt Gruppenarbeit HS26</em>. HWZ
+Hochschule für Wirtschaft Zürich.</li>
+<li>IEEE (1998). <em>IEEE Std 830-1998: IEEE Recommended Practice for
+Software Requirements Specifications</em>. IEEE.</li>
+<li>Robertson, S. &amp; Robertson, J. (2012). <em>Mastering the
+Requirements Process</em> (3. Aufl.). Addison-Wesley.
+(Volere-Vorlage)</li>
+<li>Rupp, C. &amp; die SOPHISTen (2014). <em>Requirements-Engineering
+und -Management</em> (6. Aufl.). Hanser. (Satzschablone)</li>
+<li>Bundesgesetz über den Datenschutz (Datenschutzgesetz, DSG) vom 25.
+September 2020, SR 235.1. (nur im Beispiel)</li>
+<li><code>[Gruppe 2 (2026). Projektvorstellung PVA 2: …]</code></li>
+<li><code>[Interviewprotokolle, Workshop-Protokolle mit Datum]</code></li>
+</ul>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

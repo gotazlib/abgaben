@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Zwischenstand PVA 6 – Kurzvorstellung ArenaOne</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="zwischenstand-pva-6--kurzvorstellung-arenaone">Zwischenstand PVA
+6 – Kurzvorstellung ArenaOne</h1>
+<p>Artefakt <strong>R9</strong> (RE-Rolle) aus dem Fahrplan; der
+Stakeholder-Beitrag S5 liegt in <code>stakeholder/</code> (Teil C).</p>
+<blockquote>
+<p><strong>Vorgabe Merkblatt (S. 2):</strong> «Zu diesem Termin treten
+die Gruppenpaarungen gemeinsam auf, wobei man in der Rolle als
+Stakeholder erzählt, wie es vorangeht, und dann in der Rolle als
+Requirements Engineer, in welcher Phase des RE-Prozesses man sich
+befindet. Dieser Termin dient auch zum Erfahrungsaustausch.»</p>
+<p>Wir treten <strong>zweimal</strong> auf: (1) mit <strong>Gruppe
+2</strong> – sie als Stakeholder, wir als RE (Teil A und B); (2) mit
+<strong>Gruppe 3</strong> – wir als Stakeholder, Gruppe 3 als RE (Teil
+C). Dauer ist im Merkblatt nicht festgelegt – Annahme <strong>ca. 5 min
+pro Paarung</strong>, vom Dozenten bestätigen lassen. Folien verlangt
+das Merkblatt nicht («Kurzvorstellung»); wir haben trotzdem drei
+vorbereitet, weil sich Zahlen und Kreislauf so schneller zeigen
+lassen.</p>
+</blockquote>
+<h2 id="teil-a--gruppe-2-als-stakeholder-ca-15-min-spricht-gruppe-2">Teil A
+– Gruppe 2 als Stakeholder (ca. 1,5 min, spricht Gruppe 2)</h2>
+<p>Vorab mit Gruppe 2 abstimmen, damit sich die Teile nicht wiederholen.
+Vorschlag für ihre Stichworte:</p>
+<ul>
+<li>Projekt in einem Satz: ArenaOne Sportzentrum AG will Buchung und
+Belegung von Plätzen und Hallen zentral und einheitlich organisieren
+(Folie 3 ihrer Präsentation).</li>
+<li>Wie es vorangeht aus Auftraggebersicht:
+<code>[z. B. Interview in PVA 5, Protokoll bestätigt, offene Entscheide]</code></li>
+<li>Was sie vom RE-Team bisher bekommen haben:
+<code>[Fragenliste V-01…V-37, Interviewprotokoll PVA 5, Spezifikation v0.7 zum Review]</code>
+– nur nennen, was tatsächlich verschickt wurde.</li>
+</ul>
+<h2 id="teil-b--gruppe-9-als-re-ca-3-min">Teil B – Gruppe 9 als RE (ca.
+3 min)</h2>
+<p><strong>Folien:</strong> <a href="praesentation-pva9-10/RE_ArenaOne_Zwischenstand_PVA6.pptx"><code>praesentation-pva9-10/RE_ArenaOne_Zwischenstand_PVA6.pptx</code></a>
+(<a href="praesentation-pva9-10/RE_ArenaOne_Zwischenstand_PVA6.pdf">PDF</a>),
+3 Folien mit Sprechernotizen, gebaut mit
+<code>werkzeuge/build-praesentation-arenaone.js</code> (Zahlen aus der
+Spezifikation).</p>
+<blockquote>
+<p><strong>Stand der Folien: Spezifikation v0.6, vor dem Interview PVA
+5.</strong> PVA 6 liegt nach PVA 5. Vor dem Auftritt Folie 1 (Phase
+«Validieren» läuft, Version v0.7) und die Zahlen auf Folie 2 an den dann
+gültigen Stand anpassen und neu bauen; was das Interview bestätigt oder
+widerlegt hat, gehört auf Folie 3.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Folie</th>
+<th>Inhalt</th>
+<th>Zeit</th>
+<th>Sprecher</th>
+<th>Stichworte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B1</td>
+<td><strong>Wo wir im RE-Kreislauf stehen</strong> (Folie 28, Phasen
+markiert)</td>
+<td>1:00</td>
+<td>Görkem Taspinar</td>
+<td>Runde 1 ohne Gruppe 2 abgeschlossen: Analyse der Präsentation,
+Stakeholder, Kontext, Ziele, simuliertes Interview (Probelauf, ersetzt
+nicht die Ermittlung), Spezifikation v0.6 intern geprüft; als Nächstes
+Validierung mit Gruppe 2</td>
+</tr>
+<tr>
+<td>B2</td>
+<td><strong>51 Anforderungen – jede mit Quelle</strong></td>
+<td>1:00</td>
+<td>Ardian Ibrahimaj</td>
+<td>12 Stakeholder, 9 Use Cases, 35 funktionale (21 Must) und 16
+Qualitätsanforderungen, 6 Randbedingungen, 11 Parameter, 22 offene
+Punkte; Herkunft: 39 mit Folie/Notiz von Gruppe 2 belegt, 12 ohne
+Folienbezug</td>
+</tr>
+<tr>
+<td>B3</td>
+<td><strong>Die grössten Fragen betreffen Regeln, nicht
+Funktionen</strong></td>
+<td>1:00</td>
+<td>Görkem Taspinar</td>
+<td>Erkenntnisse: Self-Service ist nicht verlangt (OP-02), Serien haben
+versteckte Anforderungen (FA-19, Folie 47), Konflikte entscheidet die GL
+(K-01, K-02); nächste Schritte bis PVA 9/10: v0.7, Review, Priorisierung
+durch die GL, Szenarien, Freigabe v1.0</td>
+</tr>
+</tbody>
+</table>
+<p>Zahlen und Phasen auf Stand <strong>Spezifikation v0.6</strong> (<a href="anforderungsspezifikation-arenaone.html#9-nachverfolgbarkeit">Kapitel
+9</a>); keine davon ist von Gruppe 2 bestätigt.</p>
+<h3 id="leitfragen-für-den-erfahrungsaustausch-falls-zeit">Leitfragen
+für den Erfahrungsaustausch (falls Zeit)</h3>
+<ul>
+<li>Was hat euch als RE-Team geholfen, an messbare Qualitätsziele zu
+kommen?</li>
+<li>Wie geht ihr damit um, wenn der Auftraggeber Lösungen statt
+Bedürfnisse nennt?</li>
+<li>Wie haltet ihr Kontakt zwischen den PVA?</li>
+</ul>
+<h2 id="teil-c--gruppe-9-als-stakeholder-für-gruppe-3">Teil C – Gruppe 9
+als Stakeholder für Gruppe 3</h2>
+<p>Ausgearbeitet in der Stakeholder-Rolle:
+<code>stakeholder/praesentation-stakeholder.md</code>, Abschnitt «PVA 6
+– Wie es vorangeht» (Folien 1–2 von
+<code>stakeholder/praesentation-stakeholder.pptx</code>). Hier nicht
+doppelt pflegen.</p>
+<h2 id="checkliste-vor-pva-6">Checkliste vor PVA 6</h2>
+<ul class="task-list">
+<li><label><input type="checkbox"></input>Spezifikation auf den Stand nach PVA
+5 gebracht, PPTX neu gebaut (Zahlen B2 kommen aus der
+Matrix)</label></li>
+<li><label><input type="checkbox"></input>Folie 1: Phase «Validieren» und
+Version angepasst; Folie 3: was das Interview bestätigt oder widerlegt
+hat</label></li>
+<li><label><input type="checkbox"></input>Folien mit Gruppe 2 und mit Gruppe 3
+abgestimmt (Reihenfolge, wer spricht)</label></li>
+<li><label><input type="checkbox" checked></input>Kreislauf-Grafik mit
+markierter Phase vorbereitet (Folie B1)</label></li>
+<li><label><input type="checkbox"></input>Zeit geprobt (3 min)</label></li>
+</ul>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

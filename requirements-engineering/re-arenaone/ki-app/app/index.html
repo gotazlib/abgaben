@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ArenaOne – Reservationen</title>
+  <meta name="description" content="Buchungs- und Belegungssystem ArenaOne Sportzentrum AG (Demo, Daten im Browser)">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Zum Inhalt</a>
+  <header class="topbar">
+    <a class="brand" href="#/verfuegbarkeit"><span class="logo" aria-hidden="true">A1</span> ArenaOne</a>
+    <button id="menu-btn" class="icon-btn menu" aria-label="Menü">☰</button>
+    <nav id="nav" aria-label="Hauptnavigation"></nav>
+    <div id="userbox"></div>
+  </header>
+  <main id="main" tabindex="-1"></main>
+  <footer class="foot no-print">ArenaOne Sportzentrum AG (fiktiv) · Demo nach Anforderungsspezifikation v0.5 · Daten nur in diesem Browser gespeichert</footer>
+  <dialog id="dlg"></dialog>
+  <div id="toasts" aria-live="polite"></div>
+  <noscript>Diese Anwendung braucht JavaScript.</noscript>
+  <script src="js/util.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/logic.js"></script>
+  <script src="js/seed.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/views-kunde.js"></script>
+  <script src="js/views-betrieb.js"></script>
+  <script>UI.init();</script>
+</body>
+</html>

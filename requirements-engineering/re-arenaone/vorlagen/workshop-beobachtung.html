@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Vorlage: Workshop (Szenario-Durchgang, Priorisierung) und Beobachtung</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="vorlage-workshop-szenario-durchgang-priorisierung-und-beobachtung">Vorlage:
+Workshop (Szenario-Durchgang, Priorisierung) und Beobachtung</h1>
+<p>Ergänzt das Interview (R5) in der Phase <strong>Ermitteln</strong>
+und bereitet <strong>Prüfen &amp; Abstimmen</strong> vor (Folie 28).
+«Integration von Erstellung und Prüfung von Anforderungen» ist laut
+Folie 46 ein Merkmal eines guten Spezifikationsprozesses – der Workshop
+macht genau das: gemeinsam erarbeiten und sofort prüfen.</p>
+<blockquote>
+<p><strong>Hinweis:</strong> Workshop- und Beobachtungstechniken sind
+erst in Block 3 Thema. Diese Vorlage ist eine Arbeitsvorlage und wird
+nach Block 3 angepasst.</p>
+</blockquote>
+<h2 id="teil-1--workshop">Teil 1 – Workshop</h2>
+<h3 id="planung">Planung</h3>
+<table>
+<thead>
+<tr>
+<th>Punkt</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ziel des Workshops</td>
+<td><code>[z. B. Soll-Ablauf «…» vollständig durchspielen und Muss/Soll/Wunsch festlegen]</code></td>
+</tr>
+<tr>
+<td>Datum / Dauer / Ort</td>
+<td><code>[Datum]</code>, <code>[30–60 min]</code>,
+<code>[Raum / online-Whiteboard]</code></td>
+</tr>
+<tr>
+<td>Teilnehmende Gruppe 2</td>
+<td><code>[Rollen, mind. Auftraggeber + eine Nutzerrolle]</code></td>
+</tr>
+<tr>
+<td>Moderation und Zeit / Protokoll</td>
+<td>Görkem Taspinar / Ardian Ibrahimaj</td>
+</tr>
+<tr>
+<td>Vorbereitung</td>
+<td>Ablauf-Entwurf aus dem Interview als Schritte auf Karten/Whiteboard;
+Anforderungsliste v0.x; Glossar</td>
+</tr>
+<tr>
+<td>Ergebnis</td>
+<td>bestätigter Ablauf mit Varianten und Fehlerfällen, priorisierte
+Anforderungen, offene Punkte</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ablauf-60-min">Ablauf (60 min)</h3>
+<table>
+<thead>
+<tr>
+<th>Min.</th>
+<th>Schritt</th>
+<th>Methode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0–5</td>
+<td>Ziel, Regeln, Glossarbegriffe vorstellen</td>
+<td>Moderation</td>
+</tr>
+<tr>
+<td>5–25</td>
+<td><strong>Szenario durchspielen</strong>: ein konkreter Fall vom
+Auslöser bis zum Ergebnis, Schritt für Schritt</td>
+<td>Karten auf Zeitstrahl legen; je Schritt fragen: Wer? Welche Daten?
+Was kann schiefgehen?</td>
+</tr>
+<tr>
+<td>25–35</td>
+<td><strong>Varianten und Ausnahmen</strong> sammeln (Abwesenheit,
+fehlende Angaben, Fehler, Sonderfälle)</td>
+<td>«Was wäre, wenn …?»</td>
+</tr>
+<tr>
+<td>35–50</td>
+<td><strong>Priorisieren</strong> nach Folie 43: Muss (unverzichtbar) /
+Soll (wichtig, bei zu hohen Kosten verzichtbar) / Wunsch (schön zu
+haben)</td>
+<td>jede Anforderung einer Spalte zuordnen; bei Uneinigkeit entscheidet
+die befugte Person (Stakeholder-Liste)</td>
+</tr>
+<tr>
+<td>50–60</td>
+<td>Zusammenfassen, offene Punkte, nächste Schritte</td>
+<td>Rückblick am Whiteboard</td>
+</tr>
+</tbody>
+</table>
+<h3 id="szenario-raster">Szenario-Raster</h3>
+<table>
+<thead>
+<tr>
+<th>Schritt</th>
+<th>Akteur</th>
+<th>Aktion</th>
+<th>Eingabe / Daten</th>
+<th>Ergebnis</th>
+<th>Varianten / Fehlerfälle</th>
+<th>→ Anforderung (ID)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="priorisierungs-raster-folie-43-optional-nutzenkosten-nach-folie-44">Priorisierungs-Raster
+(Folie 43, optional Nutzen/Kosten nach Folie 44)</h3>
+<table>
+<thead>
+<tr>
+<th>Anforderung (ID, Kurztitel)</th>
+<th>Muss / Soll / Wunsch</th>
+<th>Nutzen 1–5</th>
+<th>Kosten/Aufwand 1–5 (Schätzung RE)</th>
+<th>Begründung</th>
+<th>entschieden von</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Hinweis zur wertbasierten Priorisierung (Folie 44): Nutzen und Kosten
+nur grob einschätzen; sie hilft vor allem bei vielen «wichtigen, aber
+nicht unverzichtbaren» Soll-Anforderungen.</p>
+<h2 id="teil-2--beobachtung--walkthrough">Teil 2 – Beobachtung /
+Walkthrough</h2>
+<p>Nur sinnvoll, wenn Gruppe 2 ein <strong>reales</strong> Unternehmen
+vertritt und ein Ablauf zugänglich ist. Bei einem virtuellen
+Unternehmen: stattdessen Walkthrough – Gruppe 2 zeigt den Ablauf an
+Beispieldokumenten, Bildschirmen oder einer Skizze.</p>
+<table>
+<thead>
+<tr>
+<th>Punkt</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Beobachteter Ablauf</td>
+<td><code>[…]</code></td>
+</tr>
+<tr>
+<td>Ort / Zeit / Dauer</td>
+<td></td>
+</tr>
+<tr>
+<td>Beobachtete Rolle</td>
+<td></td>
+</tr>
+<tr>
+<td>Einverständnis eingeholt</td>
+<td>ja / nein (keine vertraulichen Daten notieren)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="beobachtungsprotokoll">Beobachtungsprotokoll</h3>
+<table>
+<thead>
+<tr>
+<th>Zeit</th>
+<th>Tätigkeit (was wird getan)</th>
+<th>Hilfsmittel / System</th>
+<th>Dauer</th>
+<th>Unterbrechung / Problem / Workaround</th>
+<th>Frage danach</th>
+<th>→ Anforderung (ID)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="auswertung">Auswertung</h3>
+<ul>
+<li>Schritte, die im Interview <strong>nicht</strong> genannt wurden
+(versteckte Anforderungen, Folie 47): <code>[…]</code></li>
+<li>Workarounds (Zettel, Excel, Doppelerfassung) und was sie über
+fehlende Funktionen sagen: <code>[…]</code></li>
+<li>Messwerte für Qualitätsanforderungen (z. B. Dauer eines Schritts
+heute): <code>[…]</code></li>
+</ul>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

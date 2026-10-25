@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Merkblatt-Checkliste – RE-Rolle für Gruppe 2 (ArenaOne)</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="merkblatt-checkliste--re-rolle-für-gruppe-2-arenaone">Merkblatt-Checkliste
+– RE-Rolle für Gruppe 2 (ArenaOne)</h1>
+<p>Quelle: <code>material/Merkblatt Gruppenarbeit HS26.pdf</code> (3
+Seiten, vollständig gelesen am 25.10.2026). Seitenangabe = Seite im PDF.
+Zweck: Jede Vorgabe des Merkblatts, die unsere Rolle als
+<strong>Requirements Engineers für Gruppe 2</strong> betrifft, ist hier
+einmal aufgeführt – mit dem Artefakt, das sie erfüllt, und dem Stand.
+Die Stakeholder-Rolle (wir als Auftraggeber für Gruppe 3) steht am Ende
+nur als Kurzverweis, weil sie im Fahrplan Abschnitt 3.1 geführt
+wird.</p>
+<p>Status: ✅ erledigt · 🟡 in Arbeit / Entwurf · ⏳ noch nicht fällig
+oder wartet auf Input · ❓ offen beim Besitzer</p>
+<h2 id="a-rahmen-und-ziele-merkblatt-s-1">A. Rahmen und Ziele (Merkblatt
+S. 1)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Anforderung laut Merkblatt</th>
+<th>Seite</th>
+<th>Geplantes Artefakt (Fahrplan-ID)</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M1</td>
+<td>Gruppenarbeit mit 2–3 Personen</td>
+<td>1</td>
+<td>Rollenverteilung im <a href="re-plan.html">RE-Plan</a>, Abschnitt 3:
+zwei Personen, Görkem Taspinar (RE-Lead, Moderation, Präsentation) und
+Ardian Ibrahimaj (Spezifikation, Qualität)</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>M2</td>
+<td>Zwei Rollen einnehmen: Stakeholder <strong>und</strong> Requirements
+Engineer</td>
+<td>1</td>
+<td>Stakeholder: <code>stakeholder/</code> · RE:
+<code>re-gruppe2/</code></td>
+<td>✅ beide Rollen angelegt</td>
+</tr>
+<tr>
+<td>M3</td>
+<td>Die typischen Phasen eines RE-Projekts durchleben:
+<strong>Ermitteln, Dokumentieren, Validieren, Verwalten</strong></td>
+<td>1</td>
+<td>RE-Plan Abschnitt 2 (Kreislauf Folie 28 mit den vier Phasen),
+Spezifikation R6, Validierung R7, Versionen/Traceability R8</td>
+<td>🟡 Ermitteln vorbereitet (Analyse, Leitfaden, Probelauf);
+Dokumentieren: <a href="anforderungsspezifikation-arenaone.html">Spezifikation v0.6</a> mit
+interner Prüfung, Traceability und Versionshistorie; Verwalten: Quellen,
+Parameter, Versionen v0.5 → v0.6 (25.10.2026) · ⏳ Validieren mit Gruppe
+2 ab PVA 5</td>
+</tr>
+<tr>
+<td>M4</td>
+<td>Gruppenarbeit gezielt zur Vertiefung und zum Ausbau von
+Handlungskompetenzen nutzen, <strong>frühzeitig den Stakeholder
+definieren</strong></td>
+<td>1</td>
+<td>Stakeholder-Analyse <a href="stakeholder-analyse.html"><code>stakeholder-analyse.md</code></a>
+(R2)</td>
+<td>🟡 Hypothese steht, Validierung in PVA 5</td>
+</tr>
+<tr>
+<td>M5</td>
+<td><strong>Plan für die Rolle als Requirements Engineer</strong>
+erstellen</td>
+<td>1</td>
+<td><a href="re-plan.html"><code>re-plan.md</code></a> (R1)</td>
+<td>✅ befüllt, Namen eingesetzt (Termine als Platzhalter
+<code>[Datum PVA n]</code>)</td>
+</tr>
+<tr>
+<td>M6</td>
+<td><strong>Rechtzeitig</strong> mit Beschaffung, Bewertung und
+Verwendung relevanter Informationen beginnen</td>
+<td>1</td>
+<td><a href="analyse-arenaone.html"><code>analyse-arenaone.md</code></a>
+(Dokumentenanalyse der Präsentation), <a href="fragenliste-gruppe2.html"><code>fragenliste-gruppe2.md</code></a>
+(Vorab-Fragen vor PVA 5)</td>
+<td>✅ Analyse fertig · ⏳ Fragenliste an Gruppe 2 schicken</td>
+</tr>
+<tr>
+<td>M7</td>
+<td>Arbeit <strong>abschliessen, Ergebnisse präsentieren und
+einreichen</strong></td>
+<td>1</td>
+<td>R6 (Spezifikation v1.0), R10 (Präsentation), Abgabe</td>
+<td>⏳ PVA 9/10; Abgabeform offen (O4)</td>
+</tr>
+<tr>
+<td>M8</td>
+<td><em>optional:</em> aus der Anforderungsspezifikation mit
+<strong>KI-Agenten eine Applikation</strong> erstellen und analysieren,
+ob der Agent alle nötigen Requirements hat</td>
+<td>1</td>
+<td>R13 <a href="ki-app/index.html"><code>ki-app/</code></a>, <a href="ki-app/analyse.html">Auswertung</a></td>
+<td>✅ durchgeführt (25.10.2026): App aus v0.5, Abdeckungsmatrix, 32
+Annahmen als Lücken ausgewertet, Spezifikation v0.6, Folie 13 + Backup
+25</td>
+</tr>
+</tbody>
+</table>
+<h2 id="b-termine-und-aktivitäten-merkblatt-s-2-abschnitt-3-und-4">B.
+Termine und Aktivitäten (Merkblatt S. 2, Abschnitt 3 und 4)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Anforderung laut Merkblatt</th>
+<th>Seite</th>
+<th>Geplantes Artefakt (Fahrplan-ID)</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M9</td>
+<td>PVA 2: Requirements Engineer – <strong>Zuordnung zu Stakeholder
+einer Gruppe</strong></td>
+<td>2</td>
+<td>Zuordnung Gruppe 9 → Gruppe 2 (Ring-PDF), Präsentation von Gruppe 2
+privat abgelegt unter <code>material/Praesentation_ArenaOne.pptx</code>
+(+ PDF)</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>M10</td>
+<td>Die RE-Gruppe soll mit der Stakeholder-Beschreibung aus PVA 2
+<strong>ihre Arbeit aufnehmen</strong> können</td>
+<td>2</td>
+<td>Dokumentenanalyse <a href="analyse-arenaone.html"><code>analyse-arenaone.md</code></a></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>M11</td>
+<td>PVA 5: <strong>direkter Austausch</strong> zwischen Auftraggeber und
+RE</td>
+<td>2</td>
+<td><a href="interviewleitfaden-pva5.html"><code>interviewleitfaden-pva5.md</code></a>
+(R5, auf ArenaOne zugeschnitten, mit Zeitbudget), Protokollvorlage, <a href="fragenliste-gruppe2.html"><code>fragenliste-gruppe2.md</code></a></td>
+<td>🟡 Leitfaden fertig, Probelauf als <a href="simuliertes-interview-pva5.html">simuliertes Interview</a>
+(Rollenspiel, kein Protokoll) · ⏳ echtes Interview, Protokoll</td>
+</tr>
+<tr>
+<td>M12</td>
+<td>PVA 6: <strong>Kurzvorstellung Zwischenstand</strong> – die
+Paarungen treten gemeinsam auf; Stakeholder erzählt, wie es vorangeht;
+RE sagt, <strong>in welcher Phase des RE-Prozesses</strong> man ist</td>
+<td>2</td>
+<td><a href="zwischenstand-pva6.html"><code>zwischenstand-pva6.md</code></a> (R9)
++ 3 Folien <a href="praesentation-pva9-10/RE_ArenaOne_Zwischenstand_PVA6.pptx"><code>RE_ArenaOne_Zwischenstand_PVA6.pptx</code></a>
+(Folien verlangt das Merkblatt nicht), mit Gruppe 2 abstimmen</td>
+<td>🟡 Folien und Notizen auf Stand v0.6 · ⏳ nach PVA 5
+aktualisieren</td>
+</tr>
+<tr>
+<td>M13</td>
+<td>PVA 6 dient auch dem <strong>Erfahrungsaustausch</strong></td>
+<td>2</td>
+<td>R9: Folie B3 «Erkenntnisse und nächste Schritte» mit Frage an alle,
+Leitfragen in <code>zwischenstand-pva6.md</code></td>
+<td>🟡 vorbereitet</td>
+</tr>
+<tr>
+<td>M14</td>
+<td>PVA 9/10: als RE <strong>den Prozess und vor allem die gesammelten
+Anforderungen</strong> in geeigneter Weise präsentieren, <strong>ca. 20
+min</strong></td>
+<td>2</td>
+<td>R10 <a href="praesentation-pva9-10/RE_ArenaOne_Loesung.pptx"><code>RE_ArenaOne_Loesung.pptx</code></a>
++ Gliederung: Prozess auf Folie 2–5, Anforderungen auf Folie 6–12 (10
+von 20 min), Zeitbudget 20:00</td>
+<td>🟡 Folien fertig auf Stand v0.6 (Abnahme: abnahme.md) · ⏳ nach PVA
+5 neu bauen, Probelauf</td>
+</tr>
+<tr>
+<td>M15</td>
+<td>PVA 9/10: als RE eine <strong>Diskussion moderieren, ca. 15
+min</strong></td>
+<td>2</td>
+<td>R11 <a href="praesentation-pva9-10/diskussion-moderation.html"><code>praesentation-pva9-10/diskussion-moderation.md</code></a>,
+Diskussionsfolien 16–18</td>
+<td>✅ Ablauf und 7 Leitfragen mit ArenaOne-Beispielen · ⏳ mit Gruppe 2
+absprechen</td>
+</tr>
+<tr>
+<td>M16</td>
+<td>PVA 9/10: <strong>Anforderungsspezifikation</strong>
+(einreichen)</td>
+<td>2</td>
+<td>R6 <a href="anforderungsspezifikation-arenaone.html"><code>anforderungsspezifikation-arenaone.md</code></a>
++ PDF + DOCX (HWZ-Vorlage)</td>
+<td>🟡 v0.6 (Annahmen noch in PVA 5 zu validieren) · ⏳ v1.0 nach
+Freigabe, Abgabeform offen (O4)</td>
+</tr>
+<tr>
+<td>M17</td>
+<td>Daten der PVA</td>
+<td>2</td>
+<td>Merkblatt nennt <strong>nur PVA-Nummern</strong>, keine Daten →
+Platzhalter <code>[Datum PVA n]</code> im RE-Plan</td>
+<td>❓ O2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="c-bewertung-merkblatt-s-3">C. Bewertung (Merkblatt S. 3)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Kriterium (Gewicht)</th>
+<th>Was bewertet wird</th>
+<th>Seite</th>
+<th>Womit wir es abdecken</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M18</td>
+<td><strong>Präsentation (20 %)</strong></td>
+<td>Struktur, Aufbau, <strong>Zeit einhalten</strong></td>
+<td>3</td>
+<td>R10 nach dem RE-Kreislauf gegliedert, Kernaussage als Folientitel,
+Zeitbudget je Folie in den Sprechernotizen (Summe 20:00), Probelauf mit
+Stoppuhr in PVA 8</td>
+<td>🟡 Folien fertig · ⏳ Probelauf</td>
+</tr>
+<tr>
+<td>M19</td>
+<td><strong>Zusammenhänge verstehen (40 %)</strong></td>
+<td>durch <strong>Fragen von Studierenden und Dozierendem</strong></td>
+<td>3</td>
+<td>R12 <code>fragen-zusammenhaenge.md</code> (29 Fragen, jede mit
+ArenaOne-Beispiel); Folie 15 «Kursinhalte» im Deck; jedes Teammitglied
+kann den ganzen Prozess erklären</td>
+<td>🟡 Block 1 + Projektbeispiele fertig, Blöcke 2–8 vorläufig · ⏳ mit
+Folien der Blöcke abgleichen</td>
+</tr>
+<tr>
+<td>M20</td>
+<td><strong>Diskussion führen (10 %)</strong></td>
+<td>Interaktivität, Diskussion anregen, Moderation</td>
+<td>3</td>
+<td>R11: Blitzumfrage (FA-04), Murmelrunde zu K-01 (Vereine vs.
+Privatkunden zur Primetime), offene Runde zur Simulation als Quelle;
+Rollen Moderation/Zeit verteilt</td>
+<td>✅ vorbereitet · ⏳ Probelauf</td>
+</tr>
+<tr>
+<td>M21</td>
+<td><strong>Anforderungsspezifikation (30 %)</strong></td>
+<td><strong>Format, Inhalt, Schwierigkeitsgrad</strong></td>
+<td>3</td>
+<td>Format: IEEE 830 / Volere (Block 2 abwarten); Inhalt: Ziele,
+Stakeholder, Kontext, funktionale + messbare nicht-funktionale
+Anforderungen, Randbedingungen, Glossar; Schwierigkeitsgrad:
+Traceability, Validierung, Modelle (Use Cases ab Block 5), optional
+KI-App</td>
+<td>🟡 v0.6 deckt alles ab (9 Use Cases mit Diagramm, 35 FA + 16 QA mit
+Satzschablone und Akzeptanzkriterium, MoSCoW, Traceability-Matrix,
+Prüfung je Anforderung per Skript, KI-App als Test der Spezifikation) ·
+⏳ Format nach Block 2 prüfen, Inhalt in PVA 5 validieren</td>
+</tr>
+</tbody>
+</table>
+<h2 id="d-grundlagen-merkblatt-s-3">D. Grundlagen (Merkblatt S. 3)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Vorgabe</th>
+<th>Seite</th>
+<th>Umsetzung</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M22</td>
+<td><strong>Studien- und Prüfungsordnung</strong> gilt</td>
+<td>3</td>
+<td>Regeln zu Gruppenarbeit und Hilfsmitteln (auch KI) dort
+nachlesen</td>
+<td>❓ Dokument liegt uns nicht vor – Besitzer bitte prüfen (O10)</td>
+</tr>
+<tr>
+<td>M23</td>
+<td><strong>HWZ-Zitierleitfaden</strong> gilt</td>
+<td>3</td>
+<td>Quellenverzeichnis in der Spezifikation; Benchmarks (Playtomic,
+GotCourts, eTermin) mit URL und Abrufdatum zitieren; Präsentation von
+Gruppe 2 als Quelle «Gruppe 2 (2026), Folie x»</td>
+<td>🟡 in <a href="analyse-arenaone.html"><code>analyse-arenaone.md</code></a>
+umgesetzt</td>
+</tr>
+</tbody>
+</table>
+<p><strong>KI-Deklaration:</strong> Das Merkblatt verlangt keine. Ob die
+Studien- und Prüfungsordnung oder der Zitierleitfaden eine Deklaration
+von KI-Hilfsmitteln verlangt, ist offen (O10). Bis das geklärt ist, gilt
+für uns: KI-Unterstützung wird in der Spezifikation ehrlich im Abschnitt
+«Vorgehen» erwähnt, falls die Vorgaben das verlangen; nichts wird als
+Kundenaussage ausgegeben, was nicht von Gruppe 2 stammt.</p>
+<h2 id="e-was-das-merkblatt-nicht-regelt-deshalb-offen">E. Was das
+Merkblatt <strong>nicht</strong> regelt (deshalb offen)</h2>
+<table>
+<thead>
+<tr>
+<th>Thema</th>
+<th>Folge für uns</th>
+<th>offen als</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Datum der PVA 5, 6, 9, 10</td>
+<td>Zeitplan mit Platzhaltern</td>
+<td>O2</td>
+</tr>
+<tr>
+<td>An welchem Abschlusstermin (PVA 9 oder 10) wir präsentieren</td>
+<td>Planung Probelauf</td>
+<td>O4</td>
+</tr>
+<tr>
+<td>Abgabeform der Spezifikation (Moodle, PDF/Word, Umfang, Frist)</td>
+<td>Markdown als Quelle, PDF und Word erzeugbar</td>
+<td>O4</td>
+</tr>
+<tr>
+<td>Vorgegebene Gliederung der Spezifikation</td>
+<td>Arbeitsannahme IEEE 830 + Volere-Attribute bis Block 2</td>
+<td>O6</td>
+</tr>
+<tr>
+<td>Dauer der Kurzvorstellung PVA 6</td>
+<td>Annahme ca. 5 min pro Paarung</td>
+<td>O2</td>
+</tr>
+<tr>
+<td>Austausch ausserhalb der PVA</td>
+<td>Kanal mit Gruppe 2 vereinbaren</td>
+<td>O9</td>
+</tr>
+</tbody>
+</table>
+<h2 id="f-kurzverweis-stakeholder-rolle-gegenüber-gruppe-3">F.
+Kurzverweis Stakeholder-Rolle (gegenüber Gruppe 3)</h2>
+<p>PVA 2 Projekt vorgestellt (S1 ✅), PVA 5 Interview durch Gruppe 3 (S2
+✅ vorbereitet), PVA 6 gemeinsamer Auftritt (S5 ⏳), PVA 9/10 RE-Prozess
+aus Stakeholder-Sicht zusammenfassen, ca. 5 min (S6 ⏳). Details:
+Fahrplan 3.1.</p>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

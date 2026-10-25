@@ -1,0 +1,98 @@
+[
+ [
+  "ok",
+  "Verfügbarkeit ohne Anmeldung (FA-01, QA-14)",
+  "01-verfuegbarkeit-anonym.png"
+ ],
+ [
+  "ok",
+  "Einzelreservation online (FA-04)",
+  "02-reservieren-dialog.png, 03-reservieren-bestaetigt.png"
+ ],
+ [
+  "ok",
+  "Stornieren kurzfristig (FA-10)",
+  "04-stornieren-dialog.png, 05-stornieren-erledigt.png"
+ ],
+ [
+  "ok",
+  "Warteliste eintragen (FA-13)",
+  "06-warteliste-dialog.png, 07-warteliste-eintrag.png"
+ ],
+ [
+  "ok",
+  "Empfang storniert -> Warteliste (FA-11, FA-14)",
+  "08-empfang-stornieren.png, 09-empfang-nach-storno.png"
+ ],
+ [
+  "ok",
+  "Angebot aus Warteliste annehmen (FA-15)",
+  "10-warteliste-angebot.png, 11-warteliste-angenommen.png"
+ ],
+ [
+  "ok",
+  "Nachrichten Kundin (FA-14, FA-21)",
+  "12-nachrichten-kundin.png"
+ ],
+ [
+  "ok",
+  "Serie beantragen (FA-16, FA-17)",
+  "13-serie-antrag-pruefen.png"
+ ],
+ [
+  "ok",
+  "Serie bestätigen ohne Konflikttermine (FA-18)",
+  "14-serie-offene-antraege.png, 15-serie-bestaetigt.png"
+ ],
+ [
+  "ok",
+  "Gesamtbelegung Tag (FA-02, FA-20)",
+  "16-empfang-gesamtbelegung-tag.png"
+ ],
+ [
+  "ok",
+  "Gesamtbelegung Woche",
+  "17-empfang-gesamtbelegung-woche.png"
+ ],
+ [
+  "ok",
+  "Reservation im Auftrag (FA-05)",
+  "18-empfang-im-auftrag.png"
+ ],
+ [
+  "ok",
+  "Sperrzeit mit Betroffenen (FA-27, FA-28)",
+  "19-sperrzeit-betroffene.png"
+ ],
+ [
+  "ok",
+  "Druckliste 7 Tage (QA-06)",
+  "20-druckliste.png"
+ ],
+ [
+  "ok",
+  "Auswertung (FA-29, FA-30)",
+  "21-gl-auswertung.png"
+ ],
+ [
+  "ok",
+  "Kontingent Beispiel FA-26 (Mo–Fr 18–21)",
+  "22-gl-kontingent-fa26.png | Meldung: Mit diesem Kontingent wären 60.0 % der Abendstunden (werktags 17:00–22:00) der Anlage vergeben; erlaubt sind höchstens 50 % (PA-10)."
+ ],
+ [
+  "ok",
+  "Administration darf Verfügbarkeit nicht sehen (QA-13)",
+  "23-admin-verfuegbarkeit.png"
+ ],
+ [
+  "ok",
+  "Administration",
+  "24-admin.png"
+ ],
+ [
+  "ok",
+  "Smartphone 360 px (QA-03)",
+  "25-mobile-verfuegbarkeit.png, 26-mobile-meine.png; scrollWidth 360/360"
+ ]
+]
+JS-Fehler: []

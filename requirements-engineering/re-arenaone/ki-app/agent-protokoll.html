@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Protokoll des KI-Agenten (RE 10)</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="protokoll-des-ki-agenten-re-10">Protokoll des KI-Agenten (RE
+10)</h1>
+<p>Gesichert aus dem Verlauf des Subagenten am 25.10.2026 (Zeiten UTC,
+Ortszeit Zürich = UTC + 1). Pfade gekürzt: <code>…</code> =
+Arbeitsordner des Versuchs (<code>ki-versuch/</code> im temporären
+Verzeichnis der Sitzung). Der Ordner <code>app/</code> dieses Repos ist
+eine unveränderte Kopie von <code>…/app/</code>.</p>
+<h2 id="rückfragen">Rückfragen</h2>
+<p>Der Agent konnte im Versuch keine Rückfragen stellen (einmaliger
+Auftrag, kein Dialog). Er hat keine Frage an uns gerichtet. Seine 15
+Fragen an die Auftraggeberin (F-01 bis F-15) und die 32 Annahmen (A-01
+bis A-32) stehen vollständig in <a href="app/ANNAHMEN.html"><code>app/ANNAHMEN.md</code></a>.</p>
+<h2 id="werkzeugaufrufe">Werkzeugaufrufe</h2>
+<p>35 Aufrufe in 28 Minuten. Die Spezifikation wurde einmal und
+vollständig gelesen (Aufruf 2, Option «ganze Datei»); andere Dateien hat
+der Agent nicht gelesen. Aufrufe 17–20 laden Prüfwerkzeuge aus dem
+Internet (playwright-core, Systembibliotheken für Chromium) in einen
+Hilfsordner <code>.tools/</code>, den der Agent am Ende wieder gelöscht
+hat. Aufrufe 22–30 sind Bildschirmfotos seines eigenen Testlaufs, die er
+angesehen hat.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Zeit</th>
+<th>Werkzeug</th>
+<th>Aufruf (erste Zeile)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>14:52</td>
+<td>Bash</td>
+<td><code>cd …/ &amp;&amp; ls -la input app 2&gt;&amp;1; wc -c input/*</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>14:52</td>
+<td>Read</td>
+<td><code>…/input/anforderungsspezifikation-arenaone.md</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>14:55</td>
+<td>Bash</td>
+<td><code>mkdir -p …/app/{js,css}</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>14:55</td>
+<td>Write</td>
+<td><code>…/app/js/util.js</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>14:56</td>
+<td>Write</td>
+<td><code>…/app/js/store.js</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>15:01</td>
+<td>Write</td>
+<td><code>…/app/js/logic.js</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>15:01</td>
+<td>Bash</td>
+<td><code>cd …/app/js &amp;&amp; python3 - &lt;&lt;&#39;EOF&#39;</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td>15:02</td>
+<td>Write</td>
+<td><code>…/app/js/seed.js</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td>15:03</td>
+<td>Bash</td>
+<td><code>cd …/app/js &amp;&amp; python3 - &lt;&lt;&#39;EOF&#39;</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td>15:04</td>
+<td>Write</td>
+<td><code>…/app/js/ui.js</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td>15:06</td>
+<td>Write</td>
+<td><code>…/app/js/views-kunde.js</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td>15:10</td>
+<td>Write</td>
+<td><code>…/app/js/views-betrieb.js</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td>15:11</td>
+<td>Write</td>
+<td><code>…/app/index.html</code></td>
+</tr>
+<tr>
+<td>14</td>
+<td>15:12</td>
+<td>Write</td>
+<td><code>…/app/css/style.css</code></td>
+</tr>
+<tr>
+<td>15</td>
+<td>15:13</td>
+<td>Bash</td>
+<td><code>mkdir -p …/app/tests &amp;&amp; cat &gt; …/app/tests/logik-test.js &lt;&lt;&#39;EOF&#39;</code></td>
+</tr>
+<tr>
+<td>16</td>
+<td>15:14</td>
+<td>Bash</td>
+<td><code>cd …/app &amp;&amp; sed -i &quot;/const s = U.addMin(U.now().slice(0, 14)/d&quot; tests/logik-test.js &amp;&amp; node tests/lo</code></td>
+</tr>
+<tr>
+<td>17</td>
+<td>15:14</td>
+<td>Bash</td>
+<td><code>cd …/app &amp;&amp; mkdir -p .tools &amp;&amp; cd .tools &amp;&amp; npm init -y &gt;/dev/null &amp;&amp; npm i playwright-core@1.56 --s</code></td>
+</tr>
+<tr>
+<td>18</td>
+<td>15:15</td>
+<td>Bash</td>
+<td><code>cd …/app/.tools &amp;&amp; echo &#39;{&quot;name&quot;:&quot;tools&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;private&quot;:true}&#39; &gt; package.json &amp;&amp; npm i </code></td>
+</tr>
+<tr>
+<td>19</td>
+<td>15:15</td>
+<td>Bash</td>
+<td><code>cd …/app/.tools &amp;&amp; mkdir -p debs libs &amp;&amp; cd debs &amp;&amp; apt-get download libnspr4 libnss3 libasound2t64 </code></td>
+</tr>
+<tr>
+<td>20</td>
+<td>15:15</td>
+<td>Bash</td>
+<td><code>cd …/app/.tools &amp;&amp; export LD_LIBRARY_PATH=$PWD/libs/usr/lib/x86_64-linux-gnu &amp;&amp; ldd ~/.cache/ms-play</code></td>
+</tr>
+<tr>
+<td>21</td>
+<td>15:15</td>
+<td>Bash</td>
+<td><code>cd …/app/.tools &amp;&amp; mkdir -p shots &amp;&amp; cat &gt; smoke.js &lt;&lt;&#39;EOF&#39;</code></td>
+</tr>
+<tr>
+<td>22</td>
+<td>15:16</td>
+<td>Read</td>
+<td><code>…/app/.tools/shots/01-verfuegbarkeit-anonym.png</code></td>
+</tr>
+<tr>
+<td>23</td>
+<td>15:16</td>
+<td>Read</td>
+<td><code>…/app/.tools/shots/06-belegung-empfang.png</code></td>
+</tr>
+<tr>
+<td>24</td>
+<td>15:16</td>
+<td>Read</td>
+<td><code>…/app/.tools/shots/07-erfassen.png</code></td>
+</tr>
+<tr>
+<td>25</td>
+<td>15:16</td>
+<td>Read</td>
+<td><code>…/app/.tools/shots/10-serien.png</code></td>
+</tr>
+<tr>
+<td>26</td>
+<td>15:16</td>
+<td>Read</td>
+<td><code>…/app/.tools/shots/12-sperre-betroffen.png</code></td>
+</tr>
+<tr>
+<td>27</td>
+<td>15:16</td>
+<td>Read</td>
+<td><code>…/app/.tools/shots/16-auswertung.png</code></td>
+</tr>
+<tr>
+<td>28</td>
+<td>15:16</td>
+<td>Read</td>
+<td><code>…/app/.tools/shots/22-mobile-meine.png</code></td>
+</tr>
+<tr>
+<td>29</td>
+<td>15:16</td>
+<td>Bash</td>
+<td><code>cd …/app &amp;&amp; python3 - &lt;&lt;&#39;EOF&#39;</code></td>
+</tr>
+<tr>
+<td>30</td>
+<td>15:17</td>
+<td>Read</td>
+<td><code>…/app/.tools/shots/16-auswertung.png</code></td>
+</tr>
+<tr>
+<td>31</td>
+<td>15:17</td>
+<td>Bash</td>
+<td><code>cd …/app &amp;&amp; python3 - &lt;&lt;&#39;EOF&#39;</code></td>
+</tr>
+<tr>
+<td>32</td>
+<td>15:18</td>
+<td>Write</td>
+<td><code>…/app/ANNAHMEN.md</code></td>
+</tr>
+<tr>
+<td>33</td>
+<td>15:19</td>
+<td>Write</td>
+<td><code>…/app/README.md</code></td>
+</tr>
+<tr>
+<td>34</td>
+<td>15:19</td>
+<td>Bash</td>
+<td><code>cd …/app/.tools &amp;&amp; LD_LIBRARY_PATH=$PWD/libs/usr/lib/x86_64-linux-gnu timeout 170 node smoke.js 2&gt;&amp;1</code></td>
+</tr>
+<tr>
+<td>35</td>
+<td>15:20</td>
+<td>SubagentHandback</td>
+<td><code>Abschlussbericht an den Auftraggeber</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="abschlussbericht-des-agenten-wörtlich">Abschlussbericht des
+Agenten (wörtlich)</h2>
+<p>Der Agent hat seinen Bericht auf Englisch geschrieben, obwohl der
+Auftrag deutsch war; App, README und ANNAHMEN.md sind deutsch.
+Unverändert übernommen:</p>
+<blockquote>
+<p>I built a working ArenaOne app from the spec: a static web app (HTML,
+CSS, plain JavaScript) with no build step, no server and no external
+libraries. Data lives in localStorage and demo data is created on first
+start. It opens directly via <code>file://</code> and should run
+unchanged on GitHub Pages, but I haven&#39;t deployed it there. My 28 Node
+tests of the logic pass, and a run in headless Chromium went through
+every role&#39;s main flow with no JS errors. At 360 px width there is no
+horizontal scrolling.</p>
+<p>Folder: …/app/ (<code>index.html</code>, <code>css/</code>,
+<code>js/</code>, <code>tests/logik-test.js</code>,
+<code>README.md</code>, <code>ANNAHMEN.md</code>).</p>
+<p><strong>What was built.</strong> Demo logins are listed on the login
+page. Customers use <code>demo1234</code>; staff use
+<code>arenaone-demo</code> plus a simulated second factor.</p>
+<ul>
+<li><strong>Customers:</strong> availability by date and sport, also
+without login (FA-01); online booking with rule checks and free
+alternatives on a clash (FA-04, FA-06); moving and cancelling, with the
+cancellation deadline and the &quot;kurzfristig&quot; flag (FA-09 to FA-12).</li>
+<li><strong>Waitlist:</strong> everyone on it is notified at once and
+whoever confirms first gets the slot (FA-13 to FA-15).</li>
+<li><strong>Empfang:</strong> day/week timeline of all facilities
+(FA-02, FA-20); booking on a customer&#39;s behalf with channel and quick
+customer search (FA-05, FA-11); customer accounts with several
+authorised people (FA-07, FA-08).</li>
+<li><strong>Series:</strong> request, conflict list, confirm in full or
+without the conflicting dates, reject with a reason, cancel or move
+single dates (FA-16 to FA-19).</li>
+<li><strong>Closures:</strong> a decision per affected booking is
+required before saving, and those affected are informed (FA-23, FA-27,
+FA-28).</li>
+<li><strong>Notifications:</strong> confirmations, reminders and the SMS
+option (FA-21, FA-22, FA-35). Nothing is really sent; messages go to a
+&quot;Nachrichten&quot; page.</li>
+<li><strong>Geschäftsleitung:</strong> customer groups, booking rules,
+quotas with the PA-10 limit, all parameters PA-01 to PA-10, and analyses
+by facility, sport, customer group, weekday and hour, plus
+cancellations, with CSV export (FA-24 to FA-26, FA-29 to FA-31).</li>
+<li><strong>Administration:</strong> facilities and opening hours, users
+and roles, import of old lists from CSV with a dry run and a conflict
+list, data access request, deletion of inactive accounts, and backup by
+download/upload (FA-32 to FA-34, QA-11, QA-12).</li>
+<li><strong>Cross-cutting:</strong> the permission matrix enforced in
+the UI and in the logic (QA-13), an immutable change log (QA-15), data
+minimisation (QA-10), German throughout (QA-04), a 7-day printable list
+(QA-06), and an open second tab updates immediately (FA-03).</li>
+</ul>
+<p><strong>Not implemented, or only partly, and why:</strong></p>
+<ul>
+<li><strong>QA-05, QA-07, QA-08, QA-09 (uptime, load, response
+times):</strong> these need a shared server, which the brief ruled out.
+&quot;Several sessions&quot; only means several tabs in the same browser.</li>
+<li><strong>QA-16:</strong> encryption in transit would come from GitHub
+Pages&#39; HTTPS. Backup is manual JSON download/upload, with no daily
+automatic run.</li>
+<li><strong>QA-14:</strong> login and second factor are simulated and
+passwords are stored in plain text in the browser. This is not real
+security.</li>
+<li><strong>FA-21 to FA-23, FA-35:</strong> no real email or SMS, only
+the simulated outbox.</li>
+<li><strong>QA-01, QA-02:</strong> the screens are built for fast use
+but not measured with test users.</li>
+<li><strong>WO-01 to WO-05:</strong> left out on purpose, as the spec
+marks them &quot;Won&#39;t&quot; for v1.</li>
+</ul>
+<p><strong>Assumptions logged in <code>ANNAHMEN.md</code>: 32 (A-01 to
+A-32), plus 15 questions for the client (F-01 to F-15).</strong> The
+ones that most affect what the app does:</p>
+<ul>
+<li><strong>FA-26 example vs. PA-10:</strong> the example quota &quot;Mo–Fr
+18–21 Uhr&quot; takes 60 % of evening hours, which breaks the 50 % limit. I
+applied the limit strictly, so that example is rejected.</li>
+<li><strong>Hall parts:</strong> a booked part blocks the whole hall and
+the other way round (OP-13 is open).</li>
+<li><strong>Booking lead time:</strong> it applies to single bookings
+only, not to series.</li>
+<li><strong>Empfang:</strong> may override customer-group rules, and
+every override is logged.</li>
+<li><strong>&quot;Betrieb&quot; role:</strong> FA-27 mentions it but the QA-13
+matrix doesn&#39;t, so I added a role that can only set closures.</li>
+<li><strong>Deletion vs. change log:</strong> QA-11 (delete inactive
+accounts) conflicts with QA-15 (log entries can&#39;t be changed). On
+deletion, only the user name in the log is replaced with &quot;gelöschtes
+Konto&quot;.</li>
+<li><strong>Admin and availability:</strong> the matrix bars the admin
+from seeing availability even though it is public without login. I
+followed the matrix as written.</li>
+</ul>
+<p>I used only the spec. To run the browser check I temporarily
+installed playwright-core and Chromium libraries into the work folder
+and removed them afterwards, so only the app files are left.</p>
+</blockquote>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

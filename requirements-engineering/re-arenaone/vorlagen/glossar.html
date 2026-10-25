@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Vorlage: Glossar</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="vorlage-glossar">Vorlage: Glossar</h1>
+<p>Begleitet die Spezifikation von Anfang an. Zweck laut Folie 47:
+«Uneinheitliche Terminologie – ‹Kunde›, ‹User›, ‹Account› – alle
+dasselbe?» Ein Glossar macht die Spezifikation
+<strong>eindeutig</strong> und <strong>verständlich</strong>
+(Qualitätsmerkmale, Folie 45) und schlägt die Brücke zwischen Fachwelt,
+Systemwelt und Umsetzungswelt (Folie 11).</p>
+<h2 id="regeln">Regeln</h2>
+<ol type="1">
+<li>Ein Begriff = eine Bedeutung. Synonyme werden aufgeführt, aber in
+der Spezifikation <strong>nur der Hauptbegriff</strong> verwendet.</li>
+<li>Begriffe in der Sprache des Auftraggebers (Fachwelt), nicht in
+IT-Sprache.</li>
+<li>Jeder Begriff hat eine Quelle (wer hat ihn so definiert) und wird
+von Gruppe 2 bestätigt.</li>
+<li>Neue Begriffe aus Interviews sofort aufnehmen (Protokollvorlage hat
+dafür eine Tabelle).</li>
+<li>Vor jeder neuen Version der Spezifikation prüfen: Wird jeder
+fachliche Begriff im Text so verwendet, wie hier definiert?</li>
+</ol>
+<h2 id="a-fachbegriffe-des-projekts">A. Fachbegriffe des Projekts</h2>
+<table>
+<thead>
+<tr>
+<th>Begriff</th>
+<th>Definition</th>
+<th>Synonyme (nicht verwenden)</th>
+<th>Abgrenzung / Beispiel</th>
+<th>Quelle</th>
+<th>bestätigt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[Hauptobjekt, z. B. «Auftrag»]</code></td>
+<td><code>[…]</code></td>
+<td><code>[«Fall», «Ticket»]</code></td>
+<td><code>[Ein Auftrag ist erst nach … ein Auftrag]</code></td>
+<td><code>[Interview PVA 5, SH-02]</code></td>
+<td><code>[ja/nein]</code></td>
+</tr>
+<tr>
+<td><code>[Rolle, z. B. «Sachbearbeiter:in»]</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>[Status, z. B. «abgeschlossen»]</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="b-re-begriffe-die-wir-in-spezifikation-und-präsentation-verwenden-aus-block-1">B.
+RE-Begriffe, die wir in Spezifikation und Präsentation verwenden (aus
+Block 1)</h2>
+<table>
+<thead>
+<tr>
+<th>Begriff</th>
+<th>Bedeutung im Kurs</th>
+<th>Folie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anforderung</td>
+<td>Bedingung oder Fähigkeit, die eine Person zur Lösung eines Problems
+oder Erreichung eines Ziels braucht bzw. die ein System erfüllen muss
+(IEEE 610.12-1990)</td>
+<td>24</td>
+</tr>
+<tr>
+<td>Anforderungsspezifikation</td>
+<td>Zusammenstellung aller Anforderungen an ein System</td>
+<td>24</td>
+</tr>
+<tr>
+<td>Ziel</td>
+<td>ein erwünschter Zustand, den jemand erreichen möchte</td>
+<td>35</td>
+</tr>
+<tr>
+<td>Lastenheft</td>
+<td><em>Was? Wofür?</em> – vom Auftraggeber, aus Anwendersicht</td>
+<td>26</td>
+</tr>
+<tr>
+<td>Pflichtenheft</td>
+<td><em>Wie? Womit?</em> – vom Auftragnehmer; Begriff mehrdeutig, «mit
+Vorsicht verwenden»</td>
+<td>25, 26</td>
+</tr>
+<tr>
+<td>funktionale Anforderung</td>
+<td>Funktionen, Verhalten und Daten</td>
+<td>38</td>
+</tr>
+<tr>
+<td>nicht-funktionale Anforderung</td>
+<td>Attribute (Leistungsanforderungen, besondere Qualitäten) und
+Randbedingungen</td>
+<td>38</td>
+</tr>
+<tr>
+<td>Randbedingung</td>
+<td>Vorgabe, die den Lösungsraum einschränkt (z. B. Plattform,
+Gesetz)</td>
+<td>38, 41</td>
+</tr>
+<tr>
+<td>Muss / Soll / Wunsch</td>
+<td>unverzichtbar / wichtig, bei zu hohen Kosten verzichtbar / schön zu
+haben</td>
+<td>43</td>
+</tr>
+<tr>
+<td>Vorschrift / Tatsache / Annahme</td>
+<td>Facette «Rolle»: Forderung an das System / Fakt der Umgebung /
+Annahme über Akteure</td>
+<td>40, 42</td>
+</tr>
+<tr>
+<td>hart / weich</td>
+<td>Facette «Erfüllung»: ganz oder gar nicht erfüllt / graduell
+erfüllt</td>
+<td>40, 41</td>
+</tr>
+<tr>
+<td>risikogerecht</td>
+<td>Umfang der Spezifikation umgekehrt proportional zum Risiko, das man
+eingehen will</td>
+<td>23, 45</td>
+</tr>
+</tbody>
+</table>
+<p>Begriffe aus späteren Blöcken (z. B. Use Case, Satzschablone,
+Traceability) nach den jeweiligen Folien ergänzen.</p>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>
