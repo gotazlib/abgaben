@@ -123,7 +123,7 @@ export function HomePage({ onJoin }: Props) {
             disabled={!isNameValid || isCreating}
             onClick={handleCreate}
           >
-            {isCreating ? 'Wird erstellt…' : 'Neue Session erstellen'}
+            {isCreating ? 'Wird erstellt …' : 'Neue Session erstellen'}
           </button>
           {createError !== null && <ErrorMessage message={createError} />}
         </section>
@@ -137,7 +137,7 @@ export function HomePage({ onJoin }: Props) {
             />
           )}
 
-          {isLoading && <LoadingIndicator label="Sessions werden geladen…" />}
+          {isLoading && <LoadingIndicator label="Sessions werden geladen …" />}
 
           {sessions !== null && sessions.length === 0 && (
             <p className="home-page__empty">

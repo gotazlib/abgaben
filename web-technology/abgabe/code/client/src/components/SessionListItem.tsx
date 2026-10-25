@@ -76,7 +76,7 @@ export function SessionListItem({
           disabled={isDeleting}
           onClick={handleDelete}
         >
-          {isDeleting ? 'Wird gelöscht…' : 'Löschen'}
+          {isDeleting ? 'Wird gelöscht …' : 'Löschen'}
         </button>
       </div>
       {deleteError !== null && <ErrorMessage message={deleteError} />}

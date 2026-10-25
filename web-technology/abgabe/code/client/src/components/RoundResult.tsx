@@ -30,9 +30,9 @@ export function RoundResult({ participants, deck }: Props) {
     averageText = result.averageLabel
   }
 
-  let skippedWord = 'Stimmen'
+  let skippedText = skippedCount + ' Stimmen mit «?» oder «☕» zählen'
   if (skippedCount === 1) {
-    skippedWord = 'Stimme'
+    skippedText = '1 Stimme mit «?» oder «☕» zählt'
   }
 
   return (
@@ -65,8 +65,7 @@ export function RoundResult({ participants, deck }: Props) {
       )}
       {skippedCount > 0 && (
         <p className="round-result__note">
-          {skippedCount} {skippedWord} mit «?» oder «☕» zählen nicht zum
-          Durchschnitt.
+          {skippedText} nicht zum Durchschnitt.
         </p>
       )}
     </div>

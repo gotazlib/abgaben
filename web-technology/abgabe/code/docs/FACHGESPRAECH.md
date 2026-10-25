@@ -48,7 +48,7 @@ verweisen:
 | **07** | TypeScript Advanced | Projektvorlage, Änderungen am Leistungsnachweis (07/6), Module mit Named Exports, `import type`, Ternary, Generics bei `useState`, Destructuring |
 | **08** | React Basics | Funktionskomponenten mit `type Props`, `children`, eine CSS-Datei pro Komponente, `useState`, StrictMode, State Flow und Lifting State Up, Listen mit `key`-Prop, Conditional Rendering und Styling, Events mit `ChangeEvent`, `<select>` |
 | **09** | React Hooks | StrictMode, Setter mit Funktion, Lazy Initial Value, `useEffect` mit Dependency Array und Cleanup, `async`/`await` mit `try`/`catch`, `fetch`, Custom Hooks, `window.setInterval`, Polling, `useLocalStorage`, Projekt-Tipps (09/36–37) |
-| **–** | nicht in den Folien | Express (in den Folien nur genannt, 01/4 und 02/4), Context, `unknown` mit `typeof`/`in`, `instanceof`, `throw new Error`, `randomUUID`, `Date.now()`, `role`-Attribute. Diese Stellen sind im Rundgang markiert und begründet. |
+| **–** | nicht in den Folien | Express (in den Folien nur genannt, 01/4 und 02/4), Context, `unknown` mit `typeof`/`in`, `instanceof`, `throw new Error`, `catch` ohne Variable, `while`, `process.env`, `randomUUID`, `Date.now()`, `Number.isNaN`, `window.confirm`, `role`-Attribute, `<label htmlFor>`, `<dl>`; im CSS `::before`/`::after`, `:disabled`, `gap` bei Flexbox, `opacity`, Nachfahren-Selektoren (`.home-page__intro p`). Kleine Standardfunktionen (`Math.round`, `Math.abs`, `Math.ceil`, `slice`, `trim`, `includes` bei Arrays) sind an ihrer Stelle in einem Satz erklärt. Diese Stellen sind im Rundgang markiert und begründet. |
 
 ---
 
@@ -116,7 +116,7 @@ Projektordner selbst. Darum braucht es zum Entwickeln zwei Terminals.
 | `server/package.json` | Scripts | `dev` = `node --watch src/index.ts` (startet bei jeder Änderung neu), `start` = `node src/index.ts`, `build` = `tsc -b` (nur Typprüfung), dazu `lint`, `format`, `format:check` wie im Client. | 03 |
 | `*/pnpm-lock.yaml` | genaue Versionen | pro Projekt eines. Gleiche Installation auf jedem Rechner. Nie von Hand ändern. | 03 |
 | `*/.prettierrc` | Formatierung | `semi: false`, `singleQuote: true`: ohne Semikolons, einfache Anführungszeichen, so wie der Code in den Folien und in der Vorlage. In VS Code «Format on Save» einschalten (09/37). | 09 |
-| `*/tsconfig*.json` | TypeScript | aus der Vorlage, dazu `strict: true`. Wichtig: `verbatimModuleSyntax` (darum `import type`, 07/12), `allowImportingTsExtensions` (Imports mit `.ts`/`.tsx` am Ende), `erasableSyntaxOnly` (nur TypeScript, das man einfach weglassen kann, siehe B.15). | 07 |
+| `*/tsconfig*.json` | TypeScript | `client/`: unverändert aus der Vorlage; `server/tsconfig.json` nach demselben Muster. TypeScript 6 prüft ohne weitere Einstellung streng (`strict`), im Server steht `strict: true` zur Sicherheit ausdrücklich. Wichtig: `verbatimModuleSyntax` (darum `import type`, 07/12), `allowImportingTsExtensions` (Imports mit `.ts`/`.tsx` am Ende), `erasableSyntaxOnly` (nur TypeScript, das man einfach weglassen kann, siehe B.15). | 07 |
 | `.gitignore` | was nicht ins Git gehört | `node_modules/`, `dist/`, `*.tsbuildinfo`, das Abgabe-ZIP | – |
 | `README.md` | Kurzanleitung | | |
 | `docs/FACHGESPRAECH.md` / `.pdf` / `.html` | dieser Leitfaden | | |
@@ -164,7 +164,7 @@ zusammengesteckt, was die App tut.
 
 | Zeilen | Erklärung |
 | --- | --- |
-| 5-9 | `PORT`: Standard 3000, denn dorthin leitet der Proxy des Clients weiter (`client/vite.config.ts`). Ist die Umgebungsvariable `PORT` gesetzt (Live-Server), gilt sie. `let` und `if` statt eines verschachtelten Ausdrucks. `Number(…)` macht aus dem Text eine Zahl (06/10). |
+| 5-9 | `PORT`: Standard 3000, denn dorthin leitet der Proxy des Clients weiter (`client/vite.config.ts`). Ist die Umgebungsvariable `PORT` gesetzt (Live-Server), gilt sie: `process.env.PORT` (Node, nicht in den Folien) liest sie, ohne Variable ist der Wert `undefined`. `let` und `if` statt eines verschachtelten Ausdrucks. `Number(…)` macht aus dem Text eine Zahl (06/10). |
 | 12 | `CLEANUP_INTERVAL_MS = 5000` – wie oft aufgeräumt wird. |
 | 16 | `PARTICIPANT_TIMEOUT_MS = 15000` – wer sich so lange nicht gemeldet hat, gilt als weg. |
 | 21-22 | `CLIENT_DIST` (Pfad zum gebauten Client, relativ zu `server/`) und `SERVE_CLIENT` (nur bei `NODE_ENV=production`). |
@@ -192,7 +192,7 @@ Inhalt wie `client/src/types/poker.ts` (siehe A.1, warum doppelt).
 | 33 | `let sessions: Session[] = []` – **der ganze Speicher**: ein Array, die älteste Session zuerst. `let`, weil `deleteSession()` ein neues Array zuweist. Nach einem Neustart ist es leer. |
 | 39-62 | `toSessionState()` macht aus der gespeicherten Session das, was der Client sehen darf. Zeile 46: Die Stimme wird nur mitgeschickt, wenn aufgedeckt ist **oder** es die eigene Stimme der fragenden Person ist. Sonst bleibt `vote` `null`. **Hier wird die Geheimhaltung gemacht.** |
 | 64-73 | `listSessions()` – pro Session nur ID und Anzahl Personen, für die Liste auf der Home-Seite. |
-| 75-91 | `createSession()` – 6 Zeichen einer zufälligen UUID als ID. Ist sie schon vergeben, wird neu gewürfelt (`while`). Neue Sessions starten mit Fibonacci und ohne Teilnehmer, `push` hängt sie hinten an. |
+| 75-91 | `createSession()` – 6 Zeichen einer zufälligen UUID als ID. Ist sie schon vergeben, wird neu gewürfelt: `while` (nicht in den Folien) wiederholt den Block, solange die Bedingung stimmt, hier solange `getSession(id)` eine Session findet. Neue Sessions starten mit Fibonacci und ohne Teilnehmer, `push` hängt sie hinten an. |
 | 94-96 | `getSession()` mit `find` (06/16): gibt `undefined` zurück, wenn es die Session nicht gibt. |
 | 98-100 | `deleteSession()` mit `filter`: ein neues Array ohne diese Session. |
 | 103-110 | `findParticipant()` – Person in einer Session suchen, auch mit `find`. |
@@ -300,7 +300,7 @@ React die App hinein. Zeile 11 lädt `main.tsx`. Folien: 04/6.
 | 32-38 | `TSHIRT_SIZES` | Zahl pro Grösse (XS=1 … XL=8) für den Durchschnitt, eine Liste von Objekten. |
 | 42 | `MAX_NAME_LENGTH = 30` | gleicher Wert wie im Server |
 | 46-55 | `validateName()` | Gibt die Fehlermeldung zurück oder `null`, wenn der Name gültig ist. Prüft den Namen ohne Leerzeichen am Rand (`trim()`). Der Text mit `${MAX_NAME_LENGTH}` ist ein Template-String (06/9). |
-| 58-72 | `toNumber()` | T-Shirt: Grösse mit `find` suchen (06/16), gibt es sie nicht (`?`), dann `null`. Sonst `Number(card)`: `'?'` und `'☕'` ergeben `NaN` → `null` (zählt nicht). |
+| 58-72 | `toNumber()` | T-Shirt: Grösse mit `find` suchen (06/16), gibt es sie nicht (`?`), dann `null`. Sonst `Number(card)`: `'?'` und `'☕'` ergeben `NaN` → `null` (zählt nicht). `Number.isNaN(value)` (nicht in den Folien) prüft, ob `NaN` herauskam. |
 | 75-86 | `closestTshirtSize()` | Startet mit der ersten Grösse und merkt sich die mit dem kleinsten Abstand. Das `<=` in Zeile 81 wählt bei Gleichstand die spätere, also grössere Grösse. |
 | 89-125 | `computeResult()` | Erst Konsens (91-96), dann Summe und Anzahl der Zahlenkarten (99-107), ohne Zahlenkarte kein Durchschnitt (109-116), dann auf eine Nachkommastelle runden (119), bei T-Shirt die nächste Grösse (121-123). Gleiche Stimmen ergeben immer dasselbe Ergebnis, ohne Nebenwirkungen. |
 
@@ -325,7 +325,7 @@ Folien.** Die Aufgabenstellung verlangt ihn für den Namen, darum ist er da (sie
 | 12-15 | `createContext(…)` mit Startwert. Der Startwert gilt nur, wenn **kein** Provider darüber liegt; in der App kommt das nicht vor. |
 
 **`client/src/components/UserProvider.tsx`** – füllt den Context. Zeile 13:
-`useLocalStorage('scrum-poker:name')`, der Präfix `scrum-poker:` verhindert Kollisionen mit anderen
+`useLocalStorage('scrum-poker:name')`, das Präfix `scrum-poker:` verhindert Kollisionen mit anderen
 Apps auf derselben Adresse. Zeilen 17-21: `<UserContext value={…}>` – seit React 19 ist der
 Context selbst der Provider. Alles in `children` kann den Wert mit `useContext(UserContext)` lesen.
 
@@ -336,7 +336,7 @@ Context selbst der Provider. Alles in `children` kann den Wert mit `useContext(U
 
 | Zeilen | Erklärung |
 | --- | --- |
-| 21-38 | `send()` – die einzige Stelle mit `fetch()`. `body: string \| null = null` ist ein Default-Parameter: ohne Body einfach weglassen. Mit Body kommt der Header `Content-Type: application/json` dazu. **Wichtig:** `fetch()` wirft nur, wenn gar keine Antwort kommt (Server aus, kein Netz). Dann wird daraus «Server nicht erreichbar.» (Zeilen 35-37). Eine 404- oder 500-Antwort ist für `fetch()` kein Fehler. |
+| 21-38 | `send()` – die einzige Stelle mit `fetch()`. `body: string \| null = null` ist ein Default-Parameter: ohne Body einfach weglassen. Mit Body kommt der Header `Content-Type: application/json` dazu. **Wichtig:** `fetch()` wirft nur, wenn gar keine Antwort kommt (Server aus, kein Netz). Dann wird daraus «Server nicht erreichbar.» (Zeilen 35-37). Eine 404- oder 500-Antwort ist für `fetch()` kein Fehler. `catch {` ohne `(error)`: Den Fehler selbst brauchen wir hier nicht, darum fehlt die Variable (in den Folien steht immer `catch (error)`). |
 | 41-60 | `createError()` – macht aus einer Fehlerantwort ein `Error` mit Text. 502/503/504 kommen vom Vite-Proxy, wenn Express nicht läuft → auch «Server nicht erreichbar.». Sonst der Text aus `{ error }` vom Server, und wenn die Antwort kein JSON ist, «Anfrage fehlgeschlagen (HTTP …)». `new Error(…)` und `throw` sind nicht in den Folien; so bekommt jeder Fehler eine deutsche Meldung, die die Komponenten anzeigen. |
 | 66-73 | `listSessions()` – das Muster aller Funktionen wie in 09/23: senden, `response.ok` prüfen (Status 200–299), sonst Fehler werfen, sonst `const dto = await response.json()` zurückgeben. Den Type der Antwort legt der Rückgabetyp `Promise<SessionSummary[]>` fest. |
 | 76-83 | `createSession()` gibt nur die neue ID zurück. `const dto: CreateSessionResponse` sagt, welche Form die Antwort hat. |
@@ -372,7 +372,7 @@ Context selbst der Provider. Alles in `children` kann den Wert mit `useContext(U
 | --- | --- |
 | 9-14 | Props: `name`, `error` (`null` = gültig), `onNameChange` (Callback nach oben). |
 | 17-19 | `updateName(event: ChangeEvent<HTMLInputElement>)` – genau wie in 08/41: `event.target.value` ist der neue Text. |
-| 23-25 | `<label htmlFor="name-input">` gehört zum Feld mit `id="name-input"`. Ein Klick auf das Label setzt den Cursor ins Feld. |
+| 23-25 | `<label htmlFor="name-input">` (nicht in den Folien) gehört zum Feld mit `id="name-input"`. Ein Klick auf das Label setzt den Cursor ins Feld. |
 | 28-32 | **Conditional Styling** (08/36): Bei einem Fehler bekommt das Feld zusätzlich die Klasse `name-form__input--invalid` (roter Rand). |
 | 34-35 | **Kontrolliertes Eingabefeld**: `value` kommt von oben, jede Eingabe geht über `onChange` zurück in den Context. |
 | 36 | `maxLength` – der Browser lässt nicht mehr als 30 Zeichen zu. |
@@ -383,7 +383,7 @@ Context selbst der Provider. Alles in `children` kann den Wert mit `useContext(U
 | Zeilen | Erklärung |
 | --- | --- |
 | 10-17 | Props: die Session, ob Beitreten erlaubt ist, `onJoin` und `onDeleted` (beides Callbacks nach oben). |
-| 26-27 | Eigener State pro Eintrag (`isDeleting`, `deleteError`): Nur dieser eine Eintrag zeigt «Wird gelöscht…». |
+| 26-27 | Eigener State pro Eintrag (`isDeleting`, `deleteError`): Nur dieser eine Eintrag zeigt «Wird gelöscht …». |
 | 29-32 | Text «1 Person» / «x Personen». |
 | 34-56 | `handleDelete()` – `window.confirm` (nicht in den Folien, eine Zeile) fragt nach. Bei Erfolg `onDeleted(session.id)`: die Seite entfernt den Eintrag aus der Liste (Lifting State Up). |
 | 65-72 | «Beitreten» ruft nur `onJoin(session.id)` auf. Die Arrow Function im `onClick` gibt die ID dieses Eintrags mit. Beigetreten wird erst in der `PokerTablePage`. |
@@ -427,7 +427,7 @@ ganzen Zustand des Tisches. Folien: 08/25-28, 09/30.
 | --- | --- |
 | 25 | `POLL_INTERVAL_MS = 1500` – muss deutlich unter dem Server-Timeout von 15 s liegen, weil jeder Poll als Heartbeat zählt. |
 | 27-31 | Props: Session-ID, eigene ID, Callback `onLeave`. |
-| 36-41 | State: `session` (Zustand vom Server, die einzige Quelle der Wahrheit), `pollError`, `notFound`, `isBusy` (eine Aktion läuft), `actionError`. |
+| 36-41 | State: `session` (Zustand vom Server, er allein ist massgebend), `pollError`, `notFound`, `isBusy` (eine Aktion läuft), `actionError`. |
 | 44-80 | **Polling-Effekt**, gleiches Muster wie auf der Home-Seite. |
 | 53-59 | Session gelöscht (`null`): `window.clearInterval` stoppt das Polling, damit nicht alle 1.5 s ein unnötiger Request mit 404 rausgeht. Dann `notFound`. |
 | 62-67 | Fehler: der letzte Stand bleibt sichtbar, `setPollError` setzt nur die Meldung. |
@@ -482,7 +482,7 @@ ganzen Zustand des Tisches. Folien: 08/25-28, 09/30.
 | --- | --- |
 | 8-12 | Props: aktives Deck, `disabled`, `onChange`. |
 | 16-24 | `updateDeck(event: ChangeEvent<HTMLSelectElement>)` – `event.target.value` ist nur ein `string`. Die Schleife sucht den passenden Eintrag in `DECK_TYPES`; so weiss TypeScript, dass es wirklich ein `DeckType` ist, und es braucht keinen Cast. |
-| 28-30 | `<label htmlFor="deck-select">` gehört zum `<select id="deck-select">`. |
+| 28-30 | `<label htmlFor="deck-select">` (nicht in den Folien, siehe NameForm) gehört zum `<select id="deck-select">`. |
 | 31-37 | Kontrolliertes `<select>`: `value={deck}` kommt vom Server-Zustand. Wechselt jemand anderes das Deck, springt die Auswahl beim nächsten Poll mit. |
 | 38-42 | ein `<option>` pro Deck mit `key`. |
 
@@ -507,7 +507,7 @@ Farben und Abstände stehen als feste Werte in Pixeln, eine Farbtabelle steht al
 
 | Datei | Inhalt | Folien |
 | --- | --- | --- |
-| `client/src/index.css` | global, aus der Vorlage: Box-Modell `*, *::before, *::after { box-sizing: border-box; }` (Mini-CSS-Reset), Schrift, Überschriften, `:focus`-Rahmen, die Buttons (`.button`, `.button--secondary`, `.button:disabled`). | 04/14, 04/19-21, 05/8 |
+| `client/src/index.css` | global, aus der Vorlage: Box-Modell `*, *::before, *::after { box-sizing: border-box; }` (Mini-CSS-Reset), Schrift, Überschriften, `:focus`-Rahmen, die Buttons (`.button`, `.button--secondary`, `.button:disabled`). `:disabled` ist eine Pseudoklasse wie `:hover` (04/14), trifft aber gesperrte Buttons (nicht in den Folien). `*::before, *::after` stehen so in der Vorlage: Sie gelten für Inhalte, die CSS vor oder nach einem Element einfügt (bei uns gibt es keine). | 04/14, 04/19-21, 05/8 |
 | `App.css` | Kopfzeile und Inhaltsbereich (max. 960 px, zentriert), ab 768 px mehr Rand | 04/19 |
 | `HomePage.css` | **Grid**: eine Spalte auf dem Handy, ab 768 px zwei Spalten 2 : 3 (`grid-template-columns`). Liste als Flexbox-Spalte. | 04/37-44, 05/7 |
 | `SessionListItem.css` | Eintrag mit Flexbox und `flex-wrap`, roter Button «Löschen» (`.button--danger`) | 04/24-35 |
@@ -626,7 +626,8 @@ ganze Tabelle steht in der Dokumentation, Kapitel 5.
   wird.
 - **`body: unknown` in `validation.ts`:** Von aussen kann alles kommen. Mit `unknown` erlaubt
   TypeScript keinen Zugriff, bevor wir mit `typeof` und `in` geprüft haben. Mit `any` würde
-  TypeScript gar nichts prüfen. `strict: true` verbietet zudem ein stilles (implizites) `any`.
+  TypeScript gar nichts prüfen. Die strenge Prüfung (`strict`, bei TypeScript 6 Standard)
+  verbietet zudem ein stilles (implizites) `any`.
 - **`type` statt `interface`:** Beides beschreibt die Form eines Objekts. Die Folien empfehlen
   `type` (06/22), und 09/37 verlangt, es einheitlich zu machen. Darum steht überall `type`, auch
   bei den Props (`type Props`, wie in 08/15).
@@ -708,8 +709,9 @@ ganze Tabelle steht in der Dokumentation, Kapitel 5.
 > nirgends erklären könnten. Darum stehen die Types der API und zwei Regeln zweimal da: die Karten
 > pro Deck und die Namensprüfung (`client/src/utils/poker.ts` und `server/src/rules.ts`). Der
 > Nachteil ist, dass man bei einer Änderung beide Stellen anpassen muss. Darauf weist der Kommentar
-> oben in beiden Dateien hin. Vergisst man es, merkt man es sofort: Der Server lehnt dann die Karte
-> mit 400 ab.»
+> oben in beiden Dateien hin. Vergisst man es, gibt es Fehler: Eine Karte, die nur der Client
+> kennt, lehnt der Server mit 400 ab; eine Namensregel, die nur auf einer Seite geändert ist, führt
+> zu anderen Meldungen als beim Server.»
 
 ### B.15 «Wie läuft der Server mit TypeScript, ohne dass ihr ihn kompiliert?»
 
@@ -769,7 +771,7 @@ ganze Tabelle steht in der Dokumentation, Kapitel 5.
 | 41 | Wie liest ihr den Wert aus einem `<select>`? | Im Handler mit `ChangeEvent<HTMLSelectElement>` steht der gewählte Wert in `event.target.value` (08/42). Weil das ein `string` ist, suchen wir den passenden `DeckType` in `DECK_TYPES`. |
 | 42 | Was macht `children` bei `PokerTable`? | Alles, was zwischen `<PokerTable>` und `</PokerTable>` steht, kommt als Prop `children` an (08/17). `PokerTable` zeigt es in der Mitte, ohne zu wissen, was es ist. |
 | 43 | Was ist Conditional Rendering, was Conditional Styling? | Rendering: je nach Bedingung eine andere Komponente oder nichts (`&&`, Ternary, `if` mit `return`). Styling: je nach Bedingung eine andere CSS-Klasse (`className={… ? … : …}`), 08/36-37. |
-| 44 | Warum hat jede Komponente eine eigene CSS-Datei? | So steht in 08/19: Styles liegen neben der Komponente, die sie braucht. Der Präfix im Klassennamen verhindert, dass sich Komponenten gegenseitig stören. |
+| 44 | Warum hat jede Komponente eine eigene CSS-Datei? | So steht in 08/19: Styles liegen neben der Komponente, die sie braucht. Das Präfix im Klassennamen verhindert, dass sich Komponenten gegenseitig stören. |
 | 45 | Was macht `box-sizing: border-box`? | `width` schliesst Padding und Rahmen ein (Box-Modell, 04/19-21). Elemente werden nicht unerwartet breiter. Bei uns der Mini-CSS-Reset oben in `index.css`. |
 | 46 | Flexbox oder Grid – wann was? | Flexbox für eine Richtung (Reihe von Buttons, Karten, Plätzen), Grid für Spalten und Zeilen (Home-Seite). |
 | 47 | Was heisst Mobile First? | Zuerst Regeln für kleine Bildschirme schreiben, mit `min-width`-Media-Queries für grössere ergänzen. |
@@ -781,6 +783,9 @@ ganze Tabelle steht in der Dokumentation, Kapitel 5.
 | 53 | Wie startet man die App? | Zwei Terminals: im Ordner `server/` `pnpm dev` (Port 3000), im Ordner `client/` `pnpm dev` (Port 5173). Vorher in beiden einmal `pnpm install`. |
 | 54 | Was prüft `pnpm lint`? | oxlint (aus der Vorlage) sucht typische Fehler, z. B. fehlende Werte im Dependency Array. 09/37 verlangt, es auszuführen. |
 | 55 | Wozu Prettier? | Formatiert den Code einheitlich (ohne Semikolons, einfache Anführungszeichen). `pnpm format:check` prüft, ob alles formatiert ist (09/37). |
+| 56 | Was habt ihr an der Projektvorlage geändert? | Scripts, `vite.config.ts`, `index.html`, `tsconfig*.json` und die Ordner `components/`, `hooks/`, `types/` sind gleich. Geändert: `index.css` wird in `main.tsx` vor `App` importiert (Komponenten-CSS gewinnt), der `UserProvider` liegt um `App`, dazu die Ordner `api/`, `context/`, `utils/` (09/37), und `index.css`/`App.css` enthalten unsere Styles. |
+| 57 | Was passiert, wenn ein Tab lange im Hintergrund liegt? | Chrome bremst nach etwa fünf Minuten die Timer auf einen Aufruf pro Minute. Dann fehlen die Polls, der Server entfernt die Person nach 15 s, und beim Zurückkommen steht «Du bist nicht mehr am Tisch». Neu beitreten über die Liste. Für eine Schätzrunde nehmen wir das in Kauf (Doku Kap. 8). |
+| 58 | Warum `gap` in Flexbox? | Die Folien zeigen Abstände zwischen Elementen nur bei Grid (`column-gap`/`row-gap`, 04/38). `gap` ist die Kurzform davon und funktioniert in Flexbox genauso; sonst bräuchte jedes Kind einen eigenen Margin. |
 
 ---
 

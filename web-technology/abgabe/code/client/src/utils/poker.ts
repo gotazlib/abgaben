@@ -24,7 +24,7 @@ export const DECKS: { fibonacci: Deck; tshirt: Deck } = {
   },
 }
 
-// Alle Decks als Liste: für die Auswahl im Client und die Prüfung im Server
+// Alle Decks als Liste, z. B. für die Auswahl im DeckSwitcher (der Server hat eine eigene in rules.ts)
 export const DECK_TYPES: DeckType[] = ['fibonacci', 'tshirt']
 
 // T-Shirt-Grössen haben keinen Zahlenwert. Damit wir trotzdem einen Durchschnitt

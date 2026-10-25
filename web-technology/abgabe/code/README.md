@@ -78,7 +78,7 @@ scrum-poker/
 │   ├── package.json            Scripts dev, build, lint, preview, format, format:check
 │   ├── index.html              einzige HTML-Seite, lädt src/main.tsx
 │   ├── vite.config.ts          Proxy /api → localhost:3000
-│   ├── tsconfig*.json          TypeScript (strict)
+│   ├── tsconfig*.json          TypeScript, wie in der Vorlage
 │   ├── .prettierrc             Prettier ohne Semikolons, einfache Anführungszeichen
 │   ├── public/                 favicon.svg
 │   └── src/

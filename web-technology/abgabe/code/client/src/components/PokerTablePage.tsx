@@ -89,7 +89,7 @@ export function PokerTablePage({ sessionId, onLeave }: Props) {
       )
     }
     if (participantId === null) {
-      return <LoadingIndicator label="Trete der Session bei …" />
+      return <LoadingIndicator label="Beitritt zur Session …" />
     }
     return (
       <PokerRoom

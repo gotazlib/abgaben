@@ -513,7 +513,7 @@ verweisen:</p>
 <tr>
 <td><strong>–</strong></td>
 <td>nicht in den Folien</td>
-<td>Express (in den Folien nur genannt, 01/4 und 02/4), Context, <code>unknown</code> mit <code>typeof</code>/<code>in</code>, <code>instanceof</code>, <code>throw new Error</code>, <code>randomUUID</code>, <code>Date.now()</code>, <code>role</code>-Attribute. Diese Stellen sind im Rundgang markiert und begründet.</td>
+<td>Express (in den Folien nur genannt, 01/4 und 02/4), Context, <code>unknown</code> mit <code>typeof</code>/<code>in</code>, <code>instanceof</code>, <code>throw new Error</code>, <code>catch</code> ohne Variable, <code>while</code>, <code>process.env</code>, <code>randomUUID</code>, <code>Date.now()</code>, <code>Number.isNaN</code>, <code>window.confirm</code>, <code>role</code>-Attribute, <code>&lt;label htmlFor&gt;</code>, <code>&lt;dl&gt;</code>; im CSS <code>::before</code>/<code>::after</code>, <code>:disabled</code>, <code>gap</code> bei Flexbox, <code>opacity</code>, Nachfahren-Selektoren (<code>.home-page__intro p</code>). Kleine Standardfunktionen (<code>Math.round</code>, <code>Math.abs</code>, <code>Math.ceil</code>, <code>slice</code>, <code>trim</code>, <code>includes</code> bei Arrays) sind an ihrer Stelle in einem Satz erklärt. Diese Stellen sind im Rundgang markiert und begründet.</td>
 </tr>
 </tbody></table></div>
 <hr>
@@ -638,7 +638,7 @@ Projektordner selbst. Darum braucht es zum Entwickeln zwei Terminals.</p>
 <tr>
 <td><code>*/tsconfig*.json</code></td>
 <td>TypeScript</td>
-<td>aus der Vorlage, dazu <code>strict: true</code>. Wichtig: <code>verbatimModuleSyntax</code> (darum <code>import type</code>, 07/12), <code>allowImportingTsExtensions</code> (Imports mit <code>.ts</code>/<code>.tsx</code> am Ende), <code>erasableSyntaxOnly</code> (nur TypeScript, das man einfach weglassen kann, siehe B.15).</td>
+<td><code>client/</code>: unverändert aus der Vorlage; <code>server/tsconfig.json</code> nach demselben Muster. TypeScript 6 prüft ohne weitere Einstellung streng (<code>strict</code>), im Server steht <code>strict: true</code> zur Sicherheit ausdrücklich. Wichtig: <code>verbatimModuleSyntax</code> (darum <code>import type</code>, 07/12), <code>allowImportingTsExtensions</code> (Imports mit <code>.ts</code>/<code>.tsx</code> am Ende), <code>erasableSyntaxOnly</code> (nur TypeScript, das man einfach weglassen kann, siehe B.15).</td>
 <td>07</td>
 </tr>
 <tr>
@@ -743,7 +743,7 @@ zusammengesteckt, was die App tut.</p>
 </thead>
 <tbody><tr>
 <td>5-9</td>
-<td><code>PORT</code>: Standard 3000, denn dorthin leitet der Proxy des Clients weiter (<code>client/vite.config.ts</code>). Ist die Umgebungsvariable <code>PORT</code> gesetzt (Live-Server), gilt sie. <code>let</code> und <code>if</code> statt eines verschachtelten Ausdrucks. <code>Number(…)</code> macht aus dem Text eine Zahl (06/10).</td>
+<td><code>PORT</code>: Standard 3000, denn dorthin leitet der Proxy des Clients weiter (<code>client/vite.config.ts</code>). Ist die Umgebungsvariable <code>PORT</code> gesetzt (Live-Server), gilt sie: <code>process.env.PORT</code> (Node, nicht in den Folien) liest sie, ohne Variable ist der Wert <code>undefined</code>. <code>let</code> und <code>if</code> statt eines verschachtelten Ausdrucks. <code>Number(…)</code> macht aus dem Text eine Zahl (06/10).</td>
 </tr>
 <tr>
 <td>12</td>
@@ -820,7 +820,7 @@ Inhalt wie <code>client/src/types/poker.ts</code> (siehe A.1, warum doppelt).</p
 </tr>
 <tr>
 <td>75-91</td>
-<td><code>createSession()</code> – 6 Zeichen einer zufälligen UUID als ID. Ist sie schon vergeben, wird neu gewürfelt (<code>while</code>). Neue Sessions starten mit Fibonacci und ohne Teilnehmer, <code>push</code> hängt sie hinten an.</td>
+<td><code>createSession()</code> – 6 Zeichen einer zufälligen UUID als ID. Ist sie schon vergeben, wird neu gewürfelt: <code>while</code> (nicht in den Folien) wiederholt den Block, solange die Bedingung stimmt, hier solange <code>getSession(id)</code> eine Session findet. Neue Sessions starten mit Fibonacci und ohne Teilnehmer, <code>push</code> hängt sie hinten an.</td>
 </tr>
 <tr>
 <td>94-96</td>
@@ -1128,7 +1128,7 @@ React die App hinein. Zeile 11 lädt <code>main.tsx</code>. Folien: 04/6.</p>
 <tr>
 <td>58-72</td>
 <td><code>toNumber()</code></td>
-<td>T-Shirt: Grösse mit <code>find</code> suchen (06/16), gibt es sie nicht (<code>?</code>), dann <code>null</code>. Sonst <code>Number(card)</code>: <code>'?'</code> und <code>'☕'</code> ergeben <code>NaN</code> → <code>null</code> (zählt nicht).</td>
+<td>T-Shirt: Grösse mit <code>find</code> suchen (06/16), gibt es sie nicht (<code>?</code>), dann <code>null</code>. Sonst <code>Number(card)</code>: <code>'?'</code> und <code>'☕'</code> ergeben <code>NaN</code> → <code>null</code> (zählt nicht). <code>Number.isNaN(value)</code> (nicht in den Folien) prüft, ob <code>NaN</code> herauskam.</td>
 </tr>
 <tr>
 <td>75-86</td>
@@ -1187,7 +1187,7 @@ Folien.</strong> Die Aufgabenstellung verlangt ihn für den Namen, darum ist er 
 </tr>
 </tbody></table></div>
 <p><strong><code>client/src/components/UserProvider.tsx</code></strong> – füllt den Context. Zeile 13:
-<code>useLocalStorage('scrum-poker:name')</code>, der Präfix <code>scrum-poker:</code> verhindert Kollisionen mit anderen
+<code>useLocalStorage('scrum-poker:name')</code>, das Präfix <code>scrum-poker:</code> verhindert Kollisionen mit anderen
 Apps auf derselben Adresse. Zeilen 17-21: <code>&lt;UserContext value={…}&gt;</code> – seit React 19 ist der
 Context selbst der Provider. Alles in <code>children</code> kann den Wert mit <code>useContext(UserContext)</code> lesen.</p>
 <h4 id="alle-anfragen-an-den-server">Alle Anfragen an den Server</h4>
@@ -1202,7 +1202,7 @@ Context selbst der Provider. Alles in <code>children</code> kann den Wert mit <c
 </thead>
 <tbody><tr>
 <td>21-38</td>
-<td><code>send()</code> – die einzige Stelle mit <code>fetch()</code>. <code>body: string | null = null</code> ist ein Default-Parameter: ohne Body einfach weglassen. Mit Body kommt der Header <code>Content-Type: application/json</code> dazu. <strong>Wichtig:</strong> <code>fetch()</code> wirft nur, wenn gar keine Antwort kommt (Server aus, kein Netz). Dann wird daraus «Server nicht erreichbar.» (Zeilen 35-37). Eine 404- oder 500-Antwort ist für <code>fetch()</code> kein Fehler.</td>
+<td><code>send()</code> – die einzige Stelle mit <code>fetch()</code>. <code>body: string | null = null</code> ist ein Default-Parameter: ohne Body einfach weglassen. Mit Body kommt der Header <code>Content-Type: application/json</code> dazu. <strong>Wichtig:</strong> <code>fetch()</code> wirft nur, wenn gar keine Antwort kommt (Server aus, kein Netz). Dann wird daraus «Server nicht erreichbar.» (Zeilen 35-37). Eine 404- oder 500-Antwort ist für <code>fetch()</code> kein Fehler. <code>catch {</code> ohne <code>(error)</code>: Den Fehler selbst brauchen wir hier nicht, darum fehlt die Variable (in den Folien steht immer <code>catch (error)</code>).</td>
 </tr>
 <tr>
 <td>41-60</td>
@@ -1317,7 +1317,7 @@ Context selbst der Provider. Alles in <code>children</code> kann den Wert mit <c
 </tr>
 <tr>
 <td>23-25</td>
-<td><code>&lt;label htmlFor="name-input"&gt;</code> gehört zum Feld mit <code>id="name-input"</code>. Ein Klick auf das Label setzt den Cursor ins Feld.</td>
+<td><code>&lt;label htmlFor="name-input"&gt;</code> (nicht in den Folien) gehört zum Feld mit <code>id="name-input"</code>. Ein Klick auf das Label setzt den Cursor ins Feld.</td>
 </tr>
 <tr>
 <td>28-32</td>
@@ -1350,7 +1350,7 @@ Context selbst der Provider. Alles in <code>children</code> kann den Wert mit <c
 </tr>
 <tr>
 <td>26-27</td>
-<td>Eigener State pro Eintrag (<code>isDeleting</code>, <code>deleteError</code>): Nur dieser eine Eintrag zeigt «Wird gelöscht…».</td>
+<td>Eigener State pro Eintrag (<code>isDeleting</code>, <code>deleteError</code>): Nur dieser eine Eintrag zeigt «Wird gelöscht …».</td>
 </tr>
 <tr>
 <td>29-32</td>
@@ -1448,7 +1448,7 @@ ganzen Zustand des Tisches. Folien: 08/25-28, 09/30.</p>
 </tr>
 <tr>
 <td>36-41</td>
-<td>State: <code>session</code> (Zustand vom Server, die einzige Quelle der Wahrheit), <code>pollError</code>, <code>notFound</code>, <code>isBusy</code> (eine Aktion läuft), <code>actionError</code>.</td>
+<td>State: <code>session</code> (Zustand vom Server, er allein ist massgebend), <code>pollError</code>, <code>notFound</code>, <code>isBusy</code> (eine Aktion läuft), <code>actionError</code>.</td>
 </tr>
 <tr>
 <td>44-80</td>
@@ -1621,7 +1621,7 @@ ganzen Zustand des Tisches. Folien: 08/25-28, 09/30.</p>
 </tr>
 <tr>
 <td>28-30</td>
-<td><code>&lt;label htmlFor="deck-select"&gt;</code> gehört zum <code>&lt;select id="deck-select"&gt;</code>.</td>
+<td><code>&lt;label htmlFor="deck-select"&gt;</code> (nicht in den Folien, siehe NameForm) gehört zum <code>&lt;select id="deck-select"&gt;</code>.</td>
 </tr>
 <tr>
 <td>31-37</td>
@@ -1681,7 +1681,7 @@ Farben und Abstände stehen als feste Werte in Pixeln, eine Farbtabelle steht al
 </thead>
 <tbody><tr>
 <td><code>client/src/index.css</code></td>
-<td>global, aus der Vorlage: Box-Modell <code>*, *::before, *::after { box-sizing: border-box; }</code> (Mini-CSS-Reset), Schrift, Überschriften, <code>:focus</code>-Rahmen, die Buttons (<code>.button</code>, <code>.button--secondary</code>, <code>.button:disabled</code>).</td>
+<td>global, aus der Vorlage: Box-Modell <code>*, *::before, *::after { box-sizing: border-box; }</code> (Mini-CSS-Reset), Schrift, Überschriften, <code>:focus</code>-Rahmen, die Buttons (<code>.button</code>, <code>.button--secondary</code>, <code>.button:disabled</code>). <code>:disabled</code> ist eine Pseudoklasse wie <code>:hover</code> (04/14), trifft aber gesperrte Buttons (nicht in den Folien). <code>*::before, *::after</code> stehen so in der Vorlage: Sie gelten für Inhalte, die CSS vor oder nach einem Element einfügt (bei uns gibt es keine).</td>
 <td>04/14, 04/19-21, 05/8</td>
 </tr>
 <tr>
@@ -1860,7 +1860,8 @@ der Client bekommt nur, was er sehen darf. Zwei Types machen sichtbar, dass hier
 wird.</li>
 <li><strong><code>body: unknown</code> in <code>validation.ts</code>:</strong> Von aussen kann alles kommen. Mit <code>unknown</code> erlaubt
 TypeScript keinen Zugriff, bevor wir mit <code>typeof</code> und <code>in</code> geprüft haben. Mit <code>any</code> würde
-TypeScript gar nichts prüfen. <code>strict: true</code> verbietet zudem ein stilles (implizites) <code>any</code>.</li>
+TypeScript gar nichts prüfen. Die strenge Prüfung (<code>strict</code>, bei TypeScript 6 Standard)
+verbietet zudem ein stilles (implizites) <code>any</code>.</li>
 <li><strong><code>type</code> statt <code>interface</code>:</strong> Beides beschreibt die Form eines Objekts. Die Folien empfehlen
 <code>type</code> (06/22), und 09/37 verlangt, es einheitlich zu machen. Darum steht überall <code>type</code>, auch
 bei den Props (<code>type Props</code>, wie in 08/15).</li>
@@ -1943,8 +1944,9 @@ Projekt (03/10). Ein gemeinsamer Ordner für die Types bräuchte einen Workspace
 nirgends erklären könnten. Darum stehen die Types der API und zwei Regeln zweimal da: die Karten
 pro Deck und die Namensprüfung (<code>client/src/utils/poker.ts</code> und <code>server/src/rules.ts</code>). Der
 Nachteil ist, dass man bei einer Änderung beide Stellen anpassen muss. Darauf weist der Kommentar
-oben in beiden Dateien hin. Vergisst man es, merkt man es sofort: Der Server lehnt dann die Karte
-mit 400 ab.»</p>
+oben in beiden Dateien hin. Vergisst man es, gibt es Fehler: Eine Karte, die nur der Client
+kennt, lehnt der Server mit 400 ab; eine Namensregel, die nur auf einer Seite geändert ist, führt
+zu anderen Meldungen als beim Server.»</p>
 </blockquote>
 <h3 id="b15-wie-läuft-der-server-mit-typescript-ohne-dass-ihr-ihn-kompiliert">B.15 «Wie läuft der Server mit TypeScript, ohne dass ihr ihn kompiliert?»</h3>
 <blockquote>
@@ -2183,7 +2185,7 @@ erzeugt aber keine Dateien. Im Client übersetzt Vite das TypeScript.»</p>
 <tr>
 <td>44</td>
 <td>Warum hat jede Komponente eine eigene CSS-Datei?</td>
-<td>So steht in 08/19: Styles liegen neben der Komponente, die sie braucht. Der Präfix im Klassennamen verhindert, dass sich Komponenten gegenseitig stören.</td>
+<td>So steht in 08/19: Styles liegen neben der Komponente, die sie braucht. Das Präfix im Klassennamen verhindert, dass sich Komponenten gegenseitig stören.</td>
 </tr>
 <tr>
 <td>45</td>
@@ -2239,6 +2241,21 @@ erzeugt aber keine Dateien. Im Client übersetzt Vite das TypeScript.»</p>
 <td>55</td>
 <td>Wozu Prettier?</td>
 <td>Formatiert den Code einheitlich (ohne Semikolons, einfache Anführungszeichen). <code>pnpm format:check</code> prüft, ob alles formatiert ist (09/37).</td>
+</tr>
+<tr>
+<td>56</td>
+<td>Was habt ihr an der Projektvorlage geändert?</td>
+<td>Scripts, <code>vite.config.ts</code>, <code>index.html</code>, <code>tsconfig*.json</code> und die Ordner <code>components/</code>, <code>hooks/</code>, <code>types/</code> sind gleich. Geändert: <code>index.css</code> wird in <code>main.tsx</code> vor <code>App</code> importiert (Komponenten-CSS gewinnt), der <code>UserProvider</code> liegt um <code>App</code>, dazu die Ordner <code>api/</code>, <code>context/</code>, <code>utils/</code> (09/37), und <code>index.css</code>/<code>App.css</code> enthalten unsere Styles.</td>
+</tr>
+<tr>
+<td>57</td>
+<td>Was passiert, wenn ein Tab lange im Hintergrund liegt?</td>
+<td>Chrome bremst nach etwa fünf Minuten die Timer auf einen Aufruf pro Minute. Dann fehlen die Polls, der Server entfernt die Person nach 15 s, und beim Zurückkommen steht «Du bist nicht mehr am Tisch». Neu beitreten über die Liste. Für eine Schätzrunde nehmen wir das in Kauf (Doku Kap. 8).</td>
+</tr>
+<tr>
+<td>58</td>
+<td>Warum <code>gap</code> in Flexbox?</td>
+<td>Die Folien zeigen Abstände zwischen Elementen nur bei Grid (<code>column-gap</code>/<code>row-gap</code>, 04/38). <code>gap</code> ist die Kurzform davon und funktioniert in Flexbox genauso; sonst bräuchte jedes Kind einen eigenen Margin.</td>
 </tr>
 </tbody></table></div>
 <hr>
