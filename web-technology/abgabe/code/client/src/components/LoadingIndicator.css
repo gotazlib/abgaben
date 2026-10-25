@@ -1,0 +1,5 @@
+/* Ladeanzeige (LoadingIndicator.tsx): grauer Text */
+
+.loading-indicator {
+  color: #5f6577;
+}

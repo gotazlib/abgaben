@@ -5,11 +5,10 @@
 | **Fach** | Web Technology, HWZ |
 | **Dozent** | Tobias Büchel |
 | **Aufgabe** | Scrum Poker App (Gruppenarbeit) |
-| **Live-App** | <https://scrumpoker.tasgor.ch> |
 
 Eine Planning-Poker-App: Mehrere Personen treten einer Session bei, schätzen verdeckt mit Karten,
-decken gemeinsam auf und sehen Durchschnitt und Konsens. React + TypeScript (Vite), Node.js +
-Express + TypeScript.
+decken gemeinsam auf und sehen Durchschnitt und Konsens. Client mit React + TypeScript (Vite,
+aufgebaut wie die Projektvorlage des Kurses), Server mit Node.js + Express + TypeScript.
 
 ## Abgabe
 
@@ -24,7 +23,7 @@ Alles im Ordner [`abgabe/`](abgabe/):
 | [scrum-poker-code.zip](abgabe/scrum-poker-code.zip) | Quellcode ohne `node_modules` |
 | [code/](abgabe/code/) | derselbe Quellcode zum Durchklicken, Start-Anleitung im [README](abgabe/code/README.md) |
 
-Kurz: Node.js ≥ 22.12 und pnpm 10, dann im Code-Ordner `pnpm install` und `pnpm dev`,
-Browser auf <http://localhost:5173>.
+Kurz: Node.js 24 und pnpm 12. Im Code-Ordner zwei Terminals: `cd server && pnpm install && pnpm dev`
+und `cd client && pnpm install && pnpm dev`, dann Browser auf <http://localhost:5173>.
 
 Zurück zur [Übersicht](../README.md).

@@ -1,8 +1,10 @@
 // Die eigenen Handkarten unten am Tisch. Benutzt von PokerRoom.
 // Hat keinen eigenen State: Welche Karte gewählt ist, kommt per Props vom Server-Zustand.
-import { DECKS, type CardValue, type DeckType } from '@scrum-poker/shared'
+import { DECKS } from '../utils/poker.ts'
+import type { CardValue, DeckType } from '../types/poker.ts'
+import './CardDeck.css'
 
-interface CardDeckProps {
+type Props = {
   deck: DeckType
   // Eigene Stimme, null = keine Karte gewählt
   selected: CardValue | null
@@ -10,21 +12,21 @@ interface CardDeckProps {
   onCardClick: (value: CardValue) => void
 }
 
-export default function CardDeck({ deck, selected, disabled, onCardClick }: CardDeckProps) {
+export function CardDeck({ deck, selected, disabled, onCardClick }: Props) {
   return (
-    <section className="card-deck" aria-labelledby="card-deck-title">
-      <h2 id="card-deck-title" className="card-deck__title">
-        Deine Karten
-      </h2>
+    <section className="card-deck">
+      <h2 className="card-deck__title">Deine Karten</h2>
       <div className="card-deck__cards">
         {DECKS[deck].cards.map((value) => (
-          // Ein echter <button>: geht mit Tastatur und Screenreader.
-          // aria-pressed sagt, ob es die gewählte Karte ist.
+          // Ein echter <button>: geht auch mit der Tastatur
           <button
             key={value}
             type="button"
-            className={value === selected ? 'playing-card playing-card--selected' : 'playing-card'}
-            aria-pressed={value === selected}
+            className={
+              value === selected
+                ? 'playing-card playing-card--selected'
+                : 'playing-card'
+            }
             disabled={disabled}
             onClick={() => onCardClick(value)}
           >

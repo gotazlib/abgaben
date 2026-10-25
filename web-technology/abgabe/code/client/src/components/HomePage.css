@@ -1,0 +1,54 @@
+/* Styles der Startseite (HomePage.tsx). Mobile First wie in App.css. */
+
+.home-page__intro p {
+  color: #5f6577;
+}
+
+/* Grid: auf dem Handy eine Spalte, die beiden Karten liegen untereinander */
+.home-page__columns {
+  display: grid;
+  gap: 24px;
+}
+
+.home-page__card {
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px #d9dce4;
+}
+
+.home-page__create {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.home-page__empty,
+.home-page__hint {
+  color: #5f6577;
+}
+
+.home-page__empty {
+  margin: 0;
+  padding: 24px 16px;
+  text-align: center;
+  border: 2px dashed #dde0e8;
+  border-radius: 6px;
+}
+
+/* Liste der Sessions, die Einträge selbst stehen in SessionListItem.css */
+.home-page__sessions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Ab Tablet-Breite zwei Spalten: links Name und «Erstellen», rechts die Liste */
+@media (min-width: 768px) {
+  .home-page__columns {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: start;
+  }
+}

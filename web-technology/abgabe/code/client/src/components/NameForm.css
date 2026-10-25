@@ -1,0 +1,32 @@
+/* Namensfeld auf der Startseite (NameForm.tsx) */
+
+.name-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.name-form__label {
+  font-weight: 600;
+}
+
+.name-form__input {
+  width: 100%;
+  padding: 8px 16px;
+  color: #1f2333;
+  background-color: #ffffff;
+  border: 1px solid #dde0e8;
+  border-radius: 6px;
+}
+
+/* Roter Rand, solange der Name ungültig ist */
+.name-form__input--invalid {
+  border-color: #b91c1c;
+}
+
+.name-form__error {
+  margin: 0;
+  font-size: 15px;
+  color: #b91c1c;
+}

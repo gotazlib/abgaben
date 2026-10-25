@@ -1,0 +1,104 @@
+/* Globale Styles für die ganze App, importiert in main.tsx: Box-Modell und Schrift aus der
+   Projektvorlage, dazu Überschriften und die Buttons, die überall vorkommen. Jede Komponente
+   hat daneben ihre eigene CSS-Datei.
+   Mobile First: Die Grundregeln gelten für kleine Bildschirme, die Media Query
+   (min-width: 768px) ergänzt die Änderungen für grössere.
+
+   Farben, die überall vorkommen:
+   #4f46e5 Hauptfarbe (Buttons, gewählte Karte), #4338ca Hauptfarbe beim Hover,
+   #1f2333 Text, #5f6577 grauer Text, #dde0e8 Rahmen, #f5f6fa Hintergrund,
+   #b91c1c Fehler (Text), #fef2f2 Fehler (Hintergrund), #fecaca Fehler (Rahmen) */
+
+/* Box-Modell: width und height schliessen Padding und Rahmen mit ein */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: #1f2333;
+  background-color: #f5f6fa;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 16px;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+p {
+  margin: 0 0 16px;
+}
+
+/* Formularelemente übernehmen sonst nicht die Schrift der Seite */
+button,
+input,
+select {
+  font: inherit;
+}
+
+/* Sichtbarer Rahmen für Benutzer, die mit der Tastatur arbeiten */
+button:focus,
+input:focus,
+select:focus {
+  outline: 3px solid #4f46e5;
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 36px;
+  }
+}
+
+/* ---------- Buttons (überall benutzt) ---------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 8px 16px;
+  border: 2px solid #4f46e5;
+  border-radius: 6px;
+  background-color: #4f46e5;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button:hover {
+  border-color: #4338ca;
+  background-color: #4338ca;
+}
+
+/* Weisser Button mit farbigem Rand, für weniger wichtige Aktionen */
+.button--secondary {
+  background-color: #ffffff;
+  color: #4f46e5;
+}
+
+.button--secondary:hover {
+  background-color: #f5f6fa;
+  color: #4338ca;
+}
+
+/* Gesperrte Buttons ausgrauen. Steht nach :hover, damit es bei gleicher Stärke gewinnt. */
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}

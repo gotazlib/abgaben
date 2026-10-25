@@ -1,6 +1,8 @@
 // Alle Routen unter /api/sessions (eingebunden in app.ts).
 // Jede Route liest sich von oben nach unten: Session holen → wenn es sie nicht gibt 404 →
 // Body prüfen (400) → Store ändern → mit Statuscode und JSON antworten.
+// Express gibt req.body den Typ any. Erst nach der Prüfung in validation.ts weisen wir den
+// Body einer Variable mit unserem Type zu (z. B. JoinSessionRequest), vorher nicht.
 
 import { Router } from 'express'
 import type {
@@ -9,7 +11,7 @@ import type {
   CreateSessionResponse,
   JoinSessionRequest,
   JoinSessionResponse,
-} from '@scrum-poker/shared'
+} from '../types.ts'
 import {
   addParticipant,
   castVote,
@@ -23,8 +25,8 @@ import {
   resetRound,
   revealCards,
   toSessionState,
-} from '../store'
-import { getDeckError, getJoinError, getVoteError } from '../validation'
+} from '../store.ts'
+import { getDeckError, getJoinError, getVoteError } from '../validation.ts'
 
 export const sessionsRouter = Router()
 
@@ -78,7 +80,7 @@ sessionsRouter.get('/:sessionId', (req, res) => {
   res.json(toSessionState(session, viewerId))
 })
 
-// POST /api/sessions/:sessionId/participants: beitreten oder nach einem Reload fortsetzen
+// POST /api/sessions/:sessionId/participants: beitreten, der Server vergibt die participantId
 sessionsRouter.post('/:sessionId/participants', (req, res) => {
   const session = getSession(req.params.sessionId)
   if (!session) {
@@ -91,19 +93,7 @@ sessionsRouter.post('/:sessionId/participants', (req, res) => {
     return
   }
   // Ab hier ist der Body geprüft und hat die erwartete Form
-  const joinRequest = req.body as JoinSessionRequest
-
-  // Fortsetzen nach einem Reload: Kennt der Server die gespeicherte ID noch,
-  // bleibt die Person mit ihrer Stimme am Tisch. Kein zweiter Eintrag, 200 statt 201.
-  if (typeof joinRequest.participantId === 'string') {
-    const existingParticipant = findParticipant(session, joinRequest.participantId)
-    if (existingParticipant) {
-      existingParticipant.lastSeen = Date.now()
-      const body: JoinSessionResponse = { participantId: existingParticipant.id }
-      res.status(200).json(body)
-      return
-    }
-  }
+  const joinRequest: JoinSessionRequest = req.body
 
   const participant = addParticipant(session, joinRequest.name.trim())
   const body: JoinSessionResponse = { participantId: participant.id }
@@ -123,33 +113,36 @@ sessionsRouter.delete('/:sessionId/participants/:participantId', (req, res) => {
 })
 
 // PUT /api/sessions/:sessionId/participants/:participantId/vote: Karte wählen oder zurückziehen
-sessionsRouter.put('/:sessionId/participants/:participantId/vote', (req, res) => {
-  const session = getSession(req.params.sessionId)
-  if (!session) {
-    res.status(404).json({ error: SESSION_NOT_FOUND })
-    return
-  }
-  const participant = findParticipant(session, req.params.participantId)
-  if (!participant) {
-    res.status(404).json({ error: 'Teilnehmer nicht gefunden.' })
-    return
-  }
-  // 409 Conflict: Die Anfrage passt nicht zum aktuellen Zustand der Runde
-  if (session.revealed) {
-    res.status(409).json({ error: 'Die Karten sind schon aufgedeckt.' })
-    return
-  }
-  const error = getVoteError(req.body, session.deck)
-  if (error !== null) {
-    res.status(400).json({ error })
-    return
-  }
-  const voteRequest = req.body as CastVoteRequest
+sessionsRouter.put(
+  '/:sessionId/participants/:participantId/vote',
+  (req, res) => {
+    const session = getSession(req.params.sessionId)
+    if (!session) {
+      res.status(404).json({ error: SESSION_NOT_FOUND })
+      return
+    }
+    const participant = findParticipant(session, req.params.participantId)
+    if (!participant) {
+      res.status(404).json({ error: 'Teilnehmer nicht gefunden.' })
+      return
+    }
+    // 409 Conflict: Die Anfrage passt nicht zum aktuellen Zustand der Runde
+    if (session.revealed) {
+      res.status(409).json({ error: 'Die Karten sind schon aufgedeckt.' })
+      return
+    }
+    const error = getVoteError(req.body, session.deck)
+    if (error !== null) {
+      res.status(400).json({ error })
+      return
+    }
+    const voteRequest: CastVoteRequest = req.body
 
-  castVote(session, participant, voteRequest.value)
-  // Die Antwort zeigt der wählenden Person ihre eigene Stimme, die der anderen nicht
-  res.json(toSessionState(session, participant.id))
-})
+    castVote(session, participant, voteRequest.value)
+    // Die Antwort zeigt der wählenden Person ihre eigene Stimme, die der anderen nicht
+    res.json(toSessionState(session, participant.id))
+  },
+)
 
 // PUT /api/sessions/:sessionId/deck: Deck wechseln (startet eine neue Runde)
 sessionsRouter.put('/:sessionId/deck', (req, res) => {
@@ -163,7 +156,7 @@ sessionsRouter.put('/:sessionId/deck', (req, res) => {
     res.status(400).json({ error })
     return
   }
-  const deckRequest = req.body as ChangeDeckRequest
+  const deckRequest: ChangeDeckRequest = req.body
 
   changeDeck(session, deckRequest.deck)
   res.json(toSessionState(session, null))

@@ -1,0 +1,23 @@
+/* Ganzer Tisch mit Werkzeugleiste (PokerRoom.tsx) */
+
+.poker-room {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.poker-room__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Buttons «Karten aufdecken» und «Neue Runde» in der Mitte des Tisches */
+.round-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}

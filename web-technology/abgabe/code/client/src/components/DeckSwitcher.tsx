@@ -1,39 +1,49 @@
-// Umschalter zwischen den Decks (Fibonacci, T-Shirt). Benutzt von PokerRoom.
+// Auswahl des Decks (Fibonacci, T-Shirt). Benutzt von PokerRoom.
 // Jeder am Tisch darf wechseln; das Deck ist Server-Zustand und gilt für alle.
-import { DECKS, DECK_TYPES, type DeckType } from '@scrum-poker/shared'
+import { DECK_TYPES, DECKS } from '../utils/poker.ts'
+import type { DeckType } from '../types/poker.ts'
+import type { ChangeEvent } from 'react'
+import './DeckSwitcher.css'
 
-interface DeckSwitcherProps {
+type Props = {
   deck: DeckType
   disabled: boolean
   onChange: (deck: DeckType) => void
 }
 
-export default function DeckSwitcher({ deck, disabled, onChange }: DeckSwitcherProps) {
-  function handleClick(deckType: DeckType) {
-    // Ein Klick auf das aktuelle Deck würde die Runde unnötig zurücksetzen
-    if (deckType !== deck) {
-      onChange(deckType)
+export function DeckSwitcher({ deck, disabled, onChange }: Props) {
+  // onChange vom <select> kommt nur, wenn ein anderes Deck gewählt wurde
+  function updateDeck(event: ChangeEvent<HTMLSelectElement>) {
+    // event.target.value ist ein string. Wir suchen den passenden DeckType aus der Liste,
+    // so weiss TypeScript, dass es wirklich ein Deck ist.
+    for (const deckType of DECK_TYPES) {
+      if (deckType === event.target.value) {
+        onChange(deckType)
+      }
     }
   }
 
   return (
-    <fieldset className="deck-switcher">
-      <legend className="deck-switcher__legend">Deck</legend>
-      <div className="deck-switcher__options">
+    <div className="deck-switcher">
+      <label htmlFor="deck-select" className="deck-switcher__label">
+        Deck
+      </label>
+      <select
+        id="deck-select"
+        className="deck-switcher__select"
+        value={deck}
+        disabled={disabled}
+        onChange={updateDeck}
+      >
         {DECK_TYPES.map((deckType) => (
-          <button
-            key={deckType}
-            type="button"
-            className="deck-switcher__option"
-            aria-pressed={deckType === deck}
-            disabled={disabled}
-            onClick={() => handleClick(deckType)}
-          >
+          <option key={deckType} value={deckType}>
             {DECKS[deckType].label}
-          </button>
+          </option>
         ))}
-      </div>
-      <p className="deck-switcher__hint">Ein Wechsel startet für alle eine neue Runde.</p>
-    </fieldset>
+      </select>
+      <p className="deck-switcher__hint">
+        Ein Wechsel startet für alle eine neue Runde.
+      </p>
+    </div>
   )
 }

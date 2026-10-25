@@ -1,21 +1,15 @@
-// Rote Fehlermeldung, optional mit Button «Erneut versuchen».
-// Benutzt von der Home-Seite und vom Pokertisch. Styles in global.css.
+// Rote Fehlermeldung. Benutzt von der Startseite und vom Pokertisch.
+import './ErrorMessage.css'
 
-interface ErrorMessageProps {
+type Props = {
   message: string
-  onRetry?: () => void
 }
 
-export default function ErrorMessage({ message, onRetry }: ErrorMessageProps) {
+export function ErrorMessage({ message }: Props) {
   // role="alert": Screenreader lesen die Meldung vor, sobald sie erscheint
   return (
-    <div className="error-message" role="alert">
-      <p className="error-message__text">{message}</p>
-      {onRetry !== undefined && (
-        <button type="button" className="error-message__retry" onClick={onRetry}>
-          Erneut versuchen
-        </button>
-      )}
-    </div>
+    <p className="error-message" role="alert">
+      {message}
+    </p>
   )
 }

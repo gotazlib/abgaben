@@ -1,0 +1,29 @@
+/* Kopfzeile und Inhaltsbereich der App (App.tsx) */
+
+.app-header {
+  padding: 16px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dde0e8;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.layout {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+@media (min-width: 768px) {
+  .app-header {
+    padding: 16px 40px;
+  }
+
+  .layout {
+    padding: 40px;
+  }
+}

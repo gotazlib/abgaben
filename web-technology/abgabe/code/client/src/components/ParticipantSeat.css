@@ -1,0 +1,83 @@
+/* Ein Platz am Tisch (ParticipantSeat.tsx).
+   Handy: eine Zeile pro Person (Karte links, Name rechts). Ab 768 px: Karte über dem Namen. */
+
+.seat {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  padding: 8px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px #d9dce4;
+}
+
+.seat--own {
+  border-color: #4f46e5;
+}
+
+/* Die kleine Karte am Platz: leer (gestrichelt), verdeckt (Rückseite) oder aufgedeckt (Wert) */
+.seat__card {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 52px;
+  border-radius: 6px;
+}
+
+.seat__card--empty {
+  border: 2px dashed #dde0e8;
+}
+
+.seat__card--covered {
+  border: 3px solid #ffffff;
+  background-color: #4f46e5;
+  box-shadow: 0 0 0 1px #4f46e5;
+}
+
+.seat__card--revealed {
+  border: 2px solid #4f46e5;
+  background-color: #ffffff;
+  color: #4f46e5;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.seat__name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  font-weight: 600;
+  overflow-wrap: break-word;
+}
+
+.seat__badge {
+  padding: 0 4px;
+  border-radius: 6px;
+  background-color: #4f46e5;
+  color: #ffffff;
+  font-size: 12px;
+}
+
+@media (min-width: 768px) {
+  .seat {
+    width: 120px;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .seat__card {
+    width: 44px;
+    height: 64px;
+  }
+
+  .seat__name {
+    justify-content: center;
+    text-align: center;
+  }
+}

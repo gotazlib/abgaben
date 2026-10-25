@@ -1,0 +1,31 @@
+/* Auswahl des Decks (DeckSwitcher.tsx) */
+
+.deck-switcher {
+  /* Nimmt den freien Platz in der Werkzeugleiste, damit der Hinweis umbricht
+     und nicht den Button «Verlassen» nach unten schiebt */
+  flex: 1 1 256px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 16px;
+}
+
+.deck-switcher__label {
+  font-weight: 600;
+}
+
+.deck-switcher__select {
+  padding: 4px 8px;
+  color: #1f2333;
+  background-color: #ffffff;
+  border: 1px solid #dde0e8;
+  border-radius: 6px;
+}
+
+.deck-switcher__hint {
+  /* eigene Zeile unter der Auswahl */
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 14px;
+  color: #5f6577;
+}

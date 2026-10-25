@@ -1,9 +1,13 @@
 // Die Express-App: JSON lesen, Routen einbinden, Fehler immer als JSON beantworten.
-// Ohne app.listen(): das macht index.ts. So können die Tests die App direkt benutzen.
+// Ohne app.listen(): das macht index.ts. So bleibt diese Datei reine Konfiguration.
 
-import express, { type NextFunction, type Request, type Response } from 'express'
-import { CLIENT_DIST, SERVE_CLIENT } from './config'
-import { sessionsRouter } from './routes/sessions'
+import express, {
+  type NextFunction,
+  type Request,
+  type Response,
+} from 'express'
+import { CLIENT_DIST, SERVE_CLIENT } from './config.ts'
+import { sessionsRouter } from './routes/sessions.ts'
 
 export const app = express()
 
@@ -19,15 +23,6 @@ app.use('/api/sessions', sessionsRouter)
 // Nur im Produktivbetrieb (siehe config.ts): den gebauten Client als Dateien ausliefern
 if (SERVE_CLIENT) {
   app.use(express.static(CLIENT_DIST))
-  // Pfade wie /sessions/<id> kennt nur React Router. Bei einem Reload oder einem geteilten
-  // Link schicken wir darum index.html. /api bekommt weiter unten seine JSON-404.
-  app.use((req, res, next) => {
-    if (req.method !== 'GET' || req.path.startsWith('/api')) {
-      next()
-      return
-    }
-    res.sendFile('index.html', { root: CLIENT_DIST })
-  })
 }
 
 // Unbekannte Routen bekommen auch JSON, nicht die HTML-Seite von Express

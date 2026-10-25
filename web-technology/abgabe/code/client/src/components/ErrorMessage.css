@@ -1,0 +1,10 @@
+/* Rote Fehlermeldung (ErrorMessage.tsx) */
+
+.error-message {
+  margin: 0 0 16px;
+  padding: 8px 16px;
+  color: #b91c1c;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+}

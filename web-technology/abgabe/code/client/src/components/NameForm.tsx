@@ -2,44 +2,41 @@
 // Der Name selbst liegt im Context; die Komponente bekommt ihn und die Fehlermeldung als Props
 // und meldet jede Änderung über onNameChange nach oben (Lifting State Up).
 
-import { MAX_NAME_LENGTH } from '@scrum-poker/shared'
-import type { FormEvent } from 'react'
+import { MAX_NAME_LENGTH } from '../utils/poker.ts'
+import type { ChangeEvent } from 'react'
+import './NameForm.css'
 
-interface NameFormProps {
+type Props = {
   name: string
   // Meldung unter dem Feld, null wenn der Name gültig ist
   error: string | null
   onNameChange: (name: string) => void
 }
 
-export default function NameForm({ name, error, onNameChange }: NameFormProps) {
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    // Der Name ist bei jedem Tastendruck schon gespeichert. Enter darf nur die Seite nicht neu laden.
-    event.preventDefault()
+export function NameForm({ name, error, onNameChange }: Props) {
+  function updateName(event: ChangeEvent<HTMLInputElement>) {
+    onNameChange(event.target.value)
   }
 
   return (
-    <form className="name-form" onSubmit={handleSubmit}>
+    <div className="name-form">
       <label htmlFor="name-input" className="name-form__label">
         Dein Name
       </label>
       <input
         id="name-input"
-        className="name-form__input"
+        className={
+          error === null
+            ? 'name-form__input'
+            : 'name-form__input name-form__input--invalid'
+        }
         type="text"
         value={name}
-        onChange={(event) => onNameChange(event.target.value)}
+        onChange={updateName}
         maxLength={MAX_NAME_LENGTH}
-        autoComplete="nickname"
         placeholder="z. B. Anna"
-        aria-invalid={error !== null}
-        aria-describedby={error === null ? undefined : 'name-error'}
       />
-      {error !== null && (
-        <p id="name-error" className="name-form__error">
-          {error}
-        </p>
-      )}
-    </form>
+      {error !== null && <p className="name-form__error">{error}</p>}
+    </div>
   )
 }

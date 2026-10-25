@@ -1,0 +1,66 @@
+/* Eigene Handkarten (CardDeck.tsx) */
+
+.card-deck {
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px #d9dce4;
+}
+
+.card-deck__title {
+  font-size: 18px;
+}
+
+/* Auf kleinen Bildschirmen brechen die Karten in mehrere Reihen um. Der Abstand oben
+   lässt Platz für die gewählte Karte, die etwas nach oben rutscht. */
+.card-deck__cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 8px;
+}
+
+.playing-card {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 80px;
+  border: 2px solid #dde0e8;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #4f46e5;
+  font-size: 22px;
+  font-weight: 700;
+  box-shadow: 0 1px 4px #d9dce4;
+  cursor: pointer;
+}
+
+.playing-card:hover {
+  border-color: #4f46e5;
+}
+
+/* position: relative mit top schiebt die gewählte Karte 8 px nach oben */
+.playing-card--selected {
+  position: relative;
+  top: -8px;
+  border-color: #4f46e5;
+  background-color: #4f46e5;
+  color: #ffffff;
+}
+
+.playing-card:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Die gewählte Karte bleibt nach dem Aufdecken gut sichtbar */
+.playing-card--selected:disabled {
+  opacity: 0.85;
+}
+
+@media (min-width: 768px) {
+  .playing-card {
+    width: 64px;
+    height: 92px;
+  }
+}
