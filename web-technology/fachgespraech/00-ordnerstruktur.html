@@ -1,0 +1,2600 @@
+<!doctype html>
+<html lang="de"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teil 00 – Ordnerstruktur, Konfiguration und Abläufe</title>
+<style id="print-css">/* Druck-CSS für die PDF-Dateien der Dokumentation (A4) */
+
+@page {
+  size: A4;
+}
+
+html {
+  font-family: 'DejaVu Sans', 'Segoe UI', Arial, sans-serif;
+  font-size: 10pt;
+  line-height: 1.45;
+  color: #1f2333;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.25;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+h1 {
+  font-size: 20pt;
+  margin: 0 0 10pt;
+  color: #312e81;
+}
+
+h2 {
+  font-size: 14pt;
+  margin: 18pt 0 6pt;
+  padding-bottom: 3pt;
+  border-bottom: 1.5pt solid #4f46e5;
+  color: #312e81;
+}
+
+h3 {
+  font-size: 12pt;
+  margin: 14pt 0 4pt;
+}
+
+h4 {
+  font-size: 10.5pt;
+  margin: 10pt 0 3pt;
+}
+
+p,
+ul,
+ol {
+  margin: 0 0 6pt;
+}
+
+li {
+  margin-bottom: 2pt;
+}
+
+a {
+  color: #3730a3;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+/* Tabellen: Rahmen, kein Abschneiden, lange Wörter umbrechen */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 4pt 0 10pt;
+  font-size: 8.5pt;
+  table-layout: auto;
+}
+
+th,
+td {
+  border: 0.75pt solid #9ca3af;
+  padding: 3pt 5pt;
+  vertical-align: top;
+  text-align: left;
+  /* Wörter nur umbrechen, wenn sie gar nicht passen (nicht mitten im Wort) */
+  overflow-wrap: break-word;
+}
+
+/* Kurze Bezeichner in der ersten Spalte (Methoden, Komponenten) nie umbrechen */
+td:first-child code {
+  white-space: nowrap;
+}
+
+th {
+  background: #eef2ff;
+}
+
+tr {
+  break-inside: avoid;
+}
+
+thead {
+  display: table-header-group;
+}
+
+/* Code */
+code {
+  font-family: 'DejaVu Sans Mono', Consolas, monospace;
+  font-size: 0.88em;
+  background: #f3f4f6;
+  padding: 0 2pt;
+  border-radius: 2pt;
+  overflow-wrap: anywhere;
+}
+
+pre {
+  font-family: 'DejaVu Sans Mono', Consolas, monospace;
+  font-size: 7.8pt;
+  line-height: 1.35;
+  background: #f6f7fb;
+  border: 0.75pt solid #d1d5db;
+  border-left: 3pt solid #4f46e5;
+  padding: 6pt 8pt;
+  margin: 4pt 0 10pt;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Mermaid-Diagramme (im Browser zu SVG gerendert) */
+pre.mermaid {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: center;
+  /* Nichts vom Code-Block-Stil an die Diagrammtexte vererben */
+  font-family: 'DejaVu Sans', Arial, sans-serif;
+  font-size: 10pt;
+  white-space: normal;
+  overflow-wrap: normal;
+  break-inside: avoid;
+}
+
+/* Mermaid setzt selbst max-width auf die natürliche Breite, das bleibt so */
+pre.mermaid svg {
+  height: auto;
+  max-height: 190mm;
+}
+
+/* Screenshots */
+img {
+  display: block;
+  max-width: 100%;
+  max-height: 110mm;
+  margin: 6pt auto 10pt;
+  border: 0.75pt solid #d1d5db;
+  break-inside: avoid;
+}
+
+blockquote {
+  margin: 6pt 0 10pt;
+  padding: 4pt 10pt;
+  border-left: 3pt solid #f59e0b;
+  background: #fffbeb;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+hr {
+  border: none;
+  border-top: 0.75pt solid #d1d5db;
+  margin: 12pt 0;
+}
+
+/* Sichtbarer Platzhalter für Dinge, die die Gruppe selbst ausfüllen muss */
+.todo {
+  margin: 4pt 0 8pt;
+  padding: 4pt 8pt;
+  border: 1pt dashed #dc2626;
+  background: #fef2f2;
+  color: #991b1b;
+  font-weight: 600;
+  white-space: pre-wrap;
+}
+
+details,
+summary {
+  display: block;
+}
+</style>
+<style id="screen-css">/* Zusätzliches CSS für die eigenständigen HTML-Dateien der Dokumentation. Liegt nach
+   print.css und passt es für den Bildschirm an.
+   Beim Drucken aus dem Browser gilt weiterhin vor allem print.css. */
+
+/* Platzhalter für die Gruppe: gelb, damit sie auffallen */
+.todo {
+  border: 1.5px dashed #ca8a04;
+  background: #fef9c3;
+  color: #713f12;
+}
+
+.generated {
+  margin-top: 2rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #d1d5db;
+  font-size: 0.85em;
+  color: #6b7280;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.75rem 1rem;
+  align-items: start;
+  margin: 0.5rem 0 1rem;
+  break-inside: avoid;
+}
+
+.gallery figure {
+  margin: 0;
+}
+
+.gallery img {
+  margin: 0 auto 0.3rem;
+}
+
+.gallery figcaption {
+  text-align: center;
+  font-size: 0.85em;
+  color: #4b5563;
+}
+
+.toc ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.toc li {
+  margin: 0.15em 0;
+}
+
+.toc ul ul {
+  padding-left: 1em;
+  margin-bottom: 0.3em;
+  font-size: 0.92em;
+}
+
+.toc summary {
+  font-weight: 700;
+  color: #312e81;
+  cursor: pointer;
+}
+
+@media screen {
+  html {
+    font-size: 16px;
+    line-height: 1.6;
+    background: #f5f6fa;
+    scroll-padding-top: 1rem;
+  }
+
+  body {
+    margin: 0 auto;
+    max-width: 1320px;
+    padding: 1rem;
+  }
+
+  #content {
+    box-sizing: border-box;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 1.25rem 1rem 2rem;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow-wrap: break-word;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
+
+  h2 {
+    font-size: 1.45rem;
+    margin-top: 2.2rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  h4 {
+    font-size: 1.05rem;
+  }
+
+  table {
+    font-size: 0.88rem;
+  }
+
+  pre {
+    font-size: 0.82rem;
+  }
+
+  /* Breite Tabellen scrollen innerhalb ihres Rahmens, nicht die ganze Seite */
+  .table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .table-wrap > table {
+    min-width: 32rem;
+  }
+
+  pre.mermaid {
+    overflow-x: auto;
+  }
+
+  pre.mermaid svg {
+    max-height: none;
+  }
+
+  img {
+    max-height: 32rem;
+    height: auto;
+  }
+
+  .toc {
+    box-sizing: border-box;
+    max-width: 920px;
+    margin: 0 auto 1rem;
+    padding: 0.75rem 1rem;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.92rem;
+  }
+
+  .toc a {
+    color: #3730a3;
+  }
+
+  .toc a:hover,
+  #content a:hover {
+    text-decoration: underline;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  body {
+    padding: 0.5rem;
+  }
+
+  #content {
+    padding: 1rem 0.75rem 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Breite Bildschirme: Inhaltsverzeichnis als feste Seitenleiste links */
+@media screen and (min-width: 1200px) {
+  body {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 920px);
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: start;
+  }
+
+  .toc {
+    position: sticky;
+    top: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    margin: 0;
+  }
+
+  #content {
+    margin: 0;
+  }
+}
+
+@media print {
+  /* Das Markdown hat schon ein eigenes Inhaltsverzeichnis */
+  .toc {
+    display: none;
+  }
+
+  .generated {
+    font-size: 8pt;
+  }
+}
+</style></head>
+<body><nav class="toc" aria-label="Inhaltsverzeichnis"><details open=""><summary>Inhalt</summary><ul><li><a href="#1-das-wichtigste-in-drei-sätzen">1. Das Wichtigste in drei Sätzen</a></li><li><a href="#2-der-verzeichnisbaum">2. Der Verzeichnisbaum</a></li><li><a href="#3-jede-datei-und-jeder-ordner-erklärt">3. Jede Datei und jeder Ordner erklärt</a><ul><li><a href="#31-projektordner-oberste-ebene">3.1 Projektordner (oberste Ebene)</a></li><li><a href="#32-client--die-react-app">3.2 client/ – die React-App</a></li><li><a href="#33-server--die-express-api">3.3 server/ – die Express-API</a></li><li><a href="#34-docs--begleitdokumente">3.4 docs/ – Begleitdokumente</a></li><li><a href="#35-scripts-und-deploy--werkzeuge-nicht-teil-der-app">3.5 scripts/ und deploy/ – Werkzeuge, nicht Teil der App</a></li></ul></li><li><a href="#4-was-aus-der-projektvorlage-stammt-und-was-wir-ergänzt-haben">4. Was aus der Projektvorlage stammt und was wir ergänzt haben</a></li><li><a href="#5-konfiguration-des-clients-zeile-für-zeile">5. Konfiguration des Clients Zeile für Zeile</a><ul><li><a href="#51-clientpackagejson">5.1 client/package.json</a></li><li><a href="#52-clientpnpm-lockyaml">5.2 client/pnpm-lock.yaml</a></li><li><a href="#53-clientindexhtml">5.3 client/index.html</a></li><li><a href="#54-clientviteconfigts">5.4 client/vite.config.ts</a></li><li><a href="#55-clienttsconfigjson">5.5 client/tsconfig.json</a></li><li><a href="#56-clienttsconfigappjson">5.6 client/tsconfig.app.json</a></li><li><a href="#57-clienttsconfignodejson">5.7 client/tsconfig.node.json</a></li><li><a href="#58-clientprettierrc-clientprettierignore-clientgitignore">5.8 client/.prettierrc, client/.prettierignore, client/.gitignore</a></li><li><a href="#59-oxlint--ohne-eigene-konfiguration">5.9 oxlint – ohne eigene Konfiguration</a></li></ul></li><li><a href="#6-konfiguration-des-servers-zeile-für-zeile">6. Konfiguration des Servers Zeile für Zeile</a><ul><li><a href="#61-serverpackagejson">6.1 server/package.json</a></li><li><a href="#62-servertsconfigjson">6.2 server/tsconfig.json</a></li><li><a href="#63-gitignore-und-gitattributes-im-projektordner">6.3 .gitignore und .gitattributes im Projektordner</a></li></ul></li><li><a href="#7-was-passiert-bei-pnpm-install-dev-build-lint">7. Was passiert bei pnpm install, dev, build, lint?</a><ul><li><a href="#71-pnpm-install">7.1 pnpm install</a></li><li><a href="#72-pnpm-dev">7.2 pnpm dev</a></li><li><a href="#73-pnpm-build">7.3 pnpm build</a></li><li><a href="#74-pnpm-lint-und-pnpm-formatcheck">7.4 pnpm lint (und pnpm format:check)</a></li></ul></li><li><a href="#8-der-weg-eines-requests-browser--vite-proxy--express">8. Der Weg eines Requests: Browser → Vite-Proxy → Express</a><ul><li><a href="#81-beim-entwickeln-zwei-terminals">8.1 Beim Entwickeln (zwei Terminals)</a></li><li><a href="#82-wie-man-es-im-browser-sieht">8.2 Wie man es im Browser sieht</a></li><li><a href="#83-im-produktivbetrieb-ein-prozess-ohne-vite">8.3 Im Produktivbetrieb (ein Prozess, ohne Vite)</a></li></ul></li><li><a href="#9-übersicht-der-zeilenerklärungen">9. Übersicht der Zeilenerklärungen</a></li></ul></details></nav>
+<main id="content">
+<h1 id="teil-00--ordnerstruktur-konfiguration-und-abläufe">Teil 00 – Ordnerstruktur, Konfiguration und Abläufe</h1>
+<p>Dieser Teil erklärt <strong>jede Datei und jeden Ordner</strong> des Projekts <code>scrum-poker/</code>: wozu sie da ist, wer
+sie benutzt, was ohne sie passieren würde und ob sie aus der <strong>Projektvorlage «scrum-poker-hwz»</strong>
+des Dozenten stammt (Folie 07/4) oder von uns ergänzt wurde. Die Konfigurationsdateien werden Zeile
+für Zeile erklärt. Am Schluss steht, was bei <code>pnpm install</code>, <code>pnpm dev</code>, <code>pnpm build</code> und <code>pnpm lint</code>
+genau passiert und welchen Weg ein Request vom Browser bis zum Express-Server nimmt.</p>
+<p><strong>So lest ihr diesen Teil:</strong> Öffnet die Datei im Editor daneben. Ein Verweis wie
+<code>client/vite.config.ts:10-12</code> heisst: in dieser Datei die Zeilen 10 bis 12 (VS Code:
+<code>Ctrl+G</code> springt zur Zeile). Der Code in den grauen Kästen ist <strong>nicht abgeschrieben</strong>, sondern wird
+vom Skript <code>docs/fachgespraech/tools/client_zeilen.py</code> aus der echten Datei eingelesen. Ändert sich
+der Code, meldet <code>python3 docs/fachgespraech/tools/client_zeilen.py --check</code> einen Fehler.</p>
+<p><strong>Folienangaben</strong> wie «Folie 03/10» heissen: Foliensatz 3 (Node.js), Folie 10. Steht «nicht in den
+Folien», kommt die Sache im Unterricht (Foliensätze 1–9) nicht vor; dann steht dabei, warum wir sie
+trotzdem brauchen.</p>
+<p><strong>Inhalt</strong></p>
+<ol>
+<li><a href="#1-das-wichtigste-in-drei-sätzen">Das Wichtigste in drei Sätzen</a></li>
+<li><a href="#2-der-verzeichnisbaum">Der Verzeichnisbaum</a></li>
+<li><a href="#3-jede-datei-und-jeder-ordner-erklärt">Jede Datei und jeder Ordner erklärt</a></li>
+<li><a href="#4-was-aus-der-projektvorlage-stammt-und-was-wir-ergänzt-haben">Was aus der Projektvorlage stammt und was wir ergänzt haben</a></li>
+<li><a href="#5-konfiguration-des-clients-zeile-für-zeile">Konfiguration des Clients Zeile für Zeile</a></li>
+<li><a href="#6-konfiguration-des-servers-zeile-für-zeile">Konfiguration des Servers Zeile für Zeile</a></li>
+<li><a href="#7-was-passiert-bei-pnpm-install-dev-build-lint">Was passiert bei pnpm install, dev, build, lint?</a></li>
+<li><a href="#8-der-weg-eines-requests-browser--vite-proxy--express">Der Weg eines Requests: Browser → Vite-Proxy → Express</a></li>
+<li><a href="#9-übersicht-der-zeilenerklärungen">Übersicht der Zeilenerklärungen</a></li>
+</ol>
+<hr>
+<h2 id="1-das-wichtigste-in-drei-sätzen">1. Das Wichtigste in drei Sätzen</h2>
+<ol>
+<li>Im Projektordner liegen <strong>zwei eigene Projekte</strong>: <code>client/</code> (React-App, gebaut mit Vite) und
+<code>server/</code> (Express-API). Jedes hat ein eigenes <code>package.json</code>, «jedes <code>package.json</code> signalisiert
+ein Projekt» (Folie 03/10). Darum braucht es zum Entwickeln <strong>zwei Terminals</strong>.</li>
+<li><code>client/</code> ist die <strong>Projektvorlage des Dozenten</strong> (Folie 07/4), fast unverändert in der
+Konfiguration. Wir haben Code in <code>src/</code> ergänzt, die Punkt-Dateien für Prettier und Git
+hinzugefügt und den Namen im <code>package.json</code> geändert.</li>
+<li>Beim Entwickeln öffnet der Browser <code>http://localhost:5173</code> (Vite). Alle Anfragen an <code>/api/…</code>
+leitet Vite per <strong>Proxy</strong> an <code>http://localhost:3000</code> weiter (Express). Der Browser spricht also
+nur mit <strong>einer</strong> Adresse, darum braucht es kein CORS.</li>
+</ol>
+<hr>
+<h2 id="2-der-verzeichnisbaum">2. Der Verzeichnisbaum</h2>
+<p>So sieht der Projektordner aus, wie er im Git liegt. <strong>Nicht</strong> im Baum sind Ordner, die beim Arbeiten
+entstehen und von Git ignoriert werden (siehe <code>.gitignore</code>):</p>
+<ul>
+<li><code>client/node_modules/</code>, <code>server/node_modules/</code>: installierte Pakete (<code>pnpm install</code>)</li>
+<li><code>client/dist/</code>: der fertige Build (<code>pnpm build</code>)</li>
+<li><code>scripts/pdf/node_modules/</code>: Werkzeuge für die PDF-Erzeugung</li>
+<li><code>scrum-poker-code.zip</code>: das Abgabe-ZIP (<code>scripts/make-submission.sh</code>)</li>
+</ul>
+<p>Die Ordner mit Bildern und dieser Leitfaden-Ordner sind zusammengefasst.</p>
+<pre><code>scrum-poker/
+├── client/
+│   ├── public/
+│   │   └── favicon.svg
+│   ├── src/
+│   │   ├── api/
+│   │   │   └── sessions.ts
+│   │   ├── components/
+│   │   │   ├── App.css
+│   │   │   ├── App.tsx
+│   │   │   ├── CardDeck.css
+│   │   │   ├── CardDeck.tsx
+│   │   │   ├── DeckSwitcher.css
+│   │   │   ├── DeckSwitcher.tsx
+│   │   │   ├── ErrorMessage.css
+│   │   │   ├── ErrorMessage.tsx
+│   │   │   ├── HomePage.css
+│   │   │   ├── HomePage.tsx
+│   │   │   ├── LoadingIndicator.css
+│   │   │   ├── LoadingIndicator.tsx
+│   │   │   ├── NameForm.css
+│   │   │   ├── NameForm.tsx
+│   │   │   ├── ParticipantSeat.css
+│   │   │   ├── ParticipantSeat.tsx
+│   │   │   ├── PokerRoom.css
+│   │   │   ├── PokerRoom.tsx
+│   │   │   ├── PokerTable.css
+│   │   │   ├── PokerTable.tsx
+│   │   │   ├── PokerTablePage.tsx
+│   │   │   ├── RoundResult.css
+│   │   │   ├── RoundResult.tsx
+│   │   │   ├── SessionListItem.css
+│   │   │   ├── SessionListItem.tsx
+│   │   │   ├── SessionNotFound.css
+│   │   │   ├── SessionNotFound.tsx
+│   │   │   └── UserProvider.tsx
+│   │   ├── context/
+│   │   │   └── UserContext.ts
+│   │   ├── hooks/
+│   │   │   └── useLocalStorage.ts
+│   │   ├── types/
+│   │   │   └── poker.ts
+│   │   ├── utils/
+│   │   │   └── poker.ts
+│   │   ├── index.css
+│   │   └── main.tsx
+│   ├── .gitignore
+│   ├── .prettierignore
+│   ├── .prettierrc
+│   ├── index.html
+│   ├── package.json
+│   ├── pnpm-lock.yaml
+│   ├── tsconfig.app.json
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   └── vite.config.ts
+├── deploy/
+│   ├── &lt;domain&gt;.nginx
+│   ├── deploy.sh
+│   ├── README.md
+│   └── scrumpoker.service
+├── docs/
+│   ├── docx-vorschau/   (Inhalt zusammengefasst)
+│   ├── fachgespraech/   (Inhalt zusammengefasst)
+│   ├── screenshots/   (Inhalt zusammengefasst)
+│   ├── ANFORDERUNGEN-CHECKLISTE.md
+│   ├── FACHGESPRAECH.html
+│   ├── FACHGESPRAECH.md
+│   ├── FACHGESPRAECH.pdf
+│   ├── FOLIEN-ABGLEICH.md
+│   ├── SCHLUSSPRUEFUNG.md
+│   └── VEREINFACHUNG-PLAN.md
+├── scripts/
+│   ├── docx/
+│   │   ├── build_docx.py
+│   │   ├── filter.lua
+│   │   └── seitenzahlen.py
+│   ├── pdf/
+│   │   ├── chromium.mjs
+│   │   ├── html.css
+│   │   ├── mermaid-png.mjs
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── print.css
+│   │   └── render.mjs
+│   ├── build-docx.sh
+│   ├── build-pdf.sh
+│   ├── check-refs.py
+│   ├── make-submission.sh
+│   └── publish-abgaben.sh
+├── server/
+│   ├── src/
+│   │   ├── routes/
+│   │   │   └── sessions.ts
+│   │   ├── app.ts
+│   │   ├── config.ts
+│   │   ├── index.ts
+│   │   ├── rules.ts
+│   │   ├── store.ts
+│   │   ├── types.ts
+│   │   └── validation.ts
+│   ├── .gitignore
+│   ├── .prettierignore
+│   ├── .prettierrc
+│   ├── package.json
+│   ├── pnpm-lock.yaml
+│   └── tsconfig.json
+├── .gitattributes
+├── .gitignore
+├── DOKUMENTATION.docx
+├── DOKUMENTATION.html
+├── DOKUMENTATION.md
+├── DOKUMENTATION.pdf
+└── README.md</code></pre>
+<p>Neben <code>scrum-poker/</code> liegen im privaten Repo noch <code>../kursmaterial/</code> (Kursfolien und die Projektvorlage
+des Dozenten, nie veröffentlichen) und <code>../abnahme-e2e/</code> (unsere private Abnahmeprüfung mit
+Playwright). Beide gehören <strong>nicht</strong> zum Projekt und sind nicht in der Abgabe.</p>
+<hr>
+<h2 id="3-jede-datei-und-jeder-ordner-erklärt">3. Jede Datei und jeder Ordner erklärt</h2>
+<p>Spalten: <strong>Wozu?</strong> – <strong>Wer benutzt sie?</strong> – <strong>Was passiert ohne sie?</strong> – <strong>Vorlage?</strong>
+(«Vorlage» = aus der Projektvorlage übernommen, «ergänzt» = von uns dazugekommen).</p>
+<h3 id="31-projektordner-oberste-ebene">3.1 Projektordner (oberste Ebene)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pfad</th>
+<th>Wozu?</th>
+<th>Wer benutzt sie?</th>
+<th>Ohne sie?</th>
+<th>Vorlage?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>README.md</code></td>
+<td>Kurzanleitung: was die App ist, Voraussetzungen, Inbetriebnahme mit zwei Terminals, Befehle, Projektstruktur</td>
+<td>Dozent und Gruppe auf GitHub, <code>scripts/make-submission.sh</code> (macht daraus die README im ZIP)</td>
+<td>Niemand wüsste, wie man die App startet; das ZIP-Script bricht ab</td>
+<td>ergänzt (die Vorlage hat ein eigenes README nur für den Client)</td>
+</tr>
+<tr>
+<td><code>.gitignore</code></td>
+<td>Sagt Git, welche Dateien <strong>nicht</strong> ins Repo gehören: <code>node_modules/</code>, <code>dist/</code>, <code>*.tsbuildinfo</code>, das ZIP</td>
+<td>Git bei jedem <code>git add</code>/<code>git status</code></td>
+<td>Tausende Dateien aus <code>node_modules</code> würden committet, das Repo wäre riesig</td>
+<td>ergänzt (für den ganzen Projektordner)</td>
+</tr>
+<tr>
+<td><code>.gitattributes</code></td>
+<td>Eine Regel: <code>deploy export-ignore</code>. <code>git archive</code> lässt damit den Ordner <code>deploy/</code> weg</td>
+<td><code>git archive</code> in <code>scripts/make-submission.sh</code></td>
+<td>Server-Details (Pfade, Ports) kämen ins Abgabe-ZIP</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>DOKUMENTATION.md</code></td>
+<td>Die Projektdokumentation (Quelle)</td>
+<td>wir; daraus entstehen PDF, HTML und Word</td>
+<td>Keine Doku, Bewertungskriterium verfehlt</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>DOKUMENTATION.pdf</code></td>
+<td>Doku als PDF, wird abgegeben</td>
+<td>Dozent</td>
+<td>– (wird aus der <code>.md</code> erzeugt: <code>scripts/build-pdf.sh</code>)</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>DOKUMENTATION.html</code></td>
+<td>Doku als eine einzige HTML-Datei, offline lesbar</td>
+<td>Dozent, öffentliche Abgabe</td>
+<td>– (erzeugt wie das PDF)</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>DOKUMENTATION.docx</code></td>
+<td>Doku als Word-Datei in der HWZ-Vorlage</td>
+<td>Gruppe, falls jemand in Word weiterschreiben will</td>
+<td>– (erzeugt: <code>scripts/build-docx.sh</code>)</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/</code></td>
+<td>Die React-App (Frontend)</td>
+<td>Browser</td>
+<td>Keine Oberfläche</td>
+<td><strong>Vorlage</strong> (die ganze Vorlage ist dieser Ordner)</td>
+</tr>
+<tr>
+<td><code>server/</code></td>
+<td>Die Express-API (Backend)</td>
+<td>der Client über <code>/api</code></td>
+<td>Keine Daten, keine Sessions</td>
+<td>ergänzt (Backend, Folie 01/4: «minimales Backend mit TypeScript und Express.js»)</td>
+</tr>
+<tr>
+<td><code>docs/</code></td>
+<td>Begleitdokumente: Leitfaden fürs Fachgespräch, Checklisten, Screenshots</td>
+<td>Gruppe, teilweise Dozent</td>
+<td>App läuft trotzdem; uns fehlt die Vorbereitung</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>scripts/</code></td>
+<td>Hilfs-Scripts für Doku (PDF/HTML/Word), Abgabe-ZIP, Verweis-Prüfung</td>
+<td>wir (nicht die App)</td>
+<td>App läuft trotzdem; Doku und ZIP müssten von Hand gebaut werden</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>deploy/</code></td>
+<td>Betrieb auf einem Linux-Server (nginx, systemd)</td>
+<td>wir beim Deployment</td>
+<td>App läuft lokal trotzdem; keine Live-Version</td>
+<td>ergänzt</td>
+</tr>
+</tbody></table></div>
+<h3 id="32-client--die-react-app">3.2 <code>client/</code> – die React-App</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pfad</th>
+<th>Wozu?</th>
+<th>Wer benutzt sie?</th>
+<th>Ohne sie?</th>
+<th>Vorlage?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>client/package.json</code></td>
+<td>Name, Scripts (<code>dev</code>, <code>build</code>, <code>lint</code> …) und Abhängigkeiten des Clients (Kapitel 5.1)</td>
+<td><code>pnpm</code> bei jedem Befehl</td>
+<td><code>pnpm install</code> und <code>pnpm dev</code> gehen nicht, es ist kein Projekt mehr</td>
+<td><strong>Vorlage</strong>, nur <code>name</code> geändert</td>
+</tr>
+<tr>
+<td><code>client/pnpm-lock.yaml</code></td>
+<td>Genaue Versionen aller installierten Pakete (Kapitel 5.2)</td>
+<td><code>pnpm install</code></td>
+<td>Jeder bekäme vielleicht andere Versionen; «bei mir geht's»</td>
+<td><strong>Vorlage</strong></td>
+</tr>
+<tr>
+<td><code>client/index.html</code></td>
+<td>Die <strong>einzige</strong> HTML-Seite der SPA, enthält <code>&lt;div id="root"&gt;</code> und lädt <code>src/main.tsx</code> (Kapitel 5.3)</td>
+<td>Vite (Einstiegspunkt) und der Browser</td>
+<td>Vite hätte keinen Einstieg, die Seite bliebe leer</td>
+<td><strong>Vorlage</strong></td>
+</tr>
+<tr>
+<td><code>client/vite.config.ts</code></td>
+<td>Konfiguration von Vite: React-Plugin und <strong>Proxy <code>/api</code> → Port 3000</strong> (Kapitel 5.4)</td>
+<td>Vite bei <code>pnpm dev</code>, <code>pnpm build</code>, <code>pnpm preview</code></td>
+<td>Kein React-Plugin (kein Fast Refresh), und <code>/api</code>-Requests kämen nie bei Express an (Vite schickt bei <code>GET</code> die <code>index.html</code>, sonst 404)</td>
+<td><strong>Vorlage</strong></td>
+</tr>
+<tr>
+<td><code>client/tsconfig.json</code></td>
+<td>«Dach» über die zwei TypeScript-Konfigurationen (Kapitel 5.5)</td>
+<td><code>tsc -b</code> in <code>pnpm build</code>, VS Code</td>
+<td><code>tsc -b</code> wüsste nicht, was zu prüfen ist</td>
+<td><strong>Vorlage</strong></td>
+</tr>
+<tr>
+<td><code>client/tsconfig.app.json</code></td>
+<td>TypeScript-Regeln für den App-Code in <code>src/</code> (Kapitel 5.6)</td>
+<td><code>tsc -b</code>, VS Code</td>
+<td>Keine Typprüfung des App-Codes</td>
+<td><strong>Vorlage</strong>, unverändert</td>
+</tr>
+<tr>
+<td><code>client/tsconfig.node.json</code></td>
+<td>TypeScript-Regeln für <code>vite.config.ts</code> (läuft in Node, nicht im Browser) (Kapitel 5.7)</td>
+<td><code>tsc -b</code>, VS Code</td>
+<td><code>vite.config.ts</code> würde nicht geprüft</td>
+<td><strong>Vorlage</strong>, unverändert</td>
+</tr>
+<tr>
+<td><code>client/.prettierrc</code></td>
+<td>Formatierungsregeln: ohne Semikolons, einfache Anführungszeichen (Kapitel 5.8)</td>
+<td>Prettier (<code>pnpm format</code>, «Format on Save»)</td>
+<td>Prettier würde Semikolons und doppelte Anführungszeichen setzen, der Code sähe anders aus als in den Folien</td>
+<td>ergänzt (die abgelegte Kopie der Vorlage enthält keine Punkt-Dateien; Regeln wie in den Folien)</td>
+</tr>
+<tr>
+<td><code>client/.prettierignore</code></td>
+<td>Dateien, die Prettier <strong>nicht</strong> formatieren soll: <code>pnpm-lock.yaml</code>, <code>dist</code></td>
+<td>Prettier</td>
+<td><code>pnpm format</code> würde die Lock-Datei und den Build umformatieren, <code>format:check</code> schlüge an</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/.gitignore</code></td>
+<td><code>node_modules</code>, <code>dist</code>, <code>*.tsbuildinfo</code> des Clients nicht ins Git</td>
+<td>Git</td>
+<td>wie oben beim Projektordner</td>
+<td>ergänzt (Standard bei Vite-Projekten)</td>
+</tr>
+<tr>
+<td><code>client/public/</code></td>
+<td>Dateien, die Vite <strong>unverändert</strong> ausliefert (Adresse <code>/…</code>)</td>
+<td>Vite</td>
+<td>–</td>
+<td><strong>Vorlage</strong></td>
+</tr>
+<tr>
+<td><code>client/public/favicon.svg</code></td>
+<td>Das Symbol im Browser-Tab (Vite-Logo aus der Vorlage), eingebunden in <code>index.html</code></td>
+<td>Browser</td>
+<td>Browser fragt <code>/favicon.ico</code> an und zeigt ein leeres Symbol</td>
+<td><strong>Vorlage</strong></td>
+</tr>
+<tr>
+<td><code>client/src/</code></td>
+<td>Der ganze Quellcode der App (Teil 01 erklärt jede Zeile)</td>
+<td>Vite, TypeScript</td>
+<td>keine App</td>
+<td><strong>Vorlage</strong> (Ordner), Inhalt grösstenteils ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/main.tsx</code></td>
+<td>Startpunkt: hängt die App mit <code>createRoot</code> in <code>&lt;div id="root"&gt;</code>, <code>StrictMode</code>, <code>UserProvider</code></td>
+<td><code>index.html</code> lädt sie</td>
+<td>nichts würde gerendert</td>
+<td><strong>Vorlage</strong>, <code>UserProvider</code> ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/index.css</code></td>
+<td>Globale Styles (Box-Modell, Schrift, Buttons)</td>
+<td><code>main.tsx</code> importiert sie</td>
+<td>App ohne Grundstil</td>
+<td><strong>Vorlage</strong> (Box-Modell, Schrift), Rest ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/</code></td>
+<td>Alle React-Komponenten, je eine <code>.tsx</code>- und meist eine <code>.css</code>-Datei (Folie 08/19)</td>
+<td>–</td>
+<td>–</td>
+<td><strong>Vorlage</strong> (Ordner)</td>
+</tr>
+<tr>
+<td><code>client/src/components/App.tsx</code></td>
+<td>Wurzelkomponente: Kopfzeile, <strong>Ansichtswechsel mit State</strong> (Folie 09/36)</td>
+<td><code>main.tsx</code></td>
+<td>keine Seiten</td>
+<td><strong>Vorlage</strong>, Inhalt ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/App.css</code></td>
+<td>Kopfzeile und Inhaltsbereich (<code>.layout</code>)</td>
+<td><code>App.tsx</code></td>
+<td>ungestylte Kopfzeile</td>
+<td><strong>Vorlage</strong> (<code>.layout</code>), Rest ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/HomePage.tsx</code></td>
+<td>Startseite: Name, «Neue Session», Liste mit Polling</td>
+<td><code>App.tsx</code></td>
+<td>keine Startseite</td>
+<td>ergänzt (Name aus Folie 08/49)</td>
+</tr>
+<tr>
+<td><code>client/src/components/HomePage.css</code></td>
+<td>Layout der Startseite (Grid mit zwei Spalten)</td>
+<td><code>HomePage.tsx</code></td>
+<td>ungestylte Startseite</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/NameForm.tsx</code></td>
+<td>Eingabefeld für den Namen (controlled input)</td>
+<td><code>HomePage.tsx</code></td>
+<td>kein Namensfeld</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/NameForm.css</code></td>
+<td>Stil des Namensfelds</td>
+<td><code>NameForm.tsx</code></td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/SessionListItem.tsx</code></td>
+<td>ein Eintrag der Session-Liste mit «Beitreten» und «Löschen»</td>
+<td><code>HomePage.tsx</code></td>
+<td>keine Liste</td>
+<td>ergänzt (Folie 08/49: «SessionItem»)</td>
+</tr>
+<tr>
+<td><code>client/src/components/SessionListItem.css</code></td>
+<td>Stil eines Eintrags</td>
+<td><code>SessionListItem.tsx</code></td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/PokerTablePage.tsx</code></td>
+<td>Seite des Pokertisches: Beitreten (Mount), Verlassen (Cleanup)</td>
+<td><code>App.tsx</code></td>
+<td>kein Pokertisch</td>
+<td>ergänzt (Name aus Folie 08/49)</td>
+</tr>
+<tr>
+<td><code>client/src/components/PokerRoom.tsx</code></td>
+<td>Der Tisch: Polling, Aktionen (Karte, Deck, Aufdecken, Neue Runde)</td>
+<td><code>PokerTablePage.tsx</code></td>
+<td>kein Spiel</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/PokerRoom.css</code></td>
+<td>Werkzeugleiste und Abstände am Tisch</td>
+<td><code>PokerRoom.tsx</code></td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/PokerTable.tsx</code></td>
+<td>Tisch mit zwei Reihen Plätzen, Mitte über <code>children</code></td>
+<td><code>PokerRoom.tsx</code></td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/PokerTable.css</code></td>
+<td>Stil des Tisches (Filz, Reihen)</td>
+<td><code>PokerTable.tsx</code></td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/ParticipantSeat.tsx</code></td>
+<td>ein Platz: kleine Karte und Name</td>
+<td><code>PokerTable.tsx</code></td>
+<td></td>
+<td>ergänzt (Folie 08/49: «Participant»)</td>
+</tr>
+<tr>
+<td><code>client/src/components/ParticipantSeat.css</code></td>
+<td>Stil der Plätze und Karten (verdeckt, aufgedeckt)</td>
+<td><code>ParticipantSeat.tsx</code></td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/CardDeck.tsx</code></td>
+<td>die eigenen Handkarten</td>
+<td><code>PokerRoom.tsx</code></td>
+<td>keine Karten zum Wählen</td>
+<td>ergänzt (Folie 08/49: «Card»)</td>
+</tr>
+<tr>
+<td><code>client/src/components/CardDeck.css</code></td>
+<td>Stil der Handkarten</td>
+<td><code>CardDeck.tsx</code></td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/DeckSwitcher.tsx</code></td>
+<td><code>&lt;select&gt;</code> für Fibonacci / T-Shirt</td>
+<td><code>PokerRoom.tsx</code></td>
+<td>kein Deckwechsel</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/DeckSwitcher.css</code></td>
+<td>Stil der Auswahl</td>
+<td><code>DeckSwitcher.tsx</code></td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/RoundResult.tsx</code></td>
+<td>Ergebnis nach dem Aufdecken (Durchschnitt, Konsens)</td>
+<td><code>PokerRoom.tsx</code></td>
+<td>kein Ergebnis</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/RoundResult.css</code></td>
+<td>Stil des Ergebnisses</td>
+<td><code>RoundResult.tsx</code></td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/ErrorMessage.tsx</code></td>
+<td>rote Fehlermeldung (Folie 08/37)</td>
+<td>mehrere Komponenten</td>
+<td>Fehler unsichtbar</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/ErrorMessage.css</code></td>
+<td>Stil der Fehlermeldung</td>
+<td><code>ErrorMessage.tsx</code></td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/LoadingIndicator.tsx</code></td>
+<td>Ladeanzeige als Text</td>
+<td>mehrere Komponenten</td>
+<td>kein Ladezustand sichtbar</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/LoadingIndicator.css</code></td>
+<td>Stil der Ladeanzeige</td>
+<td><code>LoadingIndicator.tsx</code></td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/SessionNotFound.tsx</code></td>
+<td>Meldung «Session existiert nicht (mehr)»</td>
+<td><code>PokerTablePage.tsx</code>, <code>PokerRoom.tsx</code></td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/SessionNotFound.css</code></td>
+<td>Stil der Meldung</td>
+<td><code>SessionNotFound.tsx</code></td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/components/UserProvider.tsx</code></td>
+<td>stellt den Namen über Context bereit, gespeichert mit <code>useLocalStorage</code></td>
+<td><code>main.tsx</code></td>
+<td>Name nicht überall lesbar</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/hooks/</code></td>
+<td>eigene Hooks</td>
+<td>–</td>
+<td>–</td>
+<td><strong>Vorlage</strong> (Ordner mit <code>.gitkeep</code>)</td>
+</tr>
+<tr>
+<td><code>client/src/hooks/useLocalStorage.ts</code></td>
+<td>Custom Hook: Text-State, der im localStorage gespeichert wird (Folie 09/32)</td>
+<td><code>UserProvider.tsx</code></td>
+<td>Name nach Reload weg (Pflicht §3.2 verfehlt)</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/context/</code></td>
+<td>Context-Objekte</td>
+<td>–</td>
+<td>–</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/context/UserContext.ts</code></td>
+<td><code>createContext</code> für den Namen</td>
+<td><code>UserProvider.tsx</code>, <code>HomePage.tsx</code>, <code>PokerTablePage.tsx</code></td>
+<td></td>
+<td>ergänzt (nicht in den Folien)</td>
+</tr>
+<tr>
+<td><code>client/src/types/</code></td>
+<td>Types und Interfaces</td>
+<td>–</td>
+<td>–</td>
+<td><strong>Vorlage</strong> (Ordner mit <code>.gitkeep</code>)</td>
+</tr>
+<tr>
+<td><code>client/src/types/poker.ts</code></td>
+<td>alle Types der App und der REST-API</td>
+<td>fast alle Dateien</td>
+<td>keine Typprüfung der Daten</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/utils/</code></td>
+<td>Hilfsfunktionen ohne React</td>
+<td>–</td>
+<td>–</td>
+<td>ergänzt (Folie 09/37: «nicht alles in <code>src</code>»)</td>
+</tr>
+<tr>
+<td><code>client/src/utils/poker.ts</code></td>
+<td>Decks, <code>validateName()</code>, <code>computeResult()</code></td>
+<td>Komponenten</td>
+<td>keine Spielregeln im Client</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/api/</code></td>
+<td>Aufrufe an den Server</td>
+<td>–</td>
+<td>–</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>client/src/api/sessions.ts</code></td>
+<td>eine Funktion pro API-Route, einzige Stelle mit <code>fetch()</code></td>
+<td>Komponenten</td>
+<td>kein Kontakt zum Server</td>
+<td>ergänzt</td>
+</tr>
+</tbody></table></div>
+<p>Die zwei leeren <code>.gitkeep</code>-Dateien der Vorlage (in <code>src/hooks/</code> und <code>src/types/</code>) haben wir gelöscht,
+wie es das README der Vorlage erlaubt: «Leere <code>.gitkeep</code>-Dateien können gelöscht werden, sobald ein
+Ordner Dateien enthält.» Git speichert keine leeren Ordner, <code>.gitkeep</code> ist nur ein Platzhalter.</p>
+<h3 id="33-server--die-express-api">3.3 <code>server/</code> – die Express-API</h3>
+<p>Der Server wird in Teil 02 Zeile für Zeile erklärt. Hier nur, wozu jede Datei da ist.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pfad</th>
+<th>Wozu?</th>
+<th>Wer benutzt sie?</th>
+<th>Ohne sie?</th>
+<th>Vorlage?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>server/package.json</code></td>
+<td>Scripts (<code>dev</code>, <code>start</code>, <code>build</code> …) und Abhängigkeiten (<code>express</code>) (Kapitel 6.1)</td>
+<td><code>pnpm</code></td>
+<td>kein Projekt, kein Start</td>
+<td>ergänzt (Aufbau wie im Client)</td>
+</tr>
+<tr>
+<td><code>server/pnpm-lock.yaml</code></td>
+<td>genaue Versionen der Server-Pakete</td>
+<td><code>pnpm install</code></td>
+<td>wie beim Client</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>server/tsconfig.json</code></td>
+<td>TypeScript-Regeln für den Server (Kapitel 6.2)</td>
+<td><code>tsc -b</code> (<code>pnpm build</code>), VS Code</td>
+<td>keine Typprüfung</td>
+<td>ergänzt (abgeleitet von <code>client/tsconfig.node.json</code>)</td>
+</tr>
+<tr>
+<td><code>server/.prettierrc</code></td>
+<td>gleiche Formatierung wie im Client</td>
+<td>Prettier</td>
+<td>anderer Stil als im Client</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>server/.prettierignore</code></td>
+<td><code>pnpm-lock.yaml</code> und <code>dist</code> nicht formatieren</td>
+<td>Prettier</td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>server/.gitignore</code></td>
+<td><code>node_modules</code>, <code>dist</code>, <code>*.tsbuildinfo</code> nicht ins Git</td>
+<td>Git</td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>server/src/</code></td>
+<td>Quellcode des Servers</td>
+<td>Node</td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>server/src/index.ts</code></td>
+<td>Startpunkt: Aufräum-Timer starten, <code>app.listen(PORT)</code></td>
+<td><code>pnpm dev</code> / <code>pnpm start</code></td>
+<td>Server startet nicht</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>server/src/app.ts</code></td>
+<td>Express-App: <code>express.json()</code>, Routen, 404- und Fehler-Handler, in Produktion <code>client/dist</code></td>
+<td><code>index.ts</code></td>
+<td>keine Routen</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>server/src/config.ts</code></td>
+<td>Port, Intervalle, Timeout, Produktionsmodus als Konstanten</td>
+<td><code>index.ts</code>, <code>app.ts</code>, <code>store.ts</code></td>
+<td>Zahlen verstreut im Code</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>server/src/routes/</code></td>
+<td>Router-Dateien</td>
+<td>–</td>
+<td>–</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>server/src/routes/sessions.ts</code></td>
+<td>alle Routen unter <code>/api/sessions</code></td>
+<td><code>app.ts</code></td>
+<td>keine API</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>server/src/store.ts</code></td>
+<td>Speicher aller Sessions (Array im Arbeitsspeicher) und Funktionen, die ihn ändern</td>
+<td><code>routes/sessions.ts</code>, <code>index.ts</code></td>
+<td>keine Daten</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>server/src/validation.ts</code></td>
+<td>prüft Request-Bodies (<code>unknown</code> → <code>typeof</code>)</td>
+<td><code>routes/sessions.ts</code></td>
+<td>Unsinn im Body käme in den Store</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>server/src/rules.ts</code></td>
+<td>Karten pro Deck, Namensregeln (gleich wie <code>client/src/utils/poker.ts</code>)</td>
+<td><code>validation.ts</code>, <code>store.ts</code></td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>server/src/types.ts</code></td>
+<td>Types des Servers (gleich wie <code>client/src/types/poker.ts</code>)</td>
+<td>alle Server-Dateien</td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+</tbody></table></div>
+<h3 id="34-docs--begleitdokumente">3.4 <code>docs/</code> – Begleitdokumente</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pfad</th>
+<th>Wozu?</th>
+<th>Wer benutzt sie?</th>
+<th>Ohne sie?</th>
+<th>Vorlage?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>docs/FACHGESPRAECH.md</code></td>
+<td>bisheriger Leitfaden fürs Fachgespräch (Rundgang, Musterantworten, Demo)</td>
+<td>Gruppe; liegt auch im Abgabe-ZIP</td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>docs/FACHGESPRAECH.pdf</code></td>
+<td>derselbe Leitfaden als PDF</td>
+<td>Gruppe, Abgabe</td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>docs/FACHGESPRAECH.html</code></td>
+<td>derselbe Leitfaden als HTML</td>
+<td>Gruppe, Abgabe</td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>docs/fachgespraech/</code></td>
+<td><strong>dieser</strong> ausführliche Leitfaden (Teile 00–04, jede Zeile erklärt); nicht im Code-ZIP, wird aber zusammen mit der Abgabe öffentlich gezeigt</td>
+<td>Gruppe</td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>docs/ANFORDERUNGEN-CHECKLISTE.md</code></td>
+<td>jede Anforderung des Leistungsnachweises mit Nachweis im Code</td>
+<td>Gruppe</td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>docs/FOLIEN-ABGLEICH.md</code></td>
+<td>Abgleich des Codes mit den Kursfolien (was wurde wie angepasst)</td>
+<td>Gruppe</td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>docs/SCHLUSSPRUEFUNG.md</code></td>
+<td>Bericht der unabhängigen Schlussprüfung (WT 4): was geprüft und korrigiert wurde</td>
+<td>Gruppe</td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>docs/VEREINFACHUNG-PLAN.md</code></td>
+<td>Plan der Vereinfachung des Codes (Geschichte des Projekts)</td>
+<td>Gruppe</td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>docs/screenshots/</code></td>
+<td>Bildschirmfotos für die Doku (Desktop, Tablet, Handy)</td>
+<td><code>DOKUMENTATION.md</code></td>
+<td>Doku ohne Bilder</td>
+<td>ergänzt</td>
+</tr>
+<tr>
+<td><code>docs/docx-vorschau/</code></td>
+<td>Vorschaubilder der Word-Datei</td>
+<td>Gruppe zur Kontrolle</td>
+<td></td>
+<td>ergänzt</td>
+</tr>
+</tbody></table></div>
+<p>Im Code-ZIP ist aus <code>docs/</code> nur der Leitfaden <code>docs/FACHGESPRAECH.*</code>. Checkliste, Pläne, Folien-Abgleich
+und Schlussprüfung bleiben im privaten Repo.</p>
+<h3 id="35-scripts-und-deploy--werkzeuge-nicht-teil-der-app">3.5 <code>scripts/</code> und <code>deploy/</code> – Werkzeuge, nicht Teil der App</h3>
+<p>Die App braucht keine dieser Dateien: <code>pnpm install</code>, <code>pnpm dev</code>, <code>pnpm build</code> und <code>pnpm lint</code> in
+<code>client/</code> und <code>server/</code> laufen ohne sie. Sie sind nicht im Abgabe-ZIP.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pfad</th>
+<th>Wozu?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>scripts/build-pdf.sh</code></td>
+<td>baut aus den Markdown-Dateien PDF und HTML (auch diesen Leitfaden)</td>
+</tr>
+<tr>
+<td><code>scripts/pdf/</code></td>
+<td>Werkzeuge dafür, eigenes kleines Node-Projekt (<code>scripts/pdf/package.json</code>, <code>scripts/pdf/package-lock.json</code>) mit Playwright, marked und Mermaid</td>
+</tr>
+<tr>
+<td><code>scripts/pdf/render.mjs</code></td>
+<td>Markdown → HTML → PDF/HTML mit Headless-Chromium</td>
+</tr>
+<tr>
+<td><code>scripts/pdf/chromium.mjs</code></td>
+<td>startet Chromium für <code>render.mjs</code> und <code>mermaid-png.mjs</code></td>
+</tr>
+<tr>
+<td><code>scripts/pdf/mermaid-png.mjs</code></td>
+<td>rendert Mermaid-Diagramme als PNG für die Word-Datei</td>
+</tr>
+<tr>
+<td><code>scripts/pdf/print.css</code></td>
+<td>Druck-Stil fürs PDF</td>
+</tr>
+<tr>
+<td><code>scripts/pdf/html.css</code></td>
+<td>Bildschirm-Stil für die HTML-Datei</td>
+</tr>
+<tr>
+<td><code>scripts/build-docx.sh</code></td>
+<td>baut <code>DOKUMENTATION.docx</code></td>
+</tr>
+<tr>
+<td><code>scripts/docx/</code></td>
+<td>Werkzeuge dafür: <code>scripts/docx/build_docx.py</code> (Doku in die HWZ-Word-Vorlage), <code>scripts/docx/filter.lua</code> (pandoc-Filter), <code>scripts/docx/seitenzahlen.py</code> (Seitenzahlen im Inhaltsverzeichnis)</td>
+</tr>
+<tr>
+<td><code>scripts/check-refs.py</code></td>
+<td>prüft alle Verweise «Datei:Zeile» in der Doku gegen den aktuellen Code</td>
+</tr>
+<tr>
+<td><code>scripts/make-submission.sh</code></td>
+<td>baut das Abgabe-ZIP <code>scrum-poker-code.zip</code> aus dem committeten Stand</td>
+</tr>
+<tr>
+<td><code>scripts/publish-abgaben.sh</code></td>
+<td>legt die Abgabe im öffentlichen Repo <code>gotazlib/abgaben</code> ab</td>
+</tr>
+<tr>
+<td><code>deploy/</code></td>
+<td>Betrieb auf einem Linux-Server (nur intern, nicht in der Abgabe)</td>
+</tr>
+<tr>
+<td><code>deploy/README.md</code></td>
+<td>Anleitung für Einrichten und Updates</td>
+</tr>
+<tr>
+<td><code>deploy/deploy.sh</code></td>
+<td>holt <code>origin/main</code>, installiert und baut im Deploy-Ordner</td>
+</tr>
+<tr>
+<td><code>deploy/scrumpoker.service</code></td>
+<td>systemd-Dienst, der <code>node src/index.ts</code> mit <code>NODE_ENV=production</code> startet</td>
+</tr>
+<tr>
+<td><code>deploy/&lt;domain&gt;.nginx</code></td>
+<td>nginx-Konfiguration (Dateiname = Domain des Servers): HTTPS annehmen und an den Node-Prozess weiterleiten</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2 id="4-was-aus-der-projektvorlage-stammt-und-was-wir-ergänzt-haben">4. Was aus der Projektvorlage stammt und was wir ergänzt haben</h2>
+<p>Die Vorlage «scrum-poker-hwz» (Folie 07/4) ist ein leeres React-Projekt mit TypeScript und Vite.
+Wir haben sie Datei für Datei mit unserem <code>client/</code> verglichen (<code>diff</code>):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Datei der Vorlage</th>
+<th>In unserem <code>client/</code></th>
+<th>Unterschied</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>package.json</code></td>
+<td><code>client/package.json</code></td>
+<td>nur <code>"name"</code>: <code>scrum-poker-hwz</code> → <code>scrum-poker-client</code>. Scripts, Versionen, <code>packageManager</code>, <code>engines</code> identisch</td>
+</tr>
+<tr>
+<td><code>pnpm-lock.yaml</code></td>
+<td><code>client/pnpm-lock.yaml</code></td>
+<td>gleiche Pakete; einige Patch- und Minor-Versionen durch <code>pnpm install</code> neuer (z. B. <code>react</code> 19.3.0 → 19.3.1, <code>vite</code> 8.3.4 → 8.3.5, <code>oxlint</code> 1.87.0 → 1.89.0), alle innerhalb der Bereiche aus <code>package.json</code></td>
+</tr>
+<tr>
+<td><code>index.html</code></td>
+<td><code>client/index.html</code></td>
+<td>identisch</td>
+</tr>
+<tr>
+<td><code>vite.config.ts</code></td>
+<td><code>client/vite.config.ts</code></td>
+<td>identisch (inkl. Proxy und Kommentar)</td>
+</tr>
+<tr>
+<td><code>tsconfig.json</code></td>
+<td><code>client/tsconfig.json</code></td>
+<td>identisch</td>
+</tr>
+<tr>
+<td><code>tsconfig.app.json</code></td>
+<td><code>client/tsconfig.app.json</code></td>
+<td>identisch</td>
+</tr>
+<tr>
+<td><code>tsconfig.node.json</code></td>
+<td><code>client/tsconfig.node.json</code></td>
+<td>identisch</td>
+</tr>
+<tr>
+<td><code>public/favicon.svg</code></td>
+<td><code>client/public/favicon.svg</code></td>
+<td>identisch</td>
+</tr>
+<tr>
+<td><code>src/main.tsx</code></td>
+<td><code>client/src/main.tsx</code></td>
+<td>Kommentare, <code>index.css</code> als erster Import, <code>&lt;UserProvider&gt;</code> um <code>&lt;App /&gt;</code></td>
+</tr>
+<tr>
+<td><code>src/index.css</code></td>
+<td><code>client/src/index.css</code></td>
+<td>Box-Modell und Schrift aus der Vorlage, dazu Überschriften, <code>:focus</code>, Buttons, Media Query</td>
+</tr>
+<tr>
+<td><code>src/components/App.tsx</code></td>
+<td><code>client/src/components/App.tsx</code></td>
+<td>statt <code>&lt;h1&gt;Scrum Poker&lt;/h1&gt;</code> der Ansichtswechsel mit State</td>
+</tr>
+<tr>
+<td><code>src/components/App.css</code></td>
+<td><code>client/src/components/App.css</code></td>
+<td><code>.layout</code> angepasst, Kopfzeile ergänzt</td>
+</tr>
+<tr>
+<td><code>src/hooks/.gitkeep</code>, <code>src/types/.gitkeep</code></td>
+<td>–</td>
+<td>gelöscht, Ordner haben jetzt Dateien</td>
+</tr>
+<tr>
+<td><code>README.md</code> (der Vorlage)</td>
+<td>–</td>
+<td>nicht übernommen; unser <code>README.md</code> liegt eine Ebene höher und beschreibt Client <strong>und</strong> Server</td>
+</tr>
+</tbody></table></div>
+<p><strong>Ganz neu von uns:</strong> alle anderen Dateien in <code>client/src/</code> (Komponenten, <code>api/</code>, <code>context/</code>,
+<code>utils/</code>, Hook, Types), die Punkt-Dateien <code>.prettierrc</code>, <code>.prettierignore</code>, <code>.gitignore</code>, der ganze
+Ordner <code>server/</code>, die Doku und die Scripts.</p>
+<p><strong>Zu <code>strict</code>:</strong> Bis WT 4 stand in beiden <code>tsconfig</code>-Dateien des Clients zusätzlich <code>"strict": true</code>,
+mit der Begründung, sonst wären implizite <code>any</code> erlaubt. Das stimmt mit TypeScript 6.0 nicht mehr:
+<code>strict</code> ist dort <strong>Standard</strong> (wir haben es ausprobiert: ohne die Zeile meldet <code>tsc</code> ein implizites
+<code>any</code> genauso). Seit der Schlussprüfung (WT 4) sind die Dateien darum wieder <strong>identisch mit der
+Vorlage</strong>. Im Server steht <code>"strict": true</code> noch in <code>server/tsconfig.json</code>; dort ist es nur
+ausdrücklich, ändert aber nichts.</p>
+<p><strong>Fragen, die kommen können:</strong></p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was habt ihr an der Projektvorlage geändert?» <strong>Antwort:</strong> An der
+Konfiguration nur den Namen im <code>package.json</code>. Dazu kommen die Punkt-Dateien für Prettier und
+Git. Alles andere ist neuer Code in
+<code>src/</code> nach der Ordnerstruktur der Vorlage (<code>components/</code>, <code>hooks/</code>, <code>types/</code>), ergänzt um <code>api/</code>,
+<code>context/</code> und <code>utils/</code>, damit nicht alles in einem Ordner liegt (Folie 09/37).</p>
+</blockquote>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum ist der Server nicht in der Vorlage?» <strong>Antwort:</strong> Die Vorlage
+ist nur der Client. Das Backend ist laut Folie 01/4 ein «(minimales) Backend mit TypeScript und
+Express.js», das wir selbst geschrieben haben. Es ist ein eigenes Node-Projekt, darum ein eigenes
+<code>package.json</code>.</p>
+</blockquote>
+<hr>
+<h2 id="5-konfiguration-des-clients-zeile-für-zeile">5. Konfiguration des Clients Zeile für Zeile</h2>
+<h3 id="51-clientpackagejson">5.1 <code>client/package.json</code></h3>
+<p><code>package.json</code> beschreibt ein Node-Projekt: Name, Version, Scripts und Abhängigkeiten (Folie 03/10).
+JSON erlaubt <strong>keine Kommentare</strong>, darum stehen die Erklärungen hier.</p>
+<p><strong>Zeilen 1–2</strong> · <code>client/package.json:1-2</code></p>
+<pre><code> 1  {
+ 2    "name": "scrum-poker-client",</code></pre>
+<p><strong>Was macht das?</strong> <code>{</code> beginnt das JSON-Objekt. <code>"name"</code> ist der Name des Pakets, hier <code>scrum-poker-client</code>.</p>
+<p><strong>Warum so?</strong> Jedes Projekt braucht einen Namen. Er erscheint z. B. in Fehlermeldungen von pnpm. In der
+Vorlage heisst er <code>scrum-poker-hwz</code>; wir haben ihn umbenannt, weil es neben dem Client noch den
+Server (<code>scrum-poker-server</code>) gibt.</p>
+<p><strong>Folien</strong> 03/10 (<code>package.json</code> mit <code>name</code>, <code>version</code>, <code>scripts</code>, <code>dependencies</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was ist die einzige Änderung im <code>package.json</code> gegenüber der Vorlage?» <strong>Antwort:</strong> Der Name. Alles andere ist gleich wie in der Vorlage.</p>
+</blockquote>
+<p><strong>Zeilen 3–4</strong> · <code>client/package.json:3-4</code></p>
+<pre><code> 3    "private": true,
+ 4    "version": "0.0.0",</code></pre>
+<p><strong>Was macht das?</strong> <code>"private": true</code> verhindert, dass jemand das Paket aus Versehen mit <code>npm publish</code> in die
+öffentliche npm-Registry hochlädt. <code>"version": "0.0.0"</code> ist die Versionsnummer des Projekts.</p>
+<p><strong>Warum so?</strong> Eine App ist kein Paket für andere, darum privat. Die Version brauchen wir nicht, sie bleibt
+auf dem Startwert von Vite.</p>
+<p><strong>Folien</strong> 03/10 (<code>version</code>, Semantic Versioning)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was bewirkt <code>"private": true</code>?» <strong>Antwort:</strong> Das Paket kann nicht veröffentlicht werden. Für eine App, die nur bei uns läuft, ist das
+richtig.</p>
+</blockquote>
+<p><strong>Zeile 5</strong> · <code>client/package.json:5</code></p>
+<pre><code> 5    "type": "module",</code></pre>
+<p><strong>Was macht das?</strong> <code>"type": "module"</code> sagt Node: <code>.js</code>-Dateien in diesem Projekt sind <strong>ES-Module</strong>
+(<code>import</code>/<code>export</code>) und nicht CommonJS (<code>require</code>).</p>
+<p><strong>Warum so?</strong> Vite und unser Code benutzen <code>import</code>/<code>export</code> (Folie 07/8). In der Hello-World-Übung
+(Folie 03/18–20) wurde <code>"type": "module"</code> entfernt, weil dort <code>require('figlet')</code> benutzt wurde; bei
+uns ist es genau umgekehrt.</p>
+<p><strong>Folien</strong> 03/18–20 (CommonJS), 07/8 (Module mit <code>import</code>/<code>export</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was ist der Unterschied zwischen <code>require</code> und <code>import</code>?» <strong>Antwort:</strong> <code>require</code> ist das alte Modulsystem von Node (CommonJS), <code>import</code>/<code>export</code> sind ES-Module, der
+Standard von JavaScript. Mit <code>"type": "module"</code> gilt in diesem Projekt <code>import</code>.</p>
+</blockquote>
+<p><strong>Zeile 6</strong> · <code>client/package.json:6</code></p>
+<pre><code> 6    "packageManager": "pnpm@12.11.2",</code></pre>
+<p><strong>Was macht das?</strong> <code>"packageManager": "pnpm@12.11.2"</code> legt fest, mit welchem Paketmanager und welcher Version das
+Projekt installiert wird.</p>
+<p><strong>Warum so?</strong> Alle in der Gruppe nutzen so dieselbe pnpm-Version. Ist lokal eine andere pnpm-Version
+installiert, holt pnpm die richtige selbst (wir haben es mit pnpm 10 getestet: die Ausgabe endet mit
+«Done … using pnpm v12.11.2»).</p>
+<p><strong>Folien</strong> 03/14–15 (pnpm), 03/17 (pnpm 12.x), 07/4 (Voraussetzung pnpm 12)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Wozu dient das Feld <code>packageManager</code>?» <strong>Antwort:</strong> Es legt pnpm 12.11.2 fest. So installieren alle mit derselben Version, und pnpm wechselt bei
+Bedarf automatisch auf diese Version.</p>
+</blockquote>
+<p><strong>Zeilen 7–9</strong> · <code>client/package.json:7-9</code></p>
+<pre><code> 7    "engines": {
+ 8      "node": "&gt;=24"
+ 9    },</code></pre>
+<p><strong>Was macht das?</strong> <code>"engines": { "node": "&gt;=24" }</code> sagt: Dieses Projekt braucht Node.js 24 oder neuer.</p>
+<p><strong>Warum so?</strong> Der Kurs setzt Node 24 LTS voraus (Folie 03/17, 07/4). Beim Server ist es wichtiger, weil Node
+dort die <code>.ts</code>-Dateien direkt ausführt. pnpm warnt, wenn eine ältere Node-Version läuft.</p>
+<p><strong>Folien</strong> 03/17 (Node.js 24 LTS), 07/4</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Welche Node-Version braucht ihr, und wo steht das?» <strong>Antwort:</strong> Node 24 (LTS), im Feld <code>engines</code> in <code>package.json</code> und im README.</p>
+</blockquote>
+<p><strong>Zeilen 10–11</strong> · <code>client/package.json:10-11</code></p>
+<pre><code>10    "scripts": {
+11      "dev": "vite",</code></pre>
+<p><strong>Was macht das?</strong> <code>"scripts"</code> sind Befehle mit einem Namen. <code>pnpm dev</code> führt das Script <code>dev</code> aus, also <code>vite</code>:
+Der Entwicklungsserver startet auf Port 5173.</p>
+<p><strong>Warum so?</strong> Mit Scripts muss niemand die genauen Befehle kennen. <code>vite</code> ohne Zusatz heisst «Dev-Server mit
+Hot Module Replacement»: Änderungen erscheinen sofort im Browser (Folie 07/4: «Hot Reload»).</p>
+<p><strong>Folien</strong> 03/10 (<code>scripts</code>), 03/15 (<code>pnpm [scriptName]</code>), 08/10–12 (Vite, Dev-Server mit HMR)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was passiert bei <code>pnpm dev</code>?» <strong>Antwort:</strong> pnpm sucht in <code>package.json</code> das Script <code>dev</code> und startet <code>vite</code>. Vite liefert die App unter
+<code>http://localhost:5173</code> aus, übersetzt TSX beim Laden und lädt geänderte Module neu (Kapitel 7.2).</p>
+</blockquote>
+<p><strong>Zeile 12</strong> · <code>client/package.json:12</code></p>
+<pre><code>12      "build": "tsc -b &amp;&amp; vite build",</code></pre>
+<p><strong>Was macht das?</strong> <code>"build": "tsc -b &amp;&amp; vite build"</code> macht zwei Schritte: zuerst <code>tsc -b</code> (TypeScript prüft alle
+Typen), <strong>nur wenn das klappt</strong> (<code>&amp;&amp;</code>) dann <code>vite build</code> (Produktions-Build nach <code>dist/</code>).</p>
+<p><strong>Warum so?</strong> Vite selbst prüft keine Typen, es entfernt sie nur. Ohne <code>tsc -b</code> käme ein Build mit
+Typfehlern durch. <code>-b</code> heisst «build mode»: <code>tsc</code> folgt den <code>references</code> in <code>tsconfig.json</code>.</p>
+<p><strong>Folien</strong> 08/10 (transpile, minify, bundle)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum steht <code>tsc -b</code> vor <code>vite build</code>?» <strong>Antwort:</strong> Vite übersetzt TypeScript ohne Typprüfung. <code>tsc -b</code> prüft die Typen vorher; bei einem Fehler
+bricht <code>&amp;&amp;</code> ab, und es entsteht kein Build.</p>
+</blockquote>
+<p><strong>Zeile 13</strong> · <code>client/package.json:13</code></p>
+<pre><code>13      "lint": "oxlint",</code></pre>
+<p><strong>Was macht das?</strong> <code>"lint": "oxlint"</code> prüft den Code mit dem Linter oxlint auf typische Fehler.</p>
+<p><strong>Warum so?</strong> Die Folien sagen «<code>pnpm lint</code> ausführen» (Folie 09/37). oxlint ist ein sehr schneller Linter
+und kommt aus der Vorlage. Es gibt keine eigene Konfigurationsdatei, oxlint läuft mit seinen
+Standardregeln (Kapitel 7.4).</p>
+<p><strong>Folien</strong> 09/37 (Konsolen-Warnungen beachten, <code>pnpm lint</code>), 09/12 (Linter-Hinweise «Nicht ignorieren!!»)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was ist ein Linter?» <strong>Antwort:</strong> Ein Werkzeug, das den Code liest, ohne ihn auszuführen, und typische Fehler oder schlechte
+Muster meldet, z. B. eine Variable, die nie benutzt wird.</p>
+</blockquote>
+<p><strong>Zeile 14</strong> · <code>client/package.json:14</code></p>
+<pre><code>14      "preview": "vite preview",</code></pre>
+<p><strong>Was macht das?</strong> <code>"preview": "vite preview"</code> startet einen kleinen Server, der den fertigen Build aus <code>dist/</code>
+ausliefert (Port 4173).</p>
+<p><strong>Warum so?</strong> So kann man den Produktions-Build vor der Abgabe lokal ansehen. <code>vite preview</code> übernimmt den
+Proxy aus <code>server:</code>, solange es keinen eigenen Abschnitt <code>preview:</code> gibt; mit laufendem Express
+funktioniert also auch <code>/api</code>. Für die echte Produktion braucht es aber kein Vite: Dort liefert
+Express den Build selbst aus (Kapitel 8.3).</p>
+<p><strong>Folien</strong> 08/10 (Build), 07/4 (Scripts im README der Vorlage)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was ist der Unterschied zwischen <code>pnpm dev</code> und <code>pnpm preview</code>?» <strong>Antwort:</strong> <code>dev</code> übersetzt den Quellcode laufend und lädt Änderungen sofort neu. <code>preview</code> zeigt nur den
+fertigen Build aus <code>dist/</code> an, ohne Neuladen bei Änderungen.</p>
+</blockquote>
+<p><strong>Zeilen 15–17</strong> · <code>client/package.json:15-17</code></p>
+<pre><code>15      "format": "prettier --write .",
+16      "format:check": "prettier --check ."
+17    },</code></pre>
+<p><strong>Was macht das?</strong> <code>"format"</code> formatiert alle Dateien mit Prettier (<code>--write</code> schreibt sie um). <code>"format:check"</code>
+prüft nur, ob alles formatiert ist, und ändert nichts. <code>}</code> schliesst die Scripts.</p>
+<p><strong>Warum so?</strong> Einheitlicher Stil für alle in der Gruppe. Die Folien empfehlen Prettier mit «Format on Save»
+(Folie 09/37). <code>format:check</code> gehört zu unseren Prüfungen vor der Abgabe.</p>
+<p><strong>Folien</strong> 09/37 (Prettier)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was macht <code>pnpm format:check</code> anders als <code>pnpm format</code>?» <strong>Antwort:</strong> <code>format</code> ändert die Dateien, <code>format:check</code> meldet nur, welche Dateien nicht formatiert sind
+(Ausgang mit Fehler), ohne etwas zu ändern.</p>
+</blockquote>
+<p><strong>Zeilen 18–21</strong> · <code>client/package.json:18-21</code></p>
+<pre><code>18    "dependencies": {
+19      "react": "^19.3.0",
+20      "react-dom": "^19.3.0"
+21    },</code></pre>
+<p><strong>Was macht das?</strong> <code>"dependencies"</code> sind die Pakete, die die App <strong>zur Laufzeit im Browser</strong> braucht: <code>react</code> (die
+Bibliothek) und <code>react-dom</code> (bringt React in den DOM des Browsers). <code>^19.3.0</code> heisst: Version 19.3.0
+oder neuer, aber unter 20.0.0.</p>
+<p><strong>Warum so?</strong> Mehr braucht die App nicht. Folie 09/37: «keine zusätzlichen Libraries (ausser Express und
+optional React Router)». Das <code>^</code> ist Semantic Versioning: Minor- und Patch-Updates sind erlaubt,
+kein neues Major.</p>
+<p><strong>Folien</strong> 03/10 (<code>dependencies</code>, Semantic Versioning <code>^</code>, <code>~</code>), 09/37 (keine zusätzlichen Libraries)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Welche Bibliotheken benutzt der Client, und was bedeutet <code>^19.3.0</code>?» <strong>Antwort:</strong> Nur <code>react</code> und <code>react-dom</code>. <code>^19.3.0</code> erlaubt jede Version ab 19.3.0 bis unter 20; welche
+genau installiert wird, steht in <code>pnpm-lock.yaml</code> (19.3.1).</p>
+</blockquote>
+<p><strong>Zeilen 22–26</strong> · <code>client/package.json:22-26</code></p>
+<pre><code>22    "devDependencies": {
+23      "@types/node": "^24.19.2",
+24      "@types/react": "^19.3.0",
+25      "@types/react-dom": "^19.3.0",
+26      "@vitejs/plugin-react": "^6.1.2",</code></pre>
+<p><strong>Was macht das?</strong> <code>"devDependencies"</code> sind Werkzeuge, die nur <strong>beim Entwickeln und Bauen</strong> gebraucht werden, nicht
+im Browser. <code>@types/node</code>, <code>@types/react</code>, <code>@types/react-dom</code>: Type-Definitionen, damit TypeScript
+die Funktionen von Node und React kennt. <code>@vitejs/plugin-react</code>: Vite-Plugin für React (JSX, Fast
+Refresh).</p>
+<p><strong>Warum so?</strong> Diese Pakete landen nicht im Build. Im Browser ist nur unser übersetzter Code plus React.</p>
+<p><strong>Folien</strong> 03/8–9 (lokale Pakete in <code>node_modules</code>), 08/12 (Vite mit React und TypeScript)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was ist der Unterschied zwischen <code>dependencies</code> und <code>devDependencies</code>?» <strong>Antwort:</strong> <code>dependencies</code> braucht die App, wenn sie läuft (React). <code>devDependencies</code> braucht man nur zum
+Entwickeln und Bauen (TypeScript, Vite, Linter, Formatierer, Type-Definitionen).</p>
+</blockquote>
+<p><strong>Zeilen 27–30</strong> · <code>client/package.json:27-30</code></p>
+<pre><code>27      "oxlint": "^1.87.0",
+28      "prettier": "^3.9.10",
+29      "typescript": "~6.0.3",
+30      "vite": "^8.3.4"</code></pre>
+<p><strong>Was macht das?</strong> Die übrigen Werkzeuge: <code>oxlint</code> (Linter), <code>prettier</code> (Formatierer), <code>typescript</code> (Compiler
+<code>tsc</code>) und <code>vite</code> (Dev-Server und Build). <code>~6.0.3</code> bei TypeScript heisst: nur Patch-Updates (6.0.x).</p>
+<p><strong>Warum so?</strong> TypeScript ist mit <code>~</code> enger festgelegt als die anderen Pakete mit <code>^</code>, weil schon neue
+Minor-Versionen von TypeScript strenger prüfen können. So stammt es aus der Vorlage.</p>
+<p><strong>Folien</strong> 03/10 (<code>~</code> = Patch, <code>^</code> = Minor), 06/3 (TypeScript wird kompiliert), 08/12 (Vite)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum steht bei TypeScript <code>~</code> und nicht <code>^</code>?» <strong>Antwort:</strong> <code>~6.0.3</code> erlaubt nur 6.0.x. Eine neue Minor-Version 6.1 könnte neue Fehler melden; so bleibt
+die Prüfung für alle gleich.</p>
+</blockquote>
+<p><strong>Zeilen 31–32</strong> · <code>client/package.json:31-32</code></p>
+<pre><code>31    }
+32  }</code></pre>
+<p><strong>Was macht das?</strong> Die zwei <code>}</code> schliessen <code>devDependencies</code> und das ganze JSON-Objekt.</p>
+<p><strong>Warum so?</strong> JSON verlangt, dass jede geöffnete Klammer geschlossen wird. Vor einer schliessenden Klammer
+darf kein Komma stehen (anders als in TypeScript).</p>
+<p><strong>Folien</strong> 03/10 (Aufbau von <code>package.json</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum darf man in <code>package.json</code> keinen Kommentar schreiben?» <strong>Antwort:</strong> <code>package.json</code> ist reines JSON, und JSON kennt keine Kommentare. pnpm würde die Datei nicht
+mehr lesen können. Darum stehen die Erklärungen in diesem Leitfaden.</p>
+</blockquote>
+<h3 id="52-clientpnpm-lockyaml">5.2 <code>client/pnpm-lock.yaml</code></h3>
+<p>Die Lock-Datei hat über 900 Zeilen und wird <strong>nie von Hand geändert</strong>; pnpm schreibt sie bei
+<code>pnpm install</code> bzw. <code>pnpm add</code>. Darum erklären wir sie nicht Zeile für Zeile, sondern ihren Aufbau.
+Sie entspricht <code>package-lock.json</code> bei npm (Folie 03/10: «enthält Tree mit exakten Abhängigkeiten»).</p>
+<p>Die Datei besteht aus <strong>zwei YAML-Dokumenten</strong> (getrennt durch <code>---</code>):</p>
+<ol>
+<li>Oben steht, welche <strong>pnpm-Version</strong> selbst installiert wird (<code>packageManagerDependencies</code>: pnpm
+12.11.2, passend zum Feld <code>packageManager</code>), mit den Varianten für jedes Betriebssystem.</li>
+<li>Darunter steht das eigentliche <strong>Projekt</strong>:</li>
+</ol>
+<p><code>client/pnpm-lock.yaml:159-200</code></p>
+<pre><code>159  lockfileVersion: '9.0'
+160
+161  settings:
+162    autoInstallPeers: true
+163    excludeLinksFromLockfile: false
+164
+165  importers:
+166
+167    .:
+168      dependencies:
+169        react:
+170          specifier: ^19.3.0
+171          version: 19.3.1
+172        react-dom:
+173          specifier: ^19.3.0
+174          version: 19.3.1(react@19.3.1)
+175      devDependencies:
+176        '@types/node':
+177          specifier: ^24.19.2
+178          version: 24.19.2
+179        '@types/react':
+180          specifier: ^19.3.0
+181          version: 19.3.0
+182        '@types/react-dom':
+183          specifier: ^19.3.0
+184          version: 19.3.0(@types/react@19.3.0)
+185        '@vitejs/plugin-react':
+186          specifier: ^6.1.2
+187          version: 6.1.2(vite@8.3.5(@types/node@24.19.2))
+188        oxlint:
+189          specifier: ^1.87.0
+190          version: 1.89.0
+191        prettier:
+192          specifier: ^3.9.10
+193          version: 3.9.10
+194        typescript:
+195          specifier: ~6.0.3
+196          version: 6.0.3
+197        vite:
+198          specifier: ^8.3.4
+199          version: 8.3.5(@types/node@24.19.2)
+200</code></pre>
+<ul>
+<li><code>importers: .:</code> = das Projekt in diesem Ordner. Für jedes Paket aus <code>package.json</code> steht der
+<code>specifier</code> (was in <code>package.json</code> steht, z. B. <code>^19.3.0</code>) und die <code>version</code>, die wirklich
+installiert ist (z. B. <code>19.3.1</code>).</li>
+<li><code>packages:</code> listet <strong>jedes</strong> Paket, auch die indirekten (z. B. die Pakete, die Vite selbst
+braucht), mit <code>resolution: {integrity: sha512-…}</code>. Das ist eine Prüfsumme: pnpm merkt, wenn ein
+heruntergeladenes Paket verändert wurde.</li>
+<li><code>snapshots:</code> sagt, welches Paket von welchem anderen abhängt.</li>
+</ul>
+<p><strong>Ohne Lock-Datei</strong> würde <code>pnpm install</code> die neuesten Versionen nach den <code>^</code>-Regeln holen; jemand
+anderes bekäme dann vielleicht Vite 8.4 statt 8.3.5. Mit Lock-Datei bekommt <strong>jeder genau dieselben
+Versionen</strong>. Darum gehört sie ins Git.</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Wozu ist <code>pnpm-lock.yaml</code> da, und darf man sie löschen?» <strong>Antwort:</strong>
+Sie hält die genauen Versionen aller Pakete fest (auch der indirekten), mit Prüfsumme. So hat jeder
+dieselbe Installation. Löschen sollte man sie nicht; sie wird nie von Hand bearbeitet, sondern von
+<code>pnpm install</code> und <code>pnpm add</code> geschrieben.</p>
+</blockquote>
+<h3 id="53-clientindexhtml">5.3 <code>client/index.html</code></h3>
+<p>Die einzige HTML-Seite der Single Page Application (SPA). Der Browser lädt sie, alles Weitere macht
+JavaScript (Folie 02/8–9: <code>index.html</code> lädt weitere Dateien). Die Datei ist unverändert aus der Vorlage.</p>
+<p><strong>Zeilen 1–2</strong> · <code>client/index.html:1-2</code></p>
+<pre><code> 1  &lt;!doctype html&gt;
+ 2  &lt;html lang="de"&gt;</code></pre>
+<p><strong>Was macht das?</strong> <code>&lt;!doctype html&gt;</code> sagt dem Browser: Das ist HTML5. <code>&lt;html lang="de"&gt;</code> beginnt das Dokument und
+legt die Sprache Deutsch fest.</p>
+<p><strong>Warum so?</strong> Ohne Doctype schaltet der Browser in einen alten Kompatibilitätsmodus («Quirks Mode»).
+<code>lang="de"</code> hilft Screenreadern bei der Aussprache und dem Browser bei der Silbentrennung.</p>
+<p><strong>Folien</strong> 04/6 (Grundgerüst mit <code>&lt;!DOCTYPE html&gt;</code>, <code>html lang</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Wozu dient <code>lang="de"</code>?» <strong>Antwort:</strong> Es sagt Browser und Screenreader, dass die Seite deutsch ist (Aussprache, Übersetzungsangebot,
+Silbentrennung).</p>
+</blockquote>
+<p><strong>Zeilen 3–5</strong> · <code>client/index.html:3-5</code></p>
+<pre><code> 3    &lt;head&gt;
+ 4      &lt;meta charset="UTF-8" /&gt;
+ 5      &lt;link rel="icon" type="image/svg+xml" href="/favicon.svg" /&gt;</code></pre>
+<p><strong>Was macht das?</strong> <code>&lt;head&gt;</code> enthält Angaben <strong>über</strong> die Seite, nichts Sichtbares. <code>meta charset="UTF-8"</code>: Umlaute
+und Sonderzeichen (z. B. «☕») werden richtig dargestellt. <code>&lt;link rel="icon" …&gt;</code> bindet
+<code>favicon.svg</code> aus <code>public/</code> als Symbol im Tab ein.</p>
+<p><strong>Warum so?</strong> <code>href="/favicon.svg"</code> beginnt mit <code>/</code>: Vite liefert Dateien aus <code>public/</code> unter der Wurzel aus.</p>
+<p><strong>Folien</strong> 04/6 (<code>meta charset</code>), 02/18 (<code>&lt;head&gt;</code> = Meta-Informationen)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Woher kommt <code>/favicon.svg</code>, obwohl die Datei in <code>public/</code> liegt?» <strong>Antwort:</strong> Vite liefert alles aus <code>public/</code> unverändert unter <code>/</code> aus. Darum ist die Adresse
+<code>/favicon.svg</code>.</p>
+</blockquote>
+<p><strong>Zeilen 6–8</strong> · <code>client/index.html:6-8</code></p>
+<pre><code> 6      &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+ 7      &lt;title&gt;Scrum Poker&lt;/title&gt;
+ 8    &lt;/head&gt;</code></pre>
+<p><strong>Was macht das?</strong> <code>meta name="viewport"</code> sagt dem Handy: Die Seite ist so breit wie das Gerät, ohne
+Verkleinerung. <code>&lt;title&gt;</code> ist der Text im Browser-Tab. <code>&lt;/head&gt;</code> schliesst den Kopf.</p>
+<p><strong>Warum so?</strong> Ohne Viewport-Angabe zeigt ein Handy die Seite wie einen 980 px breiten Desktop, stark
+verkleinert. Unsere Media Queries (<code>min-width: 768px</code>) würden dann nicht richtig greifen.</p>
+<p><strong>Folien</strong> 04/6 (<code>meta viewport</code>, <code>title</code>), 05/5–7 (Responsive, Media Queries)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was passiert ohne die Viewport-Zeile auf dem Handy?» <strong>Antwort:</strong> Das Handy tut so, als wäre es ein breiter Bildschirm, und verkleinert alles. Die Seite wird
+winzig, und das Mobile-Layout greift nicht.</p>
+</blockquote>
+<p><strong>Zeilen 9–10</strong> · <code>client/index.html:9-10</code></p>
+<pre><code> 9    &lt;body&gt;
+10      &lt;div id="root"&gt;&lt;/div&gt;</code></pre>
+<p><strong>Was macht das?</strong> <code>&lt;body&gt;</code> ist der sichtbare Inhalt. Er enthält nur ein leeres <code>&lt;div id="root"&gt;</code>.</p>
+<p><strong>Warum so?</strong> In dieses <code>div</code> hängt React die ganze App (<code>main.tsx</code>: <code>document.getElementById('root')</code>).
+Alles, was man sieht, erzeugt React im DOM.</p>
+<p><strong>Folien</strong> 02/18 (DOM, <code>&lt;body&gt;</code>), 09/3 (<code>createRoot(document.getElementById('root')!)</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum ist das <code>&lt;body&gt;</code> fast leer?» <strong>Antwort:</strong> Es ist eine Single Page Application. React rendert alles in <code>&lt;div id="root"&gt;</code>; die HTML-Datei
+liefert nur den Rahmen.</p>
+</blockquote>
+<p><strong>Zeilen 11–13</strong> · <code>client/index.html:11-13</code></p>
+<pre><code>11      &lt;script type="module" src="/src/main.tsx"&gt;&lt;/script&gt;
+12    &lt;/body&gt;
+13  &lt;/html&gt;</code></pre>
+<p><strong>Was macht das?</strong> <code>&lt;script type="module" src="/src/main.tsx"&gt;</code> lädt den Startpunkt der App als ES-Modul. Danach
+werden <code>body</code> und <code>html</code> geschlossen.</p>
+<p><strong>Warum so?</strong> Der Browser kann eigentlich kein TSX. Beim Entwickeln übersetzt Vite <code>main.tsx</code> in dem
+Moment, in dem der Browser die Datei anfragt. Bei <code>pnpm build</code> ersetzt Vite diese Zeile durch die
+fertige JavaScript-Datei aus <code>dist/assets/</code>.</p>
+<p><strong>Folien</strong> 08/10–12 (Vite übersetzt und bündelt), 07/8 (Module)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Wie kann der Browser eine <code>.tsx</code>-Datei laden?» <strong>Antwort:</strong> Gar nicht direkt. Vite fängt die Anfrage ab und schickt übersetztes JavaScript. Im Build
+steht hier eine gebündelte <code>.js</code>-Datei.</p>
+</blockquote>
+<h3 id="54-clientviteconfigts">5.4 <code>client/vite.config.ts</code></h3>
+<p>Konfiguration von Vite. Die Datei läuft <strong>in Node</strong>, nicht im Browser (darum gilt für sie
+<code>tsconfig.node.json</code>). Unverändert aus der Vorlage.</p>
+<p><strong>Zeilen 1–3</strong> · <code>client/vite.config.ts:1-3</code></p>
+<pre><code> 1  import react from '@vitejs/plugin-react'
+ 2  import { defineConfig } from 'vite'
+ 3</code></pre>
+<p><strong>Was macht das?</strong> Importiert das React-Plugin für Vite und die Hilfsfunktion <code>defineConfig</code>. Leerzeile.</p>
+<p><strong>Warum so?</strong> TSX übersetzen kann Vite schon selbst. Das Plugin stellt die Übersetzung von JSX passend für
+React ein und bringt «Fast Refresh»: Bei einer Änderung lädt Vite nur die geänderte Komponente neu,
+meist ohne dass der State verloren geht.</p>
+<p><strong>Folien</strong> 08/12 (Vite mit React), 07/8 (<code>import</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Wozu braucht Vite ein React-Plugin?» <strong>Antwort:</strong> Für React Fast Refresh: Geänderte Komponenten werden im Browser sofort ausgetauscht, ohne
+die ganze Seite neu zu laden. Ausserdem stellt das Plugin die JSX-Übersetzung für React ein.</p>
+</blockquote>
+<p><strong>Zeilen 4–6</strong> · <code>client/vite.config.ts:4-6</code></p>
+<pre><code> 4  // https://vite.dev/config/
+ 5  export default defineConfig({
+ 6    plugins: [react()],</code></pre>
+<p><strong>Was macht das?</strong> Ein Kommentar mit dem Link zur Vite-Doku. <code>export default defineConfig({ … })</code> exportiert die
+Konfiguration. <code>plugins: [react()]</code> schaltet das React-Plugin ein.</p>
+<p><strong>Warum so?</strong> Vite sucht beim Start die Datei <code>vite.config.ts</code> und liest ihren Default Export.
+<code>defineConfig</code> macht nichts zur Laufzeit, gibt aber TypeScript die Typen, damit der Editor die
+Optionen kennt.</p>
+<p><strong>Folien</strong> 07/11 (Default Export)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum <code>export default</code>?» <strong>Antwort:</strong> Vite erwartet die Konfiguration als Default Export dieser Datei. Der Name beim Import ist
+dann egal.</p>
+</blockquote>
+<p><strong>Zeilen 7–9</strong> · <code>client/vite.config.ts:7-9</code></p>
+<pre><code> 7    server: {
+ 8      // Leitet alle Requests auf /api an das Backend weiter (Express, Port 3000).
+ 9      // Im Client daher immer relativ fetchen: fetch('/api/sessions')</code></pre>
+<p><strong>Was macht das?</strong> <code>server:</code> sind Einstellungen für den Dev-Server (<code>pnpm dev</code>). Die zwei Kommentarzeilen erklären
+den Proxy: Alle Requests auf <code>/api</code> gehen an Express auf Port 3000, darum im Client immer relativ
+fetchen.</p>
+<p><strong>Warum so?</strong> Der Kommentar stammt aus der Vorlage und ist die wichtigste Regel für <code>api/sessions.ts</code>: dort
+steht immer <code>fetch('/api' + path)</code>, nie <code>http://localhost:3000</code>.</p>
+<p><strong>Folien</strong> 07/4 (Projektvorlage), 09/22 (<code>fetch('/api/users')</code>, relativ)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum fetcht der Client <code>/api/sessions</code> und nicht <code>http://localhost:3000/api/sessions</code>?» <strong>Antwort:</strong> Weil der Vite-Proxy <code>/api</code> weiterleitet. Der Browser fragt nur <code>localhost:5173</code>; so gibt es
+keinen Request auf eine andere Adresse und damit kein CORS-Problem.</p>
+</blockquote>
+<p><strong>Zeilen 10–14</strong> · <code>client/vite.config.ts:10-14</code></p>
+<pre><code>10      proxy: {
+11        '/api': 'http://localhost:3000',
+12      },
+13    },
+14  })</code></pre>
+<p><strong>Was macht das?</strong> <code>proxy: { '/api': 'http://localhost:3000' }</code>: Jede Anfrage, deren Pfad mit <code>/api</code> beginnt,
+schickt der Vite-Server an <code>http://localhost:3000</code> weiter (Pfad bleibt gleich) und gibt die Antwort
+an den Browser zurück. Dann schliessen <code>proxy</code>, <code>server</code> und <code>defineConfig</code>.</p>
+<p><strong>Warum so?</strong> Browser (5173) und API (3000) haben verschiedene Ports, also verschiedene «Ursprünge». Direkte
+Requests vom Browser an Port 3000 würde der Browser ohne CORS-Header blockieren. Über den Proxy sieht
+der Browser nur Port 5173. Läuft Express nicht, antwortet der Proxy mit <strong>502 Bad Gateway</strong>; das
+behandelt <code>client/src/api/sessions.ts:42-49</code> als «Server nicht erreichbar» (getestet).</p>
+<p><strong>Folien</strong> 07/4 (Projektvorlage; den Proxy beschreiben nur der Kommentar hier und das README der Vorlage, die Folien nicht), 02/4 (Client und Server)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was passiert mit einem Request auf <code>/api/sessions</code>, wenn der Express-Server nicht läuft?» <strong>Antwort:</strong> Vite kann nicht weiterleiten und antwortet mit Status 502. <code>api/sessions.ts</code> macht daraus die
+Meldung «Server nicht erreichbar.», die Seite zeigt sie als <code>ErrorMessage</code> an.</p>
+</blockquote>
+<h3 id="55-clienttsconfigjson">5.5 <code>client/tsconfig.json</code></h3>
+<p><strong>Zeilen 1–2</strong> · <code>client/tsconfig.json:1-2</code></p>
+<pre><code>1  {
+2    "files": [],</code></pre>
+<p><strong>Was macht das?</strong> <code>"files": []</code> heisst: Diese Datei selbst prüft <strong>keine</strong> Dateien.</p>
+<p><strong>Warum so?</strong> Sie ist nur das «Dach» (eine sogenannte Solution-Datei). Die eigentlichen Regeln stehen in den
+zwei Dateien darunter. So gelten für den App-Code (Browser) und <code>vite.config.ts</code> (Node)
+verschiedene Regeln.</p>
+<p><strong>Folien</strong> nicht in den Folien (aus der Vorlage)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum gibt es drei <code>tsconfig</code>-Dateien?» <strong>Antwort:</strong> Der App-Code läuft im Browser, <code>vite.config.ts</code> läuft in Node. Sie brauchen andere
+Einstellungen (z. B. DOM-Typen nur im Browser). <code>tsconfig.json</code> verweist nur auf die zwei anderen.</p>
+</blockquote>
+<p><strong>Zeilen 3–7</strong> · <code>client/tsconfig.json:3-7</code></p>
+<pre><code>3    "references": [
+4      { "path": "./tsconfig.app.json" },
+5      { "path": "./tsconfig.node.json" }
+6    ]
+7  }</code></pre>
+<p><strong>Was macht das?</strong> <code>"references"</code> verweist auf <code>tsconfig.app.json</code> und <code>tsconfig.node.json</code>. <code>]</code> und <code>}</code> schliessen
+die Liste und das Objekt.</p>
+<p><strong>Warum so?</strong> <code>tsc -b</code> (in <code>pnpm build</code>) folgt diesen Verweisen und prüft beide Teilprojekte. VS Code nutzt
+sie, um zu wissen, welche Regeln für welche Datei gelten.</p>
+<p><strong>Folien</strong> nicht in den Folien (aus der Vorlage)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was macht <code>tsc -b</code> mit dieser Datei?» <strong>Antwort:</strong> Es liest die <code>references</code> und prüft nacheinander das App-Projekt und das Node-Projekt.</p>
+</blockquote>
+<h3 id="56-clienttsconfigappjson">5.6 <code>client/tsconfig.app.json</code></h3>
+<p>Die Regeln für den ganzen Code in <code>src/</code>. Bei jeder Option steht, was ohne sie passiert. Die
+Fehlermeldungen haben wir ausprobiert, indem wir die Option in einer Kopie entfernt haben.</p>
+<p><strong>Zeilen 1–3</strong> · <code>client/tsconfig.app.json:1-3</code></p>
+<pre><code> 1  {
+ 2    "compilerOptions": {
+ 3      "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",</code></pre>
+<p><strong>Was macht das?</strong> <code>compilerOptions</code> beginnt die Einstellungen. <code>tsBuildInfoFile</code> legt fest, wo <code>tsc -b</code> sich
+merkt, was schon geprüft ist: <code>node_modules/.tmp/tsconfig.app.tsbuildinfo</code>.</p>
+<p><strong>Warum so?</strong> Beim nächsten <code>pnpm build</code> prüft TypeScript nur geänderte Dateien (schneller). Die Datei liegt
+in <code>node_modules</code>, damit sie nicht im Git landet (zusätzlich <code>*.tsbuildinfo</code> in <code>.gitignore</code>).</p>
+<p><strong>Folien</strong> nicht in den Folien (aus der Vorlage)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was ist eine <code>.tsbuildinfo</code>-Datei?» <strong>Antwort:</strong> Ein Zwischenspeicher von <code>tsc -b</code>. Er merkt sich den letzten Stand, damit beim nächsten Build
+nur Geändertes geprüft wird. Er gehört nicht ins Git.</p>
+</blockquote>
+<p><strong>Zeilen 4–5</strong> · <code>client/tsconfig.app.json:4-5</code></p>
+<pre><code> 4      "target": "es2023",
+ 5      "lib": ["ES2023", "DOM"],</code></pre>
+<p><strong>Was macht das?</strong> <code>"target": "es2023"</code>: Für welche JavaScript-Version der Code gedacht ist. <code>"lib": ["ES2023", "DOM"]</code>: Welche eingebauten Funktionen TypeScript kennt: alles bis ES2023 (z. B. <code>Array.find</code>,
+<code>Number.isNaN</code>) und die Browser-API (<code>document</code>, <code>window</code>, <code>localStorage</code>, <code>fetch</code>).</p>
+<p><strong>Warum so?</strong> Steht <code>lib</code> in der Datei, gilt genau diese Liste: Ohne <code>"DOM"</code> würde TypeScript dann <code>window</code>,
+<code>document</code> und <code>localStorage</code> nicht kennen. (Fehlte die Zeile <code>lib</code> ganz, nähme TypeScript passend
+zu <code>target</code> selbst ES2023 und DOM; so ist es ausdrücklich.)</p>
+<p><strong>Folien</strong> 02/18 (DOM als API für JavaScript), 04/5 (Browser-APIs wie local storage)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Woher weiss TypeScript, dass es <code>localStorage</code> gibt?» <strong>Antwort:</strong> Aus der Bibliothek <code>"DOM"</code> in <code>lib</code>. Sie beschreibt alle Browser-APIs mit Typen.</p>
+</blockquote>
+<p><strong>Zeilen 6–7</strong> · <code>client/tsconfig.app.json:6-7</code></p>
+<pre><code> 6      "module": "esnext",
+ 7      "types": ["vite/client"],</code></pre>
+<p><strong>Was macht das?</strong> <code>"module": "esnext"</code>: Der Code benutzt moderne ES-Module (<code>import</code>/<code>export</code>).
+<code>"types": ["vite/client"]</code>: Lädt zusätzliche Typen von Vite.</p>
+<p><strong>Warum so?</strong> <code>vite/client</code> sagt TypeScript, dass man CSS-Dateien importieren darf (<code>import './App.css'</code>).
+<strong>Ohne</strong> diese Zeile meldet <code>tsc</code> bei jeder CSS-Datei: «Cannot find module or type declarations for
+side-effect import of './App.css'» (ausprobiert).</p>
+<p><strong>Folien</strong> 07/8 (Module), 08/19 (<code>import './Button.css'</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum darf man in TypeScript eine CSS-Datei importieren?» <strong>Antwort:</strong> TypeScript selbst kennt CSS nicht. Die Typen aus <code>vite/client</code> erklären ihm, dass Vite solche
+Imports versteht. Vite baut das CSS dann in die Seite ein.</p>
+</blockquote>
+<p><strong>Zeilen 8–10</strong> · <code>client/tsconfig.app.json:8-10</code></p>
+<pre><code> 8      "allowArbitraryExtensions": true,
+ 9      "skipLibCheck": true,
+10</code></pre>
+<p><strong>Was macht das?</strong> <code>allowArbitraryExtensions</code> erlaubt Imports von Dateien mit beliebiger Endung, wenn es dazu eine
+Typ-Datei gibt. <code>skipLibCheck</code> prüft die Typ-Dateien (<code>.d.ts</code>) in <code>node_modules</code> nicht. Leerzeile.</p>
+<p><strong>Warum so?</strong> Beides stammt aus der Vite-Vorlage. <code>skipLibCheck</code> spart Zeit und verhindert, dass ein Fehler
+in einer fremden Bibliothek unseren Build stoppt. Unser eigener Code wird trotzdem voll geprüft.</p>
+<p><strong>Folien</strong> nicht in den Folien (aus der Vorlage)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Werden mit <code>skipLibCheck</code> unsere eigenen Dateien weniger geprüft?» <strong>Antwort:</strong> Nein. Es betrifft nur die <code>.d.ts</code>-Dateien von Bibliotheken wie React. Unser Code wird
+vollständig geprüft.</p>
+</blockquote>
+<p><strong>Zeilen 11–13</strong> · <code>client/tsconfig.app.json:11-13</code></p>
+<pre><code>11      /* Bundler mode */
+12      "moduleResolution": "bundler",
+13      "allowImportingTsExtensions": true,</code></pre>
+<p><strong>Was macht das?</strong> Kommentar «Bundler mode». <code>"moduleResolution": "bundler"</code>: TypeScript sucht Imports so, wie Vite
+sie findet. <code>"allowImportingTsExtensions": true</code>: Imports dürfen mit <code>.ts</code>/<code>.tsx</code> enden, z. B.
+<code>import { App } from './components/App.tsx'</code>.</p>
+<p><strong>Warum so?</strong> In tsconfig-Dateien sind Kommentare erlaubt (anders als in <code>package.json</code>). Ohne
+<code>allowImportingTsExtensions</code> meldet <code>tsc</code> bei jedem Import mit Endung: «An import path can only end
+with a '.tsx' extension when 'allowImportingTsExtensions' is enabled» (ausprobiert). Erlaubt ist
+die Option nur, wenn <code>tsc</code> kein JavaScript schreibt (bei uns <code>noEmit</code>).</p>
+<p><strong>Folien</strong> 07/8 (<code>import … from './calculator'</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum schreibt ihr die Endung <code>.tsx</code> in den Imports?» <strong>Antwort:</strong> So ist sofort klar, welche Datei gemeint ist, und es ist gleich wie im Server, wo Node die
+Endung braucht. <code>allowImportingTsExtensions</code> erlaubt das.</p>
+</blockquote>
+<p><strong>Zeilen 14–15</strong> · <code>client/tsconfig.app.json:14-15</code></p>
+<pre><code>14      "verbatimModuleSyntax": true,
+15      "moduleDetection": "force",</code></pre>
+<p><strong>Was macht das?</strong> <code>"verbatimModuleSyntax": true</code>: Imports bleiben genau so, wie sie geschrieben sind; ein Type muss
+darum mit <code>import type</code> importiert werden. <code>"moduleDetection": "force"</code>: Jede Datei ist ein eigenes
+Modul mit eigenem Gültigkeitsbereich.</p>
+<p><strong>Warum so?</strong> Vite entfernt Typen Datei für Datei, ohne die anderen Dateien zu kennen. Mit <code>import type</code>
+weiss es, dass dieser Import ganz wegfallen kann. Ohne <code>import type</code> meldet <code>tsc</code>: «'SessionSummary'
+is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled»
+(ausprobiert). Im Browser gäbe das eine weisse Seite (Folie 07/12).</p>
+<p><strong>Folien</strong> 07/12 (<code>import type</code>, Fehlermeldung mit <code>verbatimModuleSyntax</code>, «weisse Seite»)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum steht <code>import type { SessionSummary }</code> und nicht einfach <code>import { SessionSummary }</code>?» <strong>Antwort:</strong> Types gibt es nur für den Compiler. Wegen <code>verbatimModuleSyntax</code> muss ein reiner Type mit
+<code>import type</code> importiert werden, damit er beim Übersetzen ganz entfernt wird.</p>
+</blockquote>
+<p><strong>Zeilen 16–18</strong> · <code>client/tsconfig.app.json:16-18</code></p>
+<pre><code>16      "noEmit": true,
+17      "jsx": "react-jsx",
+18</code></pre>
+<p><strong>Was macht das?</strong> <code>"noEmit": true</code>: <code>tsc</code> schreibt <strong>keine</strong> JavaScript-Dateien, es prüft nur. <code>"jsx": "react-jsx"</code>:
+JSX wird für React übersetzt (automatische JSX-Runtime). Leerzeile.</p>
+<p><strong>Warum so?</strong> Das Übersetzen und Bündeln macht Vite. <code>tsc</code> ist nur der Typprüfer. Mit <code>react-jsx</code> muss man
+<code>React</code> nicht in jede Datei importieren. Ohne <code>jsx</code> meldet <code>tsc</code> «Cannot use JSX unless the '--jsx'
+flag is provided» (ausprobiert).</p>
+<p><strong>Folien</strong> 08/3 (TSX), 08/10 (transpile)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Wer übersetzt bei euch TypeScript zu JavaScript: <code>tsc</code> oder Vite?» <strong>Antwort:</strong> Vite. <code>tsc</code> prüft wegen <code>noEmit</code> nur die Typen und schreibt keine Dateien.</p>
+</blockquote>
+<p><strong>Zeilen 19–21</strong> · <code>client/tsconfig.app.json:19-21</code></p>
+<pre><code>19      /* Linting */
+20      "noUnusedLocals": true,
+21      "noUnusedParameters": true,</code></pre>
+<p><strong>Was macht das?</strong> Kommentar «Linting». <code>noUnusedLocals</code>: unbenutzte Variablen sind ein Fehler.
+<code>noUnusedParameters</code>: unbenutzte Parameter sind ein Fehler.</p>
+<p><strong>Warum so?</strong> So bleibt kein toter Code liegen, und Tippfehler fallen auf (eine Variable, die man anlegt,
+aber nie benutzt). <strong>Nicht</strong> in der Datei steht <code>"strict": true</code>: In TypeScript 6.0 ist <code>strict</code>
+schon Standard (Kapitel 4). Darum müssen wir z. B. bei <code>useState&lt;string | null&gt;</code> vor der Benutzung
+auf <code>null</code> prüfen, und jeder Parameter braucht einen Typ.</p>
+<p><strong>Folien</strong> 06/3 (statische Typen), 06/14 (Union mit <code>null</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Wo schaltet ihr den strengen Modus von TypeScript ein?» <strong>Antwort:</strong> Gar nicht ausdrücklich: Seit TypeScript 6.0 ist <code>strict</code> Standard. Wir haben es
+ausprobiert, <code>tsc</code> meldet ein implizites <code>any</code> auch ohne die Option. Die Datei ist darum gleich wie
+in der Vorlage.</p>
+</blockquote>
+<p><strong>Zeilen 22–23</strong> · <code>client/tsconfig.app.json:22-23</code></p>
+<pre><code>22      "erasableSyntaxOnly": true,
+23      "noFallthroughCasesInSwitch": true</code></pre>
+<p><strong>Was macht das?</strong> <code>erasableSyntaxOnly</code>: Nur TypeScript-Syntax, die man einfach weglassen kann, ist erlaubt (kein
+<code>enum</code>, kein <code>namespace</code>). <code>noFallthroughCasesInSwitch</code>: Ein <code>case</code> mit Code, aber ohne <code>break</code>
+oder <code>return</code>, ist ein Fehler.</p>
+<p><strong>Warum so?</strong> <code>erasableSyntaxOnly</code> passt zu Vite und zum Server: Typen werden einfach «weggewischt». Ein
+<code>enum</code> würde echten JavaScript-Code erzeugen; <code>tsc</code> meldet dann «This syntax is not allowed when
+'erasableSyntaxOnly' is enabled» (ausprobiert). Für feste Werte nutzen wir darum Literal Types wie
+<code>'fibonacci' | 'tshirt'</code>.</p>
+<p><strong>Folien</strong> 06/23 (Literal Types statt Enum), 06/36 (<code>switch</code> mit <code>break</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum benutzt ihr kein <code>enum</code> für die Decks?» <strong>Antwort:</strong> <code>erasableSyntaxOnly</code> verbietet es, weil ein <code>enum</code> zur Laufzeit Code erzeugt. Ein Literal
+Type <code>'fibonacci' | 'tshirt'</code> ist genauso sicher und verschwindet beim Übersetzen vollständig.</p>
+</blockquote>
+<p><strong>Zeilen 24–26</strong> · <code>client/tsconfig.app.json:24-26</code></p>
+<pre><code>24    },
+25    "include": ["src"]
+26  }</code></pre>
+<p><strong>Was macht das?</strong> <code>}</code> schliesst <code>compilerOptions</code>. <code>"include": ["src"]</code>: Diese Regeln gelten für alle Dateien im
+Ordner <code>src/</code>.</p>
+<p><strong>Warum so?</strong> <code>vite.config.ts</code> liegt ausserhalb von <code>src/</code> und hat ihre eigenen Regeln in
+<code>tsconfig.node.json</code>.</p>
+<p><strong>Folien</strong> nicht in den Folien (aus der Vorlage)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Für welche Dateien gilt <code>tsconfig.app.json</code>?» <strong>Antwort:</strong> Für alles in <code>client/src/</code>, also den ganzen App-Code.</p>
+</blockquote>
+<h3 id="57-clienttsconfignodejson">5.7 <code>client/tsconfig.node.json</code></h3>
+<p>Die Regeln für <code>vite.config.ts</code>. Fast gleich wie <code>tsconfig.app.json</code>; hier nur die Unterschiede im
+Detail.</p>
+<p><strong>Zeilen 1–3</strong> · <code>client/tsconfig.node.json:1-3</code></p>
+<pre><code> 1  {
+ 2    "compilerOptions": {
+ 3      "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",</code></pre>
+<p><strong>Was macht das?</strong> Beginn der Einstellungen. Der Zwischenspeicher von <code>tsc -b</code> heisst hier
+<code>tsconfig.node.tsbuildinfo</code>.</p>
+<p><strong>Warum so?</strong> Jedes Teilprojekt hat seinen eigenen Zwischenspeicher, sonst würden sie sich überschreiben.</p>
+<p><strong>Folien</strong> nicht in den Folien (aus der Vorlage)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum zwei <code>.tsbuildinfo</code>-Dateien?» <strong>Antwort:</strong> Weil <code>tsc -b</code> zwei Teilprojekte prüft (App und Node), jedes mit eigenem Stand.</p>
+</blockquote>
+<p><strong>Zeilen 4–6</strong> · <code>client/tsconfig.node.json:4-6</code></p>
+<pre><code> 4      "target": "es2023",
+ 5      "lib": ["ES2023"],
+ 6      "types": ["node"],</code></pre>
+<p><strong>Was macht das?</strong> <code>target</code> ES2023 wie beim App-Code. <code>lib</code> nur <code>"ES2023"</code>, <strong>ohne</strong> <code>"DOM"</code>. <code>types: ["node"]</code>
+lädt die Typen von Node.js (aus <code>@types/node</code>).</p>
+<p><strong>Warum so?</strong> <code>vite.config.ts</code> läuft in Node, dort gibt es kein <code>document</code> und kein <code>window</code>. Ohne DOM in
+<code>lib</code> würde TypeScript einen Fehler melden, wenn man hier aus Versehen <code>window</code> benutzt.</p>
+<p><strong>Folien</strong> 03/4 (Node.js = JavaScript ohne Browser-API)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum fehlt hier <code>"DOM"</code>?» <strong>Antwort:</strong> <code>vite.config.ts</code> läuft in Node und nicht im Browser. Dort gibt es keinen DOM.</p>
+</blockquote>
+<p><strong>Zeilen 7–9</strong> · <code>client/tsconfig.node.json:7-9</code></p>
+<pre><code> 7      "skipLibCheck": true,
+ 8
+ 9      /* Bundler mode */</code></pre>
+<p><strong>Was macht das?</strong> <code>skipLibCheck</code> wie oben. Leerzeile. Kommentar «Bundler mode».</p>
+<p><strong>Warum so?</strong> Gleiche Gründe wie in <code>tsconfig.app.json</code>. Der Kommentar stammt aus der Vorlage.</p>
+<p><strong>Folien</strong> nicht in den Folien (aus der Vorlage)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was macht <code>skipLibCheck</code>?» <strong>Antwort:</strong> Es überspringt die Prüfung der Typ-Dateien von Bibliotheken in <code>node_modules</code>.</p>
+</blockquote>
+<p><strong>Zeilen 10–12</strong> · <code>client/tsconfig.node.json:10-12</code></p>
+<pre><code>10      "module": "nodenext",
+11      "allowImportingTsExtensions": true,
+12      "verbatimModuleSyntax": true,</code></pre>
+<p><strong>Was macht das?</strong> <code>"module": "nodenext"</code>: Module nach den Regeln von Node.js. <code>allowImportingTsExtensions</code> und
+<code>verbatimModuleSyntax</code> wie im App-Code.</p>
+<p><strong>Warum so?</strong> <code>vite.config.ts</code> läuft in Node (Vite bündelt die Datei beim Start und führt sie dann in Node
+aus); darum gelten Nodes Regeln für Imports, nicht die des Browser-Codes.</p>
+<p><strong>Folien</strong> 07/8 (Module), 07/12 (<code>import type</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum <code>nodenext</code> und nicht <code>esnext</code> wie im App-Code?» <strong>Antwort:</strong> Weil diese Datei in Node läuft. <code>nodenext</code> prüft Imports so, wie Node sie auflöst.</p>
+</blockquote>
+<p><strong>Zeilen 13–15</strong> · <code>client/tsconfig.node.json:13-15</code></p>
+<pre><code>13      "moduleDetection": "force",
+14      "noEmit": true,
+15</code></pre>
+<p><strong>Was macht das?</strong> <code>moduleDetection: force</code> und <code>noEmit: true</code> wie im App-Code. Leerzeile.</p>
+<p><strong>Warum so?</strong> Auch hier schreibt <code>tsc</code> nichts; Vite liest die Konfiguration selbst.</p>
+<p><strong>Folien</strong> nicht in den Folien (aus der Vorlage)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Schreibt <code>tsc -b</code> eine <code>vite.config.js</code>?» <strong>Antwort:</strong> Nein, wegen <code>noEmit</code> prüft es nur.</p>
+</blockquote>
+<p><strong>Zeilen 16–18</strong> · <code>client/tsconfig.node.json:16-18</code></p>
+<pre><code>16      /* Linting */
+17      "noUnusedLocals": true,
+18      "noUnusedParameters": true,</code></pre>
+<p><strong>Was macht das?</strong> Kommentar «Linting». <code>noUnusedLocals</code> und <code>noUnusedParameters</code> wie im App-Code.</p>
+<p><strong>Warum so?</strong> Gleiche Strenge für alle Dateien des Clients. <code>strict</code> gilt auch hier, weil es in TypeScript
+6.0 Standard ist.</p>
+<p><strong>Folien</strong> 06/3 (statische Typen)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Wird <code>vite.config.ts</code> genauso streng geprüft wie der App-Code?» <strong>Antwort:</strong> Ja. Die Linting-Optionen sind gleich, und <code>strict</code> ist in TypeScript 6 immer an.</p>
+</blockquote>
+<p><strong>Zeilen 19–20</strong> · <code>client/tsconfig.node.json:19-20</code></p>
+<pre><code>19      "erasableSyntaxOnly": true,
+20      "noFallthroughCasesInSwitch": true</code></pre>
+<p><strong>Was macht das?</strong> <code>erasableSyntaxOnly</code> und <code>noFallthroughCasesInSwitch</code> wie im App-Code.</p>
+<p><strong>Warum so?</strong> gleiche Regeln wie für den App-Code.</p>
+<p><strong>Folien</strong> 06/36 (<code>switch</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was macht <code>noFallthroughCasesInSwitch</code>?» <strong>Antwort:</strong> Es meldet einen Fehler, wenn ein <code>case</code> in einem <code>switch</code> ohne <code>break</code> oder <code>return</code> in den
+nächsten <code>case</code> «durchfällt».</p>
+</blockquote>
+<p><strong>Zeilen 21–23</strong> · <code>client/tsconfig.node.json:21-23</code></p>
+<pre><code>21    },
+22    "include": ["vite.config.ts"]
+23  }</code></pre>
+<p><strong>Was macht das?</strong> <code>}</code> schliesst <code>compilerOptions</code>. <code>"include": ["vite.config.ts"]</code>: Diese Regeln gelten nur für
+diese eine Datei.</p>
+<p><strong>Warum so?</strong> So hat jede Datei genau eine passende Konfiguration.</p>
+<p><strong>Folien</strong> nicht in den Folien (aus der Vorlage)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Für welche Datei gilt <code>tsconfig.node.json</code>?» <strong>Antwort:</strong> Nur für <code>vite.config.ts</code>.</p>
+</blockquote>
+<h3 id="58-clientprettierrc-clientprettierignore-clientgitignore">5.8 <code>client/.prettierrc</code>, <code>client/.prettierignore</code>, <code>client/.gitignore</code></h3>
+<p><strong>Zeilen 1–4</strong> · <code>client/.prettierrc:1-4</code></p>
+<pre><code>1  {
+2    "semi": false,
+3    "singleQuote": true
+4  }</code></pre>
+<p><strong>Was macht das?</strong> <code>"semi": false</code>: Prettier schreibt <strong>keine</strong> Semikolons am Zeilenende. <code>"singleQuote": true</code>:
+Strings mit einfachen Anführungszeichen (<code>'react'</code> statt <code>"react"</code>).</p>
+<p><strong>Warum so?</strong> So sieht der Code in den Folien und in der Vorlage aus. Alles andere (z. B. 2 Leerzeichen
+Einzug, Zeilenlänge 80) bleibt beim Standard von Prettier. Darum bricht Prettier lange Zeilen um,
+z. B. die Imports in <code>client/src/api/sessions.ts:4-14</code>.</p>
+<p><strong>Folien</strong> 09/37 (Prettier, «Format on Save»), Code-Stil der Folien (ohne Semikolons, einfache Anführungszeichen)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum gibt es in eurem Code keine Semikolons?» <strong>Antwort:</strong> Prettier ist mit <code>"semi": false</code> eingestellt, wie der Code in den Folien. JavaScript setzt
+die Semikolons selbst («Automatic Semicolon Insertion»).</p>
+</blockquote>
+<p><strong>Zeilen 1–2</strong> · <code>client/.prettierignore:1-2</code></p>
+<pre><code>1  pnpm-lock.yaml
+2  dist</code></pre>
+<p><strong>Was macht das?</strong> Prettier soll <code>pnpm-lock.yaml</code> und den Ordner <code>dist</code> nicht anfassen.</p>
+<p><strong>Warum so?</strong> Die Lock-Datei schreibt pnpm, <code>dist</code> ist erzeugter Code. Beide würde <code>pnpm format:check</code> sonst
+als «nicht formatiert» melden.</p>
+<p><strong>Folien</strong> 09/37 (Prettier)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum formatiert Prettier <code>dist/</code> nicht?» <strong>Antwort:</strong> <code>dist/</code> ist der fertige, verkleinerte Build. Er wird erzeugt und nie von Hand bearbeitet.</p>
+</blockquote>
+<p><strong>Zeilen 1–3</strong> · <code>client/.gitignore:1-3</code></p>
+<pre><code>1  node_modules
+2  dist
+3  *.tsbuildinfo</code></pre>
+<p><strong>Was macht das?</strong> Git ignoriert <code>node_modules</code> (installierte Pakete), <code>dist</code> (Build) und <code>*.tsbuildinfo</code>
+(Zwischenspeicher von <code>tsc</code>).</p>
+<p><strong>Warum so?</strong> Alles drei lässt sich jederzeit neu erzeugen (<code>pnpm install</code>, <code>pnpm build</code>). <code>node_modules</code>
+hat zehntausende Dateien und hängt vom Betriebssystem ab.</p>
+<p><strong>Folien</strong> 03/8–9 (lokale Pakete in <code>node_modules</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum ist <code>node_modules</code> nicht im Git?» <strong>Antwort:</strong> Es lässt sich mit <code>pnpm install</code> aus <code>package.json</code> und <code>pnpm-lock.yaml</code> genau wiederherstellen
+und wäre riesig.</p>
+</blockquote>
+<h3 id="59-oxlint--ohne-eigene-konfiguration">5.9 oxlint – ohne eigene Konfiguration</h3>
+<p>Es gibt <strong>keine</strong> Datei <code>.oxlintrc.json</code>, weder in der Vorlage noch bei uns. <code>pnpm lint</code> startet
+<code>oxlint</code> mit seinen <strong>Standardregeln</strong> (Kategorie «correctness»: Code, der sicher falsch oder
+nutzlos ist, z. B. unbenutzte Variablen, <code>debugger</code>, doppelte Schlüssel). Standardmässig an sind die
+Plugins für JavaScript, TypeScript, «unicorn» und «oxc».</p>
+<p><strong>Achtung, ehrlich wissen:</strong> Das <strong>React-Plugin</strong> ist bei oxlint standardmässig <strong>aus</strong>
+(<code>oxlint --help</code>: «Enable react plugin, which is turned off by default»). Ohne Konfiguration prüft
+<code>pnpm lint</code> darum <strong>nicht</strong>, ob im <code>useEffect</code> eine Dependency fehlt oder ob in einer Liste der <code>key</code>
+fehlt. Wir haben das mit einer Testdatei ausprobiert: <code>pnpm lint</code> meldete nichts,
+<code>pnpm exec oxlint --react-plugin</code> meldete «React Hook useEffect has a missing dependency» und
+«Missing "key" prop». Unser echter Code läuft auch mit <code>--react-plugin</code> <strong>ohne eine Warnung</strong> durch.
+Im Editor zeigt die VS-Code-Erweiterung «Oxc» (README der Vorlage) die Hinweise je nach Einstellung.</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Wie stellt ihr sicher, dass die Dependencies im <code>useEffect</code> stimmen?»
+<strong>Antwort:</strong> Wir haben jede Dependency-Liste von Hand begründet (Teil 01). Zusätzlich läuft
+<code>oxlint --react-plugin</code> ohne Warnung. Achtung: Das normale <code>pnpm lint</code> prüft Hook-Regeln nicht,
+weil das React-Plugin von oxlint ohne Konfiguration aus ist.</p>
+</blockquote>
+<hr>
+<h2 id="6-konfiguration-des-servers-zeile-für-zeile">6. Konfiguration des Servers Zeile für Zeile</h2>
+<h3 id="61-serverpackagejson">6.1 <code>server/package.json</code></h3>
+<p><strong>Zeilen 1–5</strong> · <code>server/package.json:1-5</code></p>
+<pre><code> 1  {
+ 2    "name": "scrum-poker-server",
+ 3    "private": true,
+ 4    "version": "0.0.0",
+ 5    "type": "module",</code></pre>
+<p><strong>Was macht das?</strong> Name <code>scrum-poker-server</code>, privat, Version <code>0.0.0</code>, <code>"type": "module"</code> (ES-Module).</p>
+<p><strong>Warum so?</strong> Gleich aufgebaut wie im Client. <code>"type": "module"</code> ist hier wichtig, weil Node die Dateien
+direkt ausführt und <code>import</code>/<code>export</code> verstehen muss.</p>
+<p><strong>Folien</strong> 03/10 (<code>package.json</code>), 07/8 (Module)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum hat der Server ein eigenes <code>package.json</code>?» <strong>Antwort:</strong> Er ist ein eigenes Node-Projekt mit eigenen Paketen (Express). Jedes <code>package.json</code> steht für
+ein Projekt (Folie 03/10).</p>
+</blockquote>
+<p><strong>Zeilen 6–9</strong> · <code>server/package.json:6-9</code></p>
+<pre><code> 6    "packageManager": "pnpm@12.11.2",
+ 7    "engines": {
+ 8      "node": "&gt;=24"
+ 9    },</code></pre>
+<p><strong>Was macht das?</strong> <code>packageManager</code> pnpm 12.11.2 und <code>engines</code> Node 24 oder neuer, wie im Client.</p>
+<p><strong>Warum so?</strong> Beim Server ist Node 24 <strong>zwingend</strong>: Erst ab Node 24 (bzw. 22.18) führt Node <code>.ts</code>-Dateien
+ohne Zusatzwerkzeug aus («Type Stripping»: Node löscht die Typen und führt den Rest aus).</p>
+<p><strong>Folien</strong> 03/17 (Node 24)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Wie kann Node eine <code>.ts</code>-Datei ausführen?» <strong>Antwort:</strong> Neuere Node-Versionen entfernen die Typ-Angaben einfach («Type Stripping») und führen den
+übrigen JavaScript-Code aus. Darum ist nur TypeScript erlaubt, das man weglassen kann
+(<code>erasableSyntaxOnly</code>).</p>
+</blockquote>
+<p><strong>Zeilen 10–12</strong> · <code>server/package.json:10-12</code></p>
+<pre><code>10    "scripts": {
+11      "dev": "node --watch src/index.ts",
+12      "start": "node src/index.ts",</code></pre>
+<p><strong>Was macht das?</strong> Scripts: <code>dev</code> startet <code>node --watch src/index.ts</code> (startet bei jeder Änderung neu), <code>start</code>
+startet ohne Watch.</p>
+<p><strong>Warum so?</strong> Es braucht kein <code>tsc</code> vorher und kein Zusatzwerkzeug wie <code>ts-node</code>. <code>--watch</code> ist eingebaut
+in Node und ersetzt z. B. nodemon.</p>
+<p><strong>Folien</strong> 03/18–20 (Script <code>"start": "node index.js"</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was ist der Unterschied zwischen <code>pnpm dev</code> und <code>pnpm start</code> im Server?» <strong>Antwort:</strong> Beide starten <code>src/index.ts</code> mit Node. <code>dev</code> beobachtet zusätzlich die Dateien und startet
+den Server bei jeder Änderung neu.</p>
+</blockquote>
+<p><strong>Zeilen 13–17</strong> · <code>server/package.json:13-17</code></p>
+<pre><code>13      "build": "tsc -b",
+14      "lint": "oxlint",
+15      "format": "prettier --write .",
+16      "format:check": "prettier --check ."
+17    },</code></pre>
+<p><strong>Was macht das?</strong> <code>build</code> = <code>tsc -b</code> (nur Typprüfung, kein Output), <code>lint</code> = oxlint, <code>format</code> und <code>format:check</code> =
+Prettier. <code>}</code> schliesst die Scripts.</p>
+<p><strong>Warum so?</strong> Gleiche Befehle wie im Client, damit man in beiden Ordnern gleich prüfen kann. «build» baut
+hier nichts, weil Node die <code>.ts</code>-Dateien direkt ausführt.</p>
+<p><strong>Folien</strong> 09/37 (<code>pnpm lint</code>, Prettier)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was erzeugt <code>pnpm build</code> im Server?» <strong>Antwort:</strong> Nichts. Es prüft nur die Typen (<code>noEmit</code> in <code>tsconfig.json</code>).</p>
+</blockquote>
+<p><strong>Zeilen 18–20</strong> · <code>server/package.json:18-20</code></p>
+<pre><code>18    "dependencies": {
+19      "express": "^5.3.0"
+20    },</code></pre>
+<p><strong>Was macht das?</strong> Die einzige Laufzeit-Abhängigkeit ist <code>express</code> (Version 5).</p>
+<p><strong>Warum so?</strong> Folie 09/37: «keine zusätzlichen Libraries (ausser Express …)». Kein <code>cors</code>, kein
+<code>body-parser</code> (JSON lesen ist in Express eingebaut: <code>express.json()</code>), keine Datenbank.</p>
+<p><strong>Folien</strong> 01/4 (Backend mit Express.js), 09/37</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Welche Bibliotheken braucht euer Server?» <strong>Antwort:</strong> Nur Express. Alles andere (JSON lesen, statische Dateien ausliefern) ist in Express eingebaut.</p>
+</blockquote>
+<p><strong>Zeilen 21–23</strong> · <code>server/package.json:21-23</code></p>
+<pre><code>21    "devDependencies": {
+22      "@types/express": "^5.0.6",
+23      "@types/node": "^24.19.2",</code></pre>
+<p><strong>Was macht das?</strong> Beginn der Werkzeuge: Typen für Express und für Node.</p>
+<p><strong>Warum so?</strong> Die Typen braucht nur <code>tsc</code> und der Editor, nicht der laufende Server.</p>
+<p><strong>Folien</strong> 03/10 (<code>devDependencies</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Wozu braucht ihr <code>@types/express</code>?» <strong>Antwort:</strong> Express ist in JavaScript geschrieben. <code>@types/express</code> beschreibt seine Funktionen mit Typen,
+damit TypeScript z. B. <code>req</code> und <code>res</code> kennt.</p>
+</blockquote>
+<p><strong>Zeilen 24–28</strong> · <code>server/package.json:24-28</code></p>
+<pre><code>24      "oxlint": "^1.87.0",
+25      "prettier": "^3.9.10",
+26      "typescript": "~6.0.3"
+27    }
+28  }</code></pre>
+<p><strong>Was macht das?</strong> oxlint, Prettier und TypeScript (gleiche Versionen wie im Client). Die zwei <code>}</code> schliessen
+<code>devDependencies</code> und das Objekt.</p>
+<p><strong>Warum so?</strong> Gleiche Werkzeuge und Versionen in beiden Projekten, damit <code>pnpm lint</code>, <code>pnpm format:check</code>
+und <code>pnpm build</code> überall gleich prüfen. Vite fehlt hier: Der Server wird nicht gebündelt.</p>
+<p><strong>Folien</strong> 03/10 (<code>devDependencies</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum hat der Server kein Vite?» <strong>Antwort:</strong> Vite bündelt Code für den Browser. Den Server führt Node direkt aus, er braucht keinen Build.</p>
+</blockquote>
+<h3 id="62-servertsconfigjson">6.2 <code>server/tsconfig.json</code></h3>
+<p>Fast gleich wie <code>client/tsconfig.node.json</code>, weil beides in Node läuft.</p>
+<p><strong>Zeilen 1–5</strong> · <code>server/tsconfig.json:1-5</code></p>
+<pre><code> 1  {
+ 2    "compilerOptions": {
+ 3      "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo",
+ 4      "target": "es2023",
+ 5      "lib": ["ES2023"],</code></pre>
+<p><strong>Was macht das?</strong> Zwischenspeicher von <code>tsc -b</code>, <code>target</code> und <code>lib</code> ES2023 (ohne DOM).</p>
+<p><strong>Warum so?</strong> Der Server läuft in Node, es gibt kein <code>window</code> und kein <code>document</code>.</p>
+<p><strong>Folien</strong> 03/4 (Node ohne Browser-API)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Kann der Server <code>window</code> oder <code>document</code> benutzen?» <strong>Antwort:</strong> Nein, die gibt es nur im Browser. Ohne <code>"DOM"</code> in <code>lib</code> meldet TypeScript sofort «Cannot find
+name 'window'» (ausprobiert). Achtung, kein gutes Beispiel ist <code>localStorage</code>: Neuere Node-Versionen
+haben eine eigene Variante davon, und <code>@types/node</code> kennt sie, darum meldet <code>tsc</code> dort nichts.</p>
+</blockquote>
+<p><strong>Zeilen 6–9</strong> · <code>server/tsconfig.json:6-9</code></p>
+<pre><code> 6      "types": ["node"],
+ 7      "skipLibCheck": true,
+ 8
+ 9      /* Node.js führt die .ts-Dateien direkt aus (Type Stripping) */</code></pre>
+<p><strong>Was macht das?</strong> <code>types: ["node"]</code> (Node-Typen, z. B. <code>process.env</code>), <code>skipLibCheck</code>. Leerzeile, dann ein
+Kommentar: Node führt die <code>.ts</code>-Dateien direkt aus.</p>
+<p><strong>Warum so?</strong> Ohne <code>types: ["node"]</code> kennt TypeScript <code>process</code> in <code>server/src/config.ts</code> nicht.</p>
+<p><strong>Folien</strong> 03/4 (Node.js)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Woher kennt TypeScript <code>process.env.PORT</code>?» <strong>Antwort:</strong> Aus den Node-Typen, die <code>types: ["node"]</code> lädt (Paket <code>@types/node</code>).</p>
+</blockquote>
+<p><strong>Zeilen 10–12</strong> · <code>server/tsconfig.json:10-12</code></p>
+<pre><code>10      "module": "nodenext",
+11      "allowImportingTsExtensions": true,
+12      "verbatimModuleSyntax": true,</code></pre>
+<p><strong>Was macht das?</strong> <code>module: nodenext</code>, <code>allowImportingTsExtensions</code>, <code>verbatimModuleSyntax</code>.</p>
+<p><strong>Warum so?</strong> Node braucht die Endung im Import (<code>import { app } from './app.ts'</code>); ohne
+<code>allowImportingTsExtensions</code> wäre das verboten. <code>verbatimModuleSyntax</code> sorgt dafür, dass Types mit
+<code>import type</code> bzw. <code>type</code> importiert werden (z. B. <code>type Request</code> in <code>server/src/app.ts:4-8</code>).</p>
+<p><strong>Folien</strong> 07/12 (<code>import type</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum stehen im Server die Endungen <code>.ts</code> in den Imports?» <strong>Antwort:</strong> Node sucht genau die Datei, die im Import steht. Ohne <code>.ts</code> würde es sie nicht finden.</p>
+</blockquote>
+<p><strong>Zeilen 13–15</strong> · <code>server/tsconfig.json:13-15</code></p>
+<pre><code>13      "moduleDetection": "force",
+14      "noEmit": true,
+15</code></pre>
+<p><strong>Was macht das?</strong> <code>moduleDetection: force</code>, <code>noEmit: true</code>. Leerzeile.</p>
+<p><strong>Warum so?</strong> Es gibt keinen Build-Output; Node startet direkt <code>src/index.ts</code>.</p>
+<p><strong>Folien</strong> nicht in den Folien</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Wo liegen die kompilierten JavaScript-Dateien des Servers?» <strong>Antwort:</strong> Es gibt keine. <code>noEmit</code> verhindert sie, Node führt die <code>.ts</code>-Dateien direkt aus.</p>
+</blockquote>
+<p><strong>Zeilen 16–18</strong> · <code>server/tsconfig.json:16-18</code></p>
+<pre><code>16      /* Linting */
+17      "strict": true,
+18      "noUnusedLocals": true,</code></pre>
+<p><strong>Was macht das?</strong> Kommentar «Linting», <code>strict</code>, <code>noUnusedLocals</code>.</p>
+<p><strong>Warum so?</strong> Gleiche Strenge wie im Client.</p>
+<p><strong>Folien</strong> 06/3</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was passiert, wenn eine Variable im Server nie benutzt wird?» <strong>Antwort:</strong> <code>pnpm build</code> (<code>tsc -b</code>) meldet einen Fehler wegen <code>noUnusedLocals</code>.</p>
+</blockquote>
+<p><strong>Zeilen 19–21</strong> · <code>server/tsconfig.json:19-21</code></p>
+<pre><code>19      "noUnusedParameters": true,
+20      "erasableSyntaxOnly": true,
+21      "noFallthroughCasesInSwitch": true</code></pre>
+<p><strong>Was macht das?</strong> <code>noUnusedParameters</code>, <code>erasableSyntaxOnly</code>, <code>noFallthroughCasesInSwitch</code>.</p>
+<p><strong>Warum so?</strong> <code>erasableSyntaxOnly</code> ist beim Server Pflicht: Node kann nur Typen weglassen, aber z. B. kein
+<code>enum</code> übersetzen. Unbenutzte Parameter (Express verlangt beim Fehler-Handler vier) heissen darum
+<code>_req</code> und <code>_next</code>: Ein <code>_</code> am Anfang erlaubt <code>noUnusedParameters</code>.</p>
+<p><strong>Folien</strong> nicht in den Folien</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum heissen manche Parameter <code>_req</code> oder <code>_next</code>?» <strong>Antwort:</strong> Sie werden nicht benutzt, müssen aber da sein (Express erkennt den Fehler-Handler an vier
+Parametern). Der Unterstrich sagt TypeScript: absichtlich unbenutzt.</p>
+</blockquote>
+<p><strong>Zeilen 22–24</strong> · <code>server/tsconfig.json:22-24</code></p>
+<pre><code>22    },
+23    "include": ["src"]
+24  }</code></pre>
+<p><strong>Was macht das?</strong> <code>}</code> schliesst die Optionen. <code>include: ["src"]</code>: gilt für alle Dateien in <code>server/src/</code>.</p>
+<p><strong>Warum so?</strong> Nur der Quellcode wird geprüft.</p>
+<p><strong>Folien</strong> nicht in den Folien</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Für welche Dateien gilt <code>server/tsconfig.json</code>?» <strong>Antwort:</strong> Für alle Dateien in <code>server/src/</code>.</p>
+</blockquote>
+<p>Die übrigen Punkt-Dateien des Servers sind <strong>identisch</strong> mit denen des Clients:
+<code>server/.prettierrc</code> (= <code>client/.prettierrc</code>), <code>server/.prettierignore</code> (= <code>client/.prettierignore</code>),
+<code>server/.gitignore</code> (= <code>client/.gitignore</code>).</p>
+<h3 id="63-gitignore-und-gitattributes-im-projektordner">6.3 <code>.gitignore</code> und <code>.gitattributes</code> im Projektordner</h3>
+<p><strong>Zeilen 1–3</strong> · <code>.gitignore:1-3</code></p>
+<pre><code>1  node_modules/
+2  dist/
+3  *.tsbuildinfo</code></pre>
+<p><strong>Was macht das?</strong> <code>node_modules/</code>, <code>dist/</code> und <code>*.tsbuildinfo</code> werden im ganzen Projektordner ignoriert (auch in
+<code>scripts/pdf/</code>).</p>
+<p><strong>Warum so?</strong> Doppelt mit den <code>.gitignore</code>-Dateien in <code>client/</code> und <code>server/</code>, schadet aber nicht. Der <code>/</code> am
+Ende heisst «nur Ordner».</p>
+<p><strong>Folien</strong> 03/8–9 (<code>node_modules</code>)</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was steht in <code>.gitignore</code>, und warum?» <strong>Antwort:</strong> Alles, was erzeugt wird: installierte Pakete, Build, Zwischenspeicher. Es lässt sich jederzeit
+neu erzeugen und gehört nicht ins Repo.</p>
+</blockquote>
+<p><strong>Zeilen 4–6</strong> · <code>.gitignore:4-6</code></p>
+<pre><code>4
+5  # Code-ZIP (scripts/make-submission.sh)
+6  /scrum-poker-code.zip</code></pre>
+<p><strong>Was macht das?</strong> Leerzeile, Kommentar, <code>/scrum-poker-code.zip</code>: Das Abgabe-ZIP wird nicht committet. Der <code>/</code> am
+Anfang heisst «nur im Projektordner selbst».</p>
+<p><strong>Warum so?</strong> Das ZIP wird bei jeder Abgabe neu aus dem Git-Stand gebaut (<code>scripts/make-submission.sh</code>).</p>
+<p><strong>Folien</strong> nicht in den Folien</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Warum ist das ZIP nicht im Git?» <strong>Antwort:</strong> Es wird aus dem committeten Code erzeugt. Im Git wäre es eine veraltete Kopie.</p>
+</blockquote>
+<p><strong>Zeilen 1–4</strong> · <code>.gitattributes:1-4</code></p>
+<pre><code>1  # deploy/ contains server-specific paths (home directory, ports). git archive
+2  # leaves it out, so it is neither in the submission ZIP nor in the public copy
+3  # (scripts/make-submission.sh, scripts/publish-abgaben.sh).
+4  deploy export-ignore</code></pre>
+<p><strong>Was macht das?</strong> Drei Kommentarzeilen und die Regel <code>deploy export-ignore</code>: <code>git archive</code> lässt den Ordner
+<code>deploy/</code> weg.</p>
+<p><strong>Warum so?</strong> <code>deploy/</code> enthält Details des Servers (Pfade, Ports), die nicht ins Abgabe-ZIP und nicht ins
+öffentliche Repo gehören. <code>git archive</code> erzeugt das ZIP in <code>scripts/make-submission.sh</code>.</p>
+<p><strong>Folien</strong> nicht in den Folien</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Wie verhindert ihr, dass <code>deploy/</code> in der Abgabe landet?» <strong>Antwort:</strong> Mit <code>export-ignore</code> in <code>.gitattributes</code>. <code>git archive</code>, das das ZIP baut, lässt den Ordner
+dann weg (und das Script schliesst ihn zusätzlich aus).</p>
+</blockquote>
+<hr>
+<h2 id="7-was-passiert-bei-pnpm-install-dev-build-lint">7. Was passiert bei pnpm install, dev, build, lint?</h2>
+<p>Alle Befehle laufen <strong>im Ordner <code>client/</code> bzw. <code>server/</code></strong>, nie im Projektordner (dort gibt es kein
+<code>package.json</code>). Wir haben jeden Befehl ausprobiert; die Ausgaben unten sind echt (gekürzt).</p>
+<h3 id="71-pnpm-install">7.1 <code>pnpm install</code></h3>
+<ol>
+<li>pnpm liest <code>packageManager</code> und wechselt bei Bedarf selbst auf pnpm 12.11.2.</li>
+<li>pnpm liest <code>package.json</code> (welche Pakete?) und <code>pnpm-lock.yaml</code> (welche genauen Versionen?). Passt
+beides zusammen, wird nichts neu aufgelöst («Lockfile is up to date, resolution step is skipped»).</li>
+<li>Fehlende Pakete lädt pnpm aus der npm-Registry in einen <strong>zentralen Speicher</strong> auf dem Rechner
+(«content-addressable store»). Jede Version liegt dort nur einmal, auch wenn zehn Projekte sie
+brauchen.</li>
+<li>In <code>node_modules/.pnpm/</code> legt pnpm <strong>Hard-Links</strong> auf diese Dateien an (Folie 03/14: «Neuer Ansatz
+mit Hard-Links»), statt sie zu kopieren. Das ist schnell und spart Platz. Direkt in
+<code>node_modules/</code> stehen nur Verknüpfungen (Symlinks) auf die Pakete aus <code>package.json</code>; deren
+eigene Abhängigkeiten liegen nur in <code>node_modules/.pnpm/</code>.</li>
+<li>Die Befehle der Werkzeuge (<code>vite</code>, <code>tsc</code>, <code>oxlint</code>, <code>prettier</code>) landen in <code>node_modules/.bin/</code>.
+Darum kann ein Script einfach <code>vite</code> schreiben.</li>
+</ol>
+<pre><code>Lockfile is up to date, resolution step is skipped
+Packages are hard linked from the content-addressable store to the virtual store.
+Packages: +28
+dependencies:
++ react 19.3.1
++ react-dom 19.3.1
+devDependencies:
++ @types/node 24.19.2
+…
++ vite 8.3.5
+Done in 50ms using pnpm v12.11.2</code></pre>
+<h3 id="72-pnpm-dev">7.2 <code>pnpm dev</code></h3>
+<ul>
+<li><strong>Client:</strong> pnpm führt das Script <code>vite</code> aus. Vite liest <code>vite.config.ts</code>, startet einen Server auf
+<code>http://localhost:5173</code> und wartet. Erst wenn der Browser eine Datei anfragt, übersetzt Vite sie
+(TSX → JavaScript, Typen werden entfernt, <strong>ohne</strong> Typprüfung). Speichert man eine Datei, schickt
+Vite dem Browser nur das geänderte Modul («Hot Module Replacement», Folie 08/10); dank React Fast
+Refresh bleibt der State meist erhalten. Requests auf <code>/api</code> leitet der Proxy an Port 3000 weiter.</li>
+<li><strong>Server:</strong> pnpm führt <code>node --watch src/index.ts</code> aus. Node entfernt die Typen, führt <code>index.ts</code> aus,
+das den Aufräum-Timer startet und mit <code>app.listen(3000)</code> auf Anfragen wartet. Ausgabe: «Scrum Poker
+API läuft auf <a href="http://localhost:3000»">http://localhost:3000»</a>. Bei jeder Änderung startet Node den Server neu; <strong>dabei gehen
+alle Sessions verloren</strong> (sie sind nur im Arbeitsspeicher).</li>
+</ul>
+<p><strong>Wichtig:</strong> Typfehler sieht man bei <code>pnpm dev</code> nur im Editor, nicht im Terminal. Darum vor dem Commit
+<code>pnpm build</code> laufen lassen.</p>
+<h3 id="73-pnpm-build">7.3 <code>pnpm build</code></h3>
+<ul>
+<li><strong>Client:</strong> <code>tsc -b &amp;&amp; vite build</code>.<ol>
+<li><code>tsc -b</code> liest <code>tsconfig.json</code>, folgt den <code>references</code> und prüft <code>src/</code> (App) und
+<code>vite.config.ts</code> (Node). Bei einem Typfehler stoppt alles (<code>&amp;&amp;</code>).</li>
+<li><code>vite build</code> übersetzt alle Dateien ab <code>index.html</code>, <strong>bündelt</strong> sie zu einer JavaScript- und
+einer CSS-Datei, <strong>minifiziert</strong> sie (Leerzeichen und lange Namen weg) und schreibt alles nach
+<code>dist/</code> (Folie 08/10: transpile, minify, bundle). Die Dateinamen enthalten einen Hash
+(<code>index-Ca4LIyPB.js</code>), damit der Browser nach einer Änderung nicht die alte Datei aus dem Cache
+nimmt. <code>public/favicon.svg</code> wird unverändert kopiert.</li>
+</ol>
+</li>
+</ul>
+<pre><code>$ tsc -b &amp;&amp; vite build
+vite v8.3.5 building client environment for production...
+✓ 47 modules transformed.
+dist/index.html                   0.46 kB │ gzip:  0.30 kB
+dist/assets/index-CuSzv59B.css    6.37 kB │ gzip:  1.69 kB
+dist/assets/index-Ca4LIyPB.js   233.27 kB │ gzip: 72.71 kB
+✓ built in 242ms</code></pre>
+<ul>
+<li><strong>Server:</strong> nur <code>tsc -b</code>, also Typprüfung ohne Ausgabe-Dateien.</li>
+</ul>
+<h3 id="74-pnpm-lint-und-pnpm-formatcheck">7.4 <code>pnpm lint</code> (und <code>pnpm format:check</code>)</h3>
+<ul>
+<li><code>pnpm lint</code> startet <code>oxlint</code> im aktuellen Ordner. oxlint liest alle <code>.ts</code>/<code>.tsx</code>-Dateien (ohne
+<code>node_modules</code> und ohne die Ordner aus <code>.gitignore</code>), prüft sie mit den Standardregeln und gibt
+Warnungen mit Datei und Zeile aus. Findet es nichts, bleibt die Ausgabe leer und der Ausgang ist 0.
+Hook-Regeln prüft es ohne React-Plugin nicht (Kapitel 5.9).</li>
+<li><code>pnpm format:check</code> startet <code>prettier --check .</code> und meldet «All matched files use Prettier code
+style!» oder die Dateien, die nicht formatiert sind.</li>
+</ul>
+<p><strong>Unsere Prüfreihenfolge vor jeder Abgabe</strong> (in <code>client/</code> und <code>server/</code>): <code>pnpm lint</code>,
+<code>pnpm format:check</code>, <code>pnpm build</code>, dann von Hand in zwei Browserfenstern ausprobieren.</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was passiert, wenn ihr <code>pnpm dev</code> im Projektordner statt in <code>client/</code>
+eingebt?» <strong>Antwort:</strong> pnpm findet dort kein <code>package.json</code> und bricht ab
+(«ERR_PNPM_NO_IMPORTER_MANIFEST_FOUND No package.json … was found», ausprobiert). Man muss zuerst
+<code>cd client</code> bzw. <code>cd server</code>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Läuft die App, wenn <code>pnpm build</code> einen Typfehler meldet?» <strong>Antwort:</strong>
+<code>pnpm dev</code> läuft trotzdem, weil Vite keine Typen prüft. Aber es entsteht kein Build, und der Fehler
+kann im Browser zu einem Absturz führen. Darum beheben wir jeden Typfehler sofort.</p>
+</blockquote>
+<hr>
+<h2 id="8-der-weg-eines-requests-browser--vite-proxy--express">8. Der Weg eines Requests: Browser → Vite-Proxy → Express</h2>
+<h3 id="81-beim-entwickeln-zwei-terminals">8.1 Beim Entwickeln (zwei Terminals)</h3>
+<p>Beispiel: Die Startseite lädt die Liste der Sessions (Polling in <code>client/src/components/HomePage.tsx</code>).</p>
+<pre class="mermaid" data-processed="true"><svg id="mermaid-1792932688711" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="max-width: 1441.5px;" viewBox="-85.5 -10 1441.5 877" role="graphics-document document" aria-roledescription="sequence"><g><rect x="1100" y="751" fill="#eaeaea" stroke="#666" width="206" height="75" name="S" rx="6" ry="6" class="actor actor-bottom" data-look="neo" filter="url(#mermaid-1792932688711-drop-shadow)"></rect><text x="1203" y="788.5" dominant-baseline="central" alignment-baseline="central" class="actor actor-box" style="text-anchor: middle; font-size: 16px; font-weight: 400; font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif;"><tspan x="1203" dy="0">store.ts (Array im RAM)</tspan></text></g><g><rect x="900" y="751" fill="#eaeaea" stroke="#666" width="150" height="75" name="E" rx="6" ry="6" class="actor actor-bottom" data-look="neo" filter="url(#mermaid-1792932688711-drop-shadow)"></rect><text x="975" y="788.5" dominant-baseline="central" alignment-baseline="central" class="actor actor-box" style="text-anchor: middle; font-size: 16px; font-weight: 400; font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif;"><tspan x="975" dy="0">Express :3000</tspan></text></g><g><rect x="425" y="751" fill="#eaeaea" stroke="#666" width="198" height="75" name="V" rx="6" ry="6" class="actor actor-bottom" data-look="neo" filter="url(#mermaid-1792932688711-drop-shadow)"></rect><text x="524" y="788.5" dominant-baseline="central" alignment-baseline="central" class="actor actor-box" style="text-anchor: middle; font-size: 16px; font-weight: 400; font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif;"><tspan x="524" dy="0">Vite-Dev-Server :5173</tspan></text></g><g><rect x="0" y="751" fill="#eaeaea" stroke="#666" width="220" height="75" name="B" rx="6" ry="6" class="actor actor-bottom" data-look="neo" filter="url(#mermaid-1792932688711-drop-shadow)"></rect><text x="110" y="788.5" dominant-baseline="central" alignment-baseline="central" class="actor actor-box" style="text-anchor: middle; font-size: 16px; font-weight: 400; font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif;"><tspan x="110" dy="0">Browser (localhost:5173)</tspan></text></g><g><line id="actor3" x1="1203" y1="75" x2="1203" y2="751" class="actor-line 200" stroke-width="0.5px" stroke="#999" name="S" data-et="life-line" data-id="S"></line><g id="root-3" data-look="neo" data-et="participant" data-type="participant" data-id="S"><rect x="1100" y="0" fill="#eaeaea" stroke="#666" width="206" height="75" name="S" rx="6" ry="6" class="actor actor-top" data-look="neo" filter="url(#mermaid-1792932688711-drop-shadow)"></rect><text x="1203" y="37.5" dominant-baseline="central" alignment-baseline="central" class="actor actor-box" style="text-anchor: middle; font-size: 16px; font-weight: 400; font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif;"><tspan x="1203" dy="0">store.ts (Array im RAM)</tspan></text></g></g><g><line id="actor2" x1="975" y1="75" x2="975" y2="751" class="actor-line 200" stroke-width="0.5px" stroke="#999" name="E" data-et="life-line" data-id="E"></line><g id="root-2" data-look="neo" data-et="participant" data-type="participant" data-id="E"><rect x="900" y="0" fill="#eaeaea" stroke="#666" width="150" height="75" name="E" rx="6" ry="6" class="actor actor-top" data-look="neo" filter="url(#mermaid-1792932688711-drop-shadow)"></rect><text x="975" y="37.5" dominant-baseline="central" alignment-baseline="central" class="actor actor-box" style="text-anchor: middle; font-size: 16px; font-weight: 400; font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif;"><tspan x="975" dy="0">Express :3000</tspan></text></g></g><g><line id="actor1" x1="524" y1="75" x2="524" y2="751" class="actor-line 200" stroke-width="0.5px" stroke="#999" name="V" data-et="life-line" data-id="V"></line><g id="root-1" data-look="neo" data-et="participant" data-type="participant" data-id="V"><rect x="425" y="0" fill="#eaeaea" stroke="#666" width="198" height="75" name="V" rx="6" ry="6" class="actor actor-top" data-look="neo" filter="url(#mermaid-1792932688711-drop-shadow)"></rect><text x="524" y="37.5" dominant-baseline="central" alignment-baseline="central" class="actor actor-box" style="text-anchor: middle; font-size: 16px; font-weight: 400; font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif;"><tspan x="524" dy="0">Vite-Dev-Server :5173</tspan></text></g></g><g><line id="actor0" x1="110" y1="75" x2="110" y2="751" class="actor-line 200" stroke-width="0.5px" stroke="#999" name="B" data-et="life-line" data-id="B"></line><g id="root-0" data-look="neo" data-et="participant" data-type="participant" data-id="B"><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="220" height="75" name="B" rx="6" ry="6" class="actor actor-top" data-look="neo" filter="url(#mermaid-1792932688711-drop-shadow)"></rect><text x="110" y="37.5" dominant-baseline="central" alignment-baseline="central" class="actor actor-box" style="text-anchor: middle; font-size: 16px; font-weight: 400; font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif;"><tspan x="110" dy="0">Browser (localhost:5173)</tspan></text></g></g><style>#mermaid-1792932688711{font-family:DejaVu Sans,Arial,sans-serif;font-size:16px;fill:#000000;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-1792932688711 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaid-1792932688711 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaid-1792932688711 .error-icon{fill:#552222;}#mermaid-1792932688711 .error-text{fill:#552222;stroke:#552222;}#mermaid-1792932688711 .edge-thickness-normal{stroke-width:1px;}#mermaid-1792932688711 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-1792932688711 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-1792932688711 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-1792932688711 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-1792932688711 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-1792932688711 .marker{fill:#666;stroke:#666;}#mermaid-1792932688711 .marker.cross{stroke:#666;}#mermaid-1792932688711 svg{font-family:DejaVu Sans,Arial,sans-serif;font-size:16px;}#mermaid-1792932688711 p{margin:0;}#mermaid-1792932688711 .actor{stroke:hsl(0, 0%, 83%);fill:#eee;stroke-width:1;}#mermaid-1792932688711 rect.actor.outer-path[data-look="neo"]{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#mermaid-1792932688711 rect.note[data-look="neo"]{stroke:#999;fill:#666;filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#mermaid-1792932688711 text.actor&gt;tspan{fill:#333;stroke:none;}#mermaid-1792932688711 .actor-line{stroke:hsl(0, 0%, 83%);}#mermaid-1792932688711 .innerArc{stroke-width:1.5;stroke-dasharray:none;}#mermaid-1792932688711 .messageLine0{stroke-width:1.5;stroke-dasharray:none;stroke:#333;}#mermaid-1792932688711 .messageLine1{stroke-width:1.5;stroke-dasharray:2,2;stroke:#333;}#mermaid-1792932688711 [id$="-arrowhead"] path{fill:#333;stroke:#333;}#mermaid-1792932688711 .sequenceNumber{fill:white;}#mermaid-1792932688711 [id$="-sequencenumber"]{fill:#333;}#mermaid-1792932688711 [id$="-crosshead"] path{fill:#333;stroke:#333;}#mermaid-1792932688711 .messageText{fill:#333;stroke:none;}#mermaid-1792932688711 .labelBox{stroke:hsl(0, 0%, 83%);fill:#eee;filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#mermaid-1792932688711 .labelText,#mermaid-1792932688711 .labelText&gt;tspan{fill:#333;stroke:none;}#mermaid-1792932688711 .loopText,#mermaid-1792932688711 .loopText&gt;tspan{fill:#333;stroke:none;}#mermaid-1792932688711 .sectionTitle,#mermaid-1792932688711 .sectionTitle&gt;tspan{fill:#333;stroke:none;}#mermaid-1792932688711 .loopLine{stroke-width:2px;stroke-dasharray:2,2;stroke:hsl(0, 0%, 83%);fill:hsl(0, 0%, 83%);}#mermaid-1792932688711 .note{stroke:#999;fill:#666;}#mermaid-1792932688711 .noteText,#mermaid-1792932688711 .noteText&gt;tspan{fill:#fff;stroke:none;}#mermaid-1792932688711 .activation0{fill:#f4f4f4;stroke:#666;}#mermaid-1792932688711 .activation1{fill:#f4f4f4;stroke:#666;}#mermaid-1792932688711 .activation2{fill:#f4f4f4;stroke:#666;}#mermaid-1792932688711 .actorPopupMenu{position:absolute;}#mermaid-1792932688711 .actorPopupMenuPanel{position:absolute;fill:#eee;box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);filter:drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));}#mermaid-1792932688711 .actor-man circle,#mermaid-1792932688711 line{fill:#eee;stroke-width:2px;}#mermaid-1792932688711 g rect.rect{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));stroke:#999;}#mermaid-1792932688711 .node .neo-node{stroke:#999;}#mermaid-1792932688711 [data-look="neo"].node rect,#mermaid-1792932688711 [data-look="neo"].cluster rect,#mermaid-1792932688711 [data-look="neo"].node polygon{stroke:url(#mermaid-1792932688711-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#mermaid-1792932688711 [data-look="neo"].swimlane.cluster rect{filter:none;}#mermaid-1792932688711 [data-look="neo"].node path{stroke:url(#mermaid-1792932688711-gradient);stroke-width:1px;}#mermaid-1792932688711 [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#mermaid-1792932688711 [data-look="neo"].node .neo-line path{stroke:#999;filter:none;}#mermaid-1792932688711 [data-look="neo"].node circle{stroke:url(#mermaid-1792932688711-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#mermaid-1792932688711 [data-look="neo"].node circle .state-start{fill:#000000;}#mermaid-1792932688711 [data-look="neo"].icon-shape .icon{fill:url(#mermaid-1792932688711-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#mermaid-1792932688711 [data-look="neo"].icon-shape .icon-neo path{stroke:url(#mermaid-1792932688711-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#mermaid-1792932688711 :root{--mermaid-font-family:DejaVu Sans,Arial,sans-serif;}</style><g></g><defs><symbol id="mermaid-1792932688711-computer" width="24" height="24"><path transform="scale(.5)" d="M2 2v13h20v-13h-20zm18 11h-16v-9h16v9zm-10.228 6l.466-1h3.524l.467 1h-4.457zm14.228 3h-24l2-6h2.104l-1.33 4h18.45l-1.297-4h2.073l2 6zm-5-10h-14v-7h14v7z"></path></symbol></defs><defs><symbol id="mermaid-1792932688711-database" fill-rule="evenodd" clip-rule="evenodd"><path transform="scale(.5)" d="M12.258.001l.256.004.255.005.253.008.251.01.249.012.247.015.246.016.242.019.241.02.239.023.236.024.233.027.231.028.229.031.225.032.223.034.22.036.217.038.214.04.211.041.208.043.205.045.201.046.198.048.194.05.191.051.187.053.183.054.18.056.175.057.172.059.168.06.163.061.16.063.155.064.15.066.074.033.073.033.071.034.07.034.069.035.068.035.067.035.066.035.064.036.064.036.062.036.06.036.06.037.058.037.058.037.055.038.055.038.053.038.052.038.051.039.05.039.048.039.047.039.045.04.044.04.043.04.041.04.04.041.039.041.037.041.036.041.034.041.033.042.032.042.03.042.029.042.027.042.026.043.024.043.023.043.021.043.02.043.018.044.017.043.015.044.013.044.012.044.011.045.009.044.007.045.006.045.004.045.002.045.001.045v17l-.001.045-.002.045-.004.045-.006.045-.007.045-.009.044-.011.045-.012.044-.013.044-.015.044-.017.043-.018.044-.02.043-.021.043-.023.043-.024.043-.026.043-.027.042-.029.042-.03.042-.032.042-.033.042-.034.041-.036.041-.037.041-.039.041-.04.041-.041.04-.043.04-.044.04-.045.04-.047.039-.048.039-.05.039-.051.039-.052.038-.053.038-.055.038-.055.038-.058.037-.058.037-.06.037-.06.036-.062.036-.064.036-.064.036-.066.035-.067.035-.068.035-.069.035-.07.034-.071.034-.073.033-.074.033-.15.066-.155.064-.16.063-.163.061-.168.06-.172.059-.175.057-.18.056-.183.054-.187.053-.191.051-.194.05-.198.048-.201.046-.205.045-.208.043-.211.041-.214.04-.217.038-.22.036-.223.034-.225.032-.229.031-.231.028-.233.027-.236.024-.239.023-.241.02-.242.019-.246.016-.247.015-.249.012-.251.01-.253.008-.255.005-.256.004-.258.001-.258-.001-.256-.004-.255-.005-.253-.008-.251-.01-.249-.012-.247-.015-.245-.016-.243-.019-.241-.02-.238-.023-.236-.024-.234-.027-.231-.028-.228-.031-.226-.032-.223-.034-.22-.036-.217-.038-.214-.04-.211-.041-.208-.043-.204-.045-.201-.046-.198-.048-.195-.05-.19-.051-.187-.053-.184-.054-.179-.056-.176-.057-.172-.059-.167-.06-.164-.061-.159-.063-.155-.064-.151-.066-.074-.033-.072-.033-.072-.034-.07-.034-.069-.035-.068-.035-.067-.035-.066-.035-.064-.036-.063-.036-.062-.036-.061-.036-.06-.037-.058-.037-.057-.037-.056-.038-.055-.038-.053-.038-.052-.038-.051-.039-.049-.039-.049-.039-.046-.039-.046-.04-.044-.04-.043-.04-.041-.04-.04-.041-.039-.041-.037-.041-.036-.041-.034-.041-.033-.042-.032-.042-.03-.042-.029-.042-.027-.042-.026-.043-.024-.043-.023-.043-.021-.043-.02-.043-.018-.044-.017-.043-.015-.044-.013-.044-.012-.044-.011-.045-.009-.044-.007-.045-.006-.045-.004-.045-.002-.045-.001-.045v-17l.001-.045.002-.045.004-.045.006-.045.007-.045.009-.044.011-.045.012-.044.013-.044.015-.044.017-.043.018-.044.02-.043.021-.043.023-.043.024-.043.026-.043.027-.042.029-.042.03-.042.032-.042.033-.042.034-.041.036-.041.037-.041.039-.041.04-.041.041-.04.043-.04.044-.04.046-.04.046-.039.049-.039.049-.039.051-.039.052-.038.053-.038.055-.038.056-.038.057-.037.058-.037.06-.037.061-.036.062-.036.063-.036.064-.036.066-.035.067-.035.068-.035.069-.035.07-.034.072-.034.072-.033.074-.033.151-.066.155-.064.159-.063.164-.061.167-.06.172-.059.176-.057.179-.056.184-.054.187-.053.19-.051.195-.05.198-.048.201-.046.204-.045.208-.043.211-.041.214-.04.217-.038.22-.036.223-.034.226-.032.228-.031.231-.028.234-.027.236-.024.238-.023.241-.02.243-.019.245-.016.247-.015.249-.012.251-.01.253-.008.255-.005.256-.004.258-.001.258.001zm-9.258 20.499v.01l.001.021.003.021.004.022.005.021.006.022.007.022.009.023.01.022.011.023.012.023.013.023.015.023.016.024.017.023.018.024.019.024.021.024.022.025.023.024.024.025.052.049.056.05.061.051.066.051.07.051.075.051.079.052.084.052.088.052.092.052.097.052.102.051.105.052.11.052.114.051.119.051.123.051.127.05.131.05.135.05.139.048.144.049.147.047.152.047.155.047.16.045.163.045.167.043.171.043.176.041.178.041.183.039.187.039.19.037.194.035.197.035.202.033.204.031.209.03.212.029.216.027.219.025.222.024.226.021.23.02.233.018.236.016.24.015.243.012.246.01.249.008.253.005.256.004.259.001.26-.001.257-.004.254-.005.25-.008.247-.011.244-.012.241-.014.237-.016.233-.018.231-.021.226-.021.224-.024.22-.026.216-.027.212-.028.21-.031.205-.031.202-.034.198-.034.194-.036.191-.037.187-.039.183-.04.179-.04.175-.042.172-.043.168-.044.163-.045.16-.046.155-.046.152-.047.148-.048.143-.049.139-.049.136-.05.131-.05.126-.05.123-.051.118-.052.114-.051.11-.052.106-.052.101-.052.096-.052.092-.052.088-.053.083-.051.079-.052.074-.052.07-.051.065-.051.06-.051.056-.05.051-.05.023-.024.023-.025.021-.024.02-.024.019-.024.018-.024.017-.024.015-.023.014-.024.013-.023.012-.023.01-.023.01-.022.008-.022.006-.022.006-.022.004-.022.004-.021.001-.021.001-.021v-4.127l-.077.055-.08.053-.083.054-.085.053-.087.052-.09.052-.093.051-.095.05-.097.05-.1.049-.102.049-.105.048-.106.047-.109.047-.111.046-.114.045-.115.045-.118.044-.12.043-.122.042-.124.042-.126.041-.128.04-.13.04-.132.038-.134.038-.135.037-.138.037-.139.035-.142.035-.143.034-.144.033-.147.032-.148.031-.15.03-.151.03-.153.029-.154.027-.156.027-.158.026-.159.025-.161.024-.162.023-.163.022-.165.021-.166.02-.167.019-.169.018-.169.017-.171.016-.173.015-.173.014-.175.013-.175.012-.177.011-.178.01-.179.008-.179.008-.181.006-.182.005-.182.004-.184.003-.184.002h-.37l-.184-.002-.184-.003-.182-.004-.182-.005-.181-.006-.179-.008-.179-.008-.178-.01-.176-.011-.176-.012-.175-.013-.173-.014-.172-.015-.171-.016-.17-.017-.169-.018-.167-.019-.166-.02-.165-.021-.163-.022-.162-.023-.161-.024-.159-.025-.157-.026-.156-.027-.155-.027-.153-.029-.151-.03-.15-.03-.148-.031-.146-.032-.145-.033-.143-.034-.141-.035-.14-.035-.137-.037-.136-.037-.134-.038-.132-.038-.13-.04-.128-.04-.126-.041-.124-.042-.122-.042-.12-.044-.117-.043-.116-.045-.113-.045-.112-.046-.109-.047-.106-.047-.105-.048-.102-.049-.1-.049-.097-.05-.095-.05-.093-.052-.09-.051-.087-.052-.085-.053-.083-.054-.08-.054-.077-.054v4.127zm0-5.654v.011l.001.021.003.021.004.021.005.022.006.022.007.022.009.022.01.022.011.023.012.023.013.023.015.024.016.023.017.024.018.024.019.024.021.024.022.024.023.025.024.024.052.05.056.05.061.05.066.051.07.051.075.052.079.051.084.052.088.052.092.052.097.052.102.052.105.052.11.051.114.051.119.052.123.05.127.051.131.05.135.049.139.049.144.048.147.048.152.047.155.046.16.045.163.045.167.044.171.042.176.042.178.04.183.04.187.038.19.037.194.036.197.034.202.033.204.032.209.03.212.028.216.027.219.025.222.024.226.022.23.02.233.018.236.016.24.014.243.012.246.01.249.008.253.006.256.003.259.001.26-.001.257-.003.254-.006.25-.008.247-.01.244-.012.241-.015.237-.016.233-.018.231-.02.226-.022.224-.024.22-.025.216-.027.212-.029.21-.03.205-.032.202-.033.198-.035.194-.036.191-.037.187-.039.183-.039.179-.041.175-.042.172-.043.168-.044.163-.045.16-.045.155-.047.152-.047.148-.048.143-.048.139-.05.136-.049.131-.05.126-.051.123-.051.118-.051.114-.052.11-.052.106-.052.101-.052.096-.052.092-.052.088-.052.083-.052.079-.052.074-.051.07-.052.065-.051.06-.05.056-.051.051-.049.023-.025.023-.024.021-.025.02-.024.019-.024.018-.024.017-.024.015-.023.014-.023.013-.024.012-.022.01-.023.01-.023.008-.022.006-.022.006-.022.004-.021.004-.022.001-.021.001-.021v-4.139l-.077.054-.08.054-.083.054-.085.052-.087.053-.09.051-.093.051-.095.051-.097.05-.1.049-.102.049-.105.048-.106.047-.109.047-.111.046-.114.045-.115.044-.118.044-.12.044-.122.042-.124.042-.126.041-.128.04-.13.039-.132.039-.134.038-.135.037-.138.036-.139.036-.142.035-.143.033-.144.033-.147.033-.148.031-.15.03-.151.03-.153.028-.154.028-.156.027-.158.026-.159.025-.161.024-.162.023-.163.022-.165.021-.166.02-.167.019-.169.018-.169.017-.171.016-.173.015-.173.014-.175.013-.175.012-.177.011-.178.009-.179.009-.179.007-.181.007-.182.005-.182.004-.184.003-.184.002h-.37l-.184-.002-.184-.003-.182-.004-.182-.005-.181-.007-.179-.007-.179-.009-.178-.009-.176-.011-.176-.012-.175-.013-.173-.014-.172-.015-.171-.016-.17-.017-.169-.018-.167-.019-.166-.02-.165-.021-.163-.022-.162-.023-.161-.024-.159-.025-.157-.026-.156-.027-.155-.028-.153-.028-.151-.03-.15-.03-.148-.031-.146-.033-.145-.033-.143-.033-.141-.035-.14-.036-.137-.036-.136-.037-.134-.038-.132-.039-.13-.039-.128-.04-.126-.041-.124-.042-.122-.043-.12-.043-.117-.044-.116-.044-.113-.046-.112-.046-.109-.046-.106-.047-.105-.048-.102-.049-.1-.049-.097-.05-.095-.051-.093-.051-.09-.051-.087-.053-.085-.052-.083-.054-.08-.054-.077-.054v4.139zm0-5.666v.011l.001.02.003.022.004.021.005.022.006.021.007.022.009.023.01.022.011.023.012.023.013.023.015.023.016.024.017.024.018.023.019.024.021.025.022.024.023.024.024.025.052.05.056.05.061.05.066.051.07.051.075.052.079.051.084.052.088.052.092.052.097.052.102.052.105.051.11.052.114.051.119.051.123.051.127.05.131.05.135.05.139.049.144.048.147.048.152.047.155.046.16.045.163.045.167.043.171.043.176.042.178.04.183.04.187.038.19.037.194.036.197.034.202.033.204.032.209.03.212.028.216.027.219.025.222.024.226.021.23.02.233.018.236.017.24.014.243.012.246.01.249.008.253.006.256.003.259.001.26-.001.257-.003.254-.006.25-.008.247-.01.244-.013.241-.014.237-.016.233-.018.231-.02.226-.022.224-.024.22-.025.216-.027.212-.029.21-.03.205-.032.202-.033.198-.035.194-.036.191-.037.187-.039.183-.039.179-.041.175-.042.172-.043.168-.044.163-.045.16-.045.155-.047.152-.047.148-.048.143-.049.139-.049.136-.049.131-.051.126-.05.123-.051.118-.052.114-.051.11-.052.106-.052.101-.052.096-.052.092-.052.088-.052.083-.052.079-.052.074-.052.07-.051.065-.051.06-.051.056-.05.051-.049.023-.025.023-.025.021-.024.02-.024.019-.024.018-.024.017-.024.015-.023.014-.024.013-.023.012-.023.01-.022.01-.023.008-.022.006-.022.006-.022.004-.022.004-.021.001-.021.001-.021v-4.153l-.077.054-.08.054-.083.053-.085.053-.087.053-.09.051-.093.051-.095.051-.097.05-.1.049-.102.048-.105.048-.106.048-.109.046-.111.046-.114.046-.115.044-.118.044-.12.043-.122.043-.124.042-.126.041-.128.04-.13.039-.132.039-.134.038-.135.037-.138.036-.139.036-.142.034-.143.034-.144.033-.147.032-.148.032-.15.03-.151.03-.153.028-.154.028-.156.027-.158.026-.159.024-.161.024-.162.023-.163.023-.165.021-.166.02-.167.019-.169.018-.169.017-.171.016-.173.015-.173.014-.175.013-.175.012-.177.01-.178.01-.179.009-.179.007-.181.006-.182.006-.182.004-.184.003-.184.001-.185.001-.185-.001-.184-.001-.184-.003-.182-.004-.182-.006-.181-.006-.179-.007-.179-.009-.178-.01-.176-.01-.176-.012-.175-.013-.173-.014-.172-.015-.171-.016-.17-.017-.169-.018-.167-.019-.166-.02-.165-.021-.163-.023-.162-.023-.161-.024-.159-.024-.157-.026-.156-.027-.155-.028-.153-.028-.151-.03-.15-.03-.148-.032-.146-.032-.145-.033-.143-.034-.141-.034-.14-.036-.137-.036-.136-.037-.134-.038-.132-.039-.13-.039-.128-.041-.126-.041-.124-.041-.122-.043-.12-.043-.117-.044-.116-.044-.113-.046-.112-.046-.109-.046-.106-.048-.105-.048-.102-.048-.1-.05-.097-.049-.095-.051-.093-.051-.09-.052-.087-.052-.085-.053-.083-.053-.08-.054-.077-.054v4.153zm8.74-8.179l-.257.004-.254.005-.25.008-.247.011-.244.012-.241.014-.237.016-.233.018-.231.021-.226.022-.224.023-.22.026-.216.027-.212.028-.21.031-.205.032-.202.033-.198.034-.194.036-.191.038-.187.038-.183.04-.179.041-.175.042-.172.043-.168.043-.163.045-.16.046-.155.046-.152.048-.148.048-.143.048-.139.049-.136.05-.131.05-.126.051-.123.051-.118.051-.114.052-.11.052-.106.052-.101.052-.096.052-.092.052-.088.052-.083.052-.079.052-.074.051-.07.052-.065.051-.06.05-.056.05-.051.05-.023.025-.023.024-.021.024-.02.025-.019.024-.018.024-.017.023-.015.024-.014.023-.013.023-.012.023-.01.023-.01.022-.008.022-.006.023-.006.021-.004.022-.004.021-.001.021-.001.021.001.021.001.021.004.021.004.022.006.021.006.023.008.022.01.022.01.023.012.023.013.023.014.023.015.024.017.023.018.024.019.024.02.025.021.024.023.024.023.025.051.05.056.05.06.05.065.051.07.052.074.051.079.052.083.052.088.052.092.052.096.052.101.052.106.052.11.052.114.052.118.051.123.051.126.051.131.05.136.05.139.049.143.048.148.048.152.048.155.046.16.046.163.045.168.043.172.043.175.042.179.041.183.04.187.038.191.038.194.036.198.034.202.033.205.032.21.031.212.028.216.027.22.026.224.023.226.022.231.021.233.018.237.016.241.014.244.012.247.011.25.008.254.005.257.004.26.001.26-.001.257-.004.254-.005.25-.008.247-.011.244-.012.241-.014.237-.016.233-.018.231-.021.226-.022.224-.023.22-.026.216-.027.212-.028.21-.031.205-.032.202-.033.198-.034.194-.036.191-.038.187-.038.183-.04.179-.041.175-.042.172-.043.168-.043.163-.045.16-.046.155-.046.152-.048.148-.048.143-.048.139-.049.136-.05.131-.05.126-.051.123-.051.118-.051.114-.052.11-.052.106-.052.101-.052.096-.052.092-.052.088-.052.083-.052.079-.052.074-.051.07-.052.065-.051.06-.05.056-.05.051-.05.023-.025.023-.024.021-.024.02-.025.019-.024.018-.024.017-.023.015-.024.014-.023.013-.023.012-.023.01-.023.01-.022.008-.022.006-.023.006-.021.004-.022.004-.021.001-.021.001-.021-.001-.021-.001-.021-.004-.021-.004-.022-.006-.021-.006-.023-.008-.022-.01-.022-.01-.023-.012-.023-.013-.023-.014-.023-.015-.024-.017-.023-.018-.024-.019-.024-.02-.025-.021-.024-.023-.024-.023-.025-.051-.05-.056-.05-.06-.05-.065-.051-.07-.052-.074-.051-.079-.052-.083-.052-.088-.052-.092-.052-.096-.052-.101-.052-.106-.052-.11-.052-.114-.052-.118-.051-.123-.051-.126-.051-.131-.05-.136-.05-.139-.049-.143-.048-.148-.048-.152-.048-.155-.046-.16-.046-.163-.045-.168-.043-.172-.043-.175-.042-.179-.041-.183-.04-.187-.038-.191-.038-.194-.036-.198-.034-.202-.033-.205-.032-.21-.031-.212-.028-.216-.027-.22-.026-.224-.023-.226-.022-.231-.021-.233-.018-.237-.016-.241-.014-.244-.012-.247-.011-.25-.008-.254-.005-.257-.004-.26-.001-.26.001z"></path></symbol></defs><defs><symbol id="mermaid-1792932688711-clock" width="24" height="24"><path transform="scale(.5)" d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.848 12.459c.202.038.202.333.001.372-1.907.361-6.045 1.111-6.547 1.111-.719 0-1.301-.582-1.301-1.301 0-.512.77-5.447 1.125-7.445.034-.192.312-.181.343.014l.985 6.238 5.394 1.011z"></path></symbol></defs><defs><marker id="mermaid-1792932688711-arrowhead" refX="7.9" refY="5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M -1 0 L 10 5 L 0 10 z"></path></marker></defs><defs><marker id="mermaid-1792932688711-crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="4" refY="4.5"><path fill="none" stroke="#000000" stroke-width="1pt" d="M 1,2 L 6,7 M 6,2 L 1,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><defs><marker id="mermaid-1792932688711-filled-head" refX="15.5" refY="7" markerWidth="20" markerHeight="28" orient="auto"><path d="M 18,7 L9,13 L14,7 L9,1 Z"></path></marker></defs><defs><marker id="mermaid-1792932688711-sequencenumber" refX="15" refY="15" markerWidth="60" markerHeight="40" orient="auto"><circle cx="15" cy="15" r="6"></circle></marker></defs><defs><marker id="mermaid-1792932688711-solidTopArrowHead" refX="7.9" refY="7.25" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M 0 0 L 10 8 L 0 8 z"></path></marker></defs><defs><marker id="mermaid-1792932688711-solidBottomArrowHead" refX="7.9" refY="0.75" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M 0 0 L 10 0 L 0 8 z"></path></marker></defs><defs><marker id="mermaid-1792932688711-stickTopArrowHead" refX="7.5" refY="7" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M 0 0 L 7 7" stroke="black" stroke-width="1.5" fill="none"></path></marker></defs><defs><marker id="mermaid-1792932688711-stickBottomArrowHead" refX="7.5" refY="0" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M 0 7 L 7 0" stroke="black" stroke-width="1.5" fill="none"></path></marker></defs><defs><filter id="mermaid-1792932688711-drop-shadow" height="130%" width="130%"><feDropShadow dx="4" dy="4" stdDeviation="0" flood-opacity="0.06" flood-color="#FFFFFF"></feDropShadow></filter></defs><g data-et="note" data-id="i2"><rect x="-2.5" y="181" fill="#EDF2AE" stroke="#666" width="225" height="58" class="note" data-look="neo"></rect><text x="110" y="186" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400;"><tspan x="110">React rendert HomePage,</tspan></text><text x="110" y="205" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400;"><tspan x="110">useEffect startet Polling</tspan></text></g><g data-et="note" data-id="i4"><rect x="422" y="297" fill="#EDF2AE" stroke="#666" width="204" height="58" class="note" data-look="neo"></rect><text x="524" y="302" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400;"><tspan x="524">Pfad beginnt mit /api</tspan></text><text x="524" y="321" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400;"><tspan x="524">→ Proxy (vite.config.ts)</tspan></text></g><g data-et="note" data-id="i6"><rect x="806" y="413" fill="#EDF2AE" stroke="#666" width="338" height="58" class="note" data-look="neo"></rect><text x="975" y="418" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400;"><tspan x="975">express.json(), dann</tspan></text><text x="975" y="437" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400;"><tspan x="975">app.use('/api/sessions', sessionsRouter)</tspan></text></g><g data-et="note" data-id="i11"><rect x="-35.5" y="673" fill="#EDF2AE" stroke="#666" width="291" height="58" class="note" data-look="neo"></rect><text x="110" y="678" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400;"><tspan x="110">response.ok → response.json()</tspan></text><text x="110" y="697" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="noteText" dy="1em" style="font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400;"><tspan x="110">→ setSessions → neues Rendering</tspan></text></g><text x="314" y="90" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400;">GET / (Seite öffnen)</text><line x1="111" y1="123" x2="517" y2="123" class="messageLine0" data-et="message" data-id="i0" data-from="B" data-to="V" stroke-width="2" stroke="none" marker-end="url(#mermaid-1792932688711-arrowhead)" style="fill: none;"></line><text x="320" y="138" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400;">index.html, dann main.tsx usw. (übersetzt)</text><line x1="523" y1="171" x2="117" y2="171" class="messageLine1" data-et="message" data-id="i1" data-from="V" data-to="B" stroke-width="2" stroke="none" marker-end="url(#mermaid-1792932688711-arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="314" y="254" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400;">GET /api/sessions (fetch in api/sessions.ts)</text><line x1="111" y1="287" x2="517" y2="287" class="messageLine0" data-et="message" data-id="i3" data-from="B" data-to="V" stroke-width="2" stroke="none" marker-end="url(#mermaid-1792932688711-arrowhead)" style="fill: none;"></line><text x="747" y="370" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400;">GET http://localhost:3000/api/sessions</text><line x1="525" y1="403" x2="968" y2="403" class="messageLine0" data-et="message" data-id="i5" data-from="V" data-to="E" stroke-width="2" stroke="none" marker-end="url(#mermaid-1792932688711-arrowhead)" style="fill: none;"></line><text x="1086" y="486" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400;">Sessions lesen</text><line x1="976" y1="519" x2="1196" y2="519" class="messageLine0" data-et="message" data-id="i7" data-from="E" data-to="S" stroke-width="2" stroke="none" marker-end="url(#mermaid-1792932688711-arrowhead)" style="fill: none;"></line><text x="1092" y="534" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400;">Array</text><line x1="1202" y1="567" x2="982" y2="567" class="messageLine1" data-et="message" data-id="i8" data-from="S" data-to="E" stroke-width="2" stroke="none" marker-end="url(#mermaid-1792932688711-arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="753" y="582" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400;">200 OK, JSON [{"id":"…","participantCount":0}]</text><line x1="974" y1="615" x2="531" y2="615" class="messageLine1" data-et="message" data-id="i9" data-from="E" data-to="V" stroke-width="2" stroke="none" marker-end="url(#mermaid-1792932688711-arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="320" y="630" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-family: &quot;DejaVu Sans&quot;, Arial, sans-serif; font-size: 16px; font-weight: 400;">200 OK, gleiche Antwort</text><line x1="523" y1="663" x2="117" y2="663" class="messageLine1" data-et="message" data-id="i10" data-from="V" data-to="B" stroke-width="2" stroke="none" marker-end="url(#mermaid-1792932688711-arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line></svg></pre>
+<p>Schritt für Schritt (mit Dateien):</p>
+<ol>
+<li><code>client/src/components/HomePage.tsx</code> ruft im <code>useEffect</code> die Funktion <code>listSessions()</code> auf.</li>
+<li><code>listSessions()</code> in <code>client/src/api/sessions.ts</code> ruft <code>send('GET', '/sessions')</code> auf, und <code>send</code>
+ruft <code>fetch('/api' + path, { method })</code> auf, also <code>fetch('/api/sessions')</code>: eine <strong>relative</strong>
+Adresse. Der Browser ergänzt sie zu <code>http://localhost:5173/api/sessions</code>.</li>
+<li>Der Vite-Dev-Server bekommt die Anfrage. Weil der Pfad mit <code>/api</code> beginnt, gibt er sie laut
+<code>client/vite.config.ts:10-12</code> an <code>http://localhost:3000/api/sessions</code> weiter.</li>
+<li>Express (<code>server/src/app.ts</code>) liest bei Bedarf den JSON-Body (<code>express.json()</code>) und gibt alles unter
+<code>/api/sessions</code> an den Router in <code>server/src/routes/sessions.ts</code> weiter. Die Route <code>GET /</code> liest
+die Sessions aus <code>server/src/store.ts</code> und antwortet mit Status 200 und JSON.</li>
+<li>Vite reicht die Antwort unverändert an den Browser weiter.</li>
+<li><code>listSessions()</code> prüft <code>response.ok</code>, liest <code>response.json()</code> und gibt die Liste zurück.
+<code>HomePage</code> speichert sie mit <code>setSessions</code>, React rendert die Liste neu.</li>
+</ol>
+<p><strong>Wenn Express nicht läuft:</strong> Vite kann nicht weiterleiten (im Vite-Terminal steht
+«http proxy error: /api/sessions … ECONNREFUSED») und antwortet dem Browser mit <strong>502 Bad Gateway</strong>.
+<code>createError()</code> in <code>client/src/api/sessions.ts</code> macht daraus «Server nicht erreichbar.» (ausprobiert).</p>
+<p><strong>Warum kein CORS?</strong> Der Browser hat nur mit <code>localhost:5173</code> gesprochen. Dass Vite intern mit Port
+3000 redet, sieht er nicht. CORS (Cross-Origin Resource Sharing) wäre nur nötig, wenn der Browser
+selbst eine andere Adresse (anderer Port = anderer Ursprung) anfragen würde.</p>
+<h3 id="82-wie-man-es-im-browser-sieht">8.2 Wie man es im Browser sieht</h3>
+<p>DevTools (F12) → Tab <strong>Network</strong> (Folie 02/19–20): Die Anfrage heisst <code>sessions</code>, die Adresse ist
+<code>http://localhost:5173/api/sessions</code>, nicht Port 3000. Bei Klick darauf sieht man Methode, Statuscode,
+Header (<code>Content-Type: application/json</code>) und unter «Response» das JSON. Den Proxy selbst sieht der
+Browser nicht. Unter <strong>Application → Local Storage</strong> sieht man den gespeicherten Namen
+(<code>scrum-poker:name</code>).</p>
+<h3 id="83-im-produktivbetrieb-ein-prozess-ohne-vite">8.3 Im Produktivbetrieb (ein Prozess, ohne Vite)</h3>
+<pre class="mermaid" data-processed="true"><svg id="mermaid-1792932688766" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="flowchart" style="max-width: 998.46875px;" viewBox="4 4 998.46875 224" role="graphics-document document" aria-roledescription="flowchart-v2"><style>#mermaid-1792932688766{font-family:DejaVu Sans,Arial,sans-serif;font-size:16px;fill:#000000;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-1792932688766 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaid-1792932688766 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaid-1792932688766 .error-icon{fill:#552222;}#mermaid-1792932688766 .error-text{fill:#552222;stroke:#552222;}#mermaid-1792932688766 .edge-thickness-normal{stroke-width:1px;}#mermaid-1792932688766 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-1792932688766 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-1792932688766 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-1792932688766 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-1792932688766 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-1792932688766 .marker{fill:#666;stroke:#666;}#mermaid-1792932688766 .marker.cross{stroke:#666;}#mermaid-1792932688766 svg{font-family:DejaVu Sans,Arial,sans-serif;font-size:16px;}#mermaid-1792932688766 p{margin:0;}#mermaid-1792932688766 .label{font-family:DejaVu Sans,Arial,sans-serif;color:#000000;}#mermaid-1792932688766 .cluster-label text{fill:#333;}#mermaid-1792932688766 .cluster-label span{color:#333;}#mermaid-1792932688766 .cluster-label span p{background-color:transparent;}#mermaid-1792932688766 .label text,#mermaid-1792932688766 span{fill:#000000;color:#000000;}#mermaid-1792932688766 .node rect,#mermaid-1792932688766 .node circle,#mermaid-1792932688766 .node ellipse,#mermaid-1792932688766 .node polygon,#mermaid-1792932688766 .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-1792932688766 .rough-node .label text,#mermaid-1792932688766 .node .label text,#mermaid-1792932688766 .image-shape .label,#mermaid-1792932688766 .icon-shape .label{text-anchor:middle;}#mermaid-1792932688766 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-1792932688766 .rough-node .label,#mermaid-1792932688766 .node .label,#mermaid-1792932688766 .image-shape .label,#mermaid-1792932688766 .icon-shape .label{text-align:center;}#mermaid-1792932688766 .node.clickable{cursor:pointer;}#mermaid-1792932688766 .root .anchor path{fill:#666!important;stroke-width:0;stroke:#666;}#mermaid-1792932688766 .arrowheadPath{fill:#333333;}#mermaid-1792932688766 .edgePaths .path{stroke:#666;stroke-width:1px;}#mermaid-1792932688766 .flowchart-link{stroke:#666;fill:none;}#mermaid-1792932688766 .edgeLabel{background-color:white;text-align:center;}#mermaid-1792932688766 .edgeLabel p{background-color:white;}#mermaid-1792932688766 .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-1792932688766 .labelBkg{background-color:rgba(255, 255, 255, 0.5);}#mermaid-1792932688766 .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#mermaid-1792932688766 .cluster text{fill:#333;}#mermaid-1792932688766 .cluster span{color:#333;}#mermaid-1792932688766 .node .collapsed-indicator{fill:#707070;stroke:none;opacity:0.6;}#mermaid-1792932688766 .node .collapsed-separator{stroke:#707070;stroke-width:0.75px;}#mermaid-1792932688766 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:DejaVu Sans,Arial,sans-serif;font-size:12px;background:hsl(-160, 0%, 93.3333333333%);border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-1792932688766 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#mermaid-1792932688766 rect.text{fill:none;stroke-width:0;}#mermaid-1792932688766 .icon-shape,#mermaid-1792932688766 .image-shape{background-color:white;text-align:center;}#mermaid-1792932688766 .icon-shape p,#mermaid-1792932688766 .image-shape p{background-color:white;padding:2px;}#mermaid-1792932688766 .icon-shape .label rect,#mermaid-1792932688766 .image-shape .label rect{opacity:0.5;background-color:white;fill:white;}#mermaid-1792932688766 .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#mermaid-1792932688766 .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#mermaid-1792932688766 .node .neo-node{stroke:#999;}#mermaid-1792932688766 [data-look="neo"].node rect,#mermaid-1792932688766 [data-look="neo"].cluster rect,#mermaid-1792932688766 [data-look="neo"].node polygon{stroke:url(#mermaid-1792932688766-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#mermaid-1792932688766 [data-look="neo"].swimlane.cluster rect{filter:none;}#mermaid-1792932688766 [data-look="neo"].node path{stroke:url(#mermaid-1792932688766-gradient);stroke-width:1px;}#mermaid-1792932688766 [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#mermaid-1792932688766 [data-look="neo"].node .neo-line path{stroke:#999;filter:none;}#mermaid-1792932688766 [data-look="neo"].node circle{stroke:url(#mermaid-1792932688766-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#mermaid-1792932688766 [data-look="neo"].node circle .state-start{fill:#000000;}#mermaid-1792932688766 [data-look="neo"].icon-shape .icon{fill:url(#mermaid-1792932688766-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#mermaid-1792932688766 [data-look="neo"].icon-shape .icon-neo path{stroke:url(#mermaid-1792932688766-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#mermaid-1792932688766 :root{--mermaid-font-family:DejaVu Sans,Arial,sans-serif;}</style><g><marker id="mermaid-1792932688766_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1792932688766_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1792932688766_flowchart-v2-pointEnd-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="11.5" refY="7" markerUnits="userSpaceOnUse" markerWidth="10.5" markerHeight="14" orient="auto"><path d="M 0 0 L 11.5 7 L 0 14 z" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1792932688766_flowchart-v2-pointStart-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="1" refY="7" markerUnits="userSpaceOnUse" markerWidth="11.5" markerHeight="14" orient="auto"><polygon points="0,7 11.5,14 11.5,0" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></polygon></marker><marker id="mermaid-1792932688766_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-1792932688766_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-1792932688766_flowchart-v2-circleEnd-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refY="5" refX="12.25" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-1792932688766_flowchart-v2-circleStart-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-2" refY="5" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaid-1792932688766_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1792932688766_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaid-1792932688766_flowchart-v2-crossEnd-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="17.7" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath" style="stroke-width: 2.5;"></path></marker><marker id="mermaid-1792932688766_flowchart-v2-crossStart-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="-3.5" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath" style="stroke-width: 2.5; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"></g><g class="edges edgePaths"><path d="M164,129.33333333333331L176.92893218813452,129.33333333333331Q184,129.33333333333331 184,122.26226552146784L184,118.57106781186548Q184,111.5 191.07106781186548,111.5L357.0539321881345,111.5Q364.125,111.5 364.125,118.57106781186548L364.125,122.26226552146784Q364.125,129.33333333333331 371.1960678118655,129.33333333333331L380.125,129.33333333333331" id="mermaid-1792932688766-L_B_E_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="stroke-dasharray: 0 0 237.13504028320312 4; stroke-dashoffset: 0;;" data-edge="true" data-et="edge" data-id="L_B_E_0" data-points="W3sieCI6MTY0LCJ5IjoxMjkuMzMzMzMzMzMzMzMzMzF9LHsieCI6MTg0LCJ5IjoxMjkuMzMzMzMzMzMzMzMzMzF9LHsieCI6MTg0LCJ5IjoxMTEuNX0seyJ4IjozNjQuMTI1LCJ5IjoxMTEuNX0seyJ4IjozNjQuMTI1LCJ5IjoxMjkuMzMzMzMzMzMzMzMzMzF9LHsieCI6Mzg0LjEyNSwieSI6MTI5LjMzMzMzMzMzMzMzMzMxfV0=" data-look="neo" marker-end="url(#mermaid-1792932688766_flowchart-v2-pointEnd-margin)"></path><path d="M536.125,129.33333333333331L549.0539321881345,129.33333333333331Q556.125,129.33333333333331 556.125,122.26226552146784L556.125,79.07106781186548Q556.125,72 563.1960678118655,72L838.46875,72" id="mermaid-1792932688766-L_E_D_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="stroke-dasharray: 0 0 350.34881591796875 4; stroke-dashoffset: 0;;" data-edge="true" data-et="edge" data-id="L_E_D_0" data-points="W3sieCI6NTM2LjEyNSwieSI6MTI5LjMzMzMzMzMzMzMzMzMxfSx7IngiOjU1Ni4xMjUsInkiOjEyOS4zMzMzMzMzMzMzMzMzMX0seyJ4Ijo1NTYuMTI1LCJ5Ijo3Mn0seyJ4Ijo4NDIuNDY4NzUsInkiOjcyfV0=" data-look="neo" marker-end="url(#mermaid-1792932688766_flowchart-v2-pointEnd-margin)"></path><path d="M164,138.66666666666666L176.92893218813452,138.66666666666666Q184,138.66666666666666 184,145.73773447853213L184,149.42893218813452Q184,156.5 191.07106781186548,156.5L357.0539321881345,156.5Q364.125,156.5 364.125,149.42893218813452L364.125,145.73773447853213Q364.125,138.66666666666666 371.1960678118655,138.66666666666666L380.125,138.66666666666666" id="mermaid-1792932688766-L_B_E_2" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="stroke-dasharray: 0 0 237.13502502441406 4; stroke-dashoffset: 0;;" data-edge="true" data-et="edge" data-id="L_B_E_2" data-points="W3sieCI6MTY0LCJ5IjoxMzguNjY2NjY2NjY2NjY2NjZ9LHsieCI6MTg0LCJ5IjoxMzguNjY2NjY2NjY2NjY2NjZ9LHsieCI6MTg0LCJ5IjoxNTYuNX0seyJ4IjozNjQuMTI1LCJ5IjoxNTYuNX0seyJ4IjozNjQuMTI1LCJ5IjoxMzguNjY2NjY2NjY2NjY2NjZ9LHsieCI6Mzg0LjEyNSwieSI6MTM4LjY2NjY2NjY2NjY2NjY2fV0=" data-look="neo" marker-end="url(#mermaid-1792932688766_flowchart-v2-pointEnd-margin)"></path><path d="M536.125,138.66666666666666L549.0539321881345,138.66666666666666Q556.125,138.66666666666666 556.125,145.73773447853213L556.125,188.92893218813452Q556.125,196 563.1960678118655,196L838.46875,196" id="mermaid-1792932688766-L_E_S_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="stroke-dasharray: 0 0 350.34881591796875 4; stroke-dashoffset: 0;;" data-edge="true" data-et="edge" data-id="L_E_S_0" data-points="W3sieCI6NTM2LjEyNSwieSI6MTM4LjY2NjY2NjY2NjY2NjY2fSx7IngiOjU1Ni4xMjUsInkiOjEzOC42NjY2NjY2NjY2NjY2Nn0seyJ4Ijo1NTYuMTI1LCJ5IjoxOTZ9LHsieCI6ODQyLjQ2ODc1LCJ5IjoxOTZ9XQ==" data-look="neo" marker-end="url(#mermaid-1792932688766_flowchart-v2-pointEnd-margin)"></path></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(274.0625, 111)"><g class="label" data-id="L_B_E_0" transform="translate(-21.3828125, -12)"><foreignObject width="42.765625" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>GET /</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(689.296875, 71.5)"><g class="label" data-id="L_E_D_0" transform="translate(-113.171875, -12)"><foreignObject width="226.34375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 200px; text-align: center; width: 200px;"><span class="edgeLabel"><p>express.static('../client/dist')</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(274.0625, 156)"><g class="label" data-id="L_B_E_2" transform="translate(-70.0625, -12)"><foreignObject width="140.125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>GET /api/sessions</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(689.296875, 195.5)"><g class="label" data-id="L_E_S_0" transform="translate(-60.296875, -12)"><foreignObject width="120.59375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>sessionsRouter</p></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="mermaid-1792932688766-flowchart-B-0" data-look="neo" transform="translate(88, 134)"><rect class="basic label-container" style="" x="-76" y="-24" width="152" height="48"></rect><g class="label" style="" transform="translate(-60, -12)"><rect></rect><foreignObject width="120" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: nowrap; line-height: 1.5; max-width: 120px; text-align: center; width: 120px;"><span class="nodeLabel"><p>Browser</p></span></div></foreignObject></g></g><g class="node default" id="mermaid-1792932688766-flowchart-E-1" data-look="neo" transform="translate(460.125, 134)"><rect class="basic label-container" style="" x="-76" y="-24" width="152" height="48"></rect><g class="label" style="" transform="translate(-60, -12)"><rect></rect><foreignObject width="120" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: nowrap; line-height: 1.5; max-width: 120px; text-align: center; width: 120px;"><span class="nodeLabel"><p>Express :3000</p></span></div></foreignObject></g></g><g class="node default" id="mermaid-1792932688766-flowchart-D-3" data-look="neo" transform="translate(918.46875, 72)"><rect class="basic label-container" style="" x="-76" y="-60" width="152" height="120"></rect><g class="label" style="" transform="translate(-60, -48)"><rect></rect><foreignObject width="120" height="96"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: break-spaces; line-height: 1.5; max-width: 120px; text-align: center; width: 120px;"><span class="nodeLabel"><p>client/dist<br>index.html, assets/*.js, *.css</p></span></div></foreignObject></g></g><g class="node default" id="mermaid-1792932688766-flowchart-S-7" data-look="neo" transform="translate(918.46875, 196)"><rect class="basic label-container" style="" x="-76" y="-24" width="152" height="48"></rect><g class="label" style="" transform="translate(-60, -12)"><rect></rect><foreignObject width="120" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table; white-space: nowrap; line-height: 1.5; max-width: 120px; text-align: center; width: 120px;"><span class="nodeLabel"><p>store.ts</p></span></div></foreignObject></g></g></g></g></g><defs><filter id="mermaid-1792932688766-drop-shadow" height="130%" width="130%"><feDropShadow dx="4" dy="4" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></feDropShadow></filter></defs><defs><filter id="mermaid-1792932688766-drop-shadow-small" height="150%" width="150%"><feDropShadow dx="2" dy="2" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"></feDropShadow></filter></defs><linearGradient id="mermaid-1792932688766-gradient" gradientUnits="objectBoundingBox" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="hsl(0, 0%, 83.3333333333%)" stop-opacity="1"></stop><stop offset="100%" stop-color="hsl(0, 0%, 88.9215686275%)" stop-opacity="1"></stop></linearGradient></svg></pre>
+<p>Nach <code>pnpm build</code> im Client startet man im Server <code>NODE_ENV=production pnpm start</code>. Dann gilt
+<code>SERVE_CLIENT</code> in <code>server/src/config.ts</code>, und <code>server/src/app.ts</code> liefert zusätzlich die fertigen
+Dateien aus <code>client/dist</code> aus (<code>express.static</code>). Browser und API haben wieder <strong>dieselbe Adresse</strong>
+(<code>http://localhost:3000</code>), also auch hier kein CORS. Vite läuft in diesem Fall gar nicht.</p>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Zeigen Sie, wie ein Request vom Browser zum Server kommt.» <strong>Antwort:</strong>
+Komponente ruft eine Funktion aus <code>api/sessions.ts</code> auf, die ruft <code>fetch('/api/…')</code> auf. Der Browser
+schickt das an Vite auf Port 5173. Vite leitet alles unter <code>/api</code> per Proxy an Express auf Port 3000
+weiter (<code>vite.config.ts</code>). Express gibt es an den Router, der den Store ändert und mit JSON antwortet.
+Die Antwort geht denselben Weg zurück; die Komponente setzt ihren State, React rendert neu.</p>
+</blockquote>
+<blockquote>
+<p><strong>Typische Prüfungsfrage:</strong> «Was ist der Unterschied zwischen Port 5173 und Port 3000?» <strong>Antwort:</strong>
+5173 ist der Vite-Dev-Server, der den Client ausliefert. 3000 ist Express mit der API. Beim
+Entwickeln öffnet man nur 5173; Vite reicht <code>/api</code> an 3000 weiter.</p>
+</blockquote>
+<hr>
+<h2 id="9-übersicht-der-zeilenerklärungen">9. Übersicht der Zeilenerklärungen</h2>
+<p>Diese Dateien sind in diesem Teil vollständig Zeile für Zeile erklärt. Den Code in <code>client/src/</code>
+erklärt Teil 01, den Server-Code Teil 02.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Datei</th>
+<th align="right">Zeilen</th>
+<th align="right">Blöcke</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>client/package.json</code></td>
+<td align="right">32</td>
+<td align="right">14</td>
+</tr>
+<tr>
+<td><code>client/index.html</code></td>
+<td align="right">13</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td><code>client/vite.config.ts</code></td>
+<td align="right">14</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td><code>client/tsconfig.json</code></td>
+<td align="right">7</td>
+<td align="right">2</td>
+</tr>
+<tr>
+<td><code>client/tsconfig.app.json</code></td>
+<td align="right">26</td>
+<td align="right">10</td>
+</tr>
+<tr>
+<td><code>client/tsconfig.node.json</code></td>
+<td align="right">23</td>
+<td align="right">8</td>
+</tr>
+<tr>
+<td><code>client/.prettierrc</code></td>
+<td align="right">4</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td><code>client/.prettierignore</code></td>
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td><code>client/.gitignore</code></td>
+<td align="right">3</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td><code>server/package.json</code></td>
+<td align="right">28</td>
+<td align="right">7</td>
+</tr>
+<tr>
+<td><code>server/tsconfig.json</code></td>
+<td align="right">24</td>
+<td align="right">7</td>
+</tr>
+<tr>
+<td><code>.gitignore</code></td>
+<td align="right">6</td>
+<td align="right">2</td>
+</tr>
+<tr>
+<td><code>.gitattributes</code></td>
+<td align="right">4</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td><strong>Summe</strong></td>
+<td align="right"><strong>186</strong></td>
+<td align="right"><strong>63</strong></td>
+</tr>
+</tbody></table></div>
+
+<footer class="generated">Erzeugt aus docs/fachgespraech/00-ordnerstruktur.md mit scripts/build-pdf.sh.</footer></main>
+
+<div class="mermaidTooltip" style="opacity: 0; position: absolute; text-align: center; max-width: 200px; padding: 2px; font-size: 12px; background: rgb(255, 255, 222); border: 1px solid rgb(51, 51, 51); border-radius: 2px; pointer-events: none; z-index: 100;"></div></body></html>

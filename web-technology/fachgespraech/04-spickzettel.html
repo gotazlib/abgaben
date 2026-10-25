@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="de"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scrum Poker – Spickzettel</title>
+<style id="print-css">/* Druck-CSS für die PDF-Dateien der Dokumentation (A4) */
+
+@page {
+  size: A4;
+}
+
+html {
+  font-family: 'DejaVu Sans', 'Segoe UI', Arial, sans-serif;
+  font-size: 10pt;
+  line-height: 1.45;
+  color: #1f2333;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.25;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+h1 {
+  font-size: 20pt;
+  margin: 0 0 10pt;
+  color: #312e81;
+}
+
+h2 {
+  font-size: 14pt;
+  margin: 18pt 0 6pt;
+  padding-bottom: 3pt;
+  border-bottom: 1.5pt solid #4f46e5;
+  color: #312e81;
+}
+
+h3 {
+  font-size: 12pt;
+  margin: 14pt 0 4pt;
+}
+
+h4 {
+  font-size: 10.5pt;
+  margin: 10pt 0 3pt;
+}
+
+p,
+ul,
+ol {
+  margin: 0 0 6pt;
+}
+
+li {
+  margin-bottom: 2pt;
+}
+
+a {
+  color: #3730a3;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+/* Tabellen: Rahmen, kein Abschneiden, lange Wörter umbrechen */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 4pt 0 10pt;
+  font-size: 8.5pt;
+  table-layout: auto;
+}
+
+th,
+td {
+  border: 0.75pt solid #9ca3af;
+  padding: 3pt 5pt;
+  vertical-align: top;
+  text-align: left;
+  /* Wörter nur umbrechen, wenn sie gar nicht passen (nicht mitten im Wort) */
+  overflow-wrap: break-word;
+}
+
+/* Kurze Bezeichner in der ersten Spalte (Methoden, Komponenten) nie umbrechen */
+td:first-child code {
+  white-space: nowrap;
+}
+
+th {
+  background: #eef2ff;
+}
+
+tr {
+  break-inside: avoid;
+}
+
+thead {
+  display: table-header-group;
+}
+
+/* Code */
+code {
+  font-family: 'DejaVu Sans Mono', Consolas, monospace;
+  font-size: 0.88em;
+  background: #f3f4f6;
+  padding: 0 2pt;
+  border-radius: 2pt;
+  overflow-wrap: anywhere;
+}
+
+pre {
+  font-family: 'DejaVu Sans Mono', Consolas, monospace;
+  font-size: 7.8pt;
+  line-height: 1.35;
+  background: #f6f7fb;
+  border: 0.75pt solid #d1d5db;
+  border-left: 3pt solid #4f46e5;
+  padding: 6pt 8pt;
+  margin: 4pt 0 10pt;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Mermaid-Diagramme (im Browser zu SVG gerendert) */
+pre.mermaid {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: center;
+  /* Nichts vom Code-Block-Stil an die Diagrammtexte vererben */
+  font-family: 'DejaVu Sans', Arial, sans-serif;
+  font-size: 10pt;
+  white-space: normal;
+  overflow-wrap: normal;
+  break-inside: avoid;
+}
+
+/* Mermaid setzt selbst max-width auf die natürliche Breite, das bleibt so */
+pre.mermaid svg {
+  height: auto;
+  max-height: 190mm;
+}
+
+/* Screenshots */
+img {
+  display: block;
+  max-width: 100%;
+  max-height: 110mm;
+  margin: 6pt auto 10pt;
+  border: 0.75pt solid #d1d5db;
+  break-inside: avoid;
+}
+
+blockquote {
+  margin: 6pt 0 10pt;
+  padding: 4pt 10pt;
+  border-left: 3pt solid #f59e0b;
+  background: #fffbeb;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+hr {
+  border: none;
+  border-top: 0.75pt solid #d1d5db;
+  margin: 12pt 0;
+}
+
+/* Sichtbarer Platzhalter für Dinge, die die Gruppe selbst ausfüllen muss */
+.todo {
+  margin: 4pt 0 8pt;
+  padding: 4pt 8pt;
+  border: 1pt dashed #dc2626;
+  background: #fef2f2;
+  color: #991b1b;
+  font-weight: 600;
+  white-space: pre-wrap;
+}
+
+details,
+summary {
+  display: block;
+}
+</style>
+<style id="screen-css">/* Zusätzliches CSS für die eigenständigen HTML-Dateien der Dokumentation. Liegt nach
+   print.css und passt es für den Bildschirm an.
+   Beim Drucken aus dem Browser gilt weiterhin vor allem print.css. */
+
+/* Platzhalter für die Gruppe: gelb, damit sie auffallen */
+.todo {
+  border: 1.5px dashed #ca8a04;
+  background: #fef9c3;
+  color: #713f12;
+}
+
+.generated {
+  margin-top: 2rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #d1d5db;
+  font-size: 0.85em;
+  color: #6b7280;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.75rem 1rem;
+  align-items: start;
+  margin: 0.5rem 0 1rem;
+  break-inside: avoid;
+}
+
+.gallery figure {
+  margin: 0;
+}
+
+.gallery img {
+  margin: 0 auto 0.3rem;
+}
+
+.gallery figcaption {
+  text-align: center;
+  font-size: 0.85em;
+  color: #4b5563;
+}
+
+.toc ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.toc li {
+  margin: 0.15em 0;
+}
+
+.toc ul ul {
+  padding-left: 1em;
+  margin-bottom: 0.3em;
+  font-size: 0.92em;
+}
+
+.toc summary {
+  font-weight: 700;
+  color: #312e81;
+  cursor: pointer;
+}
+
+@media screen {
+  html {
+    font-size: 16px;
+    line-height: 1.6;
+    background: #f5f6fa;
+    scroll-padding-top: 1rem;
+  }
+
+  body {
+    margin: 0 auto;
+    max-width: 1320px;
+    padding: 1rem;
+  }
+
+  #content {
+    box-sizing: border-box;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 1.25rem 1rem 2rem;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow-wrap: break-word;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
+
+  h2 {
+    font-size: 1.45rem;
+    margin-top: 2.2rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  h4 {
+    font-size: 1.05rem;
+  }
+
+  table {
+    font-size: 0.88rem;
+  }
+
+  pre {
+    font-size: 0.82rem;
+  }
+
+  /* Breite Tabellen scrollen innerhalb ihres Rahmens, nicht die ganze Seite */
+  .table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .table-wrap > table {
+    min-width: 32rem;
+  }
+
+  pre.mermaid {
+    overflow-x: auto;
+  }
+
+  pre.mermaid svg {
+    max-height: none;
+  }
+
+  img {
+    max-height: 32rem;
+    height: auto;
+  }
+
+  .toc {
+    box-sizing: border-box;
+    max-width: 920px;
+    margin: 0 auto 1rem;
+    padding: 0.75rem 1rem;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.92rem;
+  }
+
+  .toc a {
+    color: #3730a3;
+  }
+
+  .toc a:hover,
+  #content a:hover {
+    text-decoration: underline;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  body {
+    padding: 0.5rem;
+  }
+
+  #content {
+    padding: 1rem 0.75rem 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Breite Bildschirme: Inhaltsverzeichnis als feste Seitenleiste links */
+@media screen and (min-width: 1200px) {
+  body {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 920px);
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: start;
+  }
+
+  .toc {
+    position: sticky;
+    top: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    margin: 0;
+  }
+
+  #content {
+    margin: 0;
+  }
+}
+
+@media print {
+  /* Das Markdown hat schon ein eigenes Inhaltsverzeichnis */
+  .toc {
+    display: none;
+  }
+
+  .generated {
+    font-size: 8pt;
+  }
+}
+</style></head>
+<body><nav class="toc" aria-label="Inhaltsverzeichnis"><details open=""><summary>Inhalt</summary><ul><li><a href="#architektur-in-einem-satz">Architektur in einem Satz</a></li><li><a href="#datenfluss-klick-auf-karte-5">Datenfluss: Klick auf Karte «5»</a></li><li><a href="#rest-api">REST-API</a></li><li><a href="#begriffe-zum-mitnehmen">Begriffe zum Mitnehmen</a></li><li><a href="#befehle">Befehle</a></li><li><a href="#live-demo-mit-zwei-browserfenstern--3-minuten">Live-Demo mit zwei Browserfenstern (≈ 3 Minuten)</a></li><li><a href="#fünf-sätze-für-schwierige-momente">Fünf Sätze für schwierige Momente</a></li></ul></details></nav>
+<main id="content">
+<h1 id="scrum-poker--spickzettel">Scrum Poker – Spickzettel</h1>
+<p>Teil 04: das Wichtigste auf drei Seiten, für den Abend davor und die letzten Minuten vor dem
+Gespräch. Details: Teil 01 (Client), 02 (Server), 03 (Fragen).</p>
+<h2 id="architektur-in-einem-satz">Architektur in einem Satz</h2>
+<p><strong>React-Client</strong> (Vite, Port 5173) → <code>fetch('/api/…')</code> → <strong>Vite-Proxy</strong> → <strong>Express-Server</strong> (Node,
+Port 3000) → <strong>Array im Arbeitsspeicher</strong>. Im Produktivbetrieb liefert Express auch den gebauten
+Client aus <code>client/dist</code> (Folie 02/4, 02/6). Die wichtigsten Dateien (Client unter <code>client/src/</code>,
+Server unter <code>server/src/</code>):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Datei</th>
+<th>Was dort liegt</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>App.tsx</code></td>
+<td>State <code>activeSessionId</code>: <code>null</code> → <code>HomePage</code>, sonst <code>PokerTablePage</code> (Pflicht §3.1, 07/6, 09/36)</td>
+</tr>
+<tr>
+<td><code>UserProvider.tsx</code></td>
+<td>Context mit dem Namen, gespeichert mit <code>useLocalStorage</code> (§3.2, 09/32)</td>
+</tr>
+<tr>
+<td><code>PokerTablePage.tsx</code></td>
+<td>Beitreten im <code>useEffect</code>, Verlassen im Cleanup, <code>ignore</code>-Flag gegen StrictMode</td>
+</tr>
+<tr>
+<td><code>PokerRoom.tsx</code></td>
+<td>Tisch-State (Lifting State Up), Polling 1.5 s = Heartbeat, <code>runAction</code> für Klicks</td>
+</tr>
+<tr>
+<td><code>api/sessions.ts</code></td>
+<td>einzige Stelle mit <code>fetch</code>, eine Funktion pro Route, Fehler → <code>Error</code> mit Meldung</td>
+</tr>
+<tr>
+<td><code>utils/poker.ts</code></td>
+<td>Decks, <code>validateName</code>, <code>computeResult</code> (Durchschnitt, Konsens)</td>
+</tr>
+<tr>
+<td><code>app.ts</code> (Server)</td>
+<td><code>express.json()</code> → Router <code>/api/sessions</code> → (static) → 404 → Error-Handler</td>
+</tr>
+<tr>
+<td><code>routes/sessions.ts</code></td>
+<td>jede Route: Session holen → 404 → Body prüfen → 400 → Store → Antwort</td>
+</tr>
+<tr>
+<td><code>store.ts</code></td>
+<td>Array <code>sessions</code>, Geheimhaltung in <code>toSessionState</code>, Aufräumen der Karteileichen</td>
+</tr>
+<tr>
+<td><code>validation.ts</code></td>
+<td>Body ist <code>unknown</code>, Prüfung mit <code>typeof</code> und <code>in</code></td>
+</tr>
+</tbody></table></div>
+<h2 id="datenfluss-klick-auf-karte-5">Datenfluss: Klick auf Karte «5»</h2>
+<p><code>CardDeck</code> <code>onCardClick('5')</code> → <code>PokerRoom.handleCardClick</code> → <code>runAction</code> (<code>isBusy</code> an) →
+<code>api/sessions.ts castVote</code> → <code>PUT /api/sessions/:id/participants/:pid/vote</code> mit <code>{ "value": "5" }</code>
+→ Proxy → <code>express.json()</code> → Route prüft Session (404), Person (404), aufgedeckt (409), Karte
+(400) → <code>store.castVote</code> → alle gewählt? aufdecken → <code>toSessionState</code> (fremde Stimmen <code>null</code>) →
+200 JSON → <code>setSession</code> → React rendert neu. Die anderen sehen die verdeckte Karte beim nächsten
+Poll (≤ 1.5 s).</p>
+<h2 id="rest-api">REST-API</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Methode</th>
+<th>Pfad (unter <code>/api/sessions</code>)</th>
+<th>Erfolg</th>
+<th>Fehler</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td><code>/</code> Liste</td>
+<td>200</td>
+<td>–</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/</code> erstellen</td>
+<td>201 <code>{ id }</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/:sessionId</code></td>
+<td>204</td>
+<td>404</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/:sessionId?participantId=…</code> Zustand + Heartbeat</td>
+<td>200</td>
+<td>404</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/:sessionId/participants</code> beitreten <code>{ name }</code></td>
+<td>201 <code>{ participantId }</code></td>
+<td>400, 404</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/:sessionId/participants/:participantId</code> verlassen</td>
+<td>204 (idempotent)</td>
+<td>404</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td><code>/:sessionId/participants/:participantId/vote</code> <code>{ value }</code></td>
+<td>200</td>
+<td>400, 404, 409</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td><code>/:sessionId/deck</code> <code>{ deck }</code></td>
+<td>200</td>
+<td>400, 404</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/:sessionId/reveal</code>, <code>/:sessionId/reset</code></td>
+<td>200</td>
+<td>404</td>
+</tr>
+</tbody></table></div>
+<p>GET liest · POST erstellt/löst aus · PUT setzt einen Wert (idempotent) · DELETE entfernt.
+2xx geklappt · 4xx Fehler des Clients · 5xx Fehler des Servers. Fehler immer <code>{ "error": "…" }</code>.</p>
+<h2 id="begriffe-zum-mitnehmen">Begriffe zum Mitnehmen</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Begriff</th>
+<th>In einem Satz</th>
+<th>Folie</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Props / State</td>
+<td>Props von oben, nur lesbar · State gehört der Komponente, Setter löst Rendern aus</td>
+<td>08/16, 08/22</td>
+</tr>
+<tr>
+<td>Lifting State Up</td>
+<td>State in den ersten gemeinsamen Elternteil, Callbacks nach oben</td>
+<td>08/25-27</td>
+</tr>
+<tr>
+<td>Conditional Rendering</td>
+<td><code>&amp;&amp;</code>, Ternary oder <code>if</code> mit <code>return</code></td>
+<td>08/7, 08/37</td>
+</tr>
+<tr>
+<td><code>key</code></td>
+<td>stabile ID pro Listeneintrag, nicht der Index</td>
+<td>08/31</td>
+</tr>
+<tr>
+<td><code>useEffect</code> + Cleanup</td>
+<td>Code nach dem Rendern, Cleanup beim Unmount (Intervall stoppen, Session verlassen)</td>
+<td>09/11-15</td>
+</tr>
+<tr>
+<td>StrictMode</td>
+<td>startet Effekte in der Entwicklung doppelt, damit fehlende Cleanups auffallen</td>
+<td>08/24, 09/3</td>
+</tr>
+<tr>
+<td><code>ignore</code>-Flag</td>
+<td>späte Antworten nach dem Cleanup nicht mehr in den State schreiben</td>
+<td>(React-Doku)</td>
+</tr>
+<tr>
+<td>Polling</td>
+<td><code>window.setInterval</code> im Effekt, <code>clearInterval</code> im Cleanup</td>
+<td>09/29-30</td>
+</tr>
+<tr>
+<td>Custom Hook</td>
+<td><code>useLocalStorage</code>: Funktion <code>use…</code>, die Hooks benutzt</td>
+<td>09/26, 09/32</td>
+</tr>
+<tr>
+<td>Lazy Initial Value</td>
+<td><code>useState(() =&gt; …)</code> läuft nur beim ersten Render</td>
+<td>09/8</td>
+</tr>
+<tr>
+<td>Context</td>
+<td>Name für alle Komponenten ohne Props-Kette (verlangt, nicht in Folien)</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Literal-Union</td>
+<td><code>'fibonacci' | 'tshirt'</code> erlaubt nur diese Werte</td>
+<td>06/23</td>
+</tr>
+<tr>
+<td><code>import type</code></td>
+<td>nur Types, fällt beim Ausführen weg (Pflicht mit <code>verbatimModuleSyntax</code>)</td>
+<td>07/12</td>
+</tr>
+<tr>
+<td>Middleware</td>
+<td>Funktion in der Kette von <code>app.use</code>: bearbeitet die Anfrage oder gibt sie weiter (<code>express.json()</code>)</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Heartbeat</td>
+<td>jeder Poll setzt <code>lastSeen</code>, wer 15 s still ist, fliegt (≤ 20 s)</td>
+<td>– (Polling 09/30)</td>
+</tr>
+<tr>
+<td>In-Memory</td>
+<td>Daten nur im Array, nach Neustart weg</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Type Stripping</td>
+<td>Node 24 löscht Types beim Laden, Server braucht keinen Build</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Mobile First</td>
+<td>Grundregeln fürs Handy, <code>@media (min-width: 768px)</code> für grösser</td>
+<td>05/7</td>
+</tr>
+<tr>
+<td>Box-Modell</td>
+<td><code>box-sizing: border-box</code>: <code>width</code> inkl. Padding und Rahmen</td>
+<td>04/19-21</td>
+</tr>
+</tbody></table></div>
+<h2 id="befehle">Befehle</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Wo</th>
+<th>Befehl</th>
+<th>Wozu</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>beide</td>
+<td><code>pnpm install</code></td>
+<td>Pakete installieren (einmal, nach jedem Pull)</td>
+</tr>
+<tr>
+<td><code>server/</code>, dann <code>client/</code></td>
+<td><code>pnpm dev</code> (zwei Terminals)</td>
+<td>API auf Port 3000, App auf <a href="http://localhost:5173">http://localhost:5173</a></td>
+</tr>
+<tr>
+<td>beide</td>
+<td><code>pnpm lint</code> · <code>pnpm format:check</code> · <code>pnpm build</code></td>
+<td>oxlint · Prettier · Typprüfung (Client: auch Build)</td>
+</tr>
+<tr>
+<td><code>client/</code>, dann <code>server/</code></td>
+<td><code>pnpm build</code>, dann <code>NODE_ENV=production pnpm start</code></td>
+<td>alles über Port 3000 ohne Vite</td>
+</tr>
+<tr>
+<td>Terminal</td>
+<td><code>curl localhost:3000/api/sessions</code></td>
+<td>API ohne Browser testen</td>
+</tr>
+</tbody></table></div>
+<p>Versionen: <strong>Node 24, pnpm 12</strong> (<code>node -v</code>, <code>pnpm -v</code>, Folie 03/17).</p>
+<h2 id="live-demo-mit-zwei-browserfenstern--3-minuten">Live-Demo mit zwei Browserfenstern (≈ 3 Minuten)</h2>
+<p>Vorbereitung: beide <code>pnpm dev</code> laufen. Fenster <strong>A</strong> normal (Name «Anna»), Fenster <strong>B</strong> privat
+(eigener <code>localStorage</code>), nebeneinander, Zoom 125 %. DevTools in A offen (Network).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Fenster</th>
+<th>Aktion</th>
+<th>Satz dazu</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>A</td>
+<td>Name steht schon da</td>
+<td>«Kommt aus dem <code>localStorage</code> über <code>useLocalStorage</code>.»</td>
+</tr>
+<tr>
+<td>2</td>
+<td>B</td>
+<td>Name leer → Meldung, Buttons grau → «Ben»</td>
+<td>«<code>validateName</code> sperrt, der Server prüft dieselbe Regel.»</td>
+</tr>
+<tr>
+<td>3</td>
+<td>A</td>
+<td>«Neue Session erstellen»</td>
+<td>«<code>POST</code> → 201, dann <code>onJoin</code>, <code>App</code> setzt den State → <code>PokerTablePage</code>.»</td>
+</tr>
+<tr>
+<td>4</td>
+<td>B</td>
+<td>Session erscheint (≤ 3 s) → «Beitreten»</td>
+<td>«Liste pollt alle 3 s, Beitreten setzt denselben State.»</td>
+</tr>
+<tr>
+<td>5</td>
+<td>A</td>
+<td>Karte <strong>5</strong></td>
+<td>«<code>PUT …/vote</code>. Ben sieht nur eine verdeckte Karte, der Wert verlässt den Server nicht.»</td>
+</tr>
+<tr>
+<td>6</td>
+<td>B</td>
+<td>Karte <strong>8</strong></td>
+<td>«Alle haben gewählt → Server deckt auf. Durchschnitt 6.5.»</td>
+</tr>
+<tr>
+<td>7</td>
+<td>A</td>
+<td>«Neue Runde», beide <strong>3</strong></td>
+<td>«Konsens wird hervorgehoben.»</td>
+</tr>
+<tr>
+<td>8</td>
+<td>B</td>
+<td>Deck <strong>T-Shirt</strong>, A: S, B: L</td>
+<td>«Deck-Wechsel = neue Runde. S=2, L=5 → 3.5 → M.»</td>
+</tr>
+<tr>
+<td>9</td>
+<td>A</td>
+<td>Network-Tab zeigen</td>
+<td>«Alle 1.5 s ein GET mit <code>participantId</code>: Polling und Heartbeat.»</td>
+</tr>
+<tr>
+<td>10</td>
+<td>B</td>
+<td>F5</td>
+<td>«Nach Reload nur noch der Name. Bens alter Platz verschwindet bei Anna nach ≤ 20 s.»</td>
+</tr>
+<tr>
+<td>11</td>
+<td>A</td>
+<td>«Verlassen»</td>
+<td>«<code>onLeave</code> → State <code>null</code>, <code>PokerTablePage</code> verschwindet, Cleanup schickt DELETE.»</td>
+</tr>
+</tbody></table></div>
+<p><strong>Wenn etwas hängt:</strong> Seite neu laden. Server abgestürzt: im Terminal <code>pnpm dev</code> neu starten und
+die Meldung «Server nicht erreichbar.» als Teil der Fehlerbehandlung erklären.</p>
+<h2 id="fünf-sätze-für-schwierige-momente">Fünf Sätze für schwierige Momente</h2>
+<p>«Ich zeige Ihnen die Stelle im Code.» · «Das steht nicht in den Folien, die Aufgabenstellung
+verlangt es, wir verstehen es so: …» · «Die KI hat das so geschrieben, ich erkläre es Zeile für
+Zeile.» · «Darf ich kurz nachsehen?» (<code>Ctrl+Shift+F</code>, <code>F12</code>) · «Das würden wir heute anders
+machen, nämlich …» (Teil 03, B.4)</p>
+
+<footer class="generated">Erzeugt aus docs/fachgespraech/04-spickzettel.md mit scripts/build-pdf.sh.</footer></main>
+
+</body></html>

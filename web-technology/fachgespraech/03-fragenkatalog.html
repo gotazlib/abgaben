@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="de"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scrum Poker – Fragenkatalog fürs Fachgespräch</title>
+<style id="print-css">/* Druck-CSS für die PDF-Dateien der Dokumentation (A4) */
+
+@page {
+  size: A4;
+}
+
+html {
+  font-family: 'DejaVu Sans', 'Segoe UI', Arial, sans-serif;
+  font-size: 10pt;
+  line-height: 1.45;
+  color: #1f2333;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.25;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+h1 {
+  font-size: 20pt;
+  margin: 0 0 10pt;
+  color: #312e81;
+}
+
+h2 {
+  font-size: 14pt;
+  margin: 18pt 0 6pt;
+  padding-bottom: 3pt;
+  border-bottom: 1.5pt solid #4f46e5;
+  color: #312e81;
+}
+
+h3 {
+  font-size: 12pt;
+  margin: 14pt 0 4pt;
+}
+
+h4 {
+  font-size: 10.5pt;
+  margin: 10pt 0 3pt;
+}
+
+p,
+ul,
+ol {
+  margin: 0 0 6pt;
+}
+
+li {
+  margin-bottom: 2pt;
+}
+
+a {
+  color: #3730a3;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+/* Tabellen: Rahmen, kein Abschneiden, lange Wörter umbrechen */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 4pt 0 10pt;
+  font-size: 8.5pt;
+  table-layout: auto;
+}
+
+th,
+td {
+  border: 0.75pt solid #9ca3af;
+  padding: 3pt 5pt;
+  vertical-align: top;
+  text-align: left;
+  /* Wörter nur umbrechen, wenn sie gar nicht passen (nicht mitten im Wort) */
+  overflow-wrap: break-word;
+}
+
+/* Kurze Bezeichner in der ersten Spalte (Methoden, Komponenten) nie umbrechen */
+td:first-child code {
+  white-space: nowrap;
+}
+
+th {
+  background: #eef2ff;
+}
+
+tr {
+  break-inside: avoid;
+}
+
+thead {
+  display: table-header-group;
+}
+
+/* Code */
+code {
+  font-family: 'DejaVu Sans Mono', Consolas, monospace;
+  font-size: 0.88em;
+  background: #f3f4f6;
+  padding: 0 2pt;
+  border-radius: 2pt;
+  overflow-wrap: anywhere;
+}
+
+pre {
+  font-family: 'DejaVu Sans Mono', Consolas, monospace;
+  font-size: 7.8pt;
+  line-height: 1.35;
+  background: #f6f7fb;
+  border: 0.75pt solid #d1d5db;
+  border-left: 3pt solid #4f46e5;
+  padding: 6pt 8pt;
+  margin: 4pt 0 10pt;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Mermaid-Diagramme (im Browser zu SVG gerendert) */
+pre.mermaid {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: center;
+  /* Nichts vom Code-Block-Stil an die Diagrammtexte vererben */
+  font-family: 'DejaVu Sans', Arial, sans-serif;
+  font-size: 10pt;
+  white-space: normal;
+  overflow-wrap: normal;
+  break-inside: avoid;
+}
+
+/* Mermaid setzt selbst max-width auf die natürliche Breite, das bleibt so */
+pre.mermaid svg {
+  height: auto;
+  max-height: 190mm;
+}
+
+/* Screenshots */
+img {
+  display: block;
+  max-width: 100%;
+  max-height: 110mm;
+  margin: 6pt auto 10pt;
+  border: 0.75pt solid #d1d5db;
+  break-inside: avoid;
+}
+
+blockquote {
+  margin: 6pt 0 10pt;
+  padding: 4pt 10pt;
+  border-left: 3pt solid #f59e0b;
+  background: #fffbeb;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+hr {
+  border: none;
+  border-top: 0.75pt solid #d1d5db;
+  margin: 12pt 0;
+}
+
+/* Sichtbarer Platzhalter für Dinge, die die Gruppe selbst ausfüllen muss */
+.todo {
+  margin: 4pt 0 8pt;
+  padding: 4pt 8pt;
+  border: 1pt dashed #dc2626;
+  background: #fef2f2;
+  color: #991b1b;
+  font-weight: 600;
+  white-space: pre-wrap;
+}
+
+details,
+summary {
+  display: block;
+}
+</style>
+<style id="screen-css">/* Zusätzliches CSS für die eigenständigen HTML-Dateien der Dokumentation. Liegt nach
+   print.css und passt es für den Bildschirm an.
+   Beim Drucken aus dem Browser gilt weiterhin vor allem print.css. */
+
+/* Platzhalter für die Gruppe: gelb, damit sie auffallen */
+.todo {
+  border: 1.5px dashed #ca8a04;
+  background: #fef9c3;
+  color: #713f12;
+}
+
+.generated {
+  margin-top: 2rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #d1d5db;
+  font-size: 0.85em;
+  color: #6b7280;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.75rem 1rem;
+  align-items: start;
+  margin: 0.5rem 0 1rem;
+  break-inside: avoid;
+}
+
+.gallery figure {
+  margin: 0;
+}
+
+.gallery img {
+  margin: 0 auto 0.3rem;
+}
+
+.gallery figcaption {
+  text-align: center;
+  font-size: 0.85em;
+  color: #4b5563;
+}
+
+.toc ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.toc li {
+  margin: 0.15em 0;
+}
+
+.toc ul ul {
+  padding-left: 1em;
+  margin-bottom: 0.3em;
+  font-size: 0.92em;
+}
+
+.toc summary {
+  font-weight: 700;
+  color: #312e81;
+  cursor: pointer;
+}
+
+@media screen {
+  html {
+    font-size: 16px;
+    line-height: 1.6;
+    background: #f5f6fa;
+    scroll-padding-top: 1rem;
+  }
+
+  body {
+    margin: 0 auto;
+    max-width: 1320px;
+    padding: 1rem;
+  }
+
+  #content {
+    box-sizing: border-box;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 1.25rem 1rem 2rem;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow-wrap: break-word;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
+
+  h2 {
+    font-size: 1.45rem;
+    margin-top: 2.2rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  h4 {
+    font-size: 1.05rem;
+  }
+
+  table {
+    font-size: 0.88rem;
+  }
+
+  pre {
+    font-size: 0.82rem;
+  }
+
+  /* Breite Tabellen scrollen innerhalb ihres Rahmens, nicht die ganze Seite */
+  .table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .table-wrap > table {
+    min-width: 32rem;
+  }
+
+  pre.mermaid {
+    overflow-x: auto;
+  }
+
+  pre.mermaid svg {
+    max-height: none;
+  }
+
+  img {
+    max-height: 32rem;
+    height: auto;
+  }
+
+  .toc {
+    box-sizing: border-box;
+    max-width: 920px;
+    margin: 0 auto 1rem;
+    padding: 0.75rem 1rem;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.92rem;
+  }
+
+  .toc a {
+    color: #3730a3;
+  }
+
+  .toc a:hover,
+  #content a:hover {
+    text-decoration: underline;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  body {
+    padding: 0.5rem;
+  }
+
+  #content {
+    padding: 1rem 0.75rem 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Breite Bildschirme: Inhaltsverzeichnis als feste Seitenleiste links */
+@media screen and (min-width: 1200px) {
+  body {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 920px);
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: start;
+  }
+
+  .toc {
+    position: sticky;
+    top: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    margin: 0;
+  }
+
+  #content {
+    margin: 0;
+  }
+}
+
+@media print {
+  /* Das Markdown hat schon ein eigenes Inhaltsverzeichnis */
+  .toc {
+    display: none;
+  }
+
+  .generated {
+    font-size: 8pt;
+  }
+}
+</style></head>
+<body><nav class="toc" aria-label="Inhaltsverzeichnis"><details open=""><summary>Inhalt</summary><ul><li><a href="#teil-a--fragen-nach-folien-themen">Teil A – Fragen nach Folien-Themen</a><ul><li><a href="#a1-web-grundlagen-und-architektur-01-02">A.1 Web-Grundlagen und Architektur (01, 02)</a></li><li><a href="#a2-nodejs-npm-pnpm-03">A.2 Node.js, npm, pnpm (03)</a></li><li><a href="#a3-server-express-und-rest-014-024-0210-11">A.3 Server: Express und REST (01/4, 02/4, 02/10-11)</a></li><li><a href="#a4-html-und-css-04">A.4 HTML und CSS (04)</a></li><li><a href="#a5-responsive-design-05">A.5 Responsive Design (05)</a></li><li><a href="#a6-typescript-basics-06">A.6 TypeScript Basics (06)</a></li><li><a href="#a7-typescript-advanced-07">A.7 TypeScript Advanced (07)</a></li><li><a href="#a8-react-basics-08">A.8 React Basics (08)</a></li><li><a href="#a9-react-hooks-09">A.9 React Hooks (09)</a></li></ul></li><li><a href="#teil-b--fragen-zu-unserem-projekt">Teil B – Fragen zu unserem Projekt</a><ul><li><a href="#b1-zeig-mir-wo-">B.1 «Zeig mir, wo …»</a></li><li><a href="#b2-was-passiert-wenn-">B.2 «Was passiert, wenn …»</a></li><li><a href="#b3-warum-habt-ihr--statt-">B.3 «Warum habt ihr … statt …?»</a></li><li><a href="#b4-was-würdet-ihr-ändern">B.4 «Was würdet ihr ändern?»</a></li><li><a href="#b5-ki-nutzung">B.5 KI-Nutzung</a></li></ul></li></ul></details></nav>
+<main id="content">
+<h1 id="scrum-poker--fragenkatalog-fürs-fachgespräch">Scrum Poker – Fragenkatalog fürs Fachgespräch</h1>
+<p>Teil 03 der Vorbereitung (Übersicht und Lernplan: <a href="https://gotazlib.github.io/abgaben/web-technology/fachgespraech/index.html">README</a>). <strong>120 wahrscheinliche
+Fragen</strong> mit kurzen Musterantworten. Teil A ist nach den Foliensätzen geordnet, Teil B nach den
+typischen Frageformen zum Projekt.</p>
+<p><strong>So übt ihr:</strong> Zu zweit. Eine Person liest die Frage vor, die andere antwortet <strong>mit dem Code auf
+dem Bildschirm</strong> und zeigt die Stelle (<code>Ctrl+G</code> springt zur Zeile). Erst danach die Musterantwort
+lesen. Antworten nie auswendig lernen, sondern in eigenen Worten sagen. Wer eine Frage nicht
+beantworten kann, liest die Stelle in Teil 01 (Client) bzw. Teil 02 (Server) Zeile für Zeile
+nach und markiert die Frage für die nächste Runde.</p>
+<p><strong>Verweise:</strong> <code>client/src/components/App.tsx:11</code> = Datei und Zeile, Pfade ab dem Projektordner.
+«09/30» = Foliensatz 09, Folie 30. «Nicht in den Folien» heisst: kommt im Kurs (noch) nicht vor,
+wir können es aber begründen.</p>
+<p><strong>Inhalt</strong></p>
+<ul>
+<li><a href="#teil-a--fragen-nach-folien-themen">Teil A – Fragen nach Folien-Themen</a><ul>
+<li><a href="#a1-web-grundlagen-und-architektur-01-02">A.1 Web-Grundlagen und Architektur (01, 02)</a></li>
+<li><a href="#a2-nodejs-npm-pnpm-03">A.2 Node.js, npm, pnpm (03)</a></li>
+<li><a href="#a3-server-express-und-rest-014-024-0210-11">A.3 Server: Express und REST (01/4, 02/4, 02/10-11)</a></li>
+<li><a href="#a4-html-und-css-04">A.4 HTML und CSS (04)</a></li>
+<li><a href="#a5-responsive-design-05">A.5 Responsive Design (05)</a></li>
+<li><a href="#a6-typescript-basics-06">A.6 TypeScript Basics (06)</a></li>
+<li><a href="#a7-typescript-advanced-07">A.7 TypeScript Advanced (07)</a></li>
+<li><a href="#a8-react-basics-08">A.8 React Basics (08)</a></li>
+<li><a href="#a9-react-hooks-09">A.9 React Hooks (09)</a></li>
+</ul>
+</li>
+<li><a href="#teil-b--fragen-zu-unserem-projekt">Teil B – Fragen zu unserem Projekt</a><ul>
+<li><a href="#b1-zeig-mir-wo-">B.1 «Zeig mir, wo …»</a></li>
+<li><a href="#b2-was-passiert-wenn-">B.2 «Was passiert, wenn …»</a></li>
+<li><a href="#b3-warum-habt-ihr--statt-">B.3 «Warum habt ihr … statt …?»</a></li>
+<li><a href="#b4-was-würdet-ihr-ändern">B.4 «Was würdet ihr ändern?»</a></li>
+<li><a href="#b5-ki-nutzung">B.5 KI-Nutzung</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="teil-a--fragen-nach-folien-themen">Teil A – Fragen nach Folien-Themen</h2>
+<h3 id="a1-web-grundlagen-und-architektur-01-02">A.1 Web-Grundlagen und Architektur (01, 02)</h3>
+<p><strong>1. Beschreibt die Architektur eurer App in drei Sätzen.</strong>
+Ein React-Client im Browser (Presentation) spricht über HTTP mit einem Express-Server
+(Web-Server und Application in einem, Folie 02/4). Der Server hält alle Sessions in einem Array
+im Arbeitsspeicher und bietet eine REST-API unter <code>/api/sessions</code> an. Der Client fragt den Zustand
+regelmässig ab (Polling) und schickt jede Aktion als eigenen Request.</p>
+<p><strong>2. Was ist eine SPA, und ist eure App eine?</strong>
+Single Page Application: Es gibt eine einzige HTML-Seite (<code>client/index.html:10-11</code> mit
+<code>&lt;div id="root"&gt;</code>), React tauscht danach nur Teile der Seite aus. Ja: Der Wechsel zwischen
+Startseite und Tisch lädt keine neue Seite, er ändert nur einen State in <code>App</code> (01/5 «SPA
+Planning Poker App»).</p>
+<p><strong>3. Was liefert der Server in Block 1–4 der Vorlesung, was liefert eurer?</strong>
+In den Folien liefert der Server nur den Client-Code aus («Gib mir Datei xyz», 02/6). Unserer
+liefert zusätzlich eine API mit JSON. Im Produktivbetrieb macht er beides: <code>express.static</code> für
+die Dateien (<code>server/src/app.ts:24-26</code>) und die Routen unter <code>/api</code>.</p>
+<p><strong>4. Was steht in einem HTTP-Request und in einer Response?</strong>
+Request: Methode, Pfad, Header (z. B. <code>Content-Type</code>), optional ein Body. Response: Statuscode,
+Header, optional ein Body (02/10, 02/14). Bei uns ist der Body immer JSON.</p>
+<p><strong>5. Welche HTTP-Methoden benutzt ihr, und seit welcher HTTP-Version gibt es sie?</strong>
+GET gibt es schon seit HTTP/0.9, POST kam mit HTTP/1.0, PUT und DELETE mit HTTP/1.1 (02/10-11). Welche wofür: Frage 23.</p>
+<p><strong>6. Wo seht ihr die Requests im Browser?</strong>
+DevTools (F12) → Network. Dort sieht man alle 1.5 s ein <code>GET …?participantId=…</code> vom Tisch und
+alle 3 s ein <code>GET /api/sessions</code> von der Startseite, mit Statuscode und JSON-Antwort (02/20).</p>
+<p><strong>7. Wo seht ihr den gespeicherten Namen?</strong>
+DevTools → Application → Local Storage, Schlüssel <code>scrum-poker:name</code> (02/20,
+<code>client/src/components/UserProvider.tsx:13</code>).</p>
+<p><strong>8. HTML, CSS, JavaScript: wer macht was?</strong>
+HTML gibt die Struktur (deklarativ), CSS das Aussehen (deklarativ), JavaScript bzw. TypeScript das
+Verhalten (imperativ, eventbasiert), 02/16. In React schreiben wir HTML als TSX in den Komponenten.</p>
+<p><strong>9. Was ist das DOM?</strong>
+Der Baum, den der Browser aus der HTML-Seite baut. JavaScript kann ihn ändern (02/18). React
+ändert das DOM für uns: Wir ändern nur State, React rechnet aus, was im DOM anders sein muss.</p>
+<p><strong>10. Warum sagt ihr «Client» und «Server», wenn beides auf eurem Laptop läuft?</strong>
+Es sind zwei getrennte Programme mit eigener Aufgabe: Der Server hält die Daten und Regeln, der
+Client zeigt sie an. Dass beide auf <code>localhost</code> laufen, ist nur beim Entwickeln so. Im Betrieb läuft
+der Server auf einem anderen Rechner, die Browser der Teammitglieder sind die Clients.</p>
+<h3 id="a2-nodejs-npm-pnpm-03">A.2 Node.js, npm, pnpm (03)</h3>
+<p><strong>11. Was ist Node.js?</strong>
+Eine JavaScript-Laufzeitumgebung ohne Browser (03/4). Sie führt unseren Server aus und die
+Werkzeuge des Clients (Vite, TypeScript, oxlint).</p>
+<p><strong>12. Was steht in einer package.json?</strong>
+Name, Version, Scripts, Abhängigkeiten (03/10). Bei uns haben <code>client/</code> und <code>server/</code> je eine
+eigene, denn «jedes package.json signalisiert ein Projekt» (03/10, <code>server/package.json:10-27</code>).</p>
+<p><strong>13. Was ist der Unterschied zwischen dependencies und devDependencies?</strong>
+<code>dependencies</code> braucht die App beim Ausführen (Server: nur <code>express</code>, Client: <code>react</code>,
+<code>react-dom</code>). <code>devDependencies</code> braucht nur, wer entwickelt: TypeScript, oxlint, Prettier, die
+Type-Pakete (<code>server/package.json:18-27</code>), im Client zusätzlich Vite.</p>
+<p><strong>14. Was bedeuten <code>^5.3.0</code> und <code>~6.0.3</code>?</strong>
+Semantic Versioning (03/10): <code>^</code> erlaubt neuere Minor- und Patch-Versionen (5.x.x), <code>~</code> nur
+Patch-Versionen (6.0.x). Die genauen installierten Versionen stehen im Lockfile.</p>
+<p><strong>15. Wozu das Lockfile <code>pnpm-lock.yaml</code>?</strong>
+Es hält die exakten Versionen aller Pakete fest, auch der indirekten. So installiert jeder Rechner
+genau dasselbe (wie <code>package-lock.json</code>, 03/10). Es wird nie von Hand geändert.</p>
+<p><strong>16. Warum pnpm und nicht npm?</strong>
+Die Kursumgebung schreibt pnpm 12 vor (03/17), es ist schnell und spart Platz mit Hard-Links
+(03/14). Festgelegt mit <code>"packageManager": "pnpm@12.11.2"</code> (<code>server/package.json:6</code>).</p>
+<p><strong>17. Was passiert bei <code>pnpm dev</code> im Ordner server/?</strong>
+pnpm startet das Script <code>dev</code>, also <code>node --watch src/index.ts</code> (<code>server/package.json:11</code>). Node
+führt die TypeScript-Datei direkt aus und startet bei jeder gespeicherten Änderung neu.</p>
+<p><strong>18. Wie kann Node eine .ts-Datei ausführen, ohne dass ihr kompiliert?</strong>
+Node 24 kann Type Stripping: Es löscht beim Laden alle Type-Angaben und führt den Rest als
+JavaScript aus. Das geht, weil wir nur TypeScript benutzen, das man einfach weglassen kann
+(<code>erasableSyntaxOnly</code>, <code>server/tsconfig.json:20</code>). Die Typprüfung macht <code>pnpm build</code> mit <code>tsc</code>.</p>
+<p><strong>19. In den Folien wird <code>"type": "module"</code> gelöscht. Warum habt ihr es?</strong>
+Das Tutorial benutzt <code>require('figlet')</code> (CommonJS, 03/19-20). Wir schreiben überall
+<code>import</code>/<code>export</code> wie ab Folie 07/8, dafür braucht Node <code>"type": "module"</code> (<code>server/package.json:5</code>).</p>
+<h3 id="a3-server-express-und-rest-014-024-0210-11">A.3 Server: Express und REST (01/4, 02/4, 02/10-11)</h3>
+<p><strong>20. Was ist Express, und steht es in den Folien?</strong>
+Eine Library für Web-Server in Node: Sie nimmt HTTP-Requests an und ruft je nach Methode und Pfad
+unsere Funktion auf. In den Folien nur genannt (01/4 «minimales Backend mit Express.js», 02/4,
+09/37 «keine Libraries ausser Express»), erklärt wird es erst im zweiten Kursteil.</p>
+<p><strong>21. Was ist Middleware? Nennt eure.</strong>
+Eine Funktion, die Express mit <code>app.use</code> in eine Kette hängt. Jede Anfrage läuft der Reihe nach
+durch diese Kette, bis eine Funktion antwortet; jede kann die Anfrage verändern, beantworten oder
+weitergeben. Bei uns: <code>express.json()</code> (<code>server/src/app.ts:19</code>),
+der Router, <code>express.static</code> im Produktivbetrieb, die 404-Middleware und der Error-Handler
+(<code>server/src/app.ts:29-43</code>).</p>
+<p><strong>22. Was macht <code>express.json()</code>?</strong>
+Sie liest den Body jeder Anfrage mit <code>Content-Type: application/json</code>, wandelt den JSON-Text in
+ein Objekt um und legt es in <code>req.body</code> (<code>server/src/app.ts:18-19</code>). Ohne diesen Header bleibt
+<code>req.body</code> in Express 5 <code>undefined</code>, dann melden unsere Prüfungen z. B. «Name fehlt.». Kaputtes
+JSON wird zum <code>SyntaxError</code>, unser Error-Handler macht daraus 400.</p>
+<p><strong>23. Welche Methode für welche Route, und warum?</strong>
+GET liest (Liste, Tisch-Zustand). POST erstellt etwas mit einer ID vom Server (Session,
+Teilnehmer) und löst Aktionen aus (aufdecken, neue Runde). PUT setzt einen Wert vollständig
+(Stimme, Deck), idempotent. DELETE entfernt (Session, Teilnehmer). Tabelle in Teil 02, Kapitel 3.</p>
+<p><strong>24. Was bedeuten 200, 201, 204, 400, 404, 409, 500?</strong>
+200 OK mit Daten, 201 Created (Session oder Teilnehmer neu), 204 No Content (gelöscht, kein Body),
+400 Bad Request (Body ungültig), 404 Not Found (Session, Teilnehmer oder Route unbekannt),
+409 Conflict (abstimmen nach dem Aufdecken), 500 Fehler im Server. Folie 02/10 nennt den
+Statuscode, die einzelnen Codes stehen nicht in den Folien.</p>
+<p><strong>25. Was ist REST?</strong>
+Ein Stil für Web-APIs: Jede Ressource hat eine Adresse (<code>/api/sessions/abc123/participants</code>), die
+HTTP-Methode sagt, was passiert, Daten gehen als JSON hin und her, und der Statuscode sagt, ob es
+geklappt hat. Nicht in den Folien.</p>
+<p><strong>26. Was ist <code>req.params</code>, was <code>req.query</code>, was <code>req.body</code>?</strong>
+<code>req.params</code>: Platzhalter im Pfad (<code>:sessionId</code>). <code>req.query</code>: Werte nach dem <code>?</code>
+(<code>participantId</code>). <code>req.body</code>: der JSON-Inhalt, nach <code>express.json()</code>. Alle drei in der Route
+zum Abfragen eines Tisches (<code>server/src/routes/sessions.ts:59-81</code>) bzw. beim Beitreten.</p>
+<p><strong>27. Woran erkennt Express den Error-Handler?</strong>
+An genau vier Parametern <code>(err, req, res, next)</code> (<code>server/src/app.ts:34</code>). Darum steht <code>_next</code>
+da, obwohl er nicht benutzt wird.</p>
+<p><strong>28. Warum steht nach <code>res.status(404).json(…)</code> ein <code>return</code>?</strong>
+Damit die Route aufhört. Sonst liefe der Code weiter, obwohl die Antwort schon weg ist. Eine zweite
+Antwort gibt einen Fehler («Cannot set headers after they are sent»), z. B. <code>server/src/routes/sessions.ts:50-53</code>.
+In diesem Beispiel würde schon <code>session.id</code> danach abstürzen, weil <code>session</code> <code>undefined</code> ist;
+TypeScript meldet das ohne <code>return</code> bereits beim Build.</p>
+<p><strong>29. Was heisst In-Memory, und was ist der Nachteil?</strong>
+Die Daten liegen nur im Arbeitsspeicher, in einem Array (<code>server/src/store.ts:33</code>). Einfach und
+schnell, aber nach einem Neustart ist alles weg, und es geht nur mit einem einzigen Server-Prozess.</p>
+<p><strong>30. Was ist ein Port, und warum 3000 und 5173?</strong>
+Eine Nummer, unter der ein Programm auf dem Rechner erreichbar ist (03/9 zeigt <code>localhost:3000</code>).
+3000 ist unser Express-Server (<code>server/src/config.ts:5</code>), 5173 der Standard-Port von Vite.
+Ändern lässt sich der Server-Port mit der Umgebungsvariable <code>PORT</code>.</p>
+<h3 id="a4-html-und-css-04">A.4 HTML und CSS (04)</h3>
+<p><strong>31. Welche semantischen Elemente benutzt ihr?</strong>
+<code>header</code>, <code>main</code> (<code>client/src/components/App.tsx:24-27</code>), <code>section</code> (z. B. die Karten der
+Startseite), <code>ul</code>/<code>li</code> für Listen, echte <code>button</code>-Elemente, <code>label</code> zum Eingabefeld. Die Folien
+nennen <code>main</code> und <code>section</code> als semantische Elemente (04/5) und <code>ul</code>/<code>li</code> (04/8); <code>header</code> und
+<code>label</code> stehen nicht darin.</p>
+<p><strong>32. Wie verbindet ihr CSS und Komponenten?</strong>
+Jede Komponente importiert ihre eigene CSS-Datei (<code>import './HomePage.css'</code>, 08/19) und setzt
+Klassen mit <code>className</code> (04/9: in React <code>className</code> statt <code>class</code>).</p>
+<p><strong>33. Wie heissen eure CSS-Klassen, und warum so?</strong>
+Mit Präfix der Komponente, BEM-artig: <code>home-page__card</code>, <code>seat__card--covered</code>. So stören sich
+Komponenten nicht gegenseitig (04/41, 08/19). Zwei Bindestriche markieren eine Variante.</p>
+<p><strong>34. Was macht <code>box-sizing: border-box</code>?</strong>
+<code>width</code> und <code>height</code> schliessen Padding und Rahmen mit ein (Box-Modell, 04/19-21). Steht als
+Mini-Reset oben in <code>client/src/index.css:13-17</code> (05/8).</p>
+<p><strong>35. Flexbox oder Grid – wo benutzt ihr was?</strong>
+Grid für die zwei Spalten der Startseite (<code>client/src/components/HomePage.css:8-11</code>), Flexbox für
+alles in einer Richtung: Plätze am Tisch, Karten, Buttons (<code>client/src/components/PokerTable.css:5-9</code>).
+Faustregel: Flexbox eine Richtung, Grid Zeilen und Spalten (04/24-44).</p>
+<p><strong>36. Welche Pseudoklassen benutzt ihr?</strong>
+<code>:hover</code> für Buttons und <code>:focus</code> für den sichtbaren Rahmen bei Tastaturbedienung
+(<code>client/src/index.css:55-60</code>), beide aus 04/14. <code>:disabled</code> für gesperrte Buttons steht nicht in
+den Folien.</p>
+<p><strong>37. Was ist <code>gap</code> bei Flexbox?</strong>
+Abstand zwischen den Elementen, ohne <code>margin</code> an jedem Element. In den Folien gibt es nur
+<code>column-gap</code>/<code>row-gap</code> bei Grid; <code>gap</code> funktioniert in allen aktuellen Browsern auch bei Flexbox.</p>
+<p><strong>38. Wie entsteht der ovale Tisch?</strong>
+Ein Rechteck mit sehr grossem <code>border-radius: 999px</code> ab 768 px (<code>client/src/components/PokerTable.css:60</code>),
+dazu ein dicker brauner Rahmen und grüner Hintergrund (04/15, Venn-Übung 04/51).</p>
+<h3 id="a5-responsive-design-05">A.5 Responsive Design (05)</h3>
+<p><strong>39. Wie macht ihr die App responsive?</strong>
+Mobile First: Die Grundregeln gelten für das Handy, eine Media Query <code>@media (min-width: 768px)</code>
+ergänzt Änderungen für grössere Bildschirme, z. B. zwei Spalten auf der Startseite
+(<code>client/src/components/HomePage.css:49-54</code>). Dazu Flexbox und Grid (05/3-9).</p>
+<p><strong>40. Was ist eine Media Query?</strong>
+Eine CSS-Regel, die nur unter einer Bedingung gilt, z. B. ab einer Bildschirmbreite (05/7). Die
+Folien zeigen <code>max-width</code>, wir schreiben Mobile First mit <code>min-width</code>. Beides ist eine Media Query.</p>
+<p><strong>41. Wozu <code>order</code> im Tisch-CSS?</strong>
+Auf dem Handy kommt der grüne Tisch nach den Plätzen (<code>order: 1</code>), ab 768 px steht er wieder in
+der Mitte (<code>order: 0</code>, <code>client/src/components/PokerTable.css:54</code>). Folie 05/11.</p>
+<p><strong>42. Wie testet ihr die Handy-Ansicht?</strong>
+DevTools → Mobile View (<code>Ctrl+Shift+M</code>, 05/5) mit 360 px, 768 px und 1280 px Breite. Es darf nie
+horizontal scrollen.</p>
+<p><strong>43. Was macht <code>&lt;meta name="viewport"&gt;</code>?</strong>
+Sagt dem Handy-Browser, dass die Seite so breit ist wie der Bildschirm und nicht verkleinert
+werden soll (<code>client/index.html:6</code>, 04/6). Ohne sie tut der Handy-Browser so, als wäre der
+Bildschirm etwa 980 px breit: Die Media Query ab 768 px greift dann, und man sieht die verkleinerte
+Desktop-Ansicht.</p>
+<h3 id="a6-typescript-basics-06">A.6 TypeScript Basics (06)</h3>
+<p><strong>44. Was ist TypeScript, und was bringt es euch?</strong>
+JavaScript mit statischen Typen, wird vor dem Ausführen geprüft (06/3). TypeScript meldet z. B.,
+wenn wir vergessen, dass <code>getSession()</code> <code>undefined</code> zurückgeben kann, oder ein Deck falsch
+schreiben.</p>
+<p><strong>45. <code>const</code> oder <code>let</code>?</strong>
+<code>const</code> als Standard, <code>let</code> nur, wenn der Wert sich ändert (06/5-6), z. B. <code>let port = 3000</code>
+in <code>server/src/config.ts:5</code>, weil die Umgebungsvariable ihn überschreiben kann. Nie <code>var</code>.</p>
+<p><strong>46. Was ist ein Union Type, was ein Literal Type? Beispiel?</strong>
+<code>'fibonacci' | 'tshirt'</code> ist eine Union aus zwei Literal Types: Nur genau diese zwei Texte sind
+erlaubt (06/23, <code>client/src/types/poker.ts:4</code>). <code>CardValue | null</code> ist eine Union mit <code>null</code> (06/14).</p>
+<p><strong>47. Warum <code>type</code> und nicht <code>interface</code>?</strong>
+Beides beschreibt die Form eines Objekts. Die Folien empfehlen <code>type</code> (06/22), und 09/37 verlangt
+eine einheitliche Wahl. Darum überall <code>type</code>, auch <code>type Props</code>.</p>
+<p><strong>48. Warum <code>===</code> und nicht <code>==</code>?</strong>
+<code>==</code> wandelt Typen um (<code>'1' == 1</code> ist wahr), <code>===</code> nicht (06/18). Wir benutzen nur <code>===</code> und
+<code>!==</code>.</p>
+<p><strong>49. Was gibt <code>find</code> zurück, wenn nichts passt? Wo nutzt ihr das?</strong>
+<code>undefined</code> (06/16). <code>getSession</code> gibt darum <code>Session | undefined</code> zurück, und jede Route prüft
+das (<code>server/src/store.ts:94-96</code>).</p>
+<p><strong>50. Was ist der Unterschied zwischen <code>filter</code>, <code>find</code> und <code>map</code>?</strong>
+<code>filter</code> gibt alle passenden Elemente als neues Array, <code>find</code> das erste passende oder <code>undefined</code>
+(06/16), <code>map</code> ein neues Array mit umgewandelten Elementen (06/38), z. B. Sessions zu
+<code>&lt;SessionListItem&gt;</code>.</p>
+<p><strong>51. Was macht <code>Number('5')</code>, und was <code>Number('?')</code>?</strong>
+Wandelt Text in eine Zahl um: 5. Bei <code>'?'</code> kommt <code>NaN</code> (Not a Number, 06/10). So erkennt
+<code>toNumber</code>, welche Karten zum Durchschnitt zählen (<code>client/src/utils/poker.ts:66-71</code>).</p>
+<p><strong>52. Was ist ein Template-String?</strong>
+Ein Text in Backticks mit eingesetzten Werten: <code>`Der Name darf höchstens ${MAX_NAME_LENGTH} Zeichen lang sein.`</code>
+(06/9, <code>server/src/rules.ts:25</code>).</p>
+<h3 id="a7-typescript-advanced-07">A.7 TypeScript Advanced (07)</h3>
+<p><strong>53. Was ist der Unterschied zwischen Named und Default Export?</strong>
+Named: <code>export function App()</code>, Import mit <code>{ App }</code> und genau diesem Namen (07/10). Default:
+<code>export default …</code>, beim Import frei benennbar (07/11). In <code>src/</code> benutzen wir nur Named Exports.
+Default Exports kommen von Libraries (<code>import express from 'express'</code>,
+<code>import react from '@vitejs/plugin-react'</code>), und <code>client/vite.config.ts</code> muss selbst
+<code>export default</code> benutzen, weil Vite die Einstellungen so erwartet.</p>
+<p><strong>54. Was macht <code>import type</code>, und warum müsst ihr es benutzen?</strong>
+Importiert nur einen Type, der beim Ausführen wegfällt. Mit <code>verbatimModuleSyntax</code> aus der
+Vorlage ist es Pflicht (07/12, <code>server/tsconfig.json:12</code>).</p>
+<p><strong>55. Wo benutzt ihr Generics?</strong>
+Bei <code>useState</code>, wenn der Startwert den Type nicht verrät: <code>useState&lt;string | null&gt;(null)</code> in
+<code>client/src/components/App.tsx:11</code> (07/16, 08/32). Ohne Generic wüsste TypeScript nur «immer
+<code>null</code>».</p>
+<p><strong>56. Was ist Destructuring? Beispiel?</strong>
+Werte aus Arrays oder Objekten in Variablen auspacken (07/19-21):
+<code>const [activeSessionId, setActiveSessionId] = useState(…)</code> und Props in der Parameterliste
+<code>function CardDeck({ deck, selected, disabled, onCardClick }: Props)</code>.</p>
+<p><strong>57. Wo benutzt ihr den Ternary-Operator?</strong>
+Für Klassen und Texte im TSX, z. B. die gewählte Karte:
+<code>value === selected ? 'playing-card playing-card--selected' : 'playing-card'</code>
+(<code>client/src/components/CardDeck.tsx:25-29</code>, 07/15).</p>
+<p><strong>58. Was macht der Spread-Operator, und wo würdet ihr ihn brauchen?</strong>
+<code>[...liste, neu]</code> bzw. <code>{ ...objekt, name }</code> macht eine flache Kopie (07/23-24). Bei uns kommt er
+nicht vor: Neue Listen entstehen mit <code>filter</code> (<code>client/src/components/HomePage.tsx:100-102</code>),
+neue Objekte baut der Server.</p>
+<h3 id="a8-react-basics-08">A.8 React Basics (08)</h3>
+<p><strong>59. Was ist eine Komponente?</strong>
+Eine Funktion, die TSX zurückgibt und einen Teil der Oberfläche beschreibt (08/14-15). Sie bekommt
+Daten über Props und kann eigenen State haben. Keine Klassen-Komponenten (08/14, 09/37).</p>
+<p><strong>60. Was ist der Unterschied zwischen Props und State?</strong>
+Props kommen von der Eltern-Komponente und sind nur lesbar (08/16). State gehört der Komponente
+selbst, wird mit dem Setter geändert und löst ein neues Rendern aus (08/22-24).</p>
+<p><strong>61. Was heisst «Lifting State Up»? Beispiel?</strong>
+State liegt in der ersten gemeinsamen Eltern-Komponente aller, die ihn brauchen (08/26). Beispiel:
+Der Tisch-Zustand liegt in <code>PokerRoom</code>, weil <code>PokerTable</code>, <code>CardDeck</code>, <code>DeckSwitcher</code> und
+<code>RoundResult</code> ihn brauchen. Der State steht in <code>client/src/components/PokerRoom.tsx:36</code>.</p>
+<p><strong>62. Was ist ein Callback via Props?</strong>
+Die Eltern-Komponente gibt eine Funktion als Prop nach unten, das Kind ruft sie auf, um etwas nach
+oben zu melden (08/25-27): <code>onCardClick</code>, <code>onJoin</code>, <code>onLeave</code>, <code>onNameChange</code>.</p>
+<p><strong>63. Wozu die <code>key</code>-Prop?</strong>
+Damit React beim Ändern einer Liste weiss, welches Element welches ist (08/31). Wir nehmen stabile
+IDs, z. B. <code>key={session.id}</code> (<code>client/src/components/HomePage.tsx:158</code>), nicht den Index: Der
+Index verschiebt sich, wenn ein Eintrag wegfällt.</p>
+<p><strong>64. Was ist Conditional Rendering, was Conditional Styling?</strong>
+Rendering: je nach Bedingung andere Komponente oder nichts, mit <code>&amp;&amp;</code>, Ternary oder <code>if</code> mit
+<code>return</code> (08/7, 08/37), z. B. HomePage oder PokerTablePage in <code>App</code>. Styling: je nach Bedingung
+eine andere Klasse (08/36), z. B. <code>seat--own</code> für den eigenen Platz.</p>
+<p><strong>65. Was ist <code>children</code>, und wo nutzt ihr es?</strong>
+Alles zwischen öffnendem und schliessendem Tag kommt als Prop <code>children</code> an (08/17). <code>PokerTable</code>
+zeigt so die Tischmitte, die <code>PokerRoom</code> hineinlegt; der <code>UserProvider</code> umschliesst die App.</p>
+<p><strong>66. Warum darf man State nicht direkt ändern?</strong>
+React merkt eine Änderung nur über den Setter mit einem <strong>neuen</strong> Wert (08/28, 08/33). Würde man
+das alte Array verändern und zurückgeben, rendert React nicht neu. Darum <code>filter</code> beim Löschen
+eines Listeneintrags.</p>
+<p><strong>67. Was ist ein kontrolliertes Eingabefeld?</strong>
+Der Wert kommt aus dem State (<code>value={name}</code>), jede Eingabe geht über <code>onChange</code> zurück
+(<code>client/src/components/NameForm.tsx:34-35</code>). React ist die einzige Quelle für den Inhalt.</p>
+<p><strong>68. Wie lest ihr den Wert aus einem <code>&lt;select&gt;</code>?</strong>
+Im Handler mit <code>ChangeEvent&lt;HTMLSelectElement&gt;</code> aus <code>event.target.value</code> (08/42,
+<code>client/src/components/DeckSwitcher.tsx:16-24</code>). Weil das nur ein <code>string</code> ist, suchen wir den
+passenden <code>DeckType</code> in <code>DECK_TYPES</code>.</p>
+<p><strong>69. Was macht StrictMode?</strong>
+Er startet in der Entwicklung jeden Effekt zweimal (Effekt, Cleanup, Effekt) und ruft jede
+Komponente doppelt auf, damit fehlende Cleanups sofort auffallen (08/24, 09/3, <code>client/src/main.tsx:16-22</code>). Im Produktiv-Build läuft
+jeder Effekt nur einmal.</p>
+<h3 id="a9-react-hooks-09">A.9 React Hooks (09)</h3>
+<p><strong>70. Was macht <code>useEffect</code>, und wann läuft er?</strong>
+Er führt Code nach dem Rendern aus, für alles ausserhalb von React (Server, Timer). Er läuft beim
+Mount und wenn sich ein Wert im Dependency Array ändert, <code>[]</code> heisst nur beim Mount (09/11-13).</p>
+<p><strong>71. Warum braucht es ein Cleanup? Wo habt ihr welche?</strong>
+Was ein Effekt startet, muss beim Unmount aufhören (09/15), sonst gibt es ein Memory Leak (09/30).
+Drei Stellen: Polling der Liste (<code>client/src/components/HomePage.tsx:70-73</code>), Polling am Tisch
+(<code>client/src/components/PokerRoom.tsx:76-79</code>) und das Verlassen der Session im Cleanup des
+Beitritts (<code>client/src/components/PokerTablePage.tsx:63-70</code>).</p>
+<p><strong>72. Warum ist der Effekt-Callback nicht direkt <code>async</code>?</strong>
+Ein Effekt darf nur eine Cleanup-Funktion zurückgeben, eine <code>async</code>-Funktion gibt aber immer ein
+Promise zurück (09/23). Darum eine innere <code>async function</code> und sie sofort aufrufen (09/24).</p>
+<p><strong>73. Was macht das <code>ignore</code>-Flag?</strong>
+Jeder Effekt-Durchlauf hat ein eigenes <code>ignore</code>, das Cleanup setzt es auf <code>true</code>. Eine Antwort, die
+danach noch ankommt, wird nicht mehr in den State geschrieben (<code>client/src/components/PokerTablePage.tsx:34</code>).
+Das Muster stammt aus der React-Dokumentation.</p>
+<p><strong>74. Was ist ein Custom Hook? Habt ihr einen?</strong>
+Eine Funktion mit Namen <code>use…</code>, die selbst Hooks benutzt (09/26). Ja: <code>useLocalStorage</code>
+(<code>client/src/hooks/useLocalStorage.ts:12-29</code>), wie in der Hooks-Übung 09/32.</p>
+<p><strong>75. Was heisst <code>useState(() =&gt; …)</code>?</strong>
+Lazy Initial Value: Die Funktion läuft nur beim ersten Render (09/8). So wird <code>localStorage</code> nur
+einmal gelesen und nicht bei jedem Tastendruck (<code>client/src/hooks/useLocalStorage.ts:14-20</code>).</p>
+<p><strong>76. Was heisst <code>setSessions((currentSessions) =&gt; …)</code>?</strong>
+Der Setter bekommt eine Funktion und ruft sie mit dem neusten State auf (09/7). Sicher, auch wenn
+inzwischen ein Poll eine neue Liste gesetzt hat (<code>client/src/components/HomePage.tsx:95</code>).</p>
+<p><strong>77. Wie funktioniert euer Polling?</strong>
+Im <code>useEffect</code> startet <code>window.setInterval</code> die Ladefunktion alle 1.5 s (Tisch) bzw. 3 s (Liste),
+das Cleanup stoppt sie mit <code>window.clearInterval</code> (09/29-30). Genau das Muster <code>useAutoCounter</code>
+aus 09/30 («Endpoint regelmässig abfragen»).</p>
+<p><strong>78. Was ist <code>fetch</code>, und wann wirft es einen Fehler?</strong>
+Die Browser-Funktion für HTTP-Requests (09/22). Sie wirft nur, wenn gar keine Antwort kommt
+(Server aus, offline). Eine 404 ist für <code>fetch</code> ein Erfolg, darum prüfen wir <code>response.ok</code> und
+<code>response.status</code> selbst (<code>client/src/api/sessions.ts:108-113</code>).</p>
+<p><strong>79. Was macht <code>async</code>/<code>await</code> mit <code>try</code>/<code>catch</code>?</strong>
+<code>await</code> wartet auf ein Promise, ohne den Browser zu blockieren. Fehler fängt <code>catch</code> (09/17).
+Jeder Server-Aufruf in den Komponenten steht in <code>try</code>/<code>catch</code> und zeigt eine Meldung. Ausnahme:
+Das Verlassen hängt nur <code>.catch(() =&gt; {})</code> an und zeigt nichts, weil der Heartbeat-Timeout die
+Person ohnehin entfernt (<code>client/src/components/PokerTablePage.tsx:68</code>).</p>
+<p><strong>80. Was ist Context, und steht er in den Folien?</strong>
+Ein Weg, einen Wert an alle Komponenten darunter zu geben, ohne ihn durch jede Ebene als Prop
+weiterzureichen. Nicht in den Folien 1–9; die Aufgabenstellung verlangt ihn für den Namen.
+<code>createContext</code> in <code>client/src/context/UserContext.ts:12-15</code>, gelesen mit <code>useContext(UserContext)</code>.</p>
+<hr>
+<h2 id="teil-b--fragen-zu-unserem-projekt">Teil B – Fragen zu unserem Projekt</h2>
+<h3 id="b1-zeig-mir-wo-">B.1 «Zeig mir, wo …»</h3>
+<p><strong>81. … der Wechsel zwischen Startseite und Pokertisch passiert.</strong>
+<code>client/src/components/App.tsx:11</code> (State <code>activeSessionId</code>) und
+<code>client/src/components/App.tsx:17-20</code> (bedingtes Rendering). Gesetzt wird der State über den
+Callback <code>onJoin</code>, zurückgesetzt in <code>leaveSession</code> (<code>client/src/components/App.tsx:13-15</code>).
+Pflicht seit 07/6 und 09/36.</p>
+<p><strong>82. … der Name gespeichert wird.</strong>
+<code>client/src/hooks/useLocalStorage.ts:23-26</code>: <code>setValue</code> setzt den State und schreibt in den
+<code>localStorage</code>. Benutzt vom <code>UserProvider</code> (<code>client/src/components/UserProvider.tsx:13</code>).</p>
+<p><strong>83. … die Stimmen vor dem Aufdecken geheim bleiben.</strong>
+Auf dem Server, in <code>toSessionState</code> (<code>server/src/store.ts:39-48</code>). Nur wenn aufgedeckt ist oder es
+die eigene Stimme ist, wird der Wert mitgeschickt. Der Client bekommt fremde Stimmen also nie zu
+früh, auch nicht im Network-Tab.</p>
+<p><strong>84. … ein Request an den Server geschickt wird.</strong>
+Nur in <code>client/src/api/sessions.ts</code>, in der Funktion <code>send</code> (<code>client/src/api/sessions.ts:21-38</code>).
+Komponenten rufen <code>fetch</code> nie selbst auf, sondern Funktionen wie <code>castVote</code>.</p>
+<p><strong>85. … der Server die Eingaben prüft.</strong>
+<code>server/src/validation.ts</code>, z. B. <code>getJoinError</code> (<code>server/src/validation.ts:10-19</code>), aufgerufen in
+der Route zum Beitreten (<code>server/src/routes/sessions.ts:90-94</code>).</p>
+<p><strong>86. … Karteileichen entfernt werden.</strong>
+Timer in <code>server/src/index.ts:9</code>, Aufräumen in <code>server/src/store.ts:142-152</code>, Lebenszeichen in
+der GET-Route (<code>server/src/routes/sessions.ts:74-79</code>).</p>
+<p><strong>87. … der Durchschnitt berechnet wird.</strong>
+Im Client, <code>computeResult</code> in <code>client/src/utils/poker.ts:89-125</code>, aufgerufen von <code>RoundResult</code>
+(<code>client/src/components/RoundResult.tsx:25</code>). Der Server schickt nur die Stimmen.</p>
+<p><strong>88. … automatisch aufgedeckt wird.</strong>
+<code>revealIfEveryoneVoted</code> in <code>server/src/store.ts:165-175</code>, aufgerufen nach jeder Stimme und wenn
+jemand geht.</p>
+<p><strong>89. … die Liste der Sessions alle 3 Sekunden geladen wird.</strong>
+<code>client/src/components/HomePage.tsx:44-74</code>, das Intervall steht in <code>SESSION_LIST_POLL_INTERVAL_MS</code>
+(<code>client/src/components/HomePage.tsx:20</code>).</p>
+<p><strong>90. … das Deck gewechselt wird, vom Klick bis zum Server.</strong>
+<code>&lt;select&gt;</code> mit <code>updateDeck</code> (<code>client/src/components/DeckSwitcher.tsx:16-24</code>) → <code>handleDeckChange</code>
+in <code>PokerRoom</code> → <code>changeDeck</code> in <code>client/src/api/sessions.ts:174-189</code> → Route
+<code>server/src/routes/sessions.ts:148-163</code> → <code>changeDeck</code> im Store (<code>server/src/store.ts:188-195</code>).</p>
+<h3 id="b2-was-passiert-wenn-">B.2 «Was passiert, wenn …»</h3>
+<p><strong>91. … der Server während einer Runde abstürzt?</strong>
+Beim Entwickeln antwortet der Vite-Proxy mit 502, weil er Express nicht erreicht (ohne Proxy bekäme
+<code>fetch</code> gar keine Antwort und würde werfen). <code>api/sessions.ts</code> macht in beiden Fällen daraus
+«Server nicht erreichbar.» (<code>client/src/api/sessions.ts:43-49</code>). <code>PokerRoom</code> zeigt die Meldung
+über dem letzten Stand und pollt weiter. Startet der Server neu, sind die Daten weg: Die nächste
+Antwort ist 404, und der Client zeigt «Diese Session existiert nicht (mehr)».</p>
+<p><strong>92. … jemand den Tab schliesst, ohne «Verlassen» zu klicken?</strong>
+Kein DELETE kommt an. Die Polls fehlen, <code>lastSeen</code> wird alt, und der Server entfernt die Person
+nach höchstens 20 Sekunden (15 s Timeout + bis 5 s bis zum nächsten Aufräumen).</p>
+<p><strong>93. … man am Tisch die Seite neu lädt (F5)?</strong>
+Man landet auf der Startseite, nur der Name bleibt (07/6). Die Session-ID war normaler State in
+<code>App</code>. Der alte Platz verschwindet nach höchstens 20 s, wer weitermachen will, tritt neu bei.</p>
+<p><strong>94. … zwei Personen gleichzeitig das Deck wechseln?</strong>
+Node bearbeitet die Requests nacheinander. Der zweite gewinnt, beide sehen beim nächsten Poll
+denselben Zustand.</p>
+<p><strong>95. … jemand per curl eine Karte schickt, die es nicht gibt?</strong>
+<code>getVoteError</code> findet sie nicht in <code>DECK_CARDS</code> → 400 «Diese Karte gibt es im aktuellen Deck
+nicht.» (<code>server/src/validation.ts:30-37</code>).</p>
+<p><strong>96. … jemand nach dem Aufdecken noch abstimmt?</strong>
+409 Conflict (<code>server/src/routes/sessions.ts:129-133</code>). Im Client sind die Karten nach dem
+Aufdecken ohnehin gesperrt.</p>
+<p><strong>97. … man die gewählte Karte nochmals anklickt?</strong>
+<code>handleCardClick</code> schickt <code>null</code>, die Stimme wird zurückgezogen
+(<code>client/src/components/PokerRoom.tsx:145-152</code>).</p>
+<p><strong>98. … jemand die Session löscht, während andere am Tisch sitzen?</strong>
+Ihr nächster Poll bekommt 404, <code>getSession</code> gibt <code>null</code> zurück, <code>PokerRoom</code> stoppt das Intervall
+und zeigt «Diese Session existiert nicht (mehr)» (<code>client/src/components/PokerRoom.tsx:53-58</code>).</p>
+<p><strong>99. … man StrictMode entfernt?</strong>
+Effekte laufen auch in der Entwicklung nur einmal. Die App funktioniert gleich, aber ein
+fehlendes Cleanup würde man nicht mehr sofort bemerken. Wegen StrictMode gibt es den Code, der den
+überzähligen Teilnehmer gleich wieder abmeldet (<code>client/src/components/PokerTablePage.tsx:40-47</code>).</p>
+<p><strong>100. … der Tab länger im Hintergrund liegt?</strong>
+Chrome bremst Timer in Hintergrund-Tabs nach etwa fünf Minuten auf einen Aufruf pro Minute. Dann
+fehlen die Polls, und der Server entfernt die Person nach 15–20 s. Kommt man zurück, steht «Du bist
+nicht mehr am Tisch» (<code>client/src/components/PokerRoom.tsx:111-125</code>). Bekannte Grenze, in der
+Dokumentation Kapitel 8 beschrieben.</p>
+<h3 id="b3-warum-habt-ihr--statt-">B.3 «Warum habt ihr … statt …?»</h3>
+<p><strong>101. … den Ansichtswechsel mit State statt mit React Router gelöst?</strong>
+Weil der geänderte Leistungsnachweis genau das verlangt: Pflicht §3.1 «Wechsel zwischen Home und
+Pokertisch über State», Router ist nur noch optional (07/6, 09/36). State ist einfacher und
+kommt ohne zusätzliche Library aus. Folge: kein teilbarer Link, nach einem Reload bleibt nur der
+Name, auch das sagt 07/6.</p>
+<p><strong>102. … keine Error Boundary?</strong>
+Eine Error Boundary gibt es in React nur als Klasse, und 09/37 sagt «keine Class-Components».
+Fehler von Server-Aufrufen fangen wir überall mit <code>try</code>/<code>catch</code> ab. Ein Fehler beim Rendern wäre
+ein Programmierfehler; dagegen helfen strenges TypeScript, <code>pnpm lint</code> und Ausprobieren.</p>
+<p><strong>103. … keine automatischen Tests im Projekt?</strong>
+Tests kommen in den Folien nicht vor, und Test-Libraries wie Vitest wären zusätzliche Libraries
+(09/37). Wir prüfen mit <code>pnpm lint</code>, <code>pnpm format:check</code>, <code>pnpm build</code> (Typprüfung) in beiden
+Ordnern und klicken alle Abläufe in zwei Browserfenstern durch. Ehrlich dazu: Die KI hat ausserhalb
+der Abgabe einen automatischen Browser-Test benutzt, um ihre Änderungen zu prüfen (Dokumentation
+Kapitel 12).</p>
+<p><strong>104. … Prettier und oxlint?</strong>
+09/37: Prettier mit «Format on Save» und <code>pnpm lint</code> ausführen. oxlint ist der Linter der
+Projektvorlage, der Server benutzt denselben (<code>server/package.json:14-16</code>).</p>
+<p><strong>105. … Node 24 und pnpm 12?</strong>
+Die Folien schreiben genau diese Umgebung vor (03/17, 07/4). Node 24 kann ausserdem <code>.ts</code>-Dateien
+direkt ausführen, darum braucht der Server kein Zusatzwerkzeug.</p>
+<p><strong>106. … zwei Projekte und die Types doppelt statt eines gemeinsamen Ordners?</strong>
+Der Client ist die Projektvorlage (07/4), ein reines React-Projekt. Der Server ist ein eigenes
+Node-Projekt («Jedes package.json signalisiert ein Projekt», 03/10). Ein gemeinsamer Ordner bräuchte einen
+pnpm-Workspace, der nicht in den Folien vorkommt. Nachteil: Types, Kartenlisten und Namensregel
+stehen zweimal (<code>server/src/rules.ts:1-3</code> verweist auf die Kopie im Client).</p>
+<p><strong>107. … Polling statt WebSockets?</strong>
+Polling steht in den Folien (09/30), passt zu REST und braucht keine Library. Nachteil: bis 1.5 s
+Verzögerung und viele kleine Requests. Für ein Team von 5–10 Personen kein Problem, und das
+Polling dient gleich als Heartbeat.</p>
+<p><strong>108. … Context für den Namen statt Props?</strong>
+Die Aufgabenstellung verlangt einen Context für den Namen. Bei zwei Ebenen ginge es auch mit State
+in <code>App</code> und Props. Context ist nicht in den Folien, wir haben ihn aus der React-Dokumentation.</p>
+<p><strong>109. … <code>unknown</code> in validation.ts statt <code>any</code>?</strong>
+Mit <code>any</code> würde TypeScript gar nichts prüfen. Mit <code>unknown</code> müssen wir den Body zuerst mit
+<code>typeof</code> und <code>in</code> prüfen, bevor wir ihn benutzen. Daten von aussen sind nie vertrauenswürdig.</p>
+<p><strong>110. … die Prüfung im Server, obwohl der Client schon prüft?</strong>
+Prüfung im Client ist Komfort (sofortige Meldung), Prüfung im Server ist Sicherheit: Jeder kann
+mit <code>curl</code> an der Oberfläche vorbei Requests schicken.</p>
+<h3 id="b4-was-würdet-ihr-ändern">B.4 «Was würdet ihr ändern?»</h3>
+<p><strong>111. Was würdet ihr mit mehr Zeit verbessern?</strong>
+Eine Datenbank statt des Arrays, damit ein Neustart nichts löscht. WebSockets statt Polling für
+sofortige Updates. Eine Rolle «Moderator», damit nicht jede Person aufdecken und löschen kann.</p>
+<p><strong>112. Was gefällt euch selbst am Code nicht?</strong>
+Die doppelten Types und Regeln in Client und Server (Frage 106). Und der Error-Handler macht aus
+seltenen Fehlern wie einem zu grossen Body eine 500 statt des passenden Codes (Teil 02,
+Kapitel 7).</p>
+<p><strong>113. Wie würdet ihr Tests einführen, wenn sie erlaubt wären?</strong>
+Für Store und <code>computeResult</code> einfache Unit-Tests (reine Funktionen ohne React und Express), für
+die Routen Tests mit echten HTTP-Requests, und ein Browser-Test für den Ablauf mit zwei Personen.</p>
+<p><strong>114. Wie würdet ihr die Hintergrund-Tab-Grenze lösen?</strong>
+Das Timeout im Server deutlich erhöhen oder beim Zurückkehren in den Tab automatisch neu
+beitreten. Beides ändert die Strategie gegen Karteileichen und wäre gut zu überlegen.</p>
+<p><strong>115. Was würdet ihr an der Struktur ändern, wenn die App wächst?</strong>
+React Router für teilbare Links (dann optionale Erweiterung §3.4), ein Ordner pro Seite, und im
+Server die Teilnehmer-Routen in einen eigenen Router, damit <code>routes/sessions.ts</code> nicht zu lang wird.</p>
+<h3 id="b5-ki-nutzung">B.5 KI-Nutzung</h3>
+<p>Antwortet hier <strong>ehrlich und ruhig</strong>. Die Nutzung ist in der Dokumentation (Kapitel 15)
+offengelegt. Erfindet nichts, was ihr nicht gemacht habt.</p>
+<p><strong>116. Habt ihr KI benutzt?</strong>
+Ja, und zwar für den grössten Teil des Codes und der Dokumentation (Claude Code von Anthropic).
+Wir haben die Aufgaben formuliert, die Anforderungen aus Aufgabenstellung und Folien vorgegeben, die
+Ergebnisse geprüft und Änderungen verlangt. Das steht offen in der Dokumentation, Kapitel 15.</p>
+<p><strong>117. Wie stellt ihr sicher, dass ihr den Code versteht?</strong>
+Wir haben verlangt, dass der Code vereinfacht und an die Folien angeglichen wird, damit wir jede
+Zeile erklären können. Dann haben wir den Code mit einer Zeile-für-Zeile-Erklärung durchgearbeitet,
+uns gegenseitig abgefragt und Übungen gemacht: Code ändern, beobachten, zurücksetzen. <em>(Nur sagen,
+was ihr wirklich gemacht habt.)</em></p>
+<p><strong>118. Welche Teile habt ihr selbst geschrieben?</strong>
+Ehrlich antworten, was stimmt. Wenn nichts von Hand geschrieben wurde: «Geschrieben hat die KI.
+Unsere Arbeit war, vorzugeben, was gebaut wird, zu prüfen, Fehler zu melden und zu entscheiden,
+z. B. den Code zu vereinfachen und auf das Niveau der Folien zu bringen.» Die Gruppe trägt das in
+Kapitel 15 der Dokumentation ein.</p>
+<p><strong>119. Warum kommen Dinge vor, die nicht in den Folien stehen (Express-Details, Context, <code>unknown</code>)?</strong>
+Express und Context verlangt die Aufgabenstellung, <code>unknown</code> braucht es für sichere Daten von
+aussen. Wir haben die KI angewiesen, sonst nur Kursstoff zu benutzen, und jede Ausnahme in
+Dokumentation und Leitfaden markieren und begründen lassen. Erklären können wir sie trotzdem.</p>
+<p><strong>120. Würdet ihr wieder so arbeiten?</strong>
+Eine ehrliche, eigene Antwort. Zum Beispiel: «KI spart Tipparbeit, aber man muss jede Zeile
+verstehen, sonst kann man nichts ändern und nichts erklären. Darum haben wir den Code
+vereinfachen lassen und ihn Zeile für Zeile gelernt.»</p>
+
+<footer class="generated">Erzeugt aus docs/fachgespraech/03-fragenkatalog.md mit scripts/build-pdf.sh.</footer></main>
+
+</body></html>

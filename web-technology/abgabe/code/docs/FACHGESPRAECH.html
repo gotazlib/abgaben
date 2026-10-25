@@ -425,6 +425,10 @@ die andere zeigt die Stelle im Code und erklärt.</li>
 selbst kaputt gemacht und repariert hat, kann es erklären.</li>
 <li><strong>Teil D (Demo und Checkliste)</strong> am Vortag einmal komplett durchspielen.</li>
 </ol>
+<p>Wer tiefer gehen will: Das Lernmaterial (Teile 00–04: Ordnerstruktur, Client und Server Zeile für
+Zeile, 120 Fragen mit Musterantworten, Spickzettel, Lernplan bis zum 8. Dezember) liegt nicht im
+Code-ZIP, sondern öffentlich unter
+<a href="https://github.com/gotazlib/abgaben/tree/main/web-technology/fachgespraech">https://github.com/gotazlib/abgaben/tree/main/web-technology/fachgespraech</a>.</p>
 <p>Verweise wie <code>PokerRoom.tsx:145-152</code> bedeuten Datei und Zeilennummer. Gibt es einen Dateinamen
 zweimal, steht der Ordner davor: <code>api/sessions.ts</code> (Client) und <code>routes/sessions.ts</code> (Server),
 <code>types/poker.ts</code> und <code>utils/poker.ts</code>. Pfade sind relativ zum Projektordner (im Code-ZIP der
@@ -669,7 +673,8 @@ verweisen im Kommentar oben aufeinander. Wer eine Regel ändert, muss sie an bei
 (Übung E.8).</p>
 <p>Die Projektdokumentation (<code>DOKUMENTATION.pdf</code>/<code>.html</code>) wird neben dem Code-ZIP abgegeben, nicht
 darin. Im ZIP fehlen ausserdem die internen Ordner <code>scripts/</code> (Doku- und Abgabe-Scripts) und
-<code>deploy/</code> (Betrieb auf dem Server). Die App braucht sie nicht.</p>
+<code>deploy/</code> (Betrieb auf dem Server) sowie das Lernmaterial <code>docs/fachgespraech/</code> (öffentlich im
+Ordner <code>web-technology/fachgespraech/</code> des Abgabe-Repositorys). Die App braucht sie nicht.</p>
 <h3 id="a2-server--express-api">A.2 <code>server/</code> – Express-API</h3>
 <p>Express kommt in den Folien 1–9 nur als Name vor (01/4, 02/4, 09/37), die Details sind für den
 zweiten Kursteil angekündigt. Die Aufgabe verlangt einen Express-Server, darum erklären wir hier
@@ -1750,7 +1755,7 @@ die <code>participantId</code> fest, rendert sie <code>PokerRoom</code> mit dem 
 <p>Alle Komponenten haben weniger als acht Props (höchstens vier, z. B. <code>SessionListItem</code>), so wie in
 08/48 empfohlen. Die Tabelle aller Komponenten steht in der Dokumentation, Kapitel 3.2.</p>
 <h3 id="b2-warum-liegt-dieser-state-hier">B.2 «Warum liegt dieser State hier?»</h3>
-<p>Grundregel (Lifting State Up, 08/26): <strong>State liegt in der untersten Komponente, die ihn ändern
+<p>Grundregel (Lifting State Up, 08/26–27): <strong>State liegt in der untersten Komponente, die ihn ändern
 muss, und gerade so weit oben, dass alle, die ihn lesen, darunter liegen.</strong></p>
 <div class="table-wrap"><table>
 <thead>
@@ -1887,7 +1892,7 @@ es drei Cleanups:</p>
 <li><strong>Polling der Liste</strong> (<code>HomePage.tsx:70-73</code>): <code>window.clearInterval</code>, sonst liefen nach dem
 Wechsel zum Tisch weiter Requests für die Liste. Die Folien nennen das ein Memory Leak (09/30).</li>
 <li><strong>Polling am Tisch</strong> (<code>PokerRoom.tsx:76-79</code>): <code>window.clearInterval</code>, sonst liefe das Polling
-nach dem Verlassen weiter und würde uns als Teilnehmer am Leben halten.</li>
+nach dem Verlassen im Hintergrund weiter und schickte unnötige Requests (Memory Leak).</li>
 <li><strong>Beitreten</strong> (<code>PokerTablePage.tsx:63-70</code>): Leave-Request, sonst sässe man nach dem Verlassen
 noch bis zum Timeout am Tisch.</li>
 </ol>
@@ -2255,7 +2260,7 @@ erzeugt aber keine Dateien. Im Client übersetzt Vite das TypeScript.»</p>
 <tr>
 <td>58</td>
 <td>Warum <code>gap</code> in Flexbox?</td>
-<td>Die Folien zeigen Abstände zwischen Elementen nur bei Grid (<code>column-gap</code>/<code>row-gap</code>, 04/38). <code>gap</code> ist die Kurzform davon und funktioniert in Flexbox genauso; sonst bräuchte jedes Kind einen eigenen Margin.</td>
+<td>Die Folien zeigen Abstände zwischen Elementen nur bei Grid (<code>column-gap</code>/<code>row-gap</code>, 04/39-40). <code>gap</code> ist die Kurzform davon und funktioniert in Flexbox genauso; sonst bräuchte jedes Kind einen eigenen Margin.</td>
 </tr>
 </tbody></table></div>
 <hr>

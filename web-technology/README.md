@@ -23,6 +23,19 @@ Alles im Ordner [`abgabe/`](abgabe/):
 | [scrum-poker-code.zip](abgabe/scrum-poker-code.zip) | Quellcode ohne `node_modules` |
 | [code/](abgabe/code/) | derselbe Quellcode zum Durchklicken, Start-Anleitung im [README](abgabe/code/README.md) |
 
+## Lernmaterial fürs Fachgespräch
+
+Im Ordner [`fachgespraech/`](fachgespraech/README.md) (nicht im Code-ZIP), jeder Teil als HTML,
+PDF und Markdown, Übersicht auch [als Webseite](https://gotazlib.github.io/abgaben/web-technology/fachgespraech/):
+
+| Teil | Inhalt |
+| --- | --- |
+| [00 Ordnerstruktur](fachgespraech/00-ordnerstruktur.md) ([HTML](https://gotazlib.github.io/abgaben/web-technology/fachgespraech/00-ordnerstruktur.html), [PDF](fachgespraech/00-ordnerstruktur.pdf)) | welche Datei wo liegt, Konfiguration Zeile für Zeile |
+| [01 Client Zeile für Zeile](fachgespraech/01-client-zeile-fuer-zeile.md) ([HTML](https://gotazlib.github.io/abgaben/web-technology/fachgespraech/01-client-zeile-fuer-zeile.html), [PDF](fachgespraech/01-client-zeile-fuer-zeile.pdf)) | jede Datei unter `client/`: React, Hooks, CSS |
+| [02 Server Zeile für Zeile](fachgespraech/02-server-zeile-fuer-zeile.md) ([HTML](https://gotazlib.github.io/abgaben/web-technology/fachgespraech/02-server-zeile-fuer-zeile.html), [PDF](fachgespraech/02-server-zeile-fuer-zeile.pdf)) | jede Datei unter `server/`, REST, Ablauf eines Requests |
+| [03 Fragenkatalog](fachgespraech/03-fragenkatalog.md) ([HTML](https://gotazlib.github.io/abgaben/web-technology/fachgespraech/03-fragenkatalog.html), [PDF](fachgespraech/03-fragenkatalog.pdf)) | 120 Fragen mit Musterantworten |
+| [04 Spickzettel](fachgespraech/04-spickzettel.md) ([HTML](https://gotazlib.github.io/abgaben/web-technology/fachgespraech/04-spickzettel.html), [PDF](fachgespraech/04-spickzettel.pdf)) | drei Seiten zum Wiederholen |
+
 Kurz: Node.js 24 und pnpm 12. Im Code-Ordner zwei Terminals: `cd server && pnpm install && pnpm dev`
 und `cd client && pnpm install && pnpm dev`, dann Browser auf <http://localhost:5173>.
 

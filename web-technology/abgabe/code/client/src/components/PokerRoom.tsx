@@ -31,7 +31,7 @@ type Props = {
 }
 
 export function PokerRoom({ sessionId, participantId, onLeave }: Props) {
-  // Der Server ist die einzige Quelle der Wahrheit: eigene Karte, Deck und
+  // Was am Tisch gilt, bestimmt allein der Server: eigene Karte, Deck und
   // «aufgedeckt» werden alle aus `session` gelesen und nicht doppelt gespeichert.
   const [session, setSession] = useState<SessionState | null>(null)
   const [pollError, setPollError] = useState<string | null>(null)
@@ -71,8 +71,8 @@ export function PokerRoom({ sessionId, participantId, onLeave }: Props) {
     const intervalId = window.setInterval(loadSession, POLL_INTERVAL_MS)
     loadSession()
 
-    // Cleanup beim Verlassen: sonst liefe das Polling weiter und würde uns als
-    // Teilnehmer am Leben halten; späte Antworten werden dank ignore verworfen.
+    // Cleanup beim Verlassen: sonst liefe das Polling im Hintergrund weiter und
+    // schickte unnötige Requests; späte Antworten werden dank ignore verworfen.
     return () => {
       ignore = true
       window.clearInterval(intervalId)

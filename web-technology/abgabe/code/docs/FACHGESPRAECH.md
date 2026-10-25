@@ -20,6 +20,11 @@ Leitfaden zeigt, wie.
    selbst kaputt gemacht und repariert hat, kann es erklären.
 5. **Teil D (Demo und Checkliste)** am Vortag einmal komplett durchspielen.
 
+Wer tiefer gehen will: Das Lernmaterial (Teile 00–04: Ordnerstruktur, Client und Server Zeile für
+Zeile, 120 Fragen mit Musterantworten, Spickzettel, Lernplan bis zum 8. Dezember) liegt nicht im
+Code-ZIP, sondern öffentlich unter
+<https://github.com/gotazlib/abgaben/tree/main/web-technology/fachgespraech>.
+
 Verweise wie `PokerRoom.tsx:145-152` bedeuten Datei und Zeilennummer. Gibt es einen Dateinamen
 zweimal, steht der Ordner davor: `api/sessions.ts` (Client) und `routes/sessions.ts` (Server),
 `types/poker.ts` und `utils/poker.ts`. Pfade sind relativ zum Projektordner (im Code-ZIP der
@@ -131,7 +136,8 @@ verweisen im Kommentar oben aufeinander. Wer eine Regel ändert, muss sie an bei
 
 Die Projektdokumentation (`DOKUMENTATION.pdf`/`.html`) wird neben dem Code-ZIP abgegeben, nicht
 darin. Im ZIP fehlen ausserdem die internen Ordner `scripts/` (Doku- und Abgabe-Scripts) und
-`deploy/` (Betrieb auf dem Server). Die App braucht sie nicht.
+`deploy/` (Betrieb auf dem Server) sowie das Lernmaterial `docs/fachgespraech/` (öffentlich im
+Ordner `web-technology/fachgespraech/` des Abgabe-Repositorys). Die App braucht sie nicht.
 
 ### A.2 `server/` – Express-API
 
@@ -547,7 +553,7 @@ Alle Komponenten haben weniger als acht Props (höchstens vier, z. B. `SessionLi
 
 ### B.2 «Warum liegt dieser State hier?»
 
-Grundregel (Lifting State Up, 08/26): **State liegt in der untersten Komponente, die ihn ändern
+Grundregel (Lifting State Up, 08/26–27): **State liegt in der untersten Komponente, die ihn ändern
 muss, und gerade so weit oben, dass alle, die ihn lesen, darunter liegen.**
 
 | State | Ort | Satz zum Merken |
@@ -652,7 +658,7 @@ ganze Tabelle steht in der Dokumentation, Kapitel 5.
 > 1. **Polling der Liste** (`HomePage.tsx:70-73`): `window.clearInterval`, sonst liefen nach dem
 >    Wechsel zum Tisch weiter Requests für die Liste. Die Folien nennen das ein Memory Leak (09/30).
 > 2. **Polling am Tisch** (`PokerRoom.tsx:76-79`): `window.clearInterval`, sonst liefe das Polling
->    nach dem Verlassen weiter und würde uns als Teilnehmer am Leben halten.
+>    nach dem Verlassen im Hintergrund weiter und schickte unnötige Requests (Memory Leak).
 > 3. **Beitreten** (`PokerTablePage.tsx:63-70`): Leave-Request, sonst sässe man nach dem Verlassen
 >    noch bis zum Timeout am Tisch.
 >
@@ -785,7 +791,7 @@ ganze Tabelle steht in der Dokumentation, Kapitel 5.
 | 55 | Wozu Prettier? | Formatiert den Code einheitlich (ohne Semikolons, einfache Anführungszeichen). `pnpm format:check` prüft, ob alles formatiert ist (09/37). |
 | 56 | Was habt ihr an der Projektvorlage geändert? | Scripts, `vite.config.ts`, `index.html`, `tsconfig*.json` und die Ordner `components/`, `hooks/`, `types/` sind gleich. Geändert: `index.css` wird in `main.tsx` vor `App` importiert (Komponenten-CSS gewinnt), der `UserProvider` liegt um `App`, dazu die Ordner `api/`, `context/`, `utils/` (09/37), und `index.css`/`App.css` enthalten unsere Styles. |
 | 57 | Was passiert, wenn ein Tab lange im Hintergrund liegt? | Chrome bremst nach etwa fünf Minuten die Timer auf einen Aufruf pro Minute. Dann fehlen die Polls, der Server entfernt die Person nach 15 s, und beim Zurückkommen steht «Du bist nicht mehr am Tisch». Neu beitreten über die Liste. Für eine Schätzrunde nehmen wir das in Kauf (Doku Kap. 8). |
-| 58 | Warum `gap` in Flexbox? | Die Folien zeigen Abstände zwischen Elementen nur bei Grid (`column-gap`/`row-gap`, 04/38). `gap` ist die Kurzform davon und funktioniert in Flexbox genauso; sonst bräuchte jedes Kind einen eigenen Margin. |
+| 58 | Warum `gap` in Flexbox? | Die Folien zeigen Abstände zwischen Elementen nur bei Grid (`column-gap`/`row-gap`, 04/39-40). `gap` ist die Kurzform davon und funktioniert in Flexbox genauso; sonst bräuchte jedes Kind einen eigenen Margin. |
 
 ---
 

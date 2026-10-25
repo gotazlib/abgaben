@@ -17,6 +17,9 @@ sehen Durchschnitt und Konsens.
 
 > **Vorbereitung aufs Fachgespräch:** [docs/FACHGESPRAECH.md](docs/FACHGESPRAECH.md) (auch als PDF
 > und HTML) – Rundgang durch alle Dateien, Musterantworten, Demo-Drehbuch und Übungsaufgaben.
+> Ausführlicheres Lernmaterial (jede Codezeile erklärt, Fragenkatalog, Spickzettel) ist nicht im
+> Code-ZIP, sondern liegt öffentlich unter
+> <https://github.com/gotazlib/abgaben/tree/main/web-technology/fachgespraech>.
 
 ## Voraussetzungen
 
