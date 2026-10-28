@@ -24,21 +24,21 @@ phasen = [(0, 6, "Phase 1: Stabilisieren", "#E2EFDA"),
 
 # Arbeitsstrang -> Balken-Reihen; Balken = (Text, Start, Ende, Farbe)
 straenge = [
-    ("Steuerung", [[("Baseline", 0, 4, GRUEN), ("Kennzahlen-Cockpit im Regelbetrieb", 4, 36, GRAU)],
+    ("Steuerung", [[("Baseline, XYZ, Kritikalität", 0, 6, GRUEN), ("Kennzahlen-Cockpit im Regelbetrieb", 6, 36, GRAU)],
                    [("EDI-Abrufe, Kanban-Signale, Pick-ABC", 3, 15, BLAU)]]),
     ("Lager", [[("Lager 2 ≤ 3 AT", 0, 6, GRUEN), ("Supermärkte + Milkrun", 6, 18, BLAU),
                 ("Ware-zur-Person modular", 18, 30, BLAU)],
                [("Lager 2 stufenweise abbauen", 12, 24, ORANGE)]]),
-    ("Produktion", [[("MtO-Zelle", 2, 10, GRUEN), ("Taktlinie Endgeräte", 18, 30, BLAU)],
+    ("Produktion", [[("Montagezelle", 2, 10, GRUEN), ("Taktlinie Endgeräte", 18, 30, BLAU)],
                     [("Fertigungsinseln neues Werk", 6, 20, BLAU)]]),
     ("Beschaffung", [[("A/B-Abrufe, QSV", 0, 12, GRUEN), ("Lieferantenbasis reduzieren", 12, 36, GRAU)],
                      [("C-Teile-Management, Konsignation", 6, 24, BLAU)]]),
-    ("Import/Zoll", [[("Karatschi, solange offen", 0, 6, GRUEN), ("Bonded Hub Westhafen (V2)", 6, 18, BLAU),
-                      ("Zollverschluss im Werk (V3)", 18, 30, BLAU)]]),
+    ("Import/Zoll", [[("Bonded Hub Westhafen (V2)", 0, 18, BLAU), ("Zollverschluss im Werk (V3)", 18, 30, BLAU)],
+                     [("Offerten + Zollprüfung V3", 0, 6, GRUEN)]]),
     ("Distribution", [[("Umsetzung gemäss Potenzialmatrix", 6, 30, BLAU)]]),
 ]
-meilensteine = [(4, "M1 Baseline"), (12, "M2 Supermarkt &lt; 3 AT"),
-                (24, "M3 Lager 2 geschlossen"), (30, "M4 Kommissionierung 100 FTE")]
+meilensteine = [(6, "M1 Baseline"), (12, "M2 Supermarkt &lt; 3 AT"),
+                (24, "M3 Lager 2 geschlossen"), (30, "M4 Ware-zur-Person in Betrieb")]
 legende = [(GRUEN, "Sofortmassnahme"), (BLAU, "Aufbau/Umbau"),
            (ORANGE, "Abbau nach Kriterium"), (GRAU, "Daueraufgabe")]
 

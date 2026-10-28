@@ -370,16 +370,19 @@ def abb_herkunft(herk: pd.DataFrame, pfad: Path) -> None:
     plt.close(fig)
 
 
-NORMSTRATEGIE = {
-    # (ABC, Häufigkeitsklasse) -> Kurzstrategie (Hilfsgrösse statt XYZ, s. Kapitel).
-    # Nur Begriffe aus dem Skript (Hutzler & Fuchs, 2021): JIT S. 37-38, Kanban
-    # S. 48, Konsignationslager S. 36, C-Teile-Management S. 38, Pooling S. 40,
-    # Single Sourcing S. 36, JIT-Vereinbarung S. 37; übrige Felder = eigene Ableitung.
-    ("A", "≥ 12×"): "JIT / Kanban\nmit Lieferant",
-    ("A", "4–11×"): "JIT-Vereinbarung,\nAbrufe erhöhen",
+STRATEGIEHINWEIS = {
+    # (ABC, Häufigkeitsklasse) -> Strategiehinweis der ABC-Bestellfrequenz-Matrix.
+    # Die Bestellhäufigkeit ist KEINE XYZ-Analyse: Ob JIT/Kanban passt, hängt von
+    # Verbrauchsregelmässigkeit, WBZ, Versorgungssicherheit, Lieferqualität und
+    # Abrufmenge ab -> erst nach XYZ- und Kritikalitätsanalyse (Roadmap Phase 1).
+    # Begriffe aus dem Skript (Hutzler & Fuchs, 2021): JIT S. 37-38, Kanban S. 48,
+    # Konsignationslager S. 36, C-Teile-Management S. 38, Pooling S. 40,
+    # Single Sourcing S. 36; Zuordnung zu den Feldern = eigene Ableitung.
+    ("A", "≥ 12×"): "Rahmenvertrag; JIT/\nKanban prüfen (XYZ)",
+    ("A", "4–11×"): "Rahmenvertrag,\nAbrufe erhöhen",
     ("A", "2–3×"): "Abruffrequenz\nerhöhen (Bestand!)",
     ("A", "1×"): "Einzel-/Projekt-\nbedarf, auftragsbez.",
-    ("B", "≥ 12×"): "Kanban",
+    ("B", "≥ 12×"): "Abruf; Kanban\nprüfen (XYZ)",
     ("B", "4–11×"): "Single Sourcing,\nmonatl. Abruf",
     ("B", "2–3×"): "Pooling,\nAbrufe bündeln",
     ("B", "1×"): "auftragsbezogen",
@@ -403,11 +406,11 @@ def abb_matrix(matrix_n: pd.DataFrame, matrix_w: pd.DataFrame, pfad: Path) -> No
             ax.text(j, i - 0.2, f"{pct(w[i, j])} des Wertes\n{zahl(matrix_n.loc[z, s])} Materialien",
                     ha="center", va="center", fontsize=7.2, color=farbe, weight="bold",
                     linespacing=1.15)
-            ax.text(j, i + 0.22, NORMSTRATEGIE[(z, s)], ha="center", va="center",
+            ax.text(j, i + 0.22, STRATEGIEHINWEIS[(z, s)], ha="center", va="center",
                     fontsize=7, color=farbe, linespacing=1.1)
     ax.set_xticks(range(4), [f"{s} p. a." for s in spalten])
     ax.set_yticks(range(3), [f"{z}-Material" for z in zeilen])
-    ax.set_xlabel("Bestellhäufigkeit p. a. (Hilfsgrösse für Bedarfsregelmässigkeit)")
+    ax.set_xlabel("Bestellhäufigkeit p. a. (Bestellfrequenz, keine XYZ-Analyse)")
     for s in ax.spines.values():
         s.set_visible(False)
     ax.set_xticks(np.arange(-0.5, 4), minor=True)
@@ -421,8 +424,8 @@ def abb_matrix(matrix_n: pd.DataFrame, matrix_w: pd.DataFrame, pfad: Path) -> No
 
 
 def abb_lieferanten(lf: pd.DataFrame, v: pd.DataFrame, pfad: Path) -> None:
-    """Lieferanten-Lorenzkurve: Blatt «Vendors + ABC» (massgeblich) und als
-    Plausibilitätsprüfung die Neuberechnung aus dem RM-Blatt."""
+    """Lieferanten-Lorenzkurve: Blatt «Vendors + ABC» und die Neuberechnung aus dem
+    RM-Blatt; Wertbasis der beiden Blätter unterschiedlich und nicht aufklärbar."""
     lf = lf.sort_values("volumen", ascending=False)
     x1 = np.arange(1, len(lf) + 1) / len(lf)
     y1 = (lf["volumen"].cumsum() / lf["volumen"].sum()).values
@@ -565,7 +568,7 @@ def main() -> None:
                    f"mit Wertanteil < 0.01 %: {(v['wertanteil'] < 1e-4).sum()}")
     lf_k = lf.groupby("abc_datei").size().to_dict()
     lf_w = (lf.groupby("abc_datei")["volumen"].sum() / lf["volumen"].sum()).round(3).to_dict()
-    bericht.append(f"- MASSGEBLICH im Text: Blatt 'Vendors + ABC' ({len(lf)} Lieferanten): "
+    bericht.append(f"- Lesart Lieferantenblatt 'Vendors + ABC' ({len(lf)} Lieferanten, andere Wertbasis): "
                    f"Anzahl {lf_k}, Wertanteil {lf_w}")
     lf.to_csv(AUS / "lieferanten_abc_datei.csv", sep=";", index=False, float_format="%.6g")
     bericht.append(f"- Overseas-Lieferanten: {(v['herkunft'] == 'Overseas').sum()} von {len(v)}")
@@ -596,6 +599,12 @@ def main() -> None:
     for name, z in [("A 12 / B 6", {"A": 12, "B": 6}), ("A 52 / B 12", {"A": 52, "B": 12}),
                     ("A 24 / B 12 / C 4", {"A": 24, "B": 12, "C": 4})]:
         bericht.append(f"- Variante {name}: Senkung {pct(bestandsmodell(rm, z).loc['Total', 'senkung'])}")
+    # Zielkonflikt: mehr Anlieferungen (Transport/Handling) gegen weniger Losgrössenbestand
+    anl_soll = rm.apply(lambda r: max(r["bestellungen"], ziel.get(r["abc"]) or 0), axis=1)
+    anl = pd.DataFrame({"ist": rm.groupby("abc")["bestellungen"].sum(),
+                        "soll": anl_soll.groupby(rm["abc"]).sum()})
+    bericht.append(f"- Anlieferungen p. a. Ist -> Soll (A >= 24, B >= 12): {anl.astype(int).to_dict('index')}, "
+                   f"total {int(anl['ist'].sum())} -> {int(anl['soll'].sum())}")
     # Übertrag auf den Gesamtbestand: Der Losgrössenbestand ist nur ein Teil des
     # Bestands (daneben Sicherheits-, Puffer- und Überbestände, z. B. in Lager 2).
     # Sein Anteil ist in den Daten nicht enthalten -> ANNAHME, als Bandbreite.
@@ -647,9 +656,9 @@ def main() -> None:
           "Grenzen 80/95 % kumuliert")
     for kl in ["A", "B", "C"]:
         n = int((lf["abc_datei"] == kl).sum())
-        k("ABC Lieferanten (massgeblich)", f"{kl}: Lieferanten", n, "Anzahl", "Spalte ABC im Blatt Vendors + ABC")
-        k("ABC Lieferanten (massgeblich)", f"{kl}: Anteil Lieferanten", n / len(lf), "Anteil", "n / 620")
-        k("ABC Lieferanten (massgeblich)", f"{kl}: Wertanteil",
+        k("ABC Lieferanten (Lieferantenblatt)", f"{kl}: Lieferanten", n, "Anzahl", "Spalte ABC im Blatt Vendors + ABC")
+        k("ABC Lieferanten (Lieferantenblatt)", f"{kl}: Anteil Lieferanten", n / len(lf), "Anteil", "n / 620")
+        k("ABC Lieferanten (Lieferantenblatt)", f"{kl}: Wertanteil",
           lf.loc[lf["abc_datei"] == kl, "volumen"].sum() / lf["volumen"].sum(), "Anteil", "Sales / total")
     for kl in ["A", "B", "C"]:
         k("ABC Lieferanten (Prüfung RM-Blatt)", f"{kl}: Lieferanten", lk.loc[kl, "lieferanten"], "Anzahl",
@@ -689,6 +698,11 @@ def main() -> None:
     k("Bestandsmodell", "Senkung Losgrössenbestand konservativ (A 12 / B 6)",
       bestandsmodell(rm, {"A": 12, "B": 6}).loc["Total", "senkung"], "Anteil", "1 − Soll/Ist",
       Q + ", Annahme A20")
+    for kl in ("A", "B"):
+        k("Bestandsmodell", f"{kl}: Anlieferungen p. a. Ist", anl.loc[kl, "ist"], "Anzahl",
+          "Summe Bestellungen (eine Anlieferung je Bestellung)", Q + ", Annahme A20")
+        k("Bestandsmodell", f"{kl}: Anlieferungen p. a. Soll (A ≥ 24, B ≥ 12)", anl.loc[kl, "soll"], "Anzahl",
+          "Summe max(Bestellungen, Mindestabrufe)", Q + ", Annahme A20")
     for anteil in sens_b.index:
         for var in sens_b.columns:
             k("Bestandsmodell", f"Senkung Gesamtbestand, {var}, Losgrössenanteil {anteil}",

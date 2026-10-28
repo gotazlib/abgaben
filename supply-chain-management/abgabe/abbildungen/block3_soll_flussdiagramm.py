@@ -67,15 +67,15 @@ for x, w, t in spalten:
 
 # --- Beschaffung ------------------------------------------------------------
 box(35, 140, 220, 95, ["Lieferanten lokal", "≈ 97 % des Einkaufswerts",
-                       "JIT/Kanban für A/B-X-Teile"], fett=1)
+                       "A/B: Abrufe aus Rahmenvertrag"], fett=1)
 box(35, 265, 220, 105, ["Lieferanten Übersee", "inkl. Übersee-C-Teile,", "gesammelt über",
                         "Zollverschluss (V3)"], fett=1)
 box(35, 400, 220, 95, ["C-Teile lokal", "C-Teile-Management,", "Konsignation (65 % Pos.)"],
     fill=EXTERN, stroke=GRAU, fett=1)
 box(35, 525, 220, 95, ["Outsourcing-Partner", "kurzfristig Kit-Kanban,", "dann Modular Sourcing"],
     fill=EXTERN, stroke=GRAU, fett=1)
-box(35, 650, 220, 95, ["andere SFG/FG-Hersteller", "auf Kapazitätsspitzen", "reduziert"],
-    fill="white", stroke=GRAU, fett=1, dash="6 4", gross=13)
+box(35, 650, 220, 95, ["andere SFG/FG-Hersteller,", "bestehendes Werk:", "~70 % der Teile"],
+    fill=EXTERN, stroke=GRAU, fett=1, gross=13)
 
 # --- Wareneingang / Zentrallager ------------------------------------------
 box(305, 150, 240, 100, ["Wareneingang", "QSV + Skip-Lot-Prüfung,", "Scan/EDI-Lieferavis"],
@@ -99,17 +99,17 @@ for i, (t1, t2) in enumerate([("Fertigungsinsel 1", "Teilefamilie 1 (Know-how-Te
                               ("Fertigungsinsel 2", "Teilefamilie 2 (Schwierigteile)"),
                               ("Fertigungsinsel n", "weitere Teilefamilien")]):
     box(860, 150 + i * 120, 260, 95, [t1, t2, "Gruppenfertigung, Kanban"], fett=1, gross=14)
-box(860, 545, 260, 120, ["SFG-Supermarkt", "Entkopplungspunkt (CODP)", "standardisierte SFG",
-                         "Bestand nach X/Y/Z"], fill="#FBE5D6", stroke=CODP, fett=2)
+box(860, 545, 260, 120, ["SFG-Supermarkt", "CODP Anlagenbau (ATO)", "standardisierte SFG",
+                         "Bestand per S&amp;OP"], fill="#FBE5D6", stroke=CODP, fett=2)
 text(965, 690, "vorgelagert: prognose-/", 13, CODP)
 text(965, 707, "verbrauchsgesteuert", 13, CODP)
 text(965, 727, "nachgelagert: auftrags-", 13, CODP)
 text(965, 744, "gesteuert", 13, CODP)
 
 # --- Endmontage -----------------------------------------------------------------
-box(1180, 150, 260, 120, ["Taktlinie Endgeräte", "Eigenlabel: MtS mit Kanban,", "OEM: gegen EDI-Abruf",
+box(1180, 150, 260, 120, ["Taktlinie Endgeräte (MtS)", "Eigenlabel: FG-Bestand,", "OEM: Forecast + EDI-Abruf",
                           "Heijunka-Glättung"], fett=1)
-box(1180, 320, 260, 130, ["Montagezelle Anlagenmodule", "MtO / ATO, Express-Spur,",
+box(1180, 320, 260, 130, ["Montagezelle Anlagenmodule", "ATO, Express-Spur,",
                           "reservierte Kapazität,", "Poka-Yoke + Endprüfung"], fett=1)
 box(1180, 500, 200, 95, ["Qualitätsregelkreis", "SPC an Inseln/Linie,", "8D-Rückmeldung"],
     fett=1, gross=14)
@@ -144,8 +144,8 @@ for y in (197, 317, 437):
 pfeil([(1135, 520), (1135, 535), (1060, 535), (1060, 545)])
 
 # --- Informationsfluss (Pull) ------------------------------------------------
-box(860, 900, 580, 70, ["Kundenaufträge / EDI-Abrufe → Planung (APO nur Grobplanung, Heijunka)",
-                        "Kanban-Signale laufen entgegen dem Materialfluss"],
+box(860, 900, 580, 70, ["S&amp;OP rollierend (APO): Kapazität, Material, Kanban-Kreise",
+                        "Aufträge/EDI-Abrufe → Kanban-Signale gegen den Materialfluss"],
     fill="#E2EFDA", stroke=INFO, fett=1, gross=14)
 pfeil([(1410, 900), (1410, 455)], INFO, "7 5", 2)
 pfeil([(1440, 935), (1580, 935), (1580, 450)], INFO, "7 5", 2)

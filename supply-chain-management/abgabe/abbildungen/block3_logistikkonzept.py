@@ -37,8 +37,8 @@ text(700, 198, "Kosten und Personal senken durch Automatisierung und Make-or-Buy
 
 # Säulen
 saeulen = [
-    ("Pull-Steuerung", "(Kanban)", ["X-Teile und SFG", "Supermärkte ≤ 1 AT", "rollierend für Y/Z", "APO nur Grobplanung"]),
-    ("Segmentierte", "Fertigung", ["Inseln (SFG)", "Takt (Endgeräte)", "MtO-Zelle (Anlagen)", "CODP: SFG-Supermarkt"]),
+    ("Pull-Steuerung", "(Kanban + S&amp;OP)", ["SFG, regelmässige Teile", "Supermärkte ≤ 1 AT", "S&amp;OP rollierend (APO)", "Kapazität + Material"]),
+    ("Segmentierte", "Fertigung", ["Inseln (SFG)", "Takt (Endgeräte)", "Montagezelle (Anlagen)", "CODP je Produkt"]),
     ("Einstufige", "Bereitstellung", ["1 Zentrallager", "Milkrun", "C-Teile lokal direkt", "Lager 2 entfällt"]),
     ("Automatisierung", "mit Augenmass", ["Ware-zur-Person", "AKL/HRL, Taktlinie", "manuell, wo Varianten", "Flexibilität brauchen"]),
     ("Partnernetz", "(Make-or-Buy)", ["C-Teile-Management", "3PL Zoll/Transport", "Kit-Kanban, dann", "Modular Sourcing"]),

@@ -1,3 +1,5 @@
-Anteil Aufträge mit fehlendem SFG,Ist von (AT),Ist bis (AT),Soll (AT),Verkürzung von,Verkürzung bis
-0.45,11.1,15.9,4,0.64,0.75
-0.2,7.2,9.3,4,0.44,0.57
+Zusatzzeit Ist,Anteil Aufträge mit fehlendem SFG (Ist),Ist von (AT),Ist bis (AT),Soll n=1 (AT),Veränderung n=1 von,Veränderung n=1 bis,Soll n=5 (AT),Veränderung n=5 von,Veränderung n=5 bis,Soll n=10 (AT),Veränderung n=10 von,Veränderung n=10 bis
+(a) Vorlauf 3 AT + SFG-Fertigung,0.2,5.2,5.2,4.08,-0.215,-0.215,4.38,-0.157,-0.157,4.73,-0.09,-0.09
+(a) Vorlauf 3 AT + SFG-Fertigung,0.45,6.7,6.7,4.08,-0.391,-0.391,4.38,-0.346,-0.346,4.73,-0.294,-0.294
+(b) Verweildauer Lager 2 + Umlagerung + SFG-Fertigung (Obergrenze),0.2,7.15,9.31,4.08,-0.43,-0.562,4.38,-0.387,-0.529,4.73,-0.339,-0.492
+(b) Verweildauer Lager 2 + Umlagerung + SFG-Fertigung (Obergrenze),0.45,11.1,15.94,4.08,-0.632,-0.744,4.38,-0.605,-0.725,4.73,-0.574,-0.703

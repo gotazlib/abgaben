@@ -47,7 +47,7 @@ Sensitivität 80/15/5: A 1 561 (6,6 %), B 3 312 (14,0 %), C 18 770 (79,4 %
 - B: 19 Lieferanten (3,2 %), Wert 21,6 %, Materialien 2 056, Bestellungen 5 088
 - C: 571 Lieferanten (95,0 %), Wert 10,2 %, Materialien 17 480, Bestellungen 43 896
 - Lieferanten mit nur 1 Materialnummer: 118; mit Wertanteil < 0.01 %: 450
-- MASSGEBLICH im Text: Blatt 'Vendors + ABC' (620 Lieferanten): Anzahl {'A': 44, 'B': 81, 'C': 495}, Wertanteil {'A': 0.697, 'B': 0.203, 'C': 0.101}
+- Lesart Lieferantenblatt 'Vendors + ABC' (620 Lieferanten, andere Wertbasis): Anzahl {'A': 44, 'B': 81, 'C': 495}, Wertanteil {'A': 0.697, 'B': 0.203, 'C': 0.101}
 - Overseas-Lieferanten: 259 von 601
 
 6. ABC × Bestellhäufigkeit p. a. (Hilfsgrösse, keine XYZ-Analyse)
@@ -72,6 +72,7 @@ C     0.0278  0.0413  0.0293  0.0016
 - Variante A 12 / B 6: Senkung 75,0 %
 - Variante A 52 / B 12: Senkung 85,7 %
 - Variante A 24 / B 12 / C 4: Senkung 87,9 %
+- Anlieferungen p. a. Ist -> Soll (A >= 24, B >= 12): {'A': {'ist': 3474, 'soll': 21649}, 'B': {'ist': 4245, 'soll': 25952}, 'C': {'ist': 54973, 'soll': 54973}}, total 62692 -> 102574
 - Senkung des GESAMTbestands (Annahme: Anteil Losgrössenbestand am Gesamtbestand):
                                                     konservativ (A 12 / B 6) Szenario (A 24 / B 12)
 Anteil Losgrössenbestand am Gesamtbestand (Annahme)                                                

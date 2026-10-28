@@ -57,23 +57,23 @@ box(2, 54.5, 96, 3.2, "Supply-Chain-Control-Tower: EDI-Abrufe, rollierender Fore
     fc="white", ec=GRAU, ls="--", size=7.2)
 
 # Lieferanten
-box(1, 40, 18, 8, "Lokale A/B-Lieferanten\nRahmenvertrag, QSV,\nJIT-/Kanban-Abrufe", fc=HELLGRUEN, ec=GRUEN)
+box(1, 40, 18, 8, "Lokale A/B-Lieferanten\nRahmenvertrag, QSV,\nAbrufe 1–2×/Monat", fc=HELLGRUEN, ec=GRUEN)
 box(1, 27, 18, 8, "C-Teile-Management\n(lokal, Konsignation,\nAbrechnung nach Verbrauch)", fc=HELLGRUEN, ec=GRUEN)
 box(1, 13, 18, 8, "Übersee-Lieferanten\nKonsolidierung\nam Ursprung", fc=HELLBLAU, ec=BLAU)
 
 # Import / Zoll
 box(23.5, 15, 18, 7, "Indischer Westhafen\n(zu prüfen, z. B. Mundra)\nnur Anmeldung", fc=HELLBLAU, ec=BLAU)
 box(23.5, 27, 18, 6, "Übergang V2:\nFTWZ-Hub eines 3PL", fc="white", ec=BLAU, ls="--")
-box(23.5, 3, 18, 6.5, "Lager 4 Karatschi\nnur Rückfallebene", fc=HELLGRAU, ec=GRAU, ls="--", color=GRAU)
+box(23.5, 3, 18, 6.5, "Zweiter indischer Hafen\n(Ausweichroute)", fc=HELLGRAU, ec=GRAU, ls="--", color=GRAU)
 
 # Werk
-box(45.5, 33, 15, 14, "Zentrallager\n(automatisiert,\nWare zur Person)\n\nZollbereich MOOWR:\nZoll bei Entnahme,\nbei Export erlassen",
+box(45.5, 33, 15, 14, "Zentrallager\n(automatisiert,\nWare zur Person)\n\nZollbereich MOOWR:\nAbgaben bei Entnahme,\nExport ohne Einfuhrzoll",
     fc=HELLBLAU, ec=BLAU, lw=1.8)
 box(64, 40, 17, 7, "Neues Werk «eigener Zu-\nlieferbetrieb»: Fertigungs-\ninseln (Know-how-SFG)", size=7.0)
-box(64, 29, 17, 6, "Supermarkt SFG\n= Entkopplungspunkt", fc=HELLGRUEN, ec=GRUEN, lw=1.6, bold=True)
-box(64, 16, 17, 8, "Endmontage\nTaktlinie (Eigenlabel, OEM)\nMtO-Zelle (Anlagenbau)", size=7.0)
+box(64, 29, 17, 6, "Supermarkt SFG = CODP\nAnlagenbau (ATO)", fc=HELLGRUEN, ec=GRUEN, lw=1.6, bold=True)
+box(64, 16, 17, 8, "Endmontage\nTaktlinie (Eigenlabel, OEM)\nMontagezelle (Anlagenbau)", size=7.0)
 box(45.5, 20, 15, 7.5, "Outsourcing-Partner\nKit-Kanban, später\nModular Sourcing", size=7.0)
-box(45.5, 11, 15, 5.5, "andere Hersteller:\nnur Kapazitätsspitzen", fc=HELLGRAU, ec=ORANGE, ls="--", color=ORANGE, size=7.2)
+box(45.5, 11, 15, 5.5, "andere Hersteller, be-\nstehendes Werk: ~70 %", size=7.0)
 box(45.5, 3, 15, 5, "Lager 2: aufgelöst", fc=HELLGRAU, ec=ORANGE, ls="--", color=ORANGE)
 
 # Versand
@@ -93,7 +93,7 @@ arrow(41.8, 19.5, 45.2, 34.5, BLAU)                                # Hafen -> Ze
 label(32.5, 12.6, "Bahn/LKW unter Zollverschluss", BLAU)
 arrow(27, 22.3, 27, 26.7, BLAU, ls="--")                           # Hafen -> FTWZ (Übergang)
 arrow(41.8, 30.5, 45.2, 37, BLAU, ls="--")                         # FTWZ -> Zentrallager
-arrow(19.3, 14, 23.2, 7, GRAU, ls="--")                            # Rückfallebene
+arrow(19.3, 14, 23.2, 7, GRAU, ls="--")                            # Ausweichroute zweiter Hafen
 ax.plot([41.8, 42.8, 42.8], [6, 6, 33.8], color=GRAU, ls="--", lw=1.4)
 arrow(42.8, 33.8, 45.2, 34.2, GRAU, ls="--")
 
@@ -103,7 +103,7 @@ label(62.2, 46.6, "Milkrun", BLAU, size=6.2)
 arrow(60.8, 35, 63.7, 21, BLAU, rad=-0.15)                         # Zentrallager -> Endmontage (Milkrun)
 arrow(72.5, 39.7, 72.5, 35.3, GRUEN, lw=1.6)                       # Inseln -> Supermarkt
 arrow(60.8, 24, 63.7, 30.5, BLAU)                                  # Outsourcing -> Supermarkt
-arrow(60.8, 14, 63.7, 29.3, ORANGE, ls="--")                       # andere Hersteller -> Supermarkt
+arrow(60.8, 14, 63.7, 29.3, BLAU)                     # andere Hersteller -> Supermarkt
 arrow(72.5, 28.7, 72.5, 24.3, GRUEN, lw=1.6)                       # Supermarkt -> Endmontage (Kanban)
 label(75.3, 26.5, "Kanban", GRUEN, size=6.2)
 arrow(81.3, 22, 84.7, 41, BLAU)
@@ -112,7 +112,7 @@ arrow(81.3, 18.5, 84.7, 19.5, BLAU)
 
 # Legende
 items = [(GRUEN, "-", "Soll: Lieferanten-/Kanbanfluss"), (BLAU, "-", "Soll: Material-/Zollfluss"),
-         (BLAU, "--", "Übergangslösung V2"), (GRAU, "--", "Rückfallebene"), (ORANGE, "--", "reduziert / aufgelöst")]
+         (BLAU, "--", "Übergangslösung V2"), (GRAU, "--", "Ausweichroute"), (ORANGE, "--", "reduziert / aufgelöst")]
 for i, (c, ls, t) in enumerate(items):
     x = [1, 23, 43, 61, 78][i]
     ax.plot([x, x + 3], [0.3, 0.3], color=c, ls=ls, lw=1.6)

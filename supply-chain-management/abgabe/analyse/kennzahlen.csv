@@ -28,15 +28,15 @@ ABC Material;C: Lieferanten;583.0;Anzahl;eindeutige Vendor-Nummern;Daten-ABC-Ana
 Sensitivität 80/15/5;A: Materialien;1561.0;Anzahl;Grenzen 80/95 % kumuliert;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
 Sensitivität 80/15/5;B: Materialien;3312.0;Anzahl;Grenzen 80/95 % kumuliert;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
 Sensitivität 80/15/5;C: Materialien;18770.0;Anzahl;Grenzen 80/95 % kumuliert;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
-ABC Lieferanten (massgeblich);A: Lieferanten;44.0;Anzahl;Spalte ABC im Blatt Vendors + ABC;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
-ABC Lieferanten (massgeblich);A: Anteil Lieferanten;0.071;Anteil;n / 620;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
-ABC Lieferanten (massgeblich);A: Wertanteil;0.6967;Anteil;Sales / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
-ABC Lieferanten (massgeblich);B: Lieferanten;81.0;Anzahl;Spalte ABC im Blatt Vendors + ABC;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
-ABC Lieferanten (massgeblich);B: Anteil Lieferanten;0.1306;Anteil;n / 620;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
-ABC Lieferanten (massgeblich);B: Wertanteil;0.2026;Anteil;Sales / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
-ABC Lieferanten (massgeblich);C: Lieferanten;495.0;Anzahl;Spalte ABC im Blatt Vendors + ABC;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
-ABC Lieferanten (massgeblich);C: Anteil Lieferanten;0.7984;Anteil;n / 620;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
-ABC Lieferanten (massgeblich);C: Wertanteil;0.1007;Anteil;Sales / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (Lieferantenblatt);A: Lieferanten;44.0;Anzahl;Spalte ABC im Blatt Vendors + ABC;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (Lieferantenblatt);A: Anteil Lieferanten;0.071;Anteil;n / 620;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (Lieferantenblatt);A: Wertanteil;0.6967;Anteil;Sales / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (Lieferantenblatt);B: Lieferanten;81.0;Anzahl;Spalte ABC im Blatt Vendors + ABC;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (Lieferantenblatt);B: Anteil Lieferanten;0.1306;Anteil;n / 620;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (Lieferantenblatt);B: Wertanteil;0.2026;Anteil;Sales / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (Lieferantenblatt);C: Lieferanten;495.0;Anzahl;Spalte ABC im Blatt Vendors + ABC;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (Lieferantenblatt);C: Anteil Lieferanten;0.7984;Anteil;n / 620;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
+ABC Lieferanten (Lieferantenblatt);C: Wertanteil;0.1007;Anteil;Sales / total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
 ABC Lieferanten (Prüfung RM-Blatt);A: Lieferanten;11.0;Anzahl;Neuberechnung aus RM-Wertanteilen, 70/90 %;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
 ABC Lieferanten (Prüfung RM-Blatt);A: Wertanteil;0.6822;Anteil;Neuberechnung aus RM-Wertanteilen;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
 ABC Lieferanten (Prüfung RM-Blatt);B: Lieferanten;19.0;Anzahl;Neuberechnung aus RM-Wertanteilen, 70/90 %;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung
@@ -97,6 +97,10 @@ Bestandsmodell;Total: Umschlag Soll;20.6973;pro Jahr;Wert / Bestand Soll;Daten-A
 Bestandsmodell;Total: Senkung Losgrössenbestand;0.8294;Anteil;1 − Soll/Ist;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
 Bestandsmodell;A: Anteil am Losgrössenbestand Ist;0.6717;Anteil;Bestand A / Bestand total;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
 Bestandsmodell;Senkung Losgrössenbestand konservativ (A 12 / B 6);0.7497;Anteil;1 − Soll/Ist;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;A: Anlieferungen p. a. Ist;3474.0;Anzahl;Summe Bestellungen (eine Anlieferung je Bestellung);Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;A: Anlieferungen p. a. Soll (A ≥ 24, B ≥ 12);21649.0;Anzahl;Summe max(Bestellungen, Mindestabrufe);Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;B: Anlieferungen p. a. Ist;4245.0;Anzahl;Summe Bestellungen (eine Anlieferung je Bestellung);Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
+Bestandsmodell;B: Anlieferungen p. a. Soll (A ≥ 24, B ≥ 12);25952.0;Anzahl;Summe max(Bestellungen, Mindestabrufe);Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahme A20
 Bestandsmodell;Senkung Gesamtbestand, konservativ (A 12 / B 6), Losgrössenanteil 30 %;0.2249;Anteil;Losgrössenanteil × Senkung Losgrössenbestand;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahmen A20/A21
 Bestandsmodell;Senkung Gesamtbestand, Szenario (A 24 / B 12), Losgrössenanteil 30 %;0.2488;Anteil;Losgrössenanteil × Senkung Losgrössenbestand;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahmen A20/A21
 Bestandsmodell;Senkung Gesamtbestand, konservativ (A 12 / B 6), Losgrössenanteil 40 %;0.2999;Anteil;Losgrössenanteil × Senkung Losgrössenbestand;Daten-ABC-Analyse-Grofu.xls, eigene Berechnung, Annahmen A20/A21

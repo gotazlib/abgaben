@@ -10,14 +10,22 @@ Lagerumschlag Lager 2 Soll (3 AT),93.33333333333333
 Lagerumschlag Supermarkt Ziel (1 AT),280.0
 "Bestandsabbau Lager 2 auf 3 AT, von",0.7214285714285715
 "Bestandsabbau Lager 2 auf 3 AT, bis",0.8607142857142858
-Gesamtumschlag Ziel bei -30 % Bestand,5.0
-Gesamtumschlag Ziel bei -40 % Bestand,5.833333333333334
+"Gesamtumschlag Ist, von (Annahme A21)",1.412
+"Gesamtumschlag Ist, bis (Annahme A21)",1.765
+"Gesamtumschlag Soll, von",2.0171428571428573
+"Gesamtumschlag Soll, bis",2.991525423728813
 Steigerung Gesamtumschlag bei -30 % Bestand,0.4285714285714286
 Steigerung Gesamtumschlag bei -40 % Bestand,0.6666666666666667
 "Materialvorlauf Ist ab Lager 1, von (AT)",12.76923076923077
 "Materialvorlauf Ist ab Lager 1, bis (AT)",23.53846153846154
 "Verkürzung Material-DLZ auf 1 AT, von",0.9216867469879518
 "Verkürzung Material-DLZ auf 1 AT, bis",0.9575163398692811
+Anteil Stück lokale C-Teile (Annahme A4),0.8629758513127219
+Picks lokale C-Teile (Kanban an Verbauort),12081661.918378107
+Picks Ware-zur-Person-Anlage,1918338.0816218932
+Personal Ware-zur-Person-Anlage,13.702414868727809
+"Personal C-Teile-Partner, von (Annahme A27)",17.25951702625444
+"Personal C-Teile-Partner, bis (Annahme A27)",86.2975851312722
 Rohmaterialien (bereinigt),23643.0
 Stück pro Jahr laut Summenzeile,14747833023.301401
 Bestellungen gesamt,62692.0
@@ -28,7 +36,7 @@ A: Anteil Stück,0.0005894234079180047
 A: Anteil Bestellungen,0.05541376890193326
 B: Positionen,2161.0
 B: Anteil Positionen,0.09140126041534492
-B: Anteil Wert,0.20005719156828652
+B: Anteil Wert,0.20005719156828655
 B: Anteil Stück,0.0010663977531581378
 B: Anteil Bestellungen,0.06771198877049703
 C: Positionen,20580.0

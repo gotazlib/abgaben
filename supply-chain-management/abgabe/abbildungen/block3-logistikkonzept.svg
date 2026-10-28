@@ -7,18 +7,18 @@
 <text x="700" y="198" text-anchor="middle" font-size="16" font-weight="normal" fill="white">Kosten und Personal senken durch Automatisierung und Make-or-Buy</text>
 <rect x="70" y="250" width="236" height="300" rx="8" fill="#DEEAF6" stroke="#1F4E79" stroke-width="2"/>
 <text x="188.0" y="285" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">Pull-Steuerung</text>
-<text x="188.0" y="310" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">(Kanban)</text>
-<text x="188.0" y="370" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">X-Teile und SFG</text>
+<text x="188.0" y="310" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">(Kanban + S&amp;OP)</text>
+<text x="188.0" y="370" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">SFG, regelmässige Teile</text>
 <text x="188.0" y="410" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">Supermärkte ≤ 1 AT</text>
-<text x="188.0" y="450" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">rollierend für Y/Z</text>
-<text x="188.0" y="490" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">APO nur Grobplanung</text>
+<text x="188.0" y="450" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">S&amp;OP rollierend (APO)</text>
+<text x="188.0" y="490" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">Kapazität + Material</text>
 <rect x="327" y="250" width="236" height="300" rx="8" fill="#DEEAF6" stroke="#1F4E79" stroke-width="2"/>
 <text x="445.0" y="285" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">Segmentierte</text>
 <text x="445.0" y="310" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">Fertigung</text>
 <text x="445.0" y="370" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">Inseln (SFG)</text>
 <text x="445.0" y="410" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">Takt (Endgeräte)</text>
-<text x="445.0" y="450" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">MtO-Zelle (Anlagen)</text>
-<text x="445.0" y="490" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">CODP: SFG-Supermarkt</text>
+<text x="445.0" y="450" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">Montagezelle (Anlagen)</text>
+<text x="445.0" y="490" text-anchor="middle" font-size="15.5" font-weight="normal" fill="#1b1b1b">CODP je Produkt</text>
 <rect x="584" y="250" width="236" height="300" rx="8" fill="#DEEAF6" stroke="#1F4E79" stroke-width="2"/>
 <text x="702.0" y="285" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">Einstufige</text>
 <text x="702.0" y="310" text-anchor="middle" font-size="18" font-weight="bold" fill="#1F4E79">Bereitstellung</text>

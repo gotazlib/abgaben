@@ -1,0 +1,6 @@
+Fall,Basis,intern,extern von,extern bis,Netzwerk von,Netzwerk bis
+Ist,Fallstudie,600.0,0.0,0.0,600.0,600.0
+Referenz Hochleistungssystem,Fallstudie (14 Mrd.),100.0,0.0,0.0,100.0,100.0
+Szenario lokale C-Teile per Kanban extern,Fallstudie (14 Mrd.),13.702414868727809,17.25951702625444,86.2975851312722,30.96193189498225,100.00000000000001
+Referenz mit Datenstückzahl,"Daten (14,75 Mrd.)",105.34166445215284,0.0,0.0,105.34166445215284,105.34166445215284
+Szenario lokale C-Teile per Kanban extern,"Daten (14,75 Mrd.)",14.434351892857148,18.181462511859138,90.9073125592957,32.61581440471629,105.34166445215286
