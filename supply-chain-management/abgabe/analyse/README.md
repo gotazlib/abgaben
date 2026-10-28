@@ -29,6 +29,6 @@ Optional `GROFU_FONTDIR=<Ordner mit LiberationSans-*.ttf>` für die Schrift Libe
 | `abc_x_bestellhaeufigkeit.csv` | ABC × Bestellhäufigkeit (Hilfsgrösse statt XYZ, Annahme A25) |
 | `lieferanten_abc_datei.csv` | Lieferanten-ABC laut Blatt «Vendors + ABC» (eine von zwei Lesarten, Annahme A24) |
 | `lieferanten_abc.csv`, `lieferanten_klassen.csv` | Neuberechnung aus dem RM-Blatt (Plausibilisierung, Annahme A24) |
-| `bestand_szenario.csv`, `bestand_sensitivitaet.csv` | Bestandsmodell (Annahmen A20/A21) |
+| `bestand_szenario.csv`, `bestand_sensitivitaet.csv`, `bestand_bruecke.csv` | Bestandsmodell und Bestandsbrücke (Annahmen A20/A21) |
 | `kennzahlen_fallstudie.csv` | nur die Fallstudien-Rechnungen (Teilmenge von `kennzahlen.csv`) |
 | `block3_*.csv`, `block4_*.csv`, `gesamt_amortisation_beispiel.csv` | aus `block3_4_kennzahlen.py`: Nutzwertanalysen, Lieferzeit-Szenarien, Auftragsvollständigkeit (0,98^n), Personal Referenz vs. Szenario, Rechenbeispiel Amortisation |

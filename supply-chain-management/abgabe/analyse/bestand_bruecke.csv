@@ -1,0 +1,11 @@
+Grösse (Bestände in Anteil Jahresvolumen);Untergrenze;Obergrenze
+anteil_losgroesse;0.4000;0.5000
+losgroesse_ist;0.2832;0.2832
+losgroesse_soll;0.0709;0.0483
+uebriger_bestand;0.4248;0.2832
+gesamt_ist;0.7080;0.5664
+gesamt_soll;0.4957;0.3315
+index_soll;70.0111;58.5305
+senkung;0.2999;0.4147
+umschlag_ist;1.4125;1.7656
+umschlag_soll;2.0175;3.0165

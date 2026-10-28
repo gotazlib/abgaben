@@ -26,9 +26,9 @@ phasen = [(0, 6, "Phase 1: Stabilisieren", "#E2EFDA"),
 straenge = [
     ("Steuerung", [[("Baseline, XYZ, Kritikalität", 0, 6, GRUEN), ("Kennzahlen-Cockpit im Regelbetrieb", 6, 36, GRAU)],
                    [("EDI-Abrufe, Kanban-Signale, Pick-ABC", 3, 15, BLAU)]]),
-    ("Lager", [[("Lager 2 ≤ 3 AT", 0, 6, GRUEN), ("Supermärkte + Milkrun", 6, 18, BLAU),
+    ("Lager", [[("Gates messen, Notfallkonzept", 0, 6, GRUEN), ("Supermärkte + Milkrun", 6, 18, BLAU),
                 ("Ware-zur-Person modular", 18, 30, BLAU)],
-               [("Lager 2 stufenweise abbauen", 12, 24, ORANGE)]]),
+               [("Pilot", 9, 12, BLAU), ("Lager 2 ≤ 10 → ≤ 5 → ≤ 3 AT → aufgelöst, je Stufe Gates", 12, 24, ORANGE)]]),
     ("Produktion", [[("Montagezelle", 2, 10, GRUEN), ("Taktlinie Endgeräte", 18, 30, BLAU)],
                     [("Fertigungsinseln neues Werk", 6, 20, BLAU)]]),
     ("Beschaffung", [[("A/B-Abrufe, QSV", 0, 12, GRUEN), ("Lieferantenbasis reduzieren", 12, 36, GRAU)],
@@ -37,10 +37,10 @@ straenge = [
                      [("Offerten + Zollprüfung V3", 0, 6, GRUEN)]]),
     ("Distribution", [[("Umsetzung gemäss Potenzialmatrix", 6, 30, BLAU)]]),
 ]
-meilensteine = [(6, "M1 Baseline"), (12, "M2 Supermarkt &lt; 3 AT"),
-                (24, "M3 Lager 2 geschlossen"), (30, "M4 Ware-zur-Person in Betrieb")]
+meilensteine = [(6, "M1 Baseline"), (12, "M2 Pilot: Gates erfüllt"),
+                (24, "M3 Lager 2 aufgelöst"), (30, "M4 Ware-zur-Person in Betrieb")]
 legende = [(GRUEN, "Sofortmassnahme"), (BLAU, "Aufbau/Umbau"),
-           (ORANGE, "Abbau nach Kriterium"), (GRAU, "Daueraufgabe")]
+           (ORANGE, "Abbau nur nach Gates (M3 frühestens)"), (GRAU, "Daueraufgabe")]
 
 reihen = sum(len(r) for _, r in straenge)
 UNTEN = OBEN + reihen * ZEILE + len(straenge) * 8
@@ -83,7 +83,7 @@ for m, name in meilensteine:
     t(f'<text x="{x}" y="{ym + 26}" text-anchor="middle" font-size="13" fill="{ORANGE}" '
       f'font-weight="bold">{name}</text>')
 for i, (farbe, name) in enumerate(legende):
-    x = 15 + i * 200
+    x = 15 + i * 260
     t(f'<rect x="{x}" y="{H - 21}" width="24" height="13" rx="3" fill="{farbe}"/>')
     t(f'<text x="{x + 30}" y="{H - 10}" font-size="12.5">{name}</text>')
 

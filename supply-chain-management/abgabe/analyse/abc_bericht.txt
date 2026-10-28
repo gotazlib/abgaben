@@ -80,4 +80,17 @@ Anteil Losgrössenbestand am Gesamtbestand (Annahme)
 40 %                                                                    30 %                   33 %
 50 %                                                                    37 %                   41 %
 60 %                                                                    45 %                   50 %
+- Bestandsbrücke (Untergrenze konservativ/40 %, Obergrenze Szenario/50 %):
+                                           Untergrenze  Obergrenze
+Grösse (Bestände in Anteil Jahresvolumen)                         
+anteil_losgroesse                             0.400000    0.500000
+losgroesse_ist                                0.283193    0.283193
+losgroesse_soll                               0.070877    0.048315
+uebriger_bestand                              0.424790    0.283193
+gesamt_ist                                    0.707983    0.566386
+gesamt_soll                                   0.495666    0.331508
+index_soll                                   70.011114   58.530488
+senkung                                       0.299889    0.414695
+umschlag_ist                                  1.412464    1.765580
+umschlag_soll                                 2.017486    3.016514
 

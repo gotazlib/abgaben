@@ -13,6 +13,7 @@ Distribution.
   ABC-Analyse und Kennzahlen als Python-Skripte und verdichtete Ergebnis-Tabellen (CSV)
 - [Abbildungen](https://github.com/gotazlib/abgaben/tree/main/supply-chain-management/abgabe/abbildungen):
   alle Diagramme als PNG, mit SVG bzw. Python-Quelle
+- [Ältere Fassung](https://github.com/gotazlib/abgaben/tree/main/supply-chain-management/abgabe/alt)
 
 ## Aufgabe und Bewertung
 

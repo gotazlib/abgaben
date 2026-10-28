@@ -616,6 +616,25 @@ def main() -> None:
     sens_b.to_csv(AUS / "bestand_sensitivitaet.csv", sep=";", float_format="%.4f")
     bericht += ["- Senkung des GESAMTbestands (Annahme: Anteil Losgrössenbestand am Gesamtbestand):",
                 sens_b.map(lambda x: pct(x, 0)).to_string()]
+    # Bestandsbrücke in % des Jahresvolumens: nur der Losgrössenbestand sinkt; der übrige
+    # Bestand (Sicherheits-, Puffer-, Prozessbestand inkl. Lager 2) bleibt unverändert,
+    # damit nichts doppelt angerechnet wird. Untergrenze = konservativ bei 40 %,
+    # Obergrenze = Szenario bei 50 % Losgrössenanteil (Annahme A21).
+    bruecke = {}
+    for fall, anteil, z in [("Untergrenze", 0.4, varianten["konservativ (A 12 / B 6)"]),
+                            ("Obergrenze", 0.5, ziel)]:
+        bm = bestandsmodell(rm, z).loc["Total"]
+        gesamt_ist = bm["bestand_ist"] / anteil
+        gesamt_soll = gesamt_ist - (bm["bestand_ist"] - bm["bestand_soll"])
+        bruecke[fall] = {"anteil_losgroesse": anteil, "losgroesse_ist": bm["bestand_ist"],
+                         "losgroesse_soll": bm["bestand_soll"], "uebriger_bestand": gesamt_ist - bm["bestand_ist"],
+                         "gesamt_ist": gesamt_ist, "gesamt_soll": gesamt_soll,
+                         "index_soll": 100 * gesamt_soll / gesamt_ist, "senkung": 1 - gesamt_soll / gesamt_ist,
+                         "umschlag_ist": 1 / gesamt_ist, "umschlag_soll": 1 / gesamt_soll}
+    bruecke = pd.DataFrame(bruecke)
+    bruecke.index.name = "Grösse (Bestände in Anteil Jahresvolumen)"
+    bruecke.to_csv(AUS / "bestand_bruecke.csv", sep=";", float_format="%.4f")
+    bericht += ["- Bestandsbrücke (Untergrenze konservativ/40 %, Obergrenze Szenario/50 %):", bruecke.to_string()]
     bericht.append("")
 
     # Abbildungen
