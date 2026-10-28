@@ -58,8 +58,8 @@ Sportzentrum AG</strong>, eines fiktiven Sportzentrums im Raum Zürich
 über Telefon, E-Mail, Empfang und interne Listen; gesucht sind die
 Anforderungen an ein zentrales Buchungs- und Belegungssystem.</p>
 <blockquote>
-<p><strong>Stand: Spezifikation v0.6 – Annahmen noch in PVA 5 zu
-validieren.</strong> Das Interview mit Gruppe 2 hat noch nicht
+<p><strong>Stand: Spezifikation v0.7 (28.10.2026) – Annahmen noch in PVA
+5 zu validieren.</strong> Das Interview mit Gruppe 2 hat noch nicht
 stattgefunden. Belegt ist nur, was in der Projektvorstellung von Gruppe
 2 steht. Alles andere ist als Annahme (<code>A</code>), Benchmark
 (<code>B</code>) oder <strong>Simulation</strong> (<code>S</code>)
@@ -67,6 +67,12 @@ gekennzeichnet. Das <a href="simuliertes-interview-pva5.html">simulierte
 Interview</a> ist ein Rollenspiel zur Vorbereitung und ersetzt nicht die
 Ermittlung mit Gruppe 2; nichts daraus ist eine Aussage von Gruppe
 2.</p>
+<p><strong>Kernprozess ohne Self-Service:</strong> Ob Kundinnen und
+Kunden selbst online reservieren sollen, hat Gruppe 2 nicht gesagt. Der
+Soll-Prozess läuft deshalb über den Empfang, der im gemeinsamen System
+für die Kundschaft reserviert; die Online-Selbstbuchung ist als
+«Variante Self-Service» (Priorität Should) beschrieben und wird im
+Interview entschieden.</p>
 </blockquote>
 <h2 id="abgabe">Abgabe</h2>
 <table>
@@ -79,8 +85,9 @@ Ermittlung mit Gruppe 2; nichts daraus ist eine Aussage von Gruppe
 </thead>
 <tbody>
 <tr>
-<td><strong>Anforderungsspezifikation</strong> (Lastenheft, 35
-funktionale und 16 Qualitätsanforderungen, 9 Use Cases)</td>
+<td><strong>Anforderungsspezifikation</strong> (Lastenheft, 37
+funktionale und 16 Qualitätsanforderungen, 9 Use Cases,
+Soll-Prozess)</td>
 <td><a href="anforderungsspezifikation-arenaone.html">Webseite</a></td>
 <td><a href="anforderungsspezifikation-arenaone.pdf">PDF</a> · <a href="anforderungsspezifikation-arenaone.docx">Word</a> · <a href="anforderungsspezifikation-arenaone.html">Markdown</a></td>
 </tr>
@@ -147,7 +154,8 @@ Benchmark)</td>
 <td><a href="glossar.pdf">PDF</a> · <a href="glossar.html">Markdown</a></td>
 </tr>
 <tr>
-<td>Interviewleitfaden PVA 5 mit Protokollvorlage</td>
+<td>Interviewleitfaden PVA 5 (12 Muss-Fragen, Zeitplan) mit
+Protokollvorlage und Bestätigungsschritt</td>
 <td><a href="interviewleitfaden-pva5.html">Webseite</a></td>
 <td><a href="interviewleitfaden-pva5.pdf">PDF</a> · <a href="interviewleitfaden-pva5.html">Markdown</a></td>
 </tr>
@@ -155,6 +163,12 @@ Benchmark)</td>
 <td>Fragenliste an Gruppe 2</td>
 <td><a href="fragenliste-gruppe2.html">Webseite</a></td>
 <td><a href="fragenliste-gruppe2.pdf">PDF</a> · <a href="fragenliste-gruppe2.html">Markdown</a></td>
+</tr>
+<tr>
+<td>Bestätigungsliste für Gruppe 2 (alle Annahmen mit vorgeschlagenem
+Wert, noch leer)</td>
+<td><a href="annahmen-bestaetigung-gruppe2.html">Webseite</a></td>
+<td><a href="annahmen-bestaetigung-gruppe2.pdf">PDF</a> · <a href="annahmen-bestaetigung-gruppe2.html">Markdown</a></td>
 </tr>
 <tr>
 <td><strong>Simuliertes Interview</strong> (Rollenspiel zur
@@ -168,8 +182,8 @@ Vorbereitung, kein Protokoll)</td>
 <td><a href="merkblatt-checkliste.pdf">PDF</a> · <a href="merkblatt-checkliste.html">Markdown</a></td>
 </tr>
 <tr>
-<td>Modelle (Kontext- und Use-Case-Diagramm)</td>
-<td><a href="modelle/use-case-diagramm-arenaone.png">Use-Case-Diagramm</a></td>
+<td>Modelle (Kontext-, Use-Case- und Aktivitätsdiagramm)</td>
+<td><a href="modelle/use-case-diagramm-arenaone.png">Use-Case-Diagramm</a> · <a href="modelle/soll-prozess-reservation.png">Soll-Prozess</a></td>
 <td><a href="https://github.com/gotazlib/abgaben/tree/main/requirements-engineering/re-arenaone/modelle">Ordner</a></td>
 </tr>
 <tr>
@@ -184,7 +198,7 @@ vorlagen</a></td>
 (optionale Aufgabe des Merkblatts)</h2>
 <p>Ein KI-Agent bekam nur die Spezifikation v0.5 und sollte daraus ohne
 Rückfragen eine App bauen. Jede Stelle, an der er raten musste, zeigt
-eine Lücke der Spezifikation; die Befunde sind in v0.6
+eine Lücke der Spezifikation; die Befunde sind seit v0.6
 eingearbeitet.</p>
 <table>
 <tbody>

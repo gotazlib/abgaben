@@ -4,7 +4,7 @@ Fach **Requirements Engineering** an der HWZ (BWI-A24-5, HS26), Gruppenarbeit vo
 
 ## Rolle Requirements Engineer: ArenaOne (für Gruppe 2)
 
-Buchungs- und Belegungssystem für die ArenaOne Sportzentrum AG (fiktiv). Stand: Spezifikation v0.6 – Annahmen noch im Interview mit Gruppe 2 (PVA 5) zu validieren.
+Buchungs- und Belegungssystem für die ArenaOne Sportzentrum AG (fiktiv). Stand: Spezifikation v0.7 – Annahmen noch im Interview mit Gruppe 2 (PVA 5) zu validieren; Kernprozess über den Empfang, Online-Selbstbuchung als Variante.
 
 - [Übersicht ArenaOne](re-arenaone/README.md) mit allen Dokumenten
 - [Anforderungsspezifikation](re-arenaone/anforderungsspezifikation-arenaone.md) ([PDF](re-arenaone/anforderungsspezifikation-arenaone.pdf), [Word](re-arenaone/anforderungsspezifikation-arenaone.docx))

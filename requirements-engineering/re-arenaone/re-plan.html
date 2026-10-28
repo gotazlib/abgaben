@@ -49,17 +49,25 @@ td code { overflow-wrap: anywhere; }
 <h1 id="re-vorgehensplan--gruppe-9-als-requirements-engineers-für-gruppe-2-arenaone">RE-Vorgehensplan
 – Gruppe 9 als Requirements Engineers für Gruppe 2 (ArenaOne)</h1>
 <p>Artefakt <strong>R1</strong> aus dem Fahrplan (Abschnitt 3.2). Stand:
-25.10.2026, <strong>befüllt</strong> auf Grundlage der
-Projektvorstellung von Gruppe 2 (Analyse: <a href="analyse-arenaone.html"><code>analyse-arenaone.md</code></a>).
+28.10.2026 (Spezifikation v0.7), <strong>befüllt</strong> auf Grundlage
+der Projektvorstellung von Gruppe 2 (Analyse: <a href="analyse-arenaone.html"><code>analyse-arenaone.md</code></a>).
 Begriffe und Folien-Nummern wie in <code>notizen/kurs-konzepte.md</code>
 (Folie = Seite in <code>material/RE_Block1.pdf</code>). Quellenkürzel
 <code>F</code>/<code>N</code>/<code>A</code>/<code>B</code>/<code>S</code>
 wie in der Analyse, Abschnitt «Quellenkürzel».</p>
 <blockquote>
-<p><strong>Noch offen:</strong> Daten der PVA
-(<code>[Datum PVA n]</code>, nichts davon ist bekannt), Namen und
-Kontaktkanal der Ansprechpersonen bei Gruppe 2
-(<code>[G2: …]</code>).</p>
+<p><strong>Stand 28.10.2026 – erledigt:</strong> Ermittlung vorbereitet
+(Analyse, Stakeholder, Kontext, Ziele, Fragenliste, Leitfaden mit 12
+Muss-Fragen, Probelauf als Simulation), Spezifikation
+<strong>v0.7</strong> (Kernprozess ohne Self-Service, intern und im
+KI-Versuch geprüft), Präsentationen PVA 6 und PVA 9/10 gebaut,
+KI-Experiment (R13) durchgeführt, Bestätigungsliste für Gruppe 2
+vorbereitet. <strong>Offen:</strong> Interview PVA 5 mit Gruppe 2 (hat
+noch nicht stattgefunden), Bestätigung von Protokoll und Annahmen durch
+Gruppe 2 (Abschnitt 6a), Spezifikation v0.8, Review und Freigabe v1.0,
+Probelauf der Präsentation. Ausserdem unbekannt: Daten der PVA
+(<code>[Datum PVA n]</code>), Namen und Kontaktkanal der
+Ansprechpersonen bei Gruppe 2 (<code>[G2: …]</code>).</p>
 </blockquote>
 <h2 id="1-auftrag-und-projekt">1. Auftrag und Projekt</h2>
 <table>
@@ -150,25 +158,30 @@ Interview) und einmal nach PVA 5 (echte Antworten von Gruppe 2).</p>
 <td><strong>Ermitteln</strong></td>
 <td>gewinnen, analysieren</td>
 <td><a href="analyse-arenaone.html">Analyse der Präsentation</a>, <a href="stakeholder-analyse.html">Stakeholder-Analyse</a>, <a href="kontextdiagramm.html">Kontextdiagramm</a>, <a href="zielhierarchie.html">Zielhierarchie</a>, <a href="fragenliste-gruppe2.html">Fragenliste</a>, <a href="interviewleitfaden-pva5.html">Interviewleitfaden</a>, Protokoll PVA
-5</td>
+5 (offen)</td>
 </tr>
 <tr>
 <td>2 Dokumentieren – schriftlich, modellhaft, eindeutig</td>
 <td><strong>Dokumentieren</strong></td>
 <td>dokumentieren</td>
-<td>Anforderungsspezifikation (Kernabgabe), <a href="glossar.html">Glossar</a>, Modelle (Kontext, später Use Cases)</td>
+<td><a href="anforderungsspezifikation-arenaone.html">Anforderungsspezifikation</a>
+(Kernabgabe), <a href="glossar.html">Glossar</a>, Modelle
+(Kontextdiagramm, Use-Case-Diagramm, Aktivitätsdiagramm
+Soll-Prozess)</td>
 </tr>
 <tr>
 <td>3 Prüfen &amp; Abstimmen – Qualität, Konsistenz, Akzeptanz</td>
 <td><strong>Validieren</strong> (Teil 1)</td>
 <td>validieren</td>
-<td>interne Prüfung gegen Folie 45/47, Abstimmung mit Gruppe 2</td>
+<td>interne Prüfung gegen Folie 45/47 (erledigt, PB-01 bis PB-17),
+Abstimmung mit Gruppe 2 über Protokoll und <a href="annahmen-bestaetigung-gruppe2.html">Bestätigungsliste</a>
+(offen)</td>
 </tr>
 <tr>
 <td>4 Verwalten – versionieren, verfolgen, ändern</td>
 <td><strong>Verwalten</strong></td>
 <td>freigeben, ändern, rückverfolgen</td>
-<td>Versionen v0.1 … v1.0, Änderungsliste, Nachverfolgbarkeit Ziel →
+<td>Versionen v0.5 … v1.0, Änderungsliste, Nachverfolgbarkeit Ziel →
 Anforderung → Quelle</td>
 </tr>
 <tr>
@@ -176,7 +189,8 @@ Anforderung → Quelle</td>
 <td><strong>Validieren</strong> (Teil 2)</td>
 <td>validieren</td>
 <td>Szenarien mit Gruppe 2 durchspielen (z. B. «Verein bucht
-Wintersaison», «Absage 2 h vorher»), optional KI-App als Test (R13)</td>
+Wintersaison», «Absage 2 h vorher»); KI-App als Test der Spezifikation
+(R13, erledigt mit v0.5)</td>
 </tr>
 </tbody>
 </table>
@@ -339,7 +353,7 @@ abfragen, was schon auf den Folien steht → <a href="analyse-arenaone.html"><co
 </tr>
 <tr>
 <td><strong>Benchmark</strong> (Playtomic, GotCourts, eTermin)</td>
-<td>erledigt, kurz</td>
+<td>erledigt 25.10.2026, kurz</td>
 <td>Fragen finden, an die Gruppe 2 vielleicht nicht gedacht hat
 (Zahlung, Warteliste, Erinnerungen)</td>
 <td>gegen «unvollständige» und «versteckte» Anforderungen (Folie 47);
@@ -348,7 +362,7 @@ Benchmark liefert nur <strong>Fragen</strong>, keine Anforderungen
 </tr>
 <tr>
 <td><strong>Schriftliche Vorab-Fragen</strong></td>
-<td>vor PVA 5</td>
+<td>vor PVA 5 (vorbereitet, noch nicht verschickt)</td>
 <td>Zahlen und Fakten, die man nachschlagen muss (Anzahl Plätze,
 Öffnungszeiten), damit das Interview Zeit für Regeln und Konflikte
 hat</td>
@@ -357,7 +371,7 @@ hat</td>
 <tr>
 <td><strong>Probelauf: simuliertes Interview</strong> (Rollenspiel im
 Team)</td>
-<td>vor PVA 5</td>
+<td>erledigt 25.10.2026</td>
 <td>Leitfaden testen (Zeit, Reihenfolge, Lücken), Gesprächsführung üben,
 erwartbare Konflikte vorab durchdenken</td>
 <td>→ <a href="simuliertes-interview-pva5.html"><code>simuliertes-interview-pva5.md</code></a>.
@@ -371,9 +385,9 @@ Stakeholder-Rollen)</td>
 <td>PVA 5</td>
 <td>Regeln, Abläufe, Ausnahmen, Qualitätsziele mit Mass,
 Prioritäten</td>
-<td>Leitfaden <a href="interviewleitfaden-pva5.html"><code>interviewleitfaden-pva5.md</code></a>;
-gezielt nach versteckten und unmessbaren Anforderungen fragen (Folie
-47)</td>
+<td>Leitfaden <a href="interviewleitfaden-pva5.html"><code>interviewleitfaden-pva5.md</code></a>
+mit 12 Muss-Fragen und Zeitplan je Block; gezielt nach versteckten und
+unmessbaren Anforderungen fragen (Folie 47)</td>
 </tr>
 <tr>
 <td><strong>Szenario-Walkthrough</strong> (statt Beobachtung, da
@@ -384,8 +398,18 @@ Schritt durchspielen</td>
 <td>«Integration von Erstellung und Prüfung» (Folie 46); <a href="vorlagen/workshop-beobachtung.html"><code>vorlagen/workshop-beobachtung.md</code></a></td>
 </tr>
 <tr>
+<td><strong>Schriftliche Bestätigung</strong> (Protokoll + <a href="annahmen-bestaetigung-gruppe2.html">Bestätigungsliste</a>)</td>
+<td>eine Woche nach PVA 5</td>
+<td>jede Annahme (<code>A</code>) und Simulationsantwort
+(<code>S</code>) mit vorgeschlagenem Wert bestätigen, ändern oder
+streichen lassen</td>
+<td>Interviewaussagen sind flüchtig und Gruppe 2 erfindet ArenaOne beim
+Antworten; schriftlich bestätigt wird daraus eine belastbare Quelle
+(Prüfen &amp; Abstimmen, Folie 28)</td>
+</tr>
+<tr>
 <td><strong>Review der Spezifikation</strong> durch Gruppe 2</td>
-<td>nach v0.5</td>
+<td>nach v0.8</td>
 <td>Akzeptanz, Korrekturen, Freigabe</td>
 <td>Prüfen &amp; Abstimmen, Validieren (Folie 28); Fehler früh finden
 (Folie 33/34)</td>
@@ -403,6 +427,7 @@ Daten sind noch nicht bekannt.</p>
 <th>Aktivitäten RE-Team</th>
 <th>Ergebnis (Fahrplan-ID)</th>
 <th>verantwortlich</th>
+<th>Stand</th>
 </tr>
 </thead>
 <tbody>
@@ -411,83 +436,121 @@ Daten sind noch nicht bekannt.</p>
 <td>Ermitteln</td>
 <td>Projektvorstellung von Gruppe 2 erhalten</td>
 <td>Präsentation in <code>material/</code></td>
-<td>– (erledigt)</td>
+<td>–</td>
+<td>✅ erledigt</td>
 </tr>
 <tr>
 <td>bis 25.10.2026</td>
 <td>Ermitteln</td>
 <td>Dokumentenanalyse, Benchmark, RE-Plan, Stakeholder-Analyse,
 Kontextdiagramm, Zielhierarchie, Glossar, Leitfaden, Fragenliste,
-simuliertes Interview</td>
-<td>R1–R5 (Entwurf)</td>
-<td>Görkem, Ardian</td>
+simuliertes Interview (Probelauf)</td>
+<td>R1–R5</td>
+<td>Gruppe 9</td>
+<td>✅ erledigt</td>
+</tr>
+<tr>
+<td>25.10.2026</td>
+<td>Dokumentieren, Prüfen</td>
+<td>Spezifikation v0.5 (vollständig, unbestätigt), interne Prüfung mit
+Prüfskript (PB-01 bis PB-09)</td>
+<td>R6, R7, R8</td>
+<td>Gruppe 9</td>
+<td>✅ erledigt</td>
+</tr>
+<tr>
+<td>25.10.2026</td>
+<td>Validieren (Test)</td>
+<td>KI-Experiment: App aus v0.5, Auswertung, Befunde PB-10 bis PB-16 →
+Spezifikation v0.6</td>
+<td>R13</td>
+<td>Gruppe 9</td>
+<td>✅ erledigt</td>
+</tr>
+<tr>
+<td>25.10.2026</td>
+<td>Präsentieren</td>
+<td>Decks PVA 6 (3 Folien) und PVA 9/10 (20 min + Diskussion + Backup)
+gebaut, interne Abnahme</td>
+<td>R9–R12</td>
+<td>Gruppe 9</td>
+<td>✅ erledigt, Probelauf offen</td>
+</tr>
+<tr>
+<td>28.10.2026</td>
+<td>Dokumentieren, Prüfen</td>
+<td>Spezifikation <strong>v0.7</strong>: Kernprozess ohne Self-Service,
+Online-Selbstbuchung als Variante (PB-17); Leitfaden auf 12 Muss-Fragen
+gekürzt; Bestätigungsliste vorbereitet; Decks auf v0.7</td>
+<td>R5–R12</td>
+<td>Gruppe 9</td>
+<td>✅ erledigt</td>
 </tr>
 <tr>
 <td>vor PVA 5</td>
 <td>Ermitteln</td>
-<td>Fragenliste an Gruppe 2 schicken, Kanal und Ansprechpersonen klären;
-Leitfaden nach dem Probelauf kürzen</td>
+<td>Kanal und Ansprechpersonen bei Gruppe 2 klären, Vorab-Fragen
+(Fragenliste Teil A) schicken</td>
 <td>Antworten auf Vorab-Fragen</td>
 <td>Görkem</td>
-</tr>
-<tr>
-<td>vor PVA 5</td>
-<td>Dokumentieren</td>
-<td>Spezifikation v0.1: Gliederung, Ziele, Hypothesen als Entwurf
-(Quelle <code>F</code>/<code>A</code>/<code>B</code>/<code>S</code>
-sichtbar)</td>
-<td>R6 v0.1</td>
-<td>Ardian</td>
+<td>⏳ offen</td>
 </tr>
 <tr>
 <td><strong>PVA 5</strong> <code>[Datum PVA 5]</code></td>
 <td>Ermitteln</td>
-<td><strong>Interview mit Gruppe 2</strong> (Leitfaden, ca. 45 min),
-Szenario-Walkthrough, Prioritäten; Protokoll am selben Tag</td>
+<td><strong>Interview mit Gruppe 2</strong> (45 min, 12 Muss-Fragen, <a href="interviewleitfaden-pva5.html">Leitfaden</a>); Protokoll am selben
+Tag</td>
 <td>Protokoll, offene Punkte</td>
-<td>Görkem führt, Ardian protokolliert und prüft Messbarkeit</td>
+<td>Görkem führt, Ardian protokolliert</td>
+<td>⏳ offen</td>
+</tr>
+<tr>
+<td>PVA 5 + 1 Woche</td>
+<td>Prüfen &amp; Abstimmen</td>
+<td><strong>Bestätigungsschritt</strong> (Abschnitt 6a): Protokoll und
+Bestätigungsliste an Gruppe 2, Rücklauf</td>
+<td>bestätigtes Protokoll, ausgefüllte Liste</td>
+<td>Görkem</td>
+<td>⏳ offen</td>
 </tr>
 <tr>
 <td>PVA 5 → 6</td>
-<td>Dokumentieren, Prüfen &amp; Abstimmen</td>
-<td>Protokoll an Gruppe 2 zur Bestätigung; Hypothesen und Simulation
-gegen das echte Protokoll abgleichen (bestätigt / geändert / verworfen);
-Spezifikation v0.3; interne Prüfung gegen Folie 45</td>
-<td>R6 v0.3</td>
+<td>Dokumentieren, Verwalten</td>
+<td>Antworten einarbeiten: Spezifikation <strong>v0.8</strong> (jede
+<code>A</code>/<code>S</code>-Quelle bestätigt, geändert oder
+gestrichen; Entscheid Self-Service), Prüfskript, Decks neu bauen</td>
+<td>R6 v0.8</td>
 <td>Ardian</td>
+<td>⏳ offen</td>
 </tr>
 <tr>
 <td><strong>PVA 6</strong> <code>[Datum PVA 6]</code></td>
 <td>(Standortbestimmung)</td>
 <td><strong>Kurzvorstellung Zwischenstand gemeinsam mit Gruppe
-2</strong>: Phase im Kreislauf, erste Erkenntnisse (<a href="zwischenstand-pva6.html"><code>zwischenstand-pva6.md</code></a>)</td>
+2</strong>: Phase im Kreislauf, was das Interview bestätigt oder
+widerlegt hat (<a href="zwischenstand-pva6.html"><code>zwischenstand-pva6.md</code></a>)</td>
 <td>R9</td>
 <td>Görkem (spricht), Ardian (Folien)</td>
+<td>⏳ Folien auf v0.7, nach Interview nachführen</td>
 </tr>
 <tr>
-<td>PVA 6 → 7</td>
-<td>Prüfen &amp; Abstimmen, Verwalten</td>
-<td>Rückmeldungen einarbeiten, v0.5 an Gruppe 2 zum Review;
-Änderungsliste</td>
-<td>R6 v0.5, R8</td>
-<td>Ardian</td>
-</tr>
-<tr>
-<td>PVA 7</td>
-<td>Validieren</td>
-<td>Review-Befunde bearbeiten, Szenarien gegen die Spezifikation prüfen,
-Konflikte von der GL (Gruppe 2) entscheiden lassen</td>
-<td>R7</td>
+<td>PVA 6 → 8</td>
+<td>Validieren, Verwalten</td>
+<td>Review der v0.8 durch Gruppe 2, Szenarien durchspielen, Konflikte
+von der GL entscheiden lassen, <strong>Freigabe v1.0</strong>; danach
+Änderungen nur über Änderungsanträge</td>
+<td>R6 v1.0, R7, R8</td>
 <td>Ardian, Görkem</td>
+<td>⏳ offen</td>
 </tr>
 <tr>
 <td>PVA 8</td>
-<td>Verwalten, Validieren</td>
-<td>Freigabe v1.0, Nachverfolgbarkeit vervollständigen; optional KI-App
-(R13); Präsentation und Diskussion vorbereiten, Probelauf mit
-Stoppuhr</td>
-<td>R6 v1.0, R10, R11, R12</td>
+<td>–</td>
+<td>Lösungspräsentation auf v1.0 neu bauen (Runde 2 sichtbar), Probelauf
+mit Stoppuhr, Diskussion mit Gruppe 2 absprechen</td>
+<td>R10–R12</td>
 <td>beide</td>
+<td>⏳ offen</td>
 </tr>
 <tr>
 <td><strong>PVA 9/10</strong> <code>[Datum PVA 9/10]</code></td>
@@ -496,9 +559,47 @@ Stoppuhr</td>
 Spezifikation einreichen</strong></td>
 <td>Abgabe</td>
 <td>beide</td>
+<td>⏳ offen</td>
 </tr>
 </tbody>
 </table>
+<h2 id="6a-bestätigungsschritt-nach-dem-interview">6a.
+Bestätigungsschritt nach dem Interview</h2>
+<p>Das Interview liefert Aussagen, keine bestätigten Anforderungen.
+Bevor wir eine Quelle <code>A</code> oder <code>S</code> durch
+«Interview PVA 5» ersetzen, bestätigt Gruppe 2 schriftlich. Der Ablauf
+steht gleich auch im <a href="interviewleitfaden-pva5.html">Leitfaden</a>,
+Abschnitt 6:</p>
+<ol type="1">
+<li><strong>Protokoll</strong> (Tag des Interviews, Ardian): Vorlage im
+Leitfaden, Abschnitt 5, inklusive Abgleich «Simulation sagte – Gruppe 2
+sagt». Ablage <code>protokolle/interview-pva5.md</code> – nur das echte
+Protokoll, keine Simulation.</li>
+<li><strong>Annahmen- und Werteliste an Gruppe 2</strong> (Tag danach,
+Görkem): <a href="annahmen-bestaetigung-gruppe2.html"><code>annahmen-bestaetigung-gruppe2.md</code></a>,
+erzeugt mit <code>werkzeuge/erstelle_bestaetigungsliste.py</code> aus
+der Spezifikation. Sie enthält jede Stelle mit Quelle <code>A</code>
+oder <code>S</code> und dem vorgeschlagenen Wert (Grundsatzentscheide
+wie Self-Service, Parameter PA-01 bis PA-11, Ziele und Zielwerte,
+Randbedingungen, Anforderungen), je Zeile leer: «bestätigt ja / nein /
+geändert» und «neuer Wert». Was im Interview schon beantwortet wurde,
+tragen wir als Vorschlag ein; Gruppe 2 bestätigt. Dazu die schriftlichen
+Fragen (Leitfaden 3.3) und das Protokoll. Rücklauf: eine Woche.</li>
+<li><strong>Spezifikation v0.8</strong> (nach Rücklauf, Ardian): jede
+Zeile umsetzen – «ja» → Quelle «Interview PVA 5» bzw. «Bestätigung
+Gruppe 2», «nein» → streichen (Historie), «geändert» → neuer Wert;
+Entscheid zur Variante Self-Service (Must / Should / Won&#39;t). Prüfskript
+laufen lassen, Versionshistorie.</li>
+<li><strong>Präsentationen aktualisieren</strong> (Görkem):
+Zwischenstand PVA 6 (Phase «Validieren läuft», Folie 3 «was das
+Interview bestätigt oder widerlegt hat») und Lösung PVA 9/10 (Runde 2
+auf Folie 3, Versionen, Zahlen) mit
+<code>werkzeuge/build-praesentation-arenaone.js</code> neu bauen.</li>
+<li><strong>Review und Freigabe v1.0</strong> durch die Geschäftsleitung
+von Gruppe 2; danach Änderungsanträge (Spezifikation Kapitel 11).</li>
+</ol>
+<p>Unbeantwortete Zeilen bleiben <code>A</code>/<code>S</code> und sind
+auch in v1.0 als unbestätigt sichtbar.</p>
 <h2 id="7-werkzeuge-und-ablage">7. Werkzeuge und Ablage</h2>
 <table>
 <thead>
@@ -521,13 +622,14 @@ Spezifikation einreichen</strong></td>
 </tr>
 <tr>
 <td>Spezifikation</td>
-<td>Markdown als Quelle, daraus PDF und Word</td>
-<td><code>anforderungsspezifikation-vorlage.md</code> →
-<code>anforderungsspezifikation.md</code></td>
+<td>Markdown als Quelle, daraus PDF und Word (HWZ-Vorlage); Prüfskript
+<code>werkzeuge/pruefe_spezifikation.py</code></td>
+<td><a href="anforderungsspezifikation-arenaone.html"><code>anforderungsspezifikation-arenaone.md</code></a></td>
 </tr>
 <tr>
 <td>Modelle</td>
-<td>Mermaid im Markdown, als PNG exportiert</td>
+<td>Mermaid (Kontext, Soll-Prozess) bzw. SVG (Use Cases), als PNG
+exportiert</td>
 <td><code>re-gruppe2/modelle/</code></td>
 </tr>
 <tr>
@@ -599,8 +701,8 @@ Protokolle, keine Simulation)</td>
 <tr>
 <td>R5</td>
 <td>Interviewleitfaden, Fragenliste, Probelauf</td>
-<td><a href="interviewleitfaden-pva5.html"><code>interviewleitfaden-pva5.md</code></a>,
-<a href="fragenliste-gruppe2.html"><code>fragenliste-gruppe2.md</code></a>,
+<td><a href="interviewleitfaden-pva5.html"><code>interviewleitfaden-pva5.md</code></a>
+(12 Muss-Fragen, Zeitplan), <a href="fragenliste-gruppe2.html"><code>fragenliste-gruppe2.md</code></a>,
 <a href="simuliertes-interview-pva5.html"><code>simuliertes-interview-pva5.md</code></a></td>
 <td>fertig; echtes Protokoll nach PVA 5</td>
 </tr>
@@ -613,33 +715,37 @@ Protokolle, keine Simulation)</td>
 <tr>
 <td>R6</td>
 <td>Anforderungsspezifikation</td>
-<td><a href="anforderungsspezifikation-vorlage.html"><code>anforderungsspezifikation-vorlage.md</code></a>
-(+ DOCX)</td>
-<td>Vorlage; v0.1 als Nächstes</td>
+<td><a href="anforderungsspezifikation-arenaone.html"><code>anforderungsspezifikation-arenaone.md</code></a>
+(+ DOCX, PDF)</td>
+<td><strong>v0.7</strong> (28.10.2026), Annahmen noch zu validieren;
+v0.8 nach PVA 5, v1.0 nach Freigabe</td>
 </tr>
 <tr>
 <td>R7, R8</td>
 <td>Validierung, Versionen, Nachverfolgbarkeit</td>
-<td>in der Spezifikation, Kapitel 9–11</td>
-<td>ab v0.3</td>
+<td>in der Spezifikation, Kapitel 9–11; <a href="annahmen-bestaetigung-gruppe2.html">Bestätigungsliste</a></td>
+<td>interne Prüfung erledigt (PB-01 bis PB-17); Validierung mit Gruppe 2
+offen</td>
 </tr>
 <tr>
 <td>R9</td>
 <td>Zwischenstand PVA 6</td>
-<td><a href="zwischenstand-pva6.html"><code>zwischenstand-pva6.md</code></a></td>
-<td>Gerüst</td>
+<td><a href="zwischenstand-pva6.html"><code>zwischenstand-pva6.md</code></a>, 3
+Folien</td>
+<td>auf v0.7; nach dem Interview nachführen</td>
 </tr>
 <tr>
 <td>R10–R12</td>
 <td>Präsentation, Diskussion, Q&amp;A</td>
 <td><a href="https://github.com/gotazlib/abgaben/tree/main/requirements-engineering/re-arenaone/praesentation-pva9-10"><code>praesentation-pva9-10/</code></a></td>
-<td>Gerüst / generisch</td>
+<td>Deck (25 Folien), Moderation, Fragenkatalog fertig auf v0.7;
+Probelauf offen</td>
 </tr>
 <tr>
 <td>R13</td>
 <td>optional: KI-App</td>
-<td>–</td>
-<td>offen (O7)</td>
+<td><a href="ki-app/index.html"><code>ki-app/</code></a></td>
+<td>erledigt 25.10.2026 (mit v0.5)</td>
 </tr>
 </tbody>
 </table>
@@ -659,8 +765,8 @@ RE-Arbeit</h2>
 <tr>
 <td>ArenaOne ist fiktiv; Gruppe 2 erfindet Antworten und widerspricht
 sich später</td>
-<td>Protokoll schriftlich bestätigen lassen; Widersprüche als offene
-Punkte mit Entscheider (GL)</td>
+<td>Protokoll und Bestätigungsliste schriftlich bestätigen lassen
+(Abschnitt 6a); Widersprüche als offene Punkte mit Entscheider (GL)</td>
 </tr>
 <tr>
 <td>Antworten aus dem simulierten Interview werden versehentlich als
@@ -676,7 +782,8 @@ Frage</td>
 </tr>
 <tr>
 <td>Zeit in PVA 5 reicht nicht</td>
-<td>Vorab-Fragenliste; Interview nach Prioritäten (★)</td>
+<td>Vorab-Fragenliste; nur 12 Muss-Fragen sicher stellen, Zeitplan je
+Block, Rest schriftlich mit der Bestätigungsliste</td>
 </tr>
 <tr>
 <td>Nur zwei Personen: Ausfall einer Person</td>

@@ -1,0 +1,23 @@
+flowchart TB
+  subgraph K["Kundin / Kunde"]
+    direction LR
+    K1(["Spielwunsch:<br/>Sportart, Tag, Zeit"]) --> K2["meldet sich per Telefon,<br/>E-Mail oder am Schalter"]
+    K1 -.-> KV["Variante Self-Service (Should, OP-02):<br/>sieht freie Zeitfenster online<br/>und reserviert selbst (FA-36, FA-04)"]
+    K9(["erhält Bestätigung<br/>per E-Mail"])
+  end
+  subgraph E["Empfang – Kernprozess"]
+    direction LR
+    E1["lässt freie Zeitfenster<br/>anzeigen (FA-01)"] -- "frei" --> E2["sucht oder erfasst<br/>Kundenkonto (FA-07)"] --> E3["wählt Anlage, Beginn, Dauer,<br/>gibt Kanal an (FA-05)"]
+    E1 -- "belegt" --> EW["trägt Kundin auf die<br/>Warteliste ein (FA-13)"]
+  end
+  subgraph S["System"]
+    direction LR
+    S1{"frei und<br/>Buchungsregel<br/>erfüllt?<br/>(FA-06, FA-25)"} -- "ja" --> S2["speichert Reservation,<br/>sperrt Zeitfenster für<br/>alle Kanäle (FA-03)"] --> S3["sendet Bestätigung<br/>(FA-21)"]
+    S1 -- "nein: Regel oder<br/>Konflikt nennen" --> SN["Rückmeldung an<br/>Empfang bzw. Kundin"]
+  end
+  K2 --> E1
+  E3 --> S1
+  KV -.-> S1
+  S3 --> K9
+  classDef var stroke-dasharray: 6 4,fill:#fff8e8,stroke:#b07a12
+  class KV var

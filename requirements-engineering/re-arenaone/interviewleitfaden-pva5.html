@@ -49,8 +49,8 @@ td code { overflow-wrap: anywhere; }
 <h1 id="interviewleitfaden-pva-5--arenaone-gruppe-2">Interviewleitfaden
 PVA 5 – ArenaOne (Gruppe 2)</h1>
 <p>Artefakt <strong>R5</strong> (Fahrplan 3.2), Phase
-<strong>Ermitteln</strong>. Stand: 25.10.2026. Auf ArenaOne
-zugeschnitten aus der <a href="vorlagen/interviewleitfaden-pva5.html">generischen Vorlage</a>.
+<strong>Ermitteln</strong>. Stand: 28.10.2026 (Spezifikation v0.7). Auf
+ArenaOne zugeschnitten aus der <a href="vorlagen/interviewleitfaden-pva5.html">generischen Vorlage</a>.
 Teilstrukturiertes Interview: Die Fragen sind ein Gerüst, die
 Reihenfolge folgt dem Gespräch. Fragen-IDs <code>V-…</code> wie in der
 <a href="fragenliste-gruppe2.html">Fragenliste</a>; Hypothesen
@@ -95,90 +95,101 @@ Leitfaden</td>
 </tr>
 <tr>
 <td>Einverständnis</td>
-<td>Wir protokollieren; das Protokoll geht zur Bestätigung an Gruppe
-2</td>
+<td>Wir protokollieren; Protokoll und Bestätigungsliste gehen zur
+Bestätigung an Gruppe 2 (Abschnitt 6)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="1-zeitbudget-und-prioritäten">1. Zeitbudget und Prioritäten</h2>
-<p>Pflichtblöcke zuerst. Wenn die Zeit knapp wird, fallen die mit ○
-markierten Fragen weg und gehen schriftlich an Gruppe 2.</p>
+<h2 id="1-zeitplan-12-muss-fragen-in-45-minuten">1. Zeitplan: 12
+Muss-Fragen in 45 Minuten</h2>
+<p>37 Fragen passen nicht in 45 Minuten (Probelauf: Block B allein lief
+über die Zeit, P-1). Deshalb stellen wir im Interview nur die <strong>12
+Muss-Fragen M1–M12</strong> sicher. Auswahlkriterium: grösster Einfluss
+auf den Umfang, auf die Must-Anforderungen und auf die offenen Punkte
+OP-xx der <a href="anforderungsspezifikation-arenaone.html">Spezifikation
+v0.7</a> – vor allem Self-Service, Zahlung, Stornoregeln, Kundengruppen
+und Serien («Abos»), Rollen und Rechte, Mengengerüst. Alle anderen
+Fragen sind <strong>«falls Zeit»</strong> oder gehen
+<strong>schriftlich</strong> an Gruppe 2 (Abschnitt 3.2 und 3.3;
+Markierung auch in der <a href="fragenliste-gruppe2.html">Fragenliste</a>).</p>
 <table>
 <thead>
 <tr>
 <th>Minute</th>
 <th>Block</th>
 <th>spricht für Gruppe 2</th>
+<th>Muss-Fragen</th>
 <th>Ziel des Blocks</th>
-<th>Prio</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>0–3</td>
+<td>0–2</td>
 <td>Einstieg</td>
 <td>alle</td>
-<td>Zweck, Ablauf, Rollen; Vorab-Antworten kurz bestätigen</td>
-<td>Pflicht</td>
+<td>–</td>
+<td>Zweck, Ablauf, Rollen; Protokoll und Bestätigungsliste
+ankündigen</td>
 </tr>
 <tr>
-<td>3–9</td>
-<td><strong>A Geschäftsleitung: Ziele und Erfolg</strong></td>
+<td>2–10</td>
+<td><strong>A Umfang und Ziele</strong></td>
 <td>Geschäftsleitung</td>
-<td>Prioritäten der Ziele, Ausgangs- und Zielwerte, Entscheider</td>
-<td>Pflicht</td>
+<td>M1 Self-Service · M2 Zahlung · M3 Ziele und Entscheider</td>
+<td>die zwei Scope-Fragen zuerst, weil sie alles Weitere verändern
+(P-4)</td>
 </tr>
 <tr>
-<td>9–17</td>
-<td><strong>B Empfang: heutiger Ablauf</strong></td>
-<td>Empfang</td>
-<td>Ist-Ablauf an einem echten Beispiel, Ausnahmen, Fehlerquellen</td>
-<td>Pflicht</td>
+<td>10–14</td>
+<td><strong>B Mengengerüst</strong></td>
+<td>Empfang, Geschäftsleitung</td>
+<td>M4</td>
+<td>Vorab-Antworten bestätigen statt neu erfragen</td>
 </tr>
 <tr>
-<td>17–24</td>
-<td><strong>C Vereine &amp; Firmen: Serien</strong></td>
-<td>Verein/Firma</td>
-<td>Serien, Ausnahmen, Absagen einzelner Termine</td>
-<td>Pflicht</td>
+<td>14–21</td>
+<td><strong>C Serien</strong></td>
+<td>Verein/Firma, Trainer</td>
+<td>M5 · M6</td>
+<td>Ablauf der Saisonplanung, Ausnahmen</td>
 </tr>
 <tr>
-<td>24–28</td>
-<td>D Trainer</td>
-<td>Trainer</td>
-<td>Lektionen, eigene Reservationen, Trainingsgruppen</td>
-<td>wichtig</td>
-</tr>
-<tr>
-<td>28–32</td>
-<td>E Privatkunde</td>
-<td>Privatkunde</td>
-<td>Self-Service, Vorlauf, Stornierung, Benachrichtigungen</td>
-<td>wichtig</td>
-</tr>
-<tr>
-<td>32–38</td>
-<td><strong>F Geschäftsleitung: Regeln und Konflikte</strong></td>
+<td>21–31</td>
+<td><strong>D Regeln</strong></td>
 <td>Geschäftsleitung</td>
-<td>Kontingente, Stornoregeln, Warteliste, Auswertungen</td>
-<td>Pflicht</td>
+<td>M7 Kundengruppen · M8 Storno · M9 Kontingente · M10 Warteliste</td>
+<td>Buchungsregeln und Zielkonflikte K-01, K-02</td>
 </tr>
 <tr>
-<td>38–41</td>
-<td>G IT: Betrieb und Qualität</td>
-<td>IT</td>
-<td>Verfügbarkeit, Geräte, Betrieb, Datenschutz</td>
-<td>wichtig</td>
+<td>31–36</td>
+<td><strong>E Rollen und Rechte</strong></td>
+<td>Empfang, Trainer, Geschäftsleitung</td>
+<td>M11</td>
+<td>wer im System was darf (QA-13)</td>
+</tr>
+<tr>
+<td>36–41</td>
+<td><strong>F Priorisierung</strong></td>
+<td>Geschäftsleitung</td>
+<td>M12</td>
+<td>Muss/Soll/Wunsch, Abnahmebeispiel</td>
 </tr>
 <tr>
 <td>41–45</td>
-<td><strong>H Priorisierung und Abschluss</strong></td>
-<td>Geschäftsleitung</td>
-<td>Muss/Soll/Wunsch, Abnahme, offene Punkte, nächster Kontakt</td>
-<td>Pflicht</td>
+<td>Abschluss</td>
+<td>alle</td>
+<td>–</td>
+<td>Kernaussagen vorlesen, Widersprüche an die GL,
+<strong>Bestätigungsschritt</strong> vereinbaren (Abschnitt 6)</td>
 </tr>
 </tbody>
 </table>
+<p>Regel für die Zeit (Görkem führt die Uhr): Ist ein Block um mehr als
+eine Minute über der Zeit, wird die laufende Muss-Frage zu Ende
+gestellt, Nachfragen gehen in den Parkplatz des Protokolls. «Falls
+Zeit»-Fragen nur, wenn ein Block vor seiner Endzeit fertig ist. Fallen
+trotzdem Muss-Fragen weg, kommen sie zuoberst auf die schriftliche
+Nachfrage.</p>
 <h2 id="2-gesprächsregeln-für-uns">2. Gesprächsregeln für uns</h2>
 <ul>
 <li><strong>Offen fragen</strong> («Wie läuft …?», «Was passiert, wenn
@@ -199,141 +210,234 @@ Entscheidung vorlegen (Folie 47: unklare Verantwortung).</li>
 <li>Jeden Block mit «Habe ich richtig verstanden, dass …?»
 abschliessen.</li>
 </ul>
-<h2 id="3-fragen-nach-stakeholder-rolle">3. Fragen nach
-Stakeholder-Rolle</h2>
-<p>★ = Pflicht · ○ = streichbar, sonst schriftlich nachfragen.</p>
-<h3 id="einstieg-alle-3-min">Einstieg (alle, 3 min)</h3>
-<ul>
-<li>Ablauf und Rollen kurz erklären; Protokoll und Bestätigung
-ankündigen.</li>
-<li>Vorab-Antworten (Anlagen, Mengen, Kundengruppen, Zahlung, IT) in
-einem Satz zusammenfassen und bestätigen lassen. Falls keine
-Vorab-Antworten da sind: V-24 und V-20 hier stellen, Block E
-kürzen.</li>
-</ul>
-<h3 id="a-geschäftsleitung--ziele-und-erfolg-6-min">A Geschäftsleitung –
-Ziele und Erfolg (6 min)</h3>
-<ol type="1">
-<li>★ Auf Folie 4 nennt ihr vier Ziele. Wenn ihr nur eines erreichen
-könntet – welches? (V-19)</li>
-<li>★ Woran merkt ihr in einem Jahr, dass es sich gelohnt hat? Welche
-Zahl soll sich wie verändern? (V-19, V-20 → <a href="zielhierarchie.html">Zielhierarchie</a>)</li>
-<li>★ Wer entscheidet, wenn Vereine und Privatkunden Unterschiedliches
-wollen, und wer gibt unsere Spezifikation frei? (V-27)</li>
-<li>○ Gibt es einen Termin oder ein Budget für die Einführung?
-(V-32)</li>
-</ol>
-<h3 id="b-empfang--heutiger-ablauf-8-min">B Empfang – heutiger Ablauf (8
-min)</h3>
-<ol start="5" type="1">
-<li>★ Erzählt uns eine typische Reservation von gestern – vom Anruf bis
-zum Eintrag. Wo wird sie notiert? (L-08, V-25)</li>
-<li>★ Wann ist zuletzt eine Doppelbuchung passiert? Wie kam es dazu, und
-wie habt ihr sie gelöst? (H-04)</li>
-<li>★ Wie erfahrt ihr heute, dass eine Zeit frei wird? Was macht ihr
-dann? (H-10, H-11)</li>
-<li>Was funktioniert heute gut und darf nicht verloren gehen?
-(<code>N2</code>: «funktioniert grundsätzlich»)</li>
-<li>Wie viele Anrufe und E-Mails zu Reservationen pro Tag, und in
-welchen Stunden? (V-20)</li>
-<li>○ Was passiert, wenn am Empfang niemand ist (Randzeiten,
-Wochenende)? (V-30)</li>
-</ol>
-<h3 id="c-vereine--firmen--serien-7-min">C Vereine &amp; Firmen – Serien
-(7 min)</h3>
-<ol start="11" type="1">
-<li>★ Wie reserviert ein Verein heute sein Training für die Saison? Wer
-meldet sich, wie lange läuft das? (V-12)</li>
-<li>★ Was passiert, wenn ein Training ausfällt (Ferien, Turnier, zu
-wenige Leute)? Wie früh sagt ihr ab? (V-13, V-14)</li>
-<li>★ Wie unterscheidet sich eine Firma von einem Verein beim
-Reservieren (Anlass, mehrere Anlagen, Rechnung)? (V-05, V-21)</li>
-<li>Soll eine Vereinsverantwortliche für Mitglieder reservieren oder
-stornieren dürfen? (V-08)</li>
-<li>○ Welche Informationen braucht ihr von ArenaOne, z. B. eine
-Terminliste für die Saison? (V-15)</li>
-</ol>
-<h3 id="d-trainer-4-min">D Trainer (4 min)</h3>
-<ol start="16" type="1">
-<li>★ Reserviert ihr Plätze für eure Lektionen selbst, oder macht das
-der Empfang? (V-23)</li>
-<li>Wie oft verschiebt ihr Lektionen, und wie kurzfristig? (V-14)</li>
-<li>○ Muss im System sichtbar sein, welcher Trainer auf welchem Platz
-steht? (L-04 – Grenze zur Personalplanung)</li>
-</ol>
-<h3 id="e-privatkunde-4-min">E Privatkunde (4 min)</h3>
-<ol start="19" type="1">
-<li>★ Wie möchtest du reservieren – online, am Telefon, am Schalter? Was
-ist dir dabei wichtig? (V-01)</li>
-<li>Wie weit im Voraus planst du, und wie spontan buchst du? (V-02)</li>
-<li>Welche Nachrichten von ArenaOne willst du bekommen, und welche
-nerven? (V-15)</li>
-<li>○ Was wäre für dich fair, wenn du zwei Stunden vorher absagen musst?
-(V-10)</li>
-</ol>
-<h3 id="f-geschäftsleitung--regeln-und-konflikte-6-min">F
-Geschäftsleitung – Regeln und Konflikte (6 min)</h3>
-<ol start="23" type="1">
-<li>★ Sollen Vereine zu bestimmten Zeiten Vorrang haben? Wie viel der
-Abendzeiten dürfen Serien belegen? (V-06, K-01)</li>
-<li>★ Bis wann kann man ohne Folgen stornieren, und was passiert danach
-– gleich für alle Gruppen? (V-09, V-10, K-02)</li>
-<li>★ Warteliste: ja oder nein? Wenn ja, wie wird der freie Platz
-vergeben? (V-11)</li>
-<li>★ Welche Auswertungen braucht ihr, wie oft? (V-17, V-18)</li>
-<li>○ Welche Kundendaten braucht ihr – und wo fängt für euch das «CRM»
-an, das nicht dazugehört? (V-22)</li>
-</ol>
-<h3 id="g-it--betrieb-und-qualität-3-min">G IT – Betrieb und Qualität (3
-min)</h3>
-<ol start="28" type="1">
-<li>★ Wann muss das System laufen, und was passiert, wenn es am
-Samstagmorgen ausfällt? (V-30)</li>
-<li>Auf welchen Geräten wird gearbeitet (PC am Empfang, Tablet,
-Smartphone der Kunden)? (V-30)</li>
-<li>○ Wer betreibt das System später, und gibt es Vorgaben (Hosting in
-der Schweiz, bestimmte Produkte)? (V-26)</li>
-<li>○ Welche Personendaten werden gespeichert, wie lange? (V-28)</li>
-</ol>
-<h3 id="h-priorisierung-und-abschluss-4-min">H Priorisierung und
-Abschluss (4 min)</h3>
-<ol start="32" type="1">
-<li>★ Von allem, was wir heute gehört haben: Welche drei Dinge müssen am
-ersten Tag funktionieren (Muss)? Was wäre schön, aber verzichtbar
-(Soll/Wunsch, Folie 43)?</li>
-<li>★ Woran prüft ihr bei der Abnahme, ob es funktioniert? Habt ihr ein
-Beispiel, das wir als Testfall nehmen dürfen? (Folie 45: prüfbar)</li>
-</ol>
-<ul>
-<li>Die 3–5 wichtigsten Erkenntnisse vorlesen und bestätigen
-lassen.</li>
-<li>Widersprüche zwischen Rollen nennen und Entscheid der
-Geschäftsleitung erbitten (oder als offenen Punkt mit Frist
-festhalten).</li>
-<li>«Gibt es etwas, das wir nicht gefragt haben, aber wissen
-sollten?»</li>
-<li>Nächster Kontakt: <code>[Datum, Kanal]</code>; Protokoll bis
-<code>[Datum]</code> an Gruppe 2.</li>
-</ul>
-<h3 id="zusatz-aus-dem-ki-versuch-spezifikation-v06">Zusatz aus dem
-KI-Versuch (Spezifikation v0.6)</h3>
-<p>Ein KI-Agent hat aus der Spezifikation eine App gebaut und musste an
-diesen Stellen raten (<a href="ki-app/analyse.html">Auswertung</a>). V-33
-und V-35 passen in Block B bzw. C (★); V-34, V-36 und V-37 schriftlich
-nachfragen, falls die Zeit nicht reicht.</p>
-<ul>
-<li>★ Darf der Empfang beim Reservieren am Telefon die Buchungsregeln
-übersteuern? (V-33, OP-18)</li>
-<li>★ Legen sich Privatkunden selbst ein Konto an, oder erfasst der
-Empfang alle? Wer bestimmt die Berechtigten eines Vereins? (V-35,
-OP-20)</li>
-<li>○ Gibt es eine Rolle, die nur Anlagen sperrt (Hauswart)? (V-34,
-OP-19)</li>
-<li>○ Sehen Kunden belegte Zeiten, um sich auf die Warteliste zu setzen?
-(V-36, OP-21)</li>
-<li>○ Wer sucht bei einer Sperrzeit Ersatz für Betroffene, und ist das
-eine kurzfristige Stornierung? (V-37, OP-22)</li>
-</ul>
+<h2 id="3-fragen">3. Fragen</h2>
+<h3 id="31-muss-fragen-im-interview-auf-jeden-fall-stellen">3.1
+Muss-Fragen (im Interview auf jeden Fall stellen)</h3>
+<p>★ <strong>M1–M12</strong>. Spalte «ändert in der Spezifikation» = was
+je nach Antwort umgebaut wird.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Block</th>
+<th>Muss-Frage</th>
+<th>Fragen-ID</th>
+<th>offener Punkt</th>
+<th>ändert in der Spezifikation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>M1</strong></td>
+<td>A</td>
+<td><strong>Self-Service:</strong> Wie soll künftig reserviert werden –
+reservieren Kundinnen und Kunden selbst online, bleibt alles beim
+Empfang, oder beides? Muss das am ersten Tag gehen, oder reicht es
+später? (Nicht suggerieren: unser Kernprozess läuft über den Empfang,
+Online ist nur Variante.)</td>
+<td>V-01</td>
+<td>OP-02</td>
+<td>Variante Self-Service (FA-04, FA-09, FA-10, FA-36, FA-37, QA-01,
+QA-03) wird Must, bleibt Should oder wird Won&#39;t</td>
+</tr>
+<tr>
+<td><strong>M2</strong></td>
+<td>A</td>
+<td><strong>Zahlung:</strong> Gehört Bezahlen zur Reservation – online,
+vor Ort, Rechnung an Vereine und Firmen? Oder ist das ausserhalb des
+Projekts?</td>
+<td>V-21</td>
+<td>OP-04</td>
+<td>WO-01, IF-08, IF-09; evtl. neue FA zur Rechnung</td>
+</tr>
+<tr>
+<td><strong>M3</strong></td>
+<td>A</td>
+<td><strong>Ziele und Entscheider:</strong> Welches der vier Ziele auf
+eurer Folie 4 ist das wichtigste, und woran merkt ihr in einem Jahr,
+dass es sich gelohnt hat? Wer entscheidet bei Konflikten und gibt die
+Spezifikation frei?</td>
+<td>V-19, V-27</td>
+<td>OP-01</td>
+<td>Zielwerte <code>[x]</code> in Kapitel 3; Freigabe v1.0</td>
+</tr>
+<tr>
+<td><strong>M4</strong></td>
+<td>B</td>
+<td><strong>Mengengerüst:</strong> Stimmen die Vorab-Zahlen – Anlagen je
+Sportart, Hallenteilung, Reservationen pro Woche, davon Serien,
+Anrufe/E-Mails pro Tag, Doppelbuchungen pro Monat? (Ohne
+Vorab-Antworten: nur Grössenordnung, Rest schriftlich, P-3.)</td>
+<td>V-20, V-24</td>
+<td>OP-01, OP-13</td>
+<td>PA-08, PA-09, QA-07, FA-06 (Hallenteile)</td>
+</tr>
+<tr>
+<td><strong>M5</strong></td>
+<td>C</td>
+<td><strong>Serien:</strong> Wie reserviert ein Verein heute seine
+Saison – wer meldet sich, wann, wie lange läuft eine Serie, und wer
+bestätigt sie?</td>
+<td>V-12</td>
+<td>OP-03</td>
+<td>FA-16 bis FA-18, PA-02 für Serien</td>
+</tr>
+<tr>
+<td><strong>M6</strong></td>
+<td>C</td>
+<td><strong>Ausnahmen in Serien:</strong> Was passiert, wenn ein
+Training ausfällt (Ferien, Feiertag, Turnier)? Wie früh wird abgesagt,
+und soll die frei gewordene Zeit anderen angeboten werden?</td>
+<td>V-13, V-14</td>
+<td>OP-03</td>
+<td>FA-19, FA-12, FA-14</td>
+</tr>
+<tr>
+<td><strong>M7</strong></td>
+<td>D</td>
+<td><strong>Kundengruppen und Regeln:</strong> Welche Kundengruppen gibt
+es genau (Folie 2 nennt vier, Folie 5 drei), und was gilt je Gruppe –
+wie weit im Voraus, wie lange, wie viele offene Reservationen? Gibt es
+Abos oder Mitgliedschaften?</td>
+<td>V-05, V-02</td>
+<td>OP-02</td>
+<td>FA-24, FA-25, PA-02, PA-03, PA-11</td>
+</tr>
+<tr>
+<td><strong>M8</strong></td>
+<td>D</td>
+<td><strong>Stornoregeln:</strong> Bis wann kann man ohne Folgen
+stornieren, und was passiert danach (Gebühr, Verwarnung, nichts) –
+gleich für alle Gruppen? Zählt eine Absage durch ArenaOne als
+kurzfristig?</td>
+<td>V-09, V-10</td>
+<td>OP-05</td>
+<td>PA-04, FA-10, FA-11, FA-30; Konflikt K-02</td>
+</tr>
+<tr>
+<td><strong>M9</strong></td>
+<td>D</td>
+<td><strong>Vorrang am Abend:</strong> Sollen Vereine zu bestimmten
+Zeiten Vorrang haben? Wie viel der Abendzeiten dürfen Serien höchstens
+belegen?</td>
+<td>V-06</td>
+<td>OP-09</td>
+<td>FA-26, PA-10; Konflikt K-01</td>
+</tr>
+<tr>
+<td><strong>M10</strong></td>
+<td>D</td>
+<td><strong>Warteliste:</strong> Wollt ihr eine Warteliste? Wenn ja:
+bekommt der Erste automatisch den Platz, oder erhalten alle eine
+Nachricht?</td>
+<td>V-11</td>
+<td>OP-06</td>
+<td>FA-13 bis FA-15, PA-05</td>
+</tr>
+<tr>
+<td><strong>M11</strong></td>
+<td>E</td>
+<td><strong>Rollen und Rechte:</strong> Was dürfen Empfang, Trainer,
+Vereinsverantwortliche und Geschäftsleitung im System? Reservieren
+Trainer selbst? Darf der Empfang am Telefon die Buchungsregeln
+übersteuern?</td>
+<td>V-07, V-23, V-33</td>
+<td>OP-08, OP-18</td>
+<td>QA-13 (Berechtigungsmatrix), FA-05, FA-08</td>
+</tr>
+<tr>
+<td><strong>M12</strong></td>
+<td>F</td>
+<td><strong>Priorisierung:</strong> Welche drei Dinge müssen am ersten
+Tag funktionieren (Muss), was wäre schön, aber verzichtbar (Folie 43)?
+Habt ihr ein Beispiel, das wir als Abnahmetest nehmen dürfen?</td>
+<td>–</td>
+<td>alle</td>
+<td>MoSCoW Kapitel 8, Akzeptanzkriterien</td>
+</tr>
+</tbody>
+</table>
+<p>Jeden Block mit «Habe ich richtig verstanden, dass …?» abschliessen;
+Ardian notiert je Muss-Frage die Antwort in der Bestätigungsliste-Spalte
+«neuer Wert» vor (Abschnitt 6).</p>
+<h3 id="32-falls-zeit-sonst-schriftlich-nachfragen">3.2 Falls Zeit
+(sonst schriftlich nachfragen)</h3>
+<p>In dieser Reihenfolge, wenn ein Block früher fertig ist:</p>
+<table>
+<thead>
+<tr>
+<th>Block</th>
+<th>Frage</th>
+<th>Fragen-ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td>Erzählt uns eine typische Reservation von gestern – vom Anruf bis
+zum Eintrag. Wo wird sie notiert? Was funktioniert heute gut und darf
+nicht verloren gehen? (Beispiel nach 3 min zusammenfassen, P-1)</td>
+<td>V-25, L-08</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Wann ist zuletzt eine Doppelbuchung passiert, und wie kam es
+dazu?</td>
+<td>H-04</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Legen sich Privatkunden selbst ein Konto an, oder erfasst der
+Empfang alle? Wer bestimmt, wer für einen Verein reservieren darf?</td>
+<td>V-35, V-08</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Wie unterscheidet sich eine Firma von einem Verein beim Reservieren
+(Anlass, mehrere Anlagen, Rechnung)?</td>
+<td>V-05</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Welche Auswertungen braucht die Geschäftsleitung, und wie oft?</td>
+<td>V-17</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Welche Nachrichten sollen Kunden bekommen (Bestätigung, Erinnerung),
+und welche nerven? E-Mail oder SMS?</td>
+<td>V-15</td>
+</tr>
+<tr>
+<td>G</td>
+<td>Wann muss das System laufen, und was passiert bei einem Ausfall am
+Samstagmorgen? Auf welchen Geräten wird gearbeitet?</td>
+<td>V-30</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Welche Kundendaten braucht ihr – wo fängt das ausgeschlossene «CRM»
+an?</td>
+<td>V-22, V-04</td>
+</tr>
+<tr>
+<td>G</td>
+<td>Wie werden Anlagen für Unterhalt, Turniere oder wetterbedingt
+gesperrt?</td>
+<td>V-29</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-schriftlich-nachreichen-nicht-im-interview">3.3 Schriftlich
+nachreichen (nicht im Interview)</h3>
+<p>Gehen nach dem Interview zusammen mit der <a href="annahmen-bestaetigung-gruppe2.html">Bestätigungsliste</a> an Gruppe
+2, ebenso jede Frage aus 3.2, die nicht gestellt wurde: V-03 (Zeitraster
+je Sportart), V-16 (interne Information), V-18 (Form der Auswertungen),
+V-26 (Betrieb, IT), V-28 (Personendaten, Aufbewahrung), V-31
+(Zutritt/Licht), V-32 (Termin, Budget), V-34 (Rolle «Betrieb der
+Anlage»), V-36 (belegte Zeiten sichtbar?), V-37 (Ersatz bei Sperrzeit).
+Die Vorab-Fragen aus Teil A der Fragenliste (Anlagen, Öffnungszeiten,
+Mengen, IT, Kanal) gehen schon <strong>vor</strong> PVA 5 raus.</p>
 <h2 id="4-erkenntnisse-aus-dem-probelauf-simuliertes-interview">4.
 Erkenntnisse aus dem Probelauf (simuliertes Interview)</h2>
 <p>Die Simulation sagt nichts Verlässliches über ArenaOne, sie testet
@@ -468,6 +572,80 @@ Offene Punkte</h3>
 </tr>
 </tbody>
 </table>
+<h2 id="6-nach-dem-interview-bestätigungsschritt">6. Nach dem Interview:
+Bestätigungsschritt</h2>
+<p>Ein Interview allein bestätigt noch keine Anforderung: Was wir
+verstanden haben, muss Gruppe 2 schriftlich bestätigen (Folie 28,
+«Prüfen &amp; Abstimmen»). Ablauf, auch im <a href="re-plan.html">RE-Plan</a>, Abschnitt 6a:</p>
+<table>
+<thead>
+<tr>
+<th>Schritt</th>
+<th>wann</th>
+<th>was</th>
+<th>wer</th>
+<th>Ergebnis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Tag des Interviews</td>
+<td>Protokoll nach Abschnitt 5 ins Reine schreiben, Abgleich «Simulation
+sagte – Gruppe 2 sagt» ausfüllen</td>
+<td>Ardian</td>
+<td><code>protokolle/interview-pva5.md</code> (v0.1)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>am Tag danach</td>
+<td>Antworten in die <a href="annahmen-bestaetigung-gruppe2.html">Bestätigungsliste</a> als
+Vorschlag übernehmen (Spalte «neuer Wert»); Liste und Protokoll an
+Gruppe 2 mit Rücklauffrist (Vorschlag: eine Woche) und den Fragen aus
+3.3</td>
+<td>Görkem</td>
+<td>Versand an Gruppe 2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>bis Frist</td>
+<td>Gruppe 2 kreuzt je Zeile «ja / nein / geändert» an und bestätigt das
+Protokoll</td>
+<td>Gruppe 2</td>
+<td>ausgefüllte Liste, Protokoll v1.0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>nach Rücklauf</td>
+<td>Spezifikation <strong>v0.8</strong>: jede <code>A</code>- und
+<code>S</code>-Quelle bestätigt (Quelle «Interview PVA 5»), geändert
+oder gestrichen; Entscheid zur Variante Self-Service umsetzen;
+Prüfskript laufen lassen</td>
+<td>Ardian</td>
+<td>Spezifikation v0.8</td>
+</tr>
+<tr>
+<td>5</td>
+<td>vor PVA 6</td>
+<td>Zwischenstand-Folien neu bauen (Phase «Validieren läuft», was das
+Interview bestätigt oder widerlegt hat)</td>
+<td>Görkem</td>
+<td>Deck PVA 6</td>
+</tr>
+<tr>
+<td>6</td>
+<td>bis PVA 8</td>
+<td>Review der v0.8 durch Gruppe 2, Freigabe <strong>v1.0</strong>;
+Lösungspräsentation PVA 9/10 neu bauen (Zahlen, Versionen, Runde 2)</td>
+<td>beide</td>
+<td>Spezifikation v1.0, Deck PVA 9/10</td>
+</tr>
+</tbody>
+</table>
+<p>Bleibt eine Zeile unbeantwortet, bleibt ihre Quelle <code>A</code>
+bzw. <code>S</code> und die Anforderung ist in v1.0 weiterhin als
+unbestätigt markiert – nichts wird stillschweigend als bestätigt
+übernommen.</p>
 <script>
 // Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
 (function () {

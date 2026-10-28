@@ -5,13 +5,15 @@ Gruppenarbeit Requirements Engineering HS26, HWZ Hochschule für Wirtschaft Zür
 
 Auftraggeber ist Gruppe 2 in der Rolle der **ArenaOne Sportzentrum AG**, eines fiktiven Sportzentrums im Raum Zürich (Padel, Tennis, Badminton, Mehrzweckhallen). Heute laufen Reservationen über Telefon, E-Mail, Empfang und interne Listen; gesucht sind die Anforderungen an ein zentrales Buchungs- und Belegungssystem.
 
-> **Stand: Spezifikation v0.6 – Annahmen noch in PVA 5 zu validieren.** Das Interview mit Gruppe 2 hat noch nicht stattgefunden. Belegt ist nur, was in der Projektvorstellung von Gruppe 2 steht. Alles andere ist als Annahme (`A`), Benchmark (`B`) oder **Simulation** (`S`) gekennzeichnet. Das [simulierte Interview](simuliertes-interview-pva5.md) ist ein Rollenspiel zur Vorbereitung und ersetzt nicht die Ermittlung mit Gruppe 2; nichts daraus ist eine Aussage von Gruppe 2.
+> **Stand: Spezifikation v0.7 (28.10.2026) – Annahmen noch in PVA 5 zu validieren.** Das Interview mit Gruppe 2 hat noch nicht stattgefunden. Belegt ist nur, was in der Projektvorstellung von Gruppe 2 steht. Alles andere ist als Annahme (`A`), Benchmark (`B`) oder **Simulation** (`S`) gekennzeichnet. Das [simulierte Interview](simuliertes-interview-pva5.md) ist ein Rollenspiel zur Vorbereitung und ersetzt nicht die Ermittlung mit Gruppe 2; nichts daraus ist eine Aussage von Gruppe 2.
+>
+> **Kernprozess ohne Self-Service:** Ob Kundinnen und Kunden selbst online reservieren sollen, hat Gruppe 2 nicht gesagt. Der Soll-Prozess läuft deshalb über den Empfang, der im gemeinsamen System für die Kundschaft reserviert; die Online-Selbstbuchung ist als «Variante Self-Service» (Priorität Should) beschrieben und wird im Interview entschieden.
 
 ## Abgabe
 
 | Dokument | Lesen | Dateien |
 |---|---|---|
-| **Anforderungsspezifikation** (Lastenheft, 35 funktionale und 16 Qualitätsanforderungen, 9 Use Cases) | [Webseite](anforderungsspezifikation-arenaone.html) | [PDF](anforderungsspezifikation-arenaone.pdf) · [Word](anforderungsspezifikation-arenaone.docx) · [Markdown](anforderungsspezifikation-arenaone.md) |
+| **Anforderungsspezifikation** (Lastenheft, 37 funktionale und 16 Qualitätsanforderungen, 9 Use Cases, Soll-Prozess) | [Webseite](anforderungsspezifikation-arenaone.html) | [PDF](anforderungsspezifikation-arenaone.pdf) · [Word](anforderungsspezifikation-arenaone.docx) · [Markdown](anforderungsspezifikation-arenaone.md) |
 | **Lösungspräsentation PVA 9/10** (20 min, Sprechernotizen in der PPTX) | [PDF](praesentation-pva9-10/RE_ArenaOne_Loesung.pdf) | [PowerPoint](praesentation-pva9-10/RE_ArenaOne_Loesung.pptx) |
 | Diskussion PVA 9/10: Leitfragen und Moderationsplan (15 min) | [Webseite](praesentation-pva9-10/diskussion-moderation.html) | [PDF](praesentation-pva9-10/diskussion-moderation.pdf) · [Markdown](praesentation-pva9-10/diskussion-moderation.md) |
 | Zwischenstand PVA 6 | [Webseite](zwischenstand-pva6.html) · [Folien (PDF)](praesentation-pva9-10/RE_ArenaOne_Zwischenstand_PVA6.pdf) | [PowerPoint](praesentation-pva9-10/RE_ArenaOne_Zwischenstand_PVA6.pptx) · [PDF](zwischenstand-pva6.pdf) · [Markdown](zwischenstand-pva6.md) |
@@ -26,16 +28,17 @@ Auftraggeber ist Gruppe 2 in der Rolle der **ArenaOne Sportzentrum AG**, eines f
 | Kontextdiagramm (Hypothese) | [Webseite](kontextdiagramm.html) | [PDF](kontextdiagramm.pdf) · [Bild](modelle/kontextdiagramm.png) · [Markdown](kontextdiagramm.md) |
 | Zielhierarchie | [Webseite](zielhierarchie.html) | [PDF](zielhierarchie.pdf) · [Markdown](zielhierarchie.md) |
 | Glossar | [Webseite](glossar.html) | [PDF](glossar.pdf) · [Markdown](glossar.md) |
-| Interviewleitfaden PVA 5 mit Protokollvorlage | [Webseite](interviewleitfaden-pva5.html) | [PDF](interviewleitfaden-pva5.pdf) · [Markdown](interviewleitfaden-pva5.md) |
+| Interviewleitfaden PVA 5 (12 Muss-Fragen, Zeitplan) mit Protokollvorlage und Bestätigungsschritt | [Webseite](interviewleitfaden-pva5.html) | [PDF](interviewleitfaden-pva5.pdf) · [Markdown](interviewleitfaden-pva5.md) |
 | Fragenliste an Gruppe 2 | [Webseite](fragenliste-gruppe2.html) | [PDF](fragenliste-gruppe2.pdf) · [Markdown](fragenliste-gruppe2.md) |
+| Bestätigungsliste für Gruppe 2 (alle Annahmen mit vorgeschlagenem Wert, noch leer) | [Webseite](annahmen-bestaetigung-gruppe2.html) | [PDF](annahmen-bestaetigung-gruppe2.pdf) · [Markdown](annahmen-bestaetigung-gruppe2.md) |
 | **Simuliertes Interview** (Rollenspiel zur Vorbereitung, kein Protokoll) | [Webseite](simuliertes-interview-pva5.html) | [PDF](simuliertes-interview-pva5.pdf) · [Markdown](simuliertes-interview-pva5.md) |
 | Merkblatt-Checkliste (jede Vorgabe mit Artefakt und Stand) | [Webseite](merkblatt-checkliste.html) | [PDF](merkblatt-checkliste.pdf) · [Markdown](merkblatt-checkliste.md) |
-| Modelle (Kontext- und Use-Case-Diagramm) | [Use-Case-Diagramm](modelle/use-case-diagramm-arenaone.png) | [Ordner](https://github.com/gotazlib/abgaben/tree/main/requirements-engineering/re-arenaone/modelle) |
+| Modelle (Kontext-, Use-Case- und Aktivitätsdiagramm) | [Use-Case-Diagramm](modelle/use-case-diagramm-arenaone.png) · [Soll-Prozess](modelle/soll-prozess-reservation.png) | [Ordner](https://github.com/gotazlib/abgaben/tree/main/requirements-engineering/re-arenaone/modelle) |
 | Leere Vorlagen und Spezifikationsvorlage | [Spezifikationsvorlage](anforderungsspezifikation-vorlage.html) | [Ordner vorlagen](https://github.com/gotazlib/abgaben/tree/main/requirements-engineering/re-arenaone/vorlagen) |
 
 ## KI-Experiment (optionale Aufgabe des Merkblatts)
 
-Ein KI-Agent bekam nur die Spezifikation v0.5 und sollte daraus ohne Rückfragen eine App bauen. Jede Stelle, an der er raten musste, zeigt eine Lücke der Spezifikation; die Befunde sind in v0.6 eingearbeitet.
+Ein KI-Agent bekam nur die Spezifikation v0.5 und sollte daraus ohne Rückfragen eine App bauen. Jede Stelle, an der er raten musste, zeigt eine Lücke der Spezifikation; die Befunde sind seit v0.6 eingearbeitet.
 
 | | |
 |---|---|

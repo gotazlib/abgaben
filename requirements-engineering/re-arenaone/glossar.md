@@ -29,7 +29,7 @@ Quellenkürzel wie in der [Analyse](analyse-arenaone.md): `F` = Folie, `N` = Spr
 | **Doppelbuchung** | zwei Reservationen für dieselbe Anlage im selben Zeitraum | Überbuchung | | `F3` | nein |
 | **Fehlbuchung** | Reservation mit falscher Anlage, Zeit oder Person | | | `F3` | nein |
 | **Warteliste** | Liste von Kunden, die eine bereits belegte Zeit wollen und benachrichtigt werden, wenn sie frei wird | Nachrückliste | ob gewünscht: offen (`F5`) | `F5` | nein |
-| **Kanal** | Weg, auf dem eine Reservationsanfrage eingeht: Telefon, E-Mail, Empfang, (künftig) online | Eingangskanal | | `F2` | nein |
+| **Kanal** | Weg, auf dem eine Reservationsanfrage eingeht: Telefon, E-Mail, Empfang, in der Variante Self-Service auch online (offen, OP-02) | Eingangskanal | | `F2` | nein |
 | **Empfang** | Mitarbeitende am Schalter, die Reservationen entgegennehmen und koordinieren | Rezeption, Front Desk | | `F2`, `F5` | nein |
 | **Kunde** | Person oder Organisation, die eine Reservation macht | Nutzer, User, Spieler | Oberbegriff für die Kundengruppen | `F2` | nein |
 | **Kundengruppe** | Kategorie von Kunden mit eigenen Regeln: Privatkunde, Verein, Firma, Trainingsgruppe | Kundensegment, Kundenart | ob Vereine und Firmen eine Gruppe sind: offen (V-05) | `F2`, `F3`, `F5` | nein |

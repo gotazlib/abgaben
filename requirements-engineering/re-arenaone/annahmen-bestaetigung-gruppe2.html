@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>Bestätigungsliste für Gruppe 2 – Annahmen und Werte der Spezifikation ArenaOne</title>
+<style type="text/css">
+@page { size: A4; margin: 18mm 16mm 18mm 16mm; }
+html { font-size: 10.5pt; }
+body {
+font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif;
+line-height: 1.45; color: #1a1a1a; background: #fff;
+max-width: 48em; margin: 0 auto; padding: 1em;
+}
+@media print { body { max-width: none; padding: 0; } }
+h1, h2, h3, h4 { color: #0b3d6b; line-height: 1.2; break-after: avoid; }
+h1 { font-size: 1.7em; border-bottom: 2px solid #0b3d6b; padding-bottom: .2em; margin-top: 1.6em; }
+h1:not(.title) { margin-top: 0; }
+h2 { font-size: 1.3em; margin-top: 1.4em; border-bottom: 1px solid #c8d3df; }
+h3 { font-size: 1.1em; margin-top: 1.2em; }
+h4 { font-size: 1em; margin-top: 1em; }
+header#title-block-header { text-align: center; margin-bottom: 2em; }
+.title { font-size: 2em; border: none; }
+.subtitle { font-size: 1.15em; color: #444; }
+nav#TOC { break-after: page; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: #1a1a1a; text-decoration: none; }
+table { border-collapse: collapse; margin: .8em 0; width: 100%; font-size: .93em; break-inside: avoid; }
+th, td { border: 1px solid #b9c4cf; padding: .3em .5em; vertical-align: top; text-align: left; }
+th { background: #e8eef5; }
+tr:nth-child(even) td { background: #f7f9fb; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: .9em; background: #f2f4f6; padding: 0 .15em; }
+pre { background: #f2f4f6; border-left: 3px solid #0b3d6b; padding: .6em .8em; overflow-x: auto; break-inside: avoid; font-size: .92em; line-height: 1.35; }
+pre code { background: none; padding: 0; }
+blockquote { margin: .8em 0; padding: .4em .9em; background: #fff8e1; border-left: 4px solid #f0b400; }
+math[display="block"] { margin: .5em 0; }
+details, .frage { break-inside: avoid; }
+a { color: #0b3d6b; }
+img { max-width: 100%; height: auto; }
+figure { margin: 1em 0; break-inside: avoid; } figcaption { font-size: .9em; color: #555; }
+td img { width: 100% !important; max-width: 14em; }
+@media print {
+pre { white-space: pre-wrap; overflow-wrap: anywhere; overflow: visible; }
+td code { overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body>
+<h1 id="bestätigungsliste-für-gruppe-2--annahmen-und-werte-der-spezifikation-arenaone">Bestätigungsliste
+für Gruppe 2 – Annahmen und Werte der Spezifikation ArenaOne</h1>
+<p>Artefakt zu R7 (Validieren). <strong>Erzeugt aus der <a href="anforderungsspezifikation-arenaone.html">Spezifikation
+v0.7</a></strong> mit
+<code>werkzeuge/erstelle_bestaetigungsliste.py</code> – nicht von Hand
+ändern, solange die Liste nicht verschickt ist. <strong>Noch
+leer:</strong> Die Spalten «bestätigt» und «neuer Wert» füllt Gruppe 2
+nach dem Interview PVA 5 aus.</p>
+<blockquote>
+<p><strong>Wozu:</strong> Was in der Spezifikation nicht aus der
+Projektvorstellung von Gruppe 2 stammt, ist eine Annahme von uns
+(<code>A</code>) oder eine Antwort aus unserem simulierten Interview
+(<code>S</code>, Rollenspiel zur Vorbereitung, keine Aussage von Gruppe
+2). Diese Liste fasst alle diese Stellen mit dem Wert zusammen, den wir
+vorschlagen. Gruppe 2 kreuzt je Zeile an: <strong>ja</strong> (stimmt
+so), <strong>nein</strong> (streichen) oder <strong>geändert</strong>
+(neuen Wert eintragen). Erst danach ist eine Anforderung «vom
+Auftraggeber bestätigt».</p>
+</blockquote>
+<p><strong>So geht es weiter</strong> (Ablauf im <a href="re-plan.html">RE-Plan</a>, Abschnitt 6a): Interview PVA 5 →
+Protokoll an Gruppe 2 → diese Liste an Gruppe 2 (zusammen mit dem
+Protokoll, Rücklauf bis <code>[Datum, eine Woche nach PVA 5]</code>) →
+Antworten einarbeiten, Spezifikation v0.8 → Review und Freigabe v1.0 →
+Präsentationen (PVA 6 Zwischenstand, PVA 9/10 Lösung) neu bauen.</p>
+<p>Ausgefüllt von: <code>[Rolle bei Gruppe 2]</code> · am:
+<code>[Datum]</code> · Rückgabe über: <code>[Kanal]</code></p>
+<h2 id="a-grundsatzentscheide-zuerst-beantworten">A. Grundsatzentscheide
+(zuerst beantworten)</h2>
+<p>Diese Antworten verändern den Umfang am stärksten. Die Begründung
+steht in der Spezifikation, Kapitel 2.2 und 8.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Annahme / vorgeschlagener Wert</th>
+<th>Quelle</th>
+<th>bestätigt (ja / nein / geändert)</th>
+<th>neuer Wert / Bemerkung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OP-02</td>
+<td><strong>Self-Service:</strong> Kernprozess über den Empfang (Must);
+Online-Selbstbuchung als Variante, Priorität Should (FA-04, FA-09,
+FA-10, FA-36, FA-37, QA-01, QA-03). Alternativen: Must (gehört zu
+Release 1) oder Won&#39;t (später)</td>
+<td><code>F4</code> + <code>A</code>; <code>S</code> (S-03)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PRIO</td>
+<td><strong>Priorisierung (MoSCoW):</strong> Vorschlag 31 Must, 20
+Should, 2 Could, 5 Won&#39;t (WO-01 bis WO-05) – Abweichungen je ID in Teil
+E eintragen</td>
+<td><code>A</code> (Kapitel 8)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>GZ-1 vs. GZ-3, K-01</td>
+<td><strong>Zielkonflikt, Entscheid der Geschäftsleitung:</strong> feste
+Vereinsserien zur Primetime erhöhen die Auslastung, nehmen Privatkunden
+aber Abendzeiten</td>
+<td>Kapitel 3; offen als OP-09</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>K-02</td>
+<td><strong>Zielkonflikt, Entscheid der Geschäftsleitung:</strong>
+strenge Stornoregeln sichern Umsatz, Vereine und Privatkunden wollen
+Kulanz (in der Simulation offen, W-2)</td>
+<td>Kapitel 3; offen als OP-05</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>GZ-2 vs. GZ-3, K-03</td>
+<td><strong>Zielkonflikt, Entscheid der Geschäftsleitung:</strong>
+Self-Service entlastet den Empfang, schliesst aber Kundschaft ohne
+digitale Gewohnheit aus; deshalb Kernprozess über den Empfang,
+Self-Service nur als Variante</td>
+<td>Kapitel 3; offen als OP-02</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>K-04</td>
+<td><strong>Zielkonflikt, Entscheid der Geschäftsleitung:</strong>
+Trainer wollen selbst verschieben, der Empfang will Kontrolle über
+begehrte Zeiten</td>
+<td>Kapitel 3; offen als OP-08</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>K-05</td>
+<td><strong>Zielkonflikt, Entscheid der Geschäftsleitung:</strong> viele
+Kundendaten für Auswertungen vs. Datensparsamkeit und «kein CRM»</td>
+<td>Kapitel 3; offen als OP-14</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="b-parameter-werte-für-fristen-mengen-zeiten">B. Parameter (Werte
+für Fristen, Mengen, Zeiten)</h2>
+<p>Kapitel 7.3. Ändert sich ein Wert, bleibt die Anforderung gleich.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Annahme / vorgeschlagener Wert</th>
+<th>Quelle</th>
+<th>bestätigt (ja / nein / geändert)</th>
+<th>neuer Wert / Bemerkung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PA-01</td>
+<td>Zeitraster und Mindestdauer einer Reservation:
+<strong>30-Minuten-Raster, mind. 60 Minuten</strong> (verwendet in
+FA-01, FA-04, FA-05)</td>
+<td><code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PA-02</td>
+<td>Buchungsvorlauf (für Einzelreservationen; Serien siehe OP-03):
+<strong>Privat 14 Tage, Verein/Firma/Trainingsgruppe 90 Tage</strong>
+(verwendet in FA-04, FA-05, FA-25)</td>
+<td><code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PA-03</td>
+<td>gleichzeitig offene Einzelreservationen: <strong>Privat 3, übrige
+Gruppen ohne Begrenzung</strong> (verwendet in FA-25)</td>
+<td><code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PA-04</td>
+<td>Stornofrist (kostenlos, ohne Vermerk): <strong>24 Stunden vor
+Beginn</strong> (verwendet in FA-09, FA-10, FA-11)</td>
+<td><code>S</code> (S-05), <code>B</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PA-05</td>
+<td>Annahmefrist Warteliste: <strong>30 Minuten, höchstens bis
+Beginn</strong> (verwendet in FA-15)</td>
+<td><code>A</code> (Vergabe «wer zuerst bucht»: <code>S</code>,
+S-07)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PA-06</td>
+<td>Erinnerungsfrist: <strong>24 Stunden vor Beginn («am
+Vortag»)</strong> (verwendet in FA-22)</td>
+<td><code>S</code> (S-08), <code>B</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PA-07</td>
+<td>Aufbewahrung inaktiver Kundenkonten: <strong>24 Monate nach der
+letzten Reservation</strong> (verwendet in QA-11)</td>
+<td><code>A</code> (in der Simulation hat «noch niemand festgelegt»,
+W-6)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PA-08</td>
+<td>Betriebszeit für Verfügbarkeitsmessung (= Öffnungszeiten):
+<strong>Mo–Fr 07:00–23:00, Sa/So 08:00–20:00 Uhr</strong> (verwendet in
+QA-05)</td>
+<td><code>S</code> (S-12)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PA-09</td>
+<td>gleichzeitig aktive Personen (Kundschaft und Mitarbeitende) in der
+Spitze: <strong>100</strong> (verwendet in QA-07, QA-08)</td>
+<td><code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PA-10</td>
+<td>Höchstanteil der Abendstunden (werktags 17–22 Uhr) für Kontingente
+und Serien: <strong>50 % je Anlage</strong> (verwendet in FA-26)</td>
+<td><code>S</code> (S-04; «Hälfte oder ein Drittel» offen)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PA-11</td>
+<td>maximale Dauer einer Reservation: <strong>Privat 120 Minuten, übrige
+Gruppen 240 Minuten</strong> (verwendet in FA-25)</td>
+<td><code>A</code> (fehlte bis v0.5, KI-Versuch A-12)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="c-ziele-messgrössen-und-zielwerte">C. Ziele, Messgrössen und
+Zielwerte</h2>
+<p>Kapitel 3. Die Ziele stammen aus der Präsentation; Messgrössen sind
+unser Vorschlag, <code>[x]</code> legt die Geschäftsleitung fest.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Annahme / vorgeschlagener Wert</th>
+<th>Quelle</th>
+<th>bestätigt (ja / nein / geändert)</th>
+<th>neuer Wert / Bemerkung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GZ-1</td>
+<td>Vorhandene Kapazitäten besser nutzen – Messgrösse: Auslastung je
+Anlage in den Öffnungszeiten; Zielwert: von <code>[x] %</code> auf
+<code>[x] %</code> innert 12 Monaten (Simulation: geschätzt 55–60 % → 70
+%, S-15)</td>
+<td>Ziel <code>F4</code>, Messgrösse <code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>GZ-2</td>
+<td>Administrativen Aufwand reduzieren – Messgrösse: Arbeitszeit am
+Empfang für Reservationen pro Woche; Zielwert: − <code>[x] %</code></td>
+<td>Ziel <code>F4</code>, Messgrösse <code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>GZ-3</td>
+<td>Komfortablerer Buchungsprozess für Kunden – Messgrösse:
+Zufriedenheit mit der Reservation (Kurzumfrage 1–5); Zielwert: ≥
+<code>[x]</code></td>
+<td>Ziel <code>F4</code>, Messgrösse <code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PZ-1</td>
+<td>Ein zentraler, einheitlicher Buchungsprozess für alle Kanäle –
+Messgrösse: Anteil verbindlicher Reservationen im System; Zielwert: 100
+% ab Einführung</td>
+<td>Ziel <code>F3</code>, Messgrösse <code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PZ-2</td>
+<td>Frei werdende Zeiten werden neu vergeben – Messgrösse: Anteil
+stornierter Zeiten, die wieder reserviert werden; Zielwert: ≥
+<code>[x] %</code></td>
+<td>Ziel <code>F3</code> (4), Messgrösse <code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PZ-3</td>
+<td>Weniger Fehler und Rückfragen im Tagesgeschäft – Messgrösse:
+Doppelbuchungen pro Monat; Rückfragen am Empfang pro Tag; Zielwert: 0; −
+<code>[x] %</code></td>
+<td>Ziel <code>F4</code>, Messgrösse <code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PZ-4</td>
+<td>Serien und Kundengruppen nach klaren Regeln – Messgrösse: Konflikte,
+die nach dokumentierter Regel entschieden werden; Zielwert:
+<code>[x] %</code></td>
+<td>Ziel <code>F3</code> (5, 6), <code>F5</code>, Messgrösse
+<code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="d-randbedingungen-und-annahmen">D. Randbedingungen und
+Annahmen</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Annahme / vorgeschlagener Wert</th>
+<th>Quelle</th>
+<th>bestätigt (ja / nein / geändert)</th>
+<th>neuer Wert / Bemerkung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RB-01</td>
+<td>Die Bearbeitung von Personendaten muss dem Bundesgesetz über den
+Datenschutz (DSG, SR 235.1) entsprechen, insbesondere den Grundsätzen
+(Art. 6), dem Datenschutz durch Technik und durch datenschutzfreundliche
+Voreinstellungen (Art. 7), der Datensicherheit (Art. 8), der
+Informationspflicht (Art. 19) sowie dem Auskunftsrecht und dem Recht auf
+Datenherausgabe (Art. 25, Art. 28).</td>
+<td>DSG; <code>A</code> (Gruppe 2 nennt Datenschutz nicht, OP-17)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RB-04</td>
+<td>Ab Einführung ist nur eine im System gespeicherte Reservation
+verbindlich; Telefon, E-Mail und Schalter bleiben als Kanäle bestehen,
+erfassen aber im System.</td>
+<td><code>F2</code>, <code>F3</code> + <code>A</code> (H-02)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RB-05</td>
+<td>Ein Teil der Kundschaft (z. B. ältere Vereinsmitglieder) wird nicht
+online reservieren.</td>
+<td><code>A</code> (Risiko R-P4 der Analyse)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="e-anforderungen-mit-annahme-oder-simulation">E. Anforderungen
+mit Annahme oder Simulation</h2>
+<p>Kapitel 6 und 7. Je Anforderung der Teil der Quelle, der auf
+<code>A</code> oder <code>S</code> beruht; Wortlaut und
+Akzeptanzkriterium in der Spezifikation. «Variante» = gilt nur mit
+Self-Service (Teil A).</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Annahme / vorgeschlagener Wert</th>
+<th>Quelle</th>
+<th>bestätigt (ja / nein / geändert)</th>
+<th>neuer Wert / Bemerkung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FA-02</td>
+<td><strong>Gesamtbelegung für den Empfang anzeigen</strong> (Vorschlag
+Must) – <code>S</code> (S-01: «eine Übersicht, auf der alle dasselbe
+sehen»)</td>
+<td><code>F2</code>, <code>F3</code> (2), H-01; <code>S</code> (S-01:
+«eine Übersicht, auf der alle dasselbe sehen»)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-04</td>
+<td><strong>Einzelreservation online vornehmen</strong> (Vorschlag
+Should · Variante Self-Service) – <code>F4</code> (Nutzen «komfortabler
+für Kunden») + <code>A</code> (Self-Service nicht ausdrücklich
+gefordert, OP-02), H-05; <code>S</code> (S-03: wichtig, zum Start
+verzichtbar)</td>
+<td><code>F4</code> (Nutzen «komfortabler für Kunden») + <code>A</code>
+(Self-Service nicht ausdrücklich gefordert, OP-02), H-05; <code>S</code>
+(S-03: wichtig, zum Start verzichtbar)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-05</td>
+<td><strong>Reservation im Auftrag erfassen</strong> (Vorschlag Must) –
+<code>S</code> (S-02)</td>
+<td><code>F2</code> (Empfang koordiniert, vier Kanäle), <code>N5</code>,
+H-03; <code>S</code> (S-02)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-06</td>
+<td><strong>Doppelbuchung verhindern</strong> (Vorschlag Must) –
+<code>S</code> (S-01)</td>
+<td><code>F3</code> (3), H-04; <code>S</code> (S-01)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-07</td>
+<td><strong>Kundenkonto führen</strong> (Vorschlag Must) –
+<code>F3</code> (5) + <code>A</code> (Grenze zum CRM, <code>F4</code>;
+OP-14); <code>S</code> (S-10)</td>
+<td><code>F3</code> (5) + <code>A</code> (Grenze zum CRM,
+<code>F4</code>; OP-14); <code>S</code> (S-10)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-08</td>
+<td><strong>Organisationen mit mehreren Berechtigten</strong> (Vorschlag
+Should) – <code>F2</code>, <code>F5</code> (Vereine und Firmen) +
+<code>A</code></td>
+<td><code>F2</code>, <code>F5</code> (Vereine und Firmen) +
+<code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-09</td>
+<td><strong>Eigene Reservation verschieben</strong> (Vorschlag Should ·
+Variante Self-Service) – <code>F4</code> («Änderungen»), H-05 +
+<code>A</code>; <code>S</code> (S-11: Trainer wollen selbst
+verschieben)</td>
+<td><code>F4</code> («Änderungen»), H-05 + <code>A</code>;
+<code>S</code> (S-11: Trainer wollen selbst verschieben)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-10</td>
+<td><strong>Eigene Reservation stornieren</strong> (Vorschlag Should ·
+Variante Self-Service) – Frist <code>S</code> (S-05); Selbstbedienung
+<code>A</code> (OP-02)</td>
+<td><code>F3</code> (4), <code>F4</code> («Stornierungen»), H-12; Frist
+<code>S</code> (S-05); Selbstbedienung <code>A</code> (OP-02)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-11</td>
+<td><strong>Reservationen im Auftrag ändern und stornieren</strong>
+(Vorschlag Must) – Frist <code>S</code> (S-05)</td>
+<td><code>F2</code>, H-03; Frist <code>S</code> (S-05)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-14</td>
+<td><strong>Warteliste benachrichtigen</strong> (Vorschlag Should) –
+<code>F5</code> («Stornierung», «Information»), H-11 +
+<code>A</code></td>
+<td><code>F5</code> («Stornierung», «Information»), H-11 +
+<code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-15</td>
+<td><strong>Nachrücken nach dem Prinzip «wer zuerst bestätigt»</strong>
+(Vorschlag Should) – <code>S</code> (S-07, von der GL selbst als
+unsicher bezeichnet), <code>A</code> (OP-06: Reihenfolge nach Eintrag
+oder «wer zuerst»)</td>
+<td><code>S</code> (S-07, von der GL selbst als unsicher bezeichnet),
+<code>A</code> (OP-06: Reihenfolge nach Eintrag oder «wer zuerst»)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-16</td>
+<td><strong>Serienantrag erfassen</strong> (Vorschlag Must) –
+<code>S</code> (S-01, S-11)</td>
+<td><code>F3</code> (6), <code>F5</code> (Serien), H-08; <code>S</code>
+(S-01, S-11)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-17</td>
+<td><strong>Konflikte einer Serie anzeigen</strong> (Vorschlag Must) –
+Abnahmeszenario <code>S</code> (S-16)</td>
+<td><code>F3</code> (3, 6), H-08, <code>B</code> (Playtomic:
+Konfliktmeldung bei Serien); Abnahmeszenario <code>S</code> (S-16)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-18</td>
+<td><strong>Serie bestätigen</strong> (Vorschlag Must) – <code>F3</code>
+(6) + <code>A</code> (Bestätigung durch den Empfang, OP-03);
+<code>S</code> (S-06: neue Abendzeiten steuert die GL)</td>
+<td><code>F3</code> (6) + <code>A</code> (Bestätigung durch den Empfang,
+OP-03); <code>S</code> (S-06: neue Abendzeiten steuert die GL)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-19</td>
+<td><strong>Einzeltermin einer Serie absagen</strong> (Vorschlag Must) –
+<code>S</code> (S-06)</td>
+<td><code>F3</code> (6), H-09; <code>S</code> (S-06)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-20</td>
+<td><strong>Serienzugehörigkeit erkennen</strong> (Vorschlag Should) –
+<code>F3</code> (6) + <code>A</code></td>
+<td><code>F3</code> (6) + <code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-21</td>
+<td><strong>Bestätigung senden</strong> (Vorschlag Must) –
+<code>F5</code> («Information») + <code>A</code> (Kanal E-Mail, OP-07),
+H-13</td>
+<td><code>F5</code> («Information») + <code>A</code> (Kanal E-Mail,
+OP-07), H-13</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-22</td>
+<td><strong>Erinnerung vor dem Termin</strong> (Vorschlag Should) –
+<code>S</code> (S-08: Erinnerung am Vortag)</td>
+<td><code>F5</code> («Information»), <code>B</code> (eTermin), H-14;
+<code>S</code> (S-08: Erinnerung am Vortag)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-23</td>
+<td><strong>Betroffene bei Sperrzeit informieren</strong> (Vorschlag
+Should) – <code>A</code> (H-16), <code>F5</code> («Information»)</td>
+<td><code>A</code> (H-16), <code>F5</code> («Information»)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-25</td>
+<td><strong>Buchungsregeln je Kundengruppe festlegen</strong> (Vorschlag
+Must) – Regelarten <code>A</code></td>
+<td><code>F5</code> («Welche Regeln … gelten für welche
+Kundengruppen?»), H-06; Regelarten <code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-26</td>
+<td><strong>Kontingente festlegen</strong> (Vorschlag Should) –
+<code>A</code> (H-07, Konflikt K-01, OP-09); <code>S</code> (S-04:
+höchstens die Hälfte der Abendstunden für Serien)</td>
+<td><code>A</code> (H-07, Konflikt K-01, OP-09); <code>S</code> (S-04:
+höchstens die Hälfte der Abendstunden für Serien)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-27</td>
+<td><strong>Anlage sperren</strong> (Vorschlag Must) – <code>A</code>
+(H-16), <code>F3</code> (2)</td>
+<td><code>A</code> (H-16), <code>F3</code> (2)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-28</td>
+<td><strong>Betroffene Reservationen bei Sperrzeit anzeigen</strong>
+(Vorschlag Must) – <code>A</code> (H-16), <code>F3</code> (3)</td>
+<td><code>A</code> (H-16), <code>F3</code> (3)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-29</td>
+<td><strong>Auslastung auswerten</strong> (Vorschlag Should) –
+Kennzahlen <code>S</code> (S-09)</td>
+<td><code>F5</code> (Steuerung), <code>F4</code> (Ziel «Kapazitäten
+besser nutzen»), H-15; Kennzahlen <code>S</code> (S-09)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-30</td>
+<td><strong>Stornierungen auswerten</strong> (Vorschlag Should) –
+<code>F3</code> (4), <code>F5</code> (Steuerung) + <code>A</code>;
+<code>S</code> (S-09)</td>
+<td><code>F3</code> (4), <code>F5</code> (Steuerung) + <code>A</code>;
+<code>S</code> (S-09)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-31</td>
+<td><strong>Auswertungen exportieren</strong> (Vorschlag Could) –
+<code>S</code> (S-09: «Einmal im Monat reicht, als Tabelle für den
+Verwaltungsrat»), <code>A</code></td>
+<td><code>S</code> (S-09: «Einmal im Monat reicht, als Tabelle für den
+Verwaltungsrat»), <code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-32</td>
+<td><strong>Anlagen und Öffnungszeiten pflegen</strong> (Vorschlag Must)
+– <code>F2</code> (Angebot), <code>F5</code> (IT) + <code>A</code></td>
+<td><code>F2</code> (Angebot), <code>F5</code> (IT) +
+<code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-34</td>
+<td><strong>Bestehende Reservationen übernehmen</strong> (Vorschlag
+Must) – <code>F2</code> («interne Listen») + <code>A</code> (H-17,
+OP-15)</td>
+<td><code>F2</code> («interne Listen») + <code>A</code> (H-17,
+OP-15)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-36</td>
+<td><strong>Verfügbarkeit online anzeigen</strong> (Vorschlag Should ·
+Variante Self-Service) – <code>F3</code> (2), <code>F4</code>
+(«Verfügbarkeiten», «komfortabler für Kunden») + <code>A</code>
+(Self-Service nicht ausdrücklich gefordert, OP-02), H-01, H-05</td>
+<td><code>F3</code> (2), <code>F4</code> («Verfügbarkeiten»,
+«komfortabler für Kunden») + <code>A</code> (Self-Service nicht
+ausdrücklich gefordert, OP-02), H-01, H-05</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FA-37</td>
+<td><strong>Serie online beantragen</strong> (Vorschlag Should ·
+Variante Self-Service) – <code>F3</code> (6), <code>F5</code> (Serien) +
+<code>A</code> (OP-02, OP-08), H-08; <code>S</code> (S-06, S-11)</td>
+<td><code>F3</code> (6), <code>F5</code> (Serien) + <code>A</code>
+(OP-02, OP-08), H-08; <code>S</code> (S-06, S-11)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>QA-01</td>
+<td><strong>Erstreservation ohne Hilfe</strong> (Vorschlag Should ·
+Variante Self-Service) – <code>F4</code> (Nutzen «komfortabler»),
+<code>A</code></td>
+<td><code>F4</code> (Nutzen «komfortabler»), <code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>QA-02</td>
+<td><strong>Schnelle Erfassung am Empfang</strong> (Vorschlag Must) –
+<code>F3</code> (1), <code>A</code> (H-19); <code>S</code> (S-02: 40–60
+Anrufe pro Tag)</td>
+<td><code>F3</code> (1), <code>A</code> (H-19); <code>S</code> (S-02:
+40–60 Anrufe pro Tag)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>QA-03</td>
+<td><strong>Nutzung auf Smartphone und PC</strong> (Vorschlag Should ·
+Variante Self-Service) – <code>A</code> (H-20, «auch auf dem Smartphone
+nutzbar»); <code>S</code> (S-14: keine eigene App)</td>
+<td><code>A</code> (H-20, «auch auf dem Smartphone nutzbar»);
+<code>S</code> (S-14: keine eigene App)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>QA-04</td>
+<td><strong>Sprache</strong> (Vorschlag Must) – <code>F2</code> (Raum
+Zürich) + <code>A</code></td>
+<td><code>F2</code> (Raum Zürich) + <code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>QA-05</td>
+<td><strong>Verfügbarkeit</strong> (Vorschlag Must) – <code>F3</code>
+(2, «nicht jederzeit zentral ersichtlich») + <code>A</code> (H-20);
+30-Minuten-Grenze <code>S</code> (S-12)</td>
+<td><code>F3</code> (2, «nicht jederzeit zentral ersichtlich») +
+<code>A</code> (H-20); 30-Minuten-Grenze <code>S</code> (S-12)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>QA-06</td>
+<td><strong>Weiterarbeit bei Ausfall</strong> (Vorschlag Should) –
+<code>S</code> (S-13), H-23</td>
+<td><code>S</code> (S-13), H-23</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>QA-07</td>
+<td><strong>Antwortzeit Verfügbarkeit</strong> (Vorschlag Must) –
+<code>A</code></td>
+<td><code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>QA-08</td>
+<td><strong>Antwortzeit Reservation</strong> (Vorschlag Should) –
+<code>A</code></td>
+<td><code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>QA-10</td>
+<td><strong>Datensparsamkeit</strong> (Vorschlag Must) – RB-01 (DSG Art.
+6 Verhältnismässigkeit, Art. 7 datenschutzfreundliche Voreinstellungen),
+<code>A</code>; Datenumfang <code>S</code> (S-10), Konflikt K-05</td>
+<td>RB-01 (DSG Art. 6 Verhältnismässigkeit, Art. 7
+datenschutzfreundliche Voreinstellungen), <code>A</code>; Datenumfang
+<code>S</code> (S-10), Konflikt K-05</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>QA-11</td>
+<td><strong>Löschung inaktiver Konten</strong> (Vorschlag Must) – RB-01
+(DSG Art. 6), <code>A</code> (Frist, OP-17)</td>
+<td>RB-01 (DSG Art. 6), <code>A</code> (Frist, OP-17)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>QA-13</td>
+<td><strong>Rollen und Berechtigungen</strong> (Vorschlag Must) –
+<code>F5</code> (Regeln und Berechtigungen), H-18 + <code>A</code>
+(Matrix)</td>
+<td><code>F5</code> (Regeln und Berechtigungen), H-18 + <code>A</code>
+(Matrix)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>QA-14</td>
+<td><strong>Anmeldung</strong> (Vorschlag Must) – RB-01 (DSG Art. 8
+Datensicherheit), <code>A</code></td>
+<td>RB-01 (DSG Art. 8 Datensicherheit), <code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>QA-15</td>
+<td><strong>Änderungen nachvollziehen</strong> (Vorschlag Must) –
+<code>F3</code> (1, 3; Rückfragen), <code>A</code></td>
+<td><code>F3</code> (1, 3; Rückfragen), <code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>QA-16</td>
+<td><strong>Verschlüsselte Übertragung und Datensicherung</strong>
+(Vorschlag Must) – RB-01 (DSG Art. 8 Datensicherheit),
+<code>A</code></td>
+<td>RB-01 (DSG Art. 8 Datensicherheit), <code>A</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><em>72 Zeilen, erzeugt aus Spezifikation v0.7.</em></p>
+<script>
+// Mermaid-Diagramme (```mermaid) als Grafik rendern – nur wenn welche vorhanden sind
+(function () {
+  var bloecke = document.querySelectorAll('pre.mermaid');
+  if (!bloecke.length) return;
+  bloecke.forEach(function (pre) { pre.textContent = pre.textContent; });
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+  s.onload = function () { mermaid.initialize({ startOnLoad: false, theme: 'neutral' }); mermaid.run(); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>
