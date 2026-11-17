@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KI-Einsatz</title>
+<style>body { font-family: system-ui, 'Segoe UI', Arial, sans-serif; max-width: 56rem; margin: 0 auto; padding: 1.5rem 1rem; line-height: 1.6; color: #1f2333; background: #f5f6fa; }
+h1, h2, h3 { color: #312e81; } h2 { border-bottom: 2px solid #4f46e5; padding-bottom: 0.2rem; }
+a { color: #3730a3; } img { max-width: 100%; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; background: #fff; font-size: 0.92rem; display: block; overflow-x: auto; }
+th, td { border: 1px solid #c8ccd8; padding: 0.35rem 0.55rem; vertical-align: top; text-align: left; }
+th { background: #e8e9f7; } code { background: #eceef5; padding: 0 0.2rem; border-radius: 3px; }
+pre { background: #1f2333; color: #f5f6fa; padding: 0.8rem; overflow-x: auto; border-radius: 6px; } pre code { background: none; color: inherit; }
+blockquote { border-left: 4px solid #4f46e5; margin: 1rem 0; padding: 0.2rem 1rem; background: #eef0fb; }
+.nav { font-size: 0.9rem; margin-bottom: 1rem; }</style>
+</head>
+<body>
+<p class="nav"><a href="../index.html">← Übersicht Ämtli</a></p>
+<h1>KI-Einsatz</h1>
+<p>Hier halten wir laufend fest, wofür im Projekt KI eingesetzt wurde, was wir übernommen oder geändert haben und wie wir das Ergebnis geprüft haben.</p>
+<table>
+<thead>
+<tr>
+<th>Datum</th>
+<th>Werkzeug</th>
+<th>Wofür</th>
+<th>Übernommen / geändert</th>
+<th>Wie geprüft</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>06.10.2026</td>
+<td>Claude Code (Claude Sonnet 5.5)</td>
+<td>Umsetzungsplan aus dem Projektplan abgeleitet: Aufteilung in Django-Apps, Sprints, Kernlogik für Rotation (F2) und Saldo (F3). Vorher drei Rückfragen gestellt (Teamgrösse, Doku-Format, Frontend).</td>
+<td>Plan von Ray freigegeben. Ray wollte keine Doku durch die KI, nur ein kurzes README. Das Frontend blieb offen.</td>
+<td>Nur Planung, kein Code. Ray hat den Plan vor der Umsetzung gelesen und freigegeben.</td>
+</tr>
+<tr>
+<td>06.10.2026</td>
+<td>Claude Code (Claude Sonnet 5.5)</td>
+<td>Projekt-Setup (Apps, <code>.gitignore</code>, <code>requirements.txt</code>, README, Django-Admin entfernt, Login-Einstellungen) und Sprint 1 / F1: Registrierung, Login, WG erstellen, Einladungscode, Beitritt, Mitgliederverwaltung, <code>wg/permissions.py</code>, 16 Tests</td>
+<td>Code vollständig von der KI. Den Entscheid «ein Benutzer gehört zu genau einer WG» (OneToOne) hat die KI selbst getroffen und Ray darauf hingewiesen.</td>
+<td><code>manage.py check</code> und 16 Tests grün. Im Browser hat weder die KI noch Ray die Seiten angeschaut.</td>
+</tr>
+<tr>
+<td>06.10.2026</td>
+<td>Claude Code (Claude Opus 5.5)</td>
+<td>Auf Rays Wunsch den ganzen Sprint-1-Code mit deutschen Kommentaren zu jeder Zeile versehen</td>
+<td>Übernommen. Am 31.10. hat Ray den Stil geändert: Kommentare sollen das «Warum» erklären statt jede Zeile zu wiederholen.</td>
+<td>16 Tests weiterhin grün, die Logik ist unverändert.</td>
+</tr>
+<tr>
+<td>13.10.2026</td>
+<td>Claude Code (Claude Opus 5.5)</td>
+<td>Abgleich des Repos mit den Abgabe-Mindestanforderungen (Features, Entitäten, Django-Admin, README, Tests)</td>
+<td>Ergebnis als Einschätzung übernommen: F1 ist umgesetzt, F2 und F3 fehlen noch, das README ist unvollständig, <code>db.sqlite3</code> ist versioniert.</td>
+<td>KI hat die Testsuite ausgeführt (16 Tests grün) und <code>makemigrations --check</code> geprüft. Inhaltlich hat Ray das noch nicht nachgeprüft.</td>
+</tr>
+<tr>
+<td>13.10.2026</td>
+<td>Claude Code (Claude Opus 5.5)</td>
+<td>Erklärung, was «Django-Admin» ist</td>
+<td>Nur zum Verständnis genutzt, nichts in die Doku übernommen.</td>
+<td>–</td>
+</tr>
+<tr>
+<td>13.10.2026</td>
+<td>Claude Code (Claude Opus 5.5)</td>
+<td>Zusammenfassung von F1 und Liste offener Fragen zur Domäne (Schritt 1), danach Erstentwurf aller Dateien unter <code>docs/</code> (Vision, Personas, Szenarien, Stories mit Akzeptanzkriterien, Qualitätsmerkmale, Randbedingungen, Kontextabgrenzung, Entscheidungslog, Testabdeckung)</td>
+<td>Ray hat die offenen Fragen nicht einzeln beantwortet, sondern die Vorschläge der KI pauschal als Arbeitsgrundlage freigegeben. Alle Entscheide stehen deshalb als «vorläufig» im Entscheidungslog. Noch nichts geändert.</td>
+<td>Noch <strong>nicht</strong> geprüft. Ausstehend sind ein Team-Review aller Dokumente und Kurzinterviews zur Prüfung der Personas. Die Zuordnung von Tests zu Akzeptanzkriterien hat die KI anhand des Codes in <code>wg/tests.py</code> erstellt.</td>
+</tr>
+<tr>
+<td>13.10.2026</td>
+<td>Claude Code (Claude Opus 5.5)</td>
+<td>Vergleich von Frontend-Frameworks (Tailwind, Pico.css, Bootstrap) und Umstellung der bestehenden Templates auf Bootstrap 5 (Branch <code>feature/bootstrap-frontend</code>)</td>
+<td>Die KI hat Pico.css empfohlen, Ray hat sich für Bootstrap entschieden, weil er es kennt. Den Code hat die KI geschrieben, Ray hat ihn noch nicht im Browser angeschaut.</td>
+<td>16 Tests weiterhin grün. Die KI hat mit dem Test-Client geprüft, dass Fehlermeldungen und Hinweise korrekt erscheinen, und dass <code>runserver</code> die Bootstrap-Datei ausliefert. Ausstehend: eine Sichtprüfung im Browser auf Handy und Laptop durch Ray.</td>
+</tr>
+<tr>
+<td>13.10.2026</td>
+<td>Claude Code (Claude Opus 5.5)</td>
+<td>Repo aufgeräumt (<code>db.sqlite3</code> und <code>.idea/</code> nicht mehr versioniert) und Entwurf des Domänenmodells (<code>docs/07_domaenenmodell.md</code>, Entscheide E-19 bis E-23)</td>
+<td>Aufräumen von Ray freigegeben und gepusht. Den Ansatz «Domänenmodell als Nächstes» hat Ray bestätigt, das Modell selbst noch nicht geprüft.</td>
+<td>Aufräumen: frischer Klon von <code>staging</code>, <code>migrate</code>, 16 Tests grün. Domänenmodell: noch nicht geprüft. Ausstehend sind ein Team-Review und die Prüfung, ob die Mermaid-Darstellung den Formvorgaben des Kurses für UML genügt.</td>
+</tr>
+<tr>
+<td>13.10.2026</td>
+<td>Claude Code (Claude Opus 5.5)</td>
+<td>Fehlersuche: Die lokale Datenbank war leer, weil die KI beim Mergen des Aufräum-Commits <code>db.sqlite3</code> gelöscht hatte. Wiederhergestellt aus dem letzten Commit.</td>
+<td>Daten, die nach dem Commit «added registration logic» entstanden waren, sind verloren gegangen.</td>
+<td><code>migrate</code> lief ohne Fehler. Es fehlt noch die Bestätigung von Ray, dass genau dieser Fehler gemeint war.</td>
+</tr>
+<tr>
+<td>13.10.2026</td>
+<td>Claude Code (Claude Opus 5.5)</td>
+<td>Auf Rays Wunsch umgesetzt: «WG verlassen» (US-F1-06) und «WG löschen» (neue Story US-F1-08, E-24), mit Bestätigungsseiten und 9 Tests (Branch <code>feature/wg-verlassen-loeschen</code>)</td>
+<td>Die Funktion hat Ray vorgegeben. Die Regeln (letzter Admin, letzte Person, Bestätigung) stammen aus den Akzeptanzkriterien der KI. Ray hat den Code noch nicht geprüft.</td>
+<td>25 Tests grün. Eine Sichtprüfung im Browser durch Ray steht noch aus.</td>
+</tr>
+<tr>
+<td>24.10.2026</td>
+<td>Gemini</td>
+<td>Erstellung der Django-Models (Tabellenstruktur) unter Einhaltung der Kursvorgaben (Constraints, ForeignKeys) und strukturierte Aufteilung der Models in domänenspezifische Apps (<code>accounts</code>, <code>wg</code>, <code>aemtli</code>, <code>finanzen</code>). Danach Behebung eines <code>ImportError</code> beim Migrieren.</td>
+<td>Aufteilung nach Domänen als Best Practice übernommen. Den generierten Code in die jeweiligen <code>models.py</code>-Dateien kopiert. Die vorgeschlagene UUID-Funktion für den fehlenden Einladungscode (<code>neuer_einladungscode</code>) direkt in den Code übernommen.</td>
+<td>Ausführung von <code>makemigrations</code>. Den dabei entstandenen Import-Fehler mit Hilfe der KI analysiert, behoben und die Migration danach erneut angestossen.</td>
+</tr>
+<tr>
+<td>31.10.2026</td>
+<td>Claude Code (Claude Opus 5.5)</td>
+<td>Korrekturauftrag von Ray in 9 Schritten zu F1. Die KI hat vor dem Start festgestellt, dass seit <code>19d2267</code> (Models aus Gemini) 23 von 25 Tests rot waren: <code>Benutzer</code> war nicht mit dem Django-Login verbunden. Ausserdem war der Auftrag teils auf einem älteren Stand geschrieben («WG verlassen» gab es schon).</td>
+<td>Ray hat entschieden: <code>Benutzer</code> erbt von <code>AbstractUser</code>, Umbau auf eigenem Branch <code>fix/benutzer-modell</code>, Austritt mit <code>ausgetreten_am</code> statt Löschen. Die KI hat das Modell vorab gezeigt. Ray hat eine Regel geändert: Wenn die letzte Person geht, wird die WG <strong>nicht</strong> gelöscht (Historie bleibt). Danach Umbau und Schritte 1–9 durch die KI. Alle Migrationen neu erzeugt, die lokale DB musste neu angelegt werden.</td>
+<td>Nach jedem Schritt die Testsuite ausgeführt, am Ende 42 Tests grün. Zusätzlich <code>check</code>, <code>makemigrations --check</code> und eine Prüfung, dass die Django-Meldungen mit <code>de-ch</code> auf Deutsch kommen. Nicht gemacht: Sichtprüfung im Browser, Mutationstests.</td>
+</tr>
+<tr>
+<td>31.10.2026</td>
+<td>Claude Code (Claude Opus 5.5)</td>
+<td>Nachträge: Eine leere WG erhält einen neuen Einladungscode (alter Code ungültig), Bestätigungs-Tests verschärft. Danach Commit <code>55a1d85</code>, Push von <code>fix/benutzer-modell</code> und Entwurf der Pull-Request-Beschreibung</td>
+<td>Regel und Tests hat Ray vorgegeben, umgesetzt hat die KI. Den PR hat die KI nicht selbst eröffnet.</td>
+<td>44 Tests grün.</td>
+</tr>
+<tr>
+<td>31.10.2026</td>
+<td>Claude Code (Claude Opus 5.5)</td>
+<td>Review von Rays PR-Abschnitt «Falls du einen eigenen Branch mit Model-Änderungen hast»</td>
+<td>Die KI hat korrigiert: Der PR gehört gegen <code>staging</code>, weil <code>main</code> noch bei <code>e1ef162</code> steht. Migrationen aller Apps sind betroffen, und es braucht Code-Anpassungen (<code>AUTH_USER_MODEL</code>, <code>aktive_mitgliedschaft</code>, <code>austreten()</code>). Ob Ray die korrigierte Fassung übernommen hat, ist offen.</td>
+<td>Die Remote-Branches mit <code>git fetch</code> und <code>git log</code> geprüft: Ausser <code>staging</code> gibt es keinen weiteren Branch mit Modell-Änderungen.</td>
+</tr>
+<tr>
+<td>31.10.2026</td>
+<td>Claude Code (Claude Opus 5.5)</td>
+<td>Lokaler Merge von <code>fix/benutzer-modell</code> in <code>staging</code> (<code>--no-ff</code>, Merge-Commit <code>01bee8a</code>), ohne Push</td>
+<td>Ablauf von Ray vorgegeben, inklusive Abbruch bei Konflikten in Migrationen oder Models. Es gab weder neue Commits auf <code>staging</code> noch Konflikte. Den Push macht Ray selbst.</td>
+<td><code>db.sqlite3</code> gelöscht, <code>migrate</code> ohne Fehler, 44 Tests grün.</td>
+</tr>
+<tr>
+<td>10.11.2026</td>
+<td>Claude Code (Claude Opus 5.5)</td>
+<td>F2 Ämtliplan umgesetzt (Branch <code>feature/aemtli-plan</code>): Ämtli verwalten, Rotation, Abhaken, Verlauf, 42 Tests</td>
+<td>Code vollständig von der KI. Selbst getroffene Entscheide: Rotation nach (i + k) mod n, Planung beim ersten Aufruf der Woche statt Hintergrund-Job, Flag <code>entfallen</code> statt Löschen, Löschen eines Ämtli nur per <code>geloescht_am</code>, Ausnahme für die Gründungswoche, laufende Woche zählt im Verlauf mit, Feld <code>intervall_wochen</code> entfernt. Noch nicht von Ray geprüft.</td>
+<td>86 Tests grün, <code>check</code> und <code>makemigrations --check</code> ohne Befund. Nicht gemacht: Sichtprüfung im Browser.</td>
+</tr>
+<tr>
+<td>10.11.2026</td>
+<td>Claude Code (Claude Opus 5.5)</td>
+<td>Umteilen durch Admins (US-F2-06, E-25) auf <code>feature/aemtli-plan</code>, 7 Tests. Ausserdem lokale Testdaten: Passwort von <code>admin</code> auf <code>admin</code> gesetzt, Testbenutzer lena, marco, sara angelegt</td>
+<td>Variante «nur diese Woche umteilen» von Ray gewählt. Details von der KI: nur offene Ämtli, entfallene können neu vergeben werden, Admins sehen entfallene im Plan.</td>
+<td>93 Tests grün. Keine Sichtprüfung im Browser.</td>
+</tr>
+<tr>
+<td>17.11.2026</td>
+<td>Claude Code (Claude Opus 5.5), im Auftrag von Görkem</td>
+<td>Test von <code>staging</code> (Commit <code>4343dcd</code>): Testsuite, Coverage, <code>check --deploy</code>, Browser-Rundgang mit Playwright (24 Prüfungen, 12 Screenshots) und Abgleich mit dieser Doku. Ergebnis als Testbericht mit Verbesserungsvorschlägen.</td>
+<td>Bericht und Vorschläge stammen von der KI; der Abgleich mit <code>docs/</code> kam erst nach einem ersten Entwurf ohne Doku dazu und hat die Einordnung geändert (F2/F3 laut Zeitplan noch nicht fällig). Die KI hat den Bericht zunächst auf <code>staging</code> gepusht (<code>4d0faf4</code>); auf Wunsch von Görkem wurde der Commit per Force-Push wieder entfernt, <code>staging</code> steht wieder auf <code>4343dcd</code>. Am Code der App wurde nichts geändert. Der Bericht liegt nur in Görkems öffentlichem Repo <code>gotazlib/abgaben</code> unter <code>software-engineering/aemtli-plan/</code>.</td>
+<td>44 Tests grün, Coverage 98 %, Rundgang 16/24 bestanden. Nach dem Force-Push mit <code>git fetch</code> geprüft, dass <code>staging</code> wieder auf <code>4343dcd</code> steht und niemand dazwischen gepusht hatte. Die Vorschläge sind noch nicht im Team besprochen.</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

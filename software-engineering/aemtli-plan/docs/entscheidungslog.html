@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entscheidungslog</title>
+<style>body { font-family: system-ui, 'Segoe UI', Arial, sans-serif; max-width: 56rem; margin: 0 auto; padding: 1.5rem 1rem; line-height: 1.6; color: #1f2333; background: #f5f6fa; }
+h1, h2, h3 { color: #312e81; } h2 { border-bottom: 2px solid #4f46e5; padding-bottom: 0.2rem; }
+a { color: #3730a3; } img { max-width: 100%; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; background: #fff; font-size: 0.92rem; display: block; overflow-x: auto; }
+th, td { border: 1px solid #c8ccd8; padding: 0.35rem 0.55rem; vertical-align: top; text-align: left; }
+th { background: #e8e9f7; } code { background: #eceef5; padding: 0 0.2rem; border-radius: 3px; }
+pre { background: #1f2333; color: #f5f6fa; padding: 0.8rem; overflow-x: auto; border-radius: 6px; } pre code { background: none; color: inherit; }
+blockquote { border-left: 4px solid #4f46e5; margin: 1rem 0; padding: 0.2rem 1rem; background: #eef0fb; }
+.nav { font-size: 0.9rem; margin-bottom: 1rem; }</style>
+</head>
+<body>
+<p class="nav"><a href="../index.html">← Übersicht Ämtli</a></p>
+<h1>Entscheidungslog</h1>
+<blockquote>
+<p>Die Entscheide E-01 bis E-17 hat Claude Code am 13.10.2026 als Vorschlag erarbeitet. Ray hat sie pauschal als Arbeitsgrundlage freigegeben, aber noch nicht einzeln geprüft. <strong>Status «vorläufig»</strong> bedeutet, dass der Entscheid noch im Team bestätigt werden muss.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Datum</th>
+<th>Entscheid</th>
+<th>Begründung</th>
+<th>Verworfene Alternativen</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E-01</td>
+<td>13.10.2026</td>
+<td>Jede Person ist in höchstens einer WG.</td>
+<td>Entspricht der Realität, hält Bedienung und Regeln einfach und ist im Code von F1 bereits so umgesetzt.</td>
+<td>Mehrere WGs pro Person (z.B. Wochenaufenthalter)</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-02</td>
+<td>13.10.2026</td>
+<td>Alle Mitglieder sehen den Einladungscode, nur Admins können ihn erneuern.</td>
+<td>So kann z.B. auch Marco neue Mitbewohnende einladen.</td>
+<td>Code nur für Admins sichtbar</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-03</td>
+<td>13.10.2026</td>
+<td>Wer den Code eingibt, ist sofort Mitglied, ohne Freigabe.</td>
+<td>Ein einfacher Einstieg ist wichtig (Sara). Das Risiko mildern Code-Erneuerung und Entfernen.</td>
+<td>Freigabe jedes Beitritts durch einen Admin</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-04</td>
+<td>13.10.2026</td>
+<td>Man kann die WG selbst verlassen. Der letzte Admin muss vorher die Rolle weitergeben. Verlässt die letzte Person die WG, wird diese gelöscht.</td>
+<td>Auszüge sind normal. Ohne Admin wäre eine WG nicht mehr zu verwalten.</td>
+<td>Nur Admins können Mitglieder entfernen (Stand Code)</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-05</td>
+<td>13.10.2026</td>
+<td>Die Rotation läuft reihum: Jedes Ämtli geht jede Woche (Montag bis Sonntag) an die nächste Person in einer festen Reihenfolge, nämlich der Beitrittsreihenfolge.</td>
+<td>Einfach, vorhersehbar und nachweisbar fair.</td>
+<td>Zufällige Zuteilung; Zuteilung nach Punkten oder Aufwand</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-06</td>
+<td>13.10.2026</td>
+<td>Neue Mitglieder werden ab der nächsten Woche eingeplant. Ausgetretene fallen ab der nächsten Woche weg, ihre offenen Ämtli der laufenden Woche entfallen.</td>
+<td>Die laufende Woche bleibt stabil, niemand erhält mitten in der Woche ein Ämtli.</td>
+<td>Sofortige Neuverteilung</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-07</td>
+<td>13.10.2026</td>
+<td>Unerledigte Ämtli werden nicht nachgeholt und nicht bestraft. Sie bleiben im Verlauf sichtbar.</td>
+<td>Transparenz statt Kontrolle. Strafen machen Bedienung und Regeln komplizierter.</td>
+<td>Übertrag in die nächste Woche; Strafpunkte</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-08</td>
+<td>13.10.2026</td>
+<td>Ämtli können nicht getauscht oder ausgesetzt werden.</td>
+<td>Hält den Umfang klein. Absprachen passieren im WG-Chat.</td>
+<td>Tauschfunktion; Ferienmodus</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-09</td>
+<td>13.10.2026</td>
+<td>Ausgaben werden gleichmässig auf die ausgewählten Personen aufgeteilt.</td>
+<td>Deckt den Normalfall (Znacht, Putzmittel) ab und ist leicht nachvollziehbar.</td>
+<td>Individuelle Beträge; Prozente; Gewichtung</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-10</td>
+<td>13.10.2026</td>
+<td>Die Anteile der anderen werden kaufmännisch auf 5 Rappen gerundet. Den Rest trägt die zahlende Person.</td>
+<td>In der Schweiz übliche Rundung, gut zu überweisen. Die Summe stimmt immer genau.</td>
+<td>Exakte Rappen; Rest an eine zufällige Person; Rest verfällt</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-11</td>
+<td>13.10.2026</td>
+<td>Die zahlende Person ist immer an der Ausgabe beteiligt.</td>
+<td>Macht die Rundungsregel eindeutig und deckt den Normalfall ab.</td>
+<td>Ausgaben nur für andere, z.B. ein Geschenk</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-12</td>
+<td>13.10.2026</td>
+<td>Rückzahlungen werden in der App festgehalten. Das Geld fliesst ausserhalb der App.</td>
+<td>Ohne Rückzahlungen würden die Saldi nie ausgeglichen. Eine Zahlungsabwicklung wäre zu gross und juristisch heikel.</td>
+<td>Integration von TWINT oder einer Bank; Saldo von Hand zurücksetzen</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-13</td>
+<td>13.10.2026</td>
+<td>Eine Ausgabe dürfen nur die erfassende Person und Admins ändern oder löschen.</td>
+<td>Fehler bleiben korrigierbar, und es kann nicht jede Person alles ändern.</td>
+<td>Alle dürfen alles ändern; niemand darf ändern</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-14</td>
+<td>13.10.2026</td>
+<td>F4: Pro WG gibt es eine Einkaufsliste. Artikel haben keine Preise, beim Umwandeln wird nur der Gesamtbetrag erfasst.</td>
+<td>Schnelle Bedienung im Laden. Es zählt der Betrag auf dem Kassenzettel.</td>
+<td>Mehrere Listen; Preis pro Artikel</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-15</td>
+<td>13.10.2026</td>
+<td>Der Ausgleichsvorschlag braucht höchstens n − 1 Überweisungen: Die Person mit der grössten Schuld zahlt jeweils der Person mit dem grössten Guthaben.</td>
+<td>Einfach umzusetzen und zu erklären. Erfüllt «wer schuldet wem».</td>
+<td>Jede Ausgabe einzeln begleichen; mathematisch minimale Anzahl Überweisungen (aufwendig)</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-16</td>
+<td>13.10.2026</td>
+<td>Keine Anbindung an externe Systeme wie E-Mail, Push-Nachrichten oder Zahlungsdienste.</td>
+<td>Die App muss auf einem frischen Laptop ohne Zugangsdaten laufen. Das hält den Umfang klein.</td>
+<td>E-Mail-Einladung; Erinnerungen</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-17</td>
+<td>13.10.2026</td>
+<td>Die Anforderungsdoku liegt als Markdown im Repo unter <code>docs/</code>.</td>
+<td>Sie wird zusammen mit dem Code versioniert und ist für alle sichtbar.</td>
+<td>Word-Dokument; Wiki</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-18</td>
+<td>13.10.2026</td>
+<td>Frontend mit Bootstrap 5, lokal im Projekt unter <code>static/vendor/</code> (kein CDN, kein Build-Schritt).</td>
+<td>Ray kennt Bootstrap schon. Läuft offline und nach <code>pip install</code> ohne Node.js, also auch auf einem frischen Laptop. Bietet fertige Bausteine wie Navbar und Alerts.</td>
+<td>Tailwind (braucht Node.js für den Build oder ein CDN mit Internet); Pico.css (Empfehlung der KI, aber im Team unbekannt)</td>
+<td>bestätigt (Ray)</td>
+</tr>
+<tr>
+<td>E-19</td>
+<td>13.10.2026</td>
+<td>Zuteilungen, Ausgaben, Anteile und Rückzahlungen hängen am Benutzer, nicht an der Mitgliedschaft.</td>
+<td>Die Mitgliedschaft wird beim Austritt gelöscht, Verlauf und Abrechnung sollen aber erhalten bleiben.</td>
+<td>Verknüpfung über die Mitgliedschaft; Mitgliedschaft nur als «inaktiv» markieren</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-20</td>
+<td>13.10.2026</td>
+<td>Die Woche ist keine eigene Klasse, sondern eine Eigenschaft der Zuteilung.</td>
+<td>Eine Woche hat ausser ihrem Datum keine eigenen Daten.</td>
+<td>Eigene Klasse «Woche»</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-21</td>
+<td>13.10.2026</td>
+<td>Saldo und Ausgleichsvorschlag werden jedes Mal berechnet, nicht gespeichert.</td>
+<td>Sie können so nie im Widerspruch zu den Buchungen stehen.</td>
+<td>Saldo als gespeicherter Wert, der bei jeder Buchung nachgeführt wird</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-22</td>
+<td>13.10.2026</td>
+<td>Keine Assoziation zwischen Artikel und Ausgabe. Die Artikel werden beim Umwandeln entfernt und in die Beschreibung der Ausgabe übernommen.</td>
+<td>Einfacher, und so verlangt es US-F4-03.</td>
+<td>Artikel bleiben erhalten und verweisen auf die Ausgabe</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-23</td>
+<td>13.10.2026</td>
+<td>Einkaufsliste als eigene Klasse (1:1 zur WG).</td>
+<td>Nah an der Fachsprache und später auf mehrere Listen erweiterbar.</td>
+<td>Artikel hängen direkt an der WG</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-24</td>
+<td>13.10.2026</td>
+<td>Jeder Admin darf die ganze WG löschen (US-F1-08), nach einer Bestätigungsseite. Die Benutzerkonten bleiben bestehen.</td>
+<td>Von Ray gewünscht. Admins dürfen ohnehin alle Mitglieder entfernen, das Löschen gibt ihnen also keine wesentlich grösseren Rechte.</td>
+<td>Nur die gründende Person darf löschen; Zustimmung aller Mitglieder; Eingabe des WG-Namens zur Bestätigung</td>
+<td>vorläufig</td>
+</tr>
+<tr>
+<td>E-25</td>
+<td>10.11.2026</td>
+<td>Admins können ein offenes Ämtli der laufenden Woche einer anderen Person geben (US-F2-06). Die Rotation der folgenden Wochen ändert sich dadurch nicht. Schwächt E-08 ab.</td>
+<td>Von Ray gewünscht. Deckt Ferien, Krankheit und entfallene Ämtli ab, ohne die Fairness der Rotation zu gefährden.</td>
+<td>Feste Zuweisung eines Ämtli ohne Rotation; Tauschen durch die Mitglieder selbst</td>
+<td>bestätigt (Ray)</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

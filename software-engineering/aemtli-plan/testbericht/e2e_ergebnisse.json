@@ -1,0 +1,122 @@
+[
+  {
+    "test": "Startseite leitet ohne Login zum Login",
+    "ok": true,
+    "detail": "http://127.0.0.1:8131/accounts/login/?next=/"
+  },
+  {
+    "test": "Schwaches Passwort wird abgelehnt",
+    "ok": true,
+    "detail": "Dieses Passwort ist zu kurz. Es muss mindestens 8 Zeichen enthalten. | Dieses Passwort ist zu üblich. | Dieses Passwort ist komplett numerisch."
+  },
+  {
+    "test": "Registrierung loggt ein und führt zu WG-Start",
+    "ok": true,
+    "detail": "http://127.0.0.1:8131/wg/start/"
+  },
+  {
+    "test": "WG-Name auf 100 Zeichen begrenzt",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "test": "Sonderzeichen im WG-Namen werden als Text angezeigt",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "test": "Einladungscode hat 8 Zeichen",
+    "ok": true,
+    "detail": "L5xf1fU0"
+  },
+  {
+    "test": "Code ohne verwechselbare Zeichen (0/O, 1/l/I)",
+    "ok": false,
+    "detail": "L5xf1fU0"
+  },
+  {
+    "test": "Kopieren-Button oder Einladungslink vorhanden",
+    "ok": false,
+    "detail": ""
+  },
+  {
+    "test": "Navigation enthält Ämtliplan (F2)",
+    "ok": false,
+    "detail": "Ämtli / Meine WG / anna07242 / Logout"
+  },
+  {
+    "test": "Navigation enthält Ausgaben (F3)",
+    "ok": false,
+    "detail": ""
+  },
+  {
+    "test": "Seite /aemtli/ vorhanden",
+    "ok": false,
+    "detail": "HTTP 404"
+  },
+  {
+    "test": "Seite /finanzen/ vorhanden",
+    "ok": false,
+    "detail": "HTTP 404"
+  },
+  {
+    "test": "Beitritt mit Code in Kleinbuchstaben",
+    "ok": false,
+    "detail": "Code klein eingetippt"
+  },
+  {
+    "test": "Bruno ist beigetreten",
+    "ok": true,
+    "detail": "http://127.0.0.1:8131/wg/"
+  },
+  {
+    "test": "Mitglied sieht keine Admin-Buttons",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "test": "Mitglied bekommt 403 bei WG löschen",
+    "ok": true,
+    "detail": "HTTP 403"
+  },
+  {
+    "test": "Falsches Passwort zeigt Fehlermeldung",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "test": "Rolle wechseln: Bruno wird Admin",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "test": "Entfernen fragt nach Bestätigung",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "test": "Bruno wurde entfernt",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "test": "Code erneuern fragt vorher nach",
+    "ok": false,
+    "detail": "L5xf1fU0 -> UGdbYvW0 ohne Rückfrage"
+  },
+  {
+    "test": "Mobile 375px ohne horizontales Scrollen",
+    "ok": true,
+    "detail": "scrollWidth 375"
+  },
+  {
+    "test": "WG löschen führt zurück zu WG-Start",
+    "ok": true,
+    "detail": "http://127.0.0.1:8131/wg/start/"
+  },
+  {
+    "test": "Alle Eingabefelder haben ein <label>",
+    "ok": true,
+    "detail": "[]"
+  }
+]

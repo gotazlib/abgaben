@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anforderungsdokumentation Ämtli</title>
+<style>body { font-family: system-ui, 'Segoe UI', Arial, sans-serif; max-width: 56rem; margin: 0 auto; padding: 1.5rem 1rem; line-height: 1.6; color: #1f2333; background: #f5f6fa; }
+h1, h2, h3 { color: #312e81; } h2 { border-bottom: 2px solid #4f46e5; padding-bottom: 0.2rem; }
+a { color: #3730a3; } img { max-width: 100%; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; background: #fff; font-size: 0.92rem; display: block; overflow-x: auto; }
+th, td { border: 1px solid #c8ccd8; padding: 0.35rem 0.55rem; vertical-align: top; text-align: left; }
+th { background: #e8e9f7; } code { background: #eceef5; padding: 0 0.2rem; border-radius: 3px; }
+pre { background: #1f2333; color: #f5f6fa; padding: 0.8rem; overflow-x: auto; border-radius: 6px; } pre code { background: none; color: inherit; }
+blockquote { border-left: 4px solid #4f46e5; margin: 1rem 0; padding: 0.2rem 1rem; background: #eef0fb; }
+.nav { font-size: 0.9rem; margin-bottom: 1rem; }</style>
+</head>
+<body>
+<p class="nav"><a href="../index.html">← Übersicht Ämtli</a></p>
+<h1>Anforderungsdokumentation Ämtli</h1>
+<blockquote>
+<p>Basis-Entwurf vom 13.10.2026. Alle Inhalte sind vorläufig und müssen noch im Team überprüft werden.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Datei</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="01_vision.html">01_vision.md</a></td>
+<td>Vision nach Pitch-Formel</td>
+</tr>
+<tr>
+<td><a href="02_personas.html">02_personas.md</a></td>
+<td>Lena, Marco, Sara</td>
+</tr>
+<tr>
+<td><a href="03_szenarien.html">03_szenarien.md</a></td>
+<td>S1–S5 und Zuordnung zu Personas und Features</td>
+</tr>
+<tr>
+<td><a href="04_features_userstories.html">04_features_userstories.md</a></td>
+<td>F1–F4: Stories, Akzeptanzkriterien, Qualitätsmerkmale, Randbedingungen</td>
+</tr>
+<tr>
+<td><a href="05_kontextabgrenzung.html">05_kontextabgrenzung.md</a></td>
+<td>Nutzer und Umsysteme</td>
+</tr>
+<tr>
+<td><a href="06_testabdeckung.html">06_testabdeckung.md</a></td>
+<td>Zuordnung von Tests zu Akzeptanzkriterien und fehlende Tests</td>
+</tr>
+<tr>
+<td><a href="07_domaenenmodell.html">07_domaenenmodell.md</a></td>
+<td>Domänenmodell (UML)</td>
+</tr>
+<tr>
+<td><a href="entscheidungslog.html">entscheidungslog.md</a></td>
+<td>Fachliche Entscheide E-01 bis E-23</td>
+</tr>
+<tr>
+<td><a href="ki-einsatz.html">ki-einsatz.md</a></td>
+<td>Laufendes Log des KI-Einsatzes (Pflicht in der Abgabe)</td>
+</tr>
+</tbody>
+</table>
+<h2>Checkliste: Mindestanforderungen laut Bewertungsbogen</h2>
+<ul>
+<li>[x] Vision nach Pitch-Formel</li>
+<li>[x] Mindestens 2 Personas mit Name, persönlichen und beruflichen Infos, Erfahrung/Bildung und Interesse am Projekt (es sind 3)</li>
+<li>[x] Mindestens 3 Szenarien, jede Persona kommt in mindestens einem vor (es sind 5, Sara kommt in S4 und S5 vor)</li>
+<li>[x] Jedes Feature hat mindestens 2 User Stories mit Akzeptanzkriterien (F1: 7, F2: 5, F3: 5, F4: 3; jeweils 3–7 Kriterien)</li>
+<li>[x] Pro Feature die 2 wichtigsten Qualitätsmerkmale mit Begründung und Zielkonflikt</li>
+<li>[x] Randbedingungen: organisatorisch, technisch, juristisch</li>
+<li>[x] Kontextabgrenzung mit Nutzern und Umsystemen</li>
+<li>[x] Domänenmodell (Entwurf in <a href="07_domaenenmodell.html">07_domaenenmodell.md</a>) als UML ohne Attribute, mit Assoziationsnamen und Multiplizitäten, inklusive F4</li>
+<li>[ ] Alle Inhalte im Team geprüft und die Entscheide vom Status «vorläufig» auf «bestätigt» gesetzt</li>
+</ul>
+<h2>Offene Punkte</h2>
+<ol>
+<li><strong>Personas prüfen:</strong> 2–3 echte WG-Bewohnende kurz befragen, z.B. mit diesen Fragen: Wie verteilt ihr Ämtli heute? Wie rechnet ihr gemeinsame Ausgaben ab? Was nervt dabei am meisten? Die Personas danach anpassen und das Vorgehen im KI-Einsatz-Log festhalten.</li>
+<li><strong>Entscheide E-01 bis E-23</strong> (ausser E-18) im Team einzeln bestätigen oder ändern.</li>
+<li><strong>Domänenmodell:</strong> Den Entwurf im Team prüfen und klären, ob Mermaid als UML-Darstellung reicht oder ein UML-Tool verlangt ist.</li>
+<li>~~Repo aufräumen~~ (erledigt am 13.10.2026)</li>
+<li><strong>Haupt-README</strong> um die umgesetzten Features und manuelle End-to-End-Tests ergänzen. Das ist eine Abgabepflicht.</li>
+</ol>
+<h2>Vorschlag zur Aufteilung der Arbeit (5 Personen)</h2>
+<p>Alle arbeiten in jeder Phase mit. Die Hauptverantwortung ist so verteilt:</p>
+<table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Rolle</th>
+<th>Doku</th>
+<th>App</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Product Owner</td>
+<td>Vision, Personas, Szenarien, Interviews, Priorisierung des Backlogs</td>
+<td>Abnahme der Stories, manuelle End-to-End-Tests im README</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Technical Lead</td>
+<td>Randbedingungen, Domänenmodell (UML)</td>
+<td>Architektur, Abschluss von F1 (US-F1-06, US-F1-07), Code-Reviews</td>
+</tr>
+<tr>
+<td>3</td>
+<td>QA Lead</td>
+<td>Prüfbarkeit der Akzeptanzkriterien, Testabdeckung</td>
+<td>Fehlende F1-Tests, Testkonzept, Testlauf auf frischem Laptop vor der Abgabe</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Entwicklung F2</td>
+<td>Stories F2 verfeinern</td>
+<td>Ämtliplan mit Rotation und Tests (Demo 2)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Entwicklung F3</td>
+<td>Stories F3 und Berechnungsregeln verfeinern</td>
+<td>Ausgaben, Saldo, Ausgleich und Tests</td>
+</tr>
+</tbody>
+</table>
+<p>Ray ist Lead der Gruppe und übernimmt zusätzlich eine dieser Rollen. Das KI-Einsatz-Log und das Entscheidungslog führen alle. Zuständig für die Pflege ist der Product Owner. F4 setzt wer Zeit hat erst um, wenn F1 bis F3 fertig sind.</p>
+
+</body>
+</html>

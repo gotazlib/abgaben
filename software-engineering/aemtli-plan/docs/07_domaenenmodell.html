@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Domänenmodell</title>
+<style>body { font-family: system-ui, 'Segoe UI', Arial, sans-serif; max-width: 56rem; margin: 0 auto; padding: 1.5rem 1rem; line-height: 1.6; color: #1f2333; background: #f5f6fa; }
+h1, h2, h3 { color: #312e81; } h2 { border-bottom: 2px solid #4f46e5; padding-bottom: 0.2rem; }
+a { color: #3730a3; } img { max-width: 100%; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; background: #fff; font-size: 0.92rem; display: block; overflow-x: auto; }
+th, td { border: 1px solid #c8ccd8; padding: 0.35rem 0.55rem; vertical-align: top; text-align: left; }
+th { background: #e8e9f7; } code { background: #eceef5; padding: 0 0.2rem; border-radius: 3px; }
+pre { background: #1f2333; color: #f5f6fa; padding: 0.8rem; overflow-x: auto; border-radius: 6px; } pre code { background: none; color: inherit; }
+blockquote { border-left: 4px solid #4f46e5; margin: 1rem 0; padding: 0.2rem 1rem; background: #eef0fb; }
+.nav { font-size: 0.9rem; margin-bottom: 1rem; }</style>
+</head>
+<body>
+<p class="nav"><a href="../index.html">← Übersicht Ämtli</a></p>
+<h1>Domänenmodell</h1>
+<blockquote>
+<p>Status: Entwurf vom 13.10.2026. Es umfasst die ganze Domäne inklusive F4, ohne Attribute, mit Assoziationsnamen und Multiplizitäten. Die Entscheide dazu sind E-19 bis E-23 im <a href="entscheidungslog.html">Entscheidungslog</a>.</p>
+</blockquote>
+<pre class="mermaid">classDiagram
+    direction LR
+
+    class Benutzer
+    class WG
+    class Mitgliedschaft
+    class Aemtli["Ämtli"]
+    class Zuteilung["Ämtli-Zuteilung"]
+    class Ausgabe
+    class Ausgabenanteil
+    class Rueckzahlung["Rückzahlung"]
+    class Einkaufsliste
+    class Artikel
+
+    %% F1: WG und Mitglieder
+    Benutzer "1" -- "0..1" Mitgliedschaft : besitzt
+    WG "1" *-- "1..*" Mitgliedschaft : umfasst
+
+    %% F2: Ämtliplan
+    WG "1" *-- "0..*" Aemtli : plant
+    Aemtli "1" *-- "0..*" Zuteilung : wird wöchentlich zugeteilt in
+    Zuteilung "0..*" -- "1" Benutzer : ist zuständig
+
+    %% F3: Ausgaben
+    WG "1" *-- "0..*" Ausgabe : führt
+    Ausgabe "0..*" -- "1" Benutzer : bezahlt von
+    Ausgabe "0..*" -- "1" Benutzer : erfasst von
+    Ausgabe "1" *-- "1..*" Ausgabenanteil : wird aufgeteilt in
+    Ausgabenanteil "0..*" -- "1" Benutzer : belastet
+    WG "1" *-- "0..*" Rueckzahlung : führt
+    Rueckzahlung "0..*" -- "1" Benutzer : zahlt
+    Rueckzahlung "0..*" -- "1" Benutzer : empfängt
+    Rueckzahlung "0..*" -- "1" Benutzer : erfasst von
+
+    %% F4: Einkaufsliste
+    WG "1" *-- "1" Einkaufsliste : hat
+    Einkaufsliste "1" *-- "0..*" Artikel : enthält
+</pre>
+<p>Eine gefüllte Raute (◆, Komposition) bedeutet: Wird das Ganze gelöscht, verschwinden auch seine Teile. Wird zum Beispiel eine WG aufgelöst, sind auch ihre Ämtli, Ausgaben und ihre Einkaufsliste weg.</p>
+<h2>Assoziationen lesen</h2>
+<table>
+<thead>
+<tr>
+<th>Assoziation</th>
+<th>gelesen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Benutzer 1 – 0..1 Mitgliedschaft</td>
+<td>Ein Benutzer besitzt höchstens eine Mitgliedschaft (E-01).</td>
+</tr>
+<tr>
+<td>WG 1 – 1..* Mitgliedschaft</td>
+<td>Eine WG umfasst mindestens ein Mitglied. Verlässt das letzte Mitglied die WG, wird sie gelöscht (E-04).</td>
+</tr>
+<tr>
+<td>WG 1 – 0..* Ämtli</td>
+<td>Eine WG plant beliebig viele Ämtli.</td>
+</tr>
+<tr>
+<td>Ämtli 1 – 0..* Ämtli-Zuteilung</td>
+<td>Ein Ämtli wird jede Woche neu zugeteilt. Jede Zuteilung gilt für genau eine Woche.</td>
+</tr>
+<tr>
+<td>Ämtli-Zuteilung 0..* – 1 Benutzer</td>
+<td>Für jede Zuteilung ist genau eine Person zuständig.</td>
+</tr>
+<tr>
+<td>Ausgabe 0..* – 1 Benutzer (bezahlt von / erfasst von)</td>
+<td>Jede Ausgabe hat genau eine zahlende und genau eine erfassende Person. Die beiden können verschieden sein (E-13).</td>
+</tr>
+<tr>
+<td>Ausgabe 1 – 1..* Ausgabenanteil</td>
+<td>Jede Ausgabe wird in mindestens einen Anteil aufgeteilt, einen pro beteiligte Person.</td>
+</tr>
+<tr>
+<td>Ausgabenanteil 0..* – 1 Benutzer</td>
+<td>Jeder Anteil belastet genau eine Person.</td>
+</tr>
+<tr>
+<td>Rückzahlung 0..* – 1 Benutzer (zahlt / empfängt / erfasst von)</td>
+<td>Jede Rückzahlung läuft von einer Person an eine andere und wird von einer Person festgehalten.</td>
+</tr>
+<tr>
+<td>WG 1 – 1 Einkaufsliste</td>
+<td>Jede WG hat genau eine Einkaufsliste (E-14).</td>
+</tr>
+<tr>
+<td>Einkaufsliste 1 – 0..* Artikel</td>
+<td>Eine Einkaufsliste enthält beliebig viele Artikel.</td>
+</tr>
+</tbody>
+</table>
+<h2>Entscheide zum Modell</h2>
+<ul>
+<li><strong>E-19:</strong> Zuteilungen, Ausgaben, Anteile und Rückzahlungen hängen am <strong>Benutzer</strong>, nicht an der Mitgliedschaft. Die Mitgliedschaft verschwindet beim Austritt, Verlauf und Abrechnung sollen aber erhalten bleiben (US-F1-06/4, US-F2-05).</li>
+<li><strong>E-20:</strong> Die <strong>Woche</strong> ist keine eigene Klasse, sondern eine Eigenschaft der Ämtli-Zuteilung. Eine Woche hat ausser ihrem Datum keine eigenen Daten.</li>
+<li><strong>E-21:</strong> Der <strong>Saldo</strong> und der <strong>Ausgleichsvorschlag</strong> sind keine Klassen. Sie werden jedes Mal aus den Ausgaben, Anteilen und Rückzahlungen berechnet. So kann der Saldo nie im Widerspruch zu den Buchungen stehen.</li>
+<li><strong>E-22:</strong> Zwischen <strong>Artikel und Ausgabe gibt es keine Assoziation.</strong> Die Artikel werden beim Umwandeln von der Liste entfernt und in die Beschreibung der Ausgabe übernommen (US-F4-03).</li>
+<li><strong>E-23:</strong> Die <strong>Einkaufsliste</strong> ist eine eigene Klasse, obwohl jede WG genau eine hat. Damit bleibt das Modell nah an der Fachsprache, und F4 lässt sich später auf mehrere Listen erweitern, ohne dass sich F1 bis F3 ändern.</li>
+</ul>
+<h2>Umsetzungsstand</h2>
+<table>
+<thead>
+<tr>
+<th>Klasse</th>
+<th>Feature</th>
+<th>im Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Benutzer</td>
+<td>F1</td>
+<td>✔ (von Django mitgeliefert)</td>
+</tr>
+<tr>
+<td>WG, Mitgliedschaft</td>
+<td>F1</td>
+<td>✔ (<code>wg/models.py</code>)</td>
+</tr>
+<tr>
+<td>Ämtli, Ämtli-Zuteilung</td>
+<td>F2</td>
+<td>offen (App <code>aemtli</code>)</td>
+</tr>
+<tr>
+<td>Ausgabe, Ausgabenanteil, Rückzahlung</td>
+<td>F3</td>
+<td>offen (App <code>finanzen</code>)</td>
+</tr>
+<tr>
+<td>Einkaufsliste, Artikel</td>
+<td>F4</td>
+<td>nur spezifiziert</td>
+</tr>
+</tbody>
+</table>
+<p>Mit F1 bis F3 kommt die App auf 8 Klassen. Ohne Benutzer, den Django mitliefert, sind es 7 eigene. Die Mindestanforderung von 5 Entitäten ist damit auch dann erfüllt, wenn der Benutzer nicht mitzählt.</p>
+<script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs";mermaid.initialize({startOnLoad:true});</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontextabgrenzung (fachlich)</title>
+<style>body { font-family: system-ui, 'Segoe UI', Arial, sans-serif; max-width: 56rem; margin: 0 auto; padding: 1.5rem 1rem; line-height: 1.6; color: #1f2333; background: #f5f6fa; }
+h1, h2, h3 { color: #312e81; } h2 { border-bottom: 2px solid #4f46e5; padding-bottom: 0.2rem; }
+a { color: #3730a3; } img { max-width: 100%; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; background: #fff; font-size: 0.92rem; display: block; overflow-x: auto; }
+th, td { border: 1px solid #c8ccd8; padding: 0.35rem 0.55rem; vertical-align: top; text-align: left; }
+th { background: #e8e9f7; } code { background: #eceef5; padding: 0 0.2rem; border-radius: 3px; }
+pre { background: #1f2333; color: #f5f6fa; padding: 0.8rem; overflow-x: auto; border-radius: 6px; } pre code { background: none; color: inherit; }
+blockquote { border-left: 4px solid #4f46e5; margin: 1rem 0; padding: 0.2rem 1rem; background: #eef0fb; }
+.nav { font-size: 0.9rem; margin-bottom: 1rem; }</style>
+</head>
+<body>
+<p class="nav"><a href="../index.html">← Übersicht Ämtli</a></p>
+<h1>Kontextabgrenzung (fachlich)</h1>
+<blockquote>
+<p>Status: Entwurf vom 13.10.2026</p>
+</blockquote>
+<pre class="mermaid">flowchart LR
+    gast([Person ohne Konto])
+    mitglied([WG-Mitglied])
+    admin([WG-Admin])
+
+    subgraph system [Ämtli]
+        f1[F1 WG und Mitglieder]
+        f2[F2 Ämtliplan]
+        f3[F3 Ausgaben und Saldo]
+        f4[F4 Einkaufsliste]
+    end
+
+    chat[[Messenger / WG-Chat]]
+    bank[[Bank / TWINT]]
+
+    gast -- Konto erstellen, mit Code beitreten --&gt; f1
+    mitglied -- Ämtli sehen und abhaken --&gt; f2
+    mitglied -- Ausgaben und Rückzahlungen erfassen, Saldo sehen --&gt; f3
+    mitglied -- Artikel erfassen und abhaken --&gt; f4
+    admin -- Mitglieder, Rollen, Code verwalten --&gt; f1
+    admin -- Ämtli verwalten --&gt; f2
+    f4 -. Einkauf wird zur Ausgabe .-&gt; f3
+    admin -. Code weitergeben .-&gt; chat
+    chat -. Code .-&gt; gast
+    mitglied -. Geld überweisen .-&gt; bank
+</pre>
+<p>Durchgezogene Pfeile zeigen, wie die Nutzer mit Ämtli arbeiten. Gestrichelte Pfeile zeigen Abläufe ausserhalb des Systems oder zwischen den Features.</p>
+<h2>Nutzer</h2>
+<table>
+<thead>
+<tr>
+<th>Nutzer</th>
+<th>Beschreibung</th>
+<th>Persona</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Person ohne Konto</td>
+<td>Erstellt ein Konto und tritt mit einem Code bei.</td>
+<td>Sara vor dem Einzug</td>
+</tr>
+<tr>
+<td>WG-Mitglied</td>
+<td>Sieht und hakt Ämtli ab, erfasst Ausgaben, Rückzahlungen und Einkäufe.</td>
+<td>Marco, Sara</td>
+</tr>
+<tr>
+<td>WG-Admin</td>
+<td>Kann alles, was ein Mitglied kann, und verwaltet zusätzlich Mitglieder, Rollen, den Code und die Ämtli.</td>
+<td>Lena</td>
+</tr>
+</tbody>
+</table>
+<h2>Umsysteme</h2>
+<p>Ämtli ist an <strong>kein</strong> externes System angebunden (E-16). Diese Systeme liegen ausserhalb des Systems, gehören aber zum fachlichen Ablauf:</p>
+<table>
+<thead>
+<tr>
+<th>Umsystem</th>
+<th>Rolle im Ablauf</th>
+<th>Abgrenzung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Messenger / WG-Chat</td>
+<td>Darüber geben die Mitglieder den Einladungscode weiter.</td>
+<td>Ämtli verschickt keine Nachrichten oder E-Mails.</td>
+</tr>
+<tr>
+<td>Bank / TWINT</td>
+<td>Darüber wird das Geld zurückgezahlt.</td>
+<td>Ämtli bewegt kein Geld, sondern hält Zahlungen nur fest (US-F3-05).</td>
+</tr>
+<tr>
+<td>Browser auf Handy oder Laptop</td>
+<td>Damit greifen alle Nutzer auf Ämtli zu.</td>
+<td>Es gibt keine eigene App aus dem App Store.</td>
+</tr>
+</tbody>
+</table>
+<h2>Nicht im Umfang</h2>
+<p>Diese Dinge gehören bewusst nicht zum Produkt:
+- Erinnerungen per Push-Nachricht oder E-Mail
+- Ämtli tauschen oder aussetzen
+- Mitgliedschaft in mehreren WGs
+- Zahlungen direkt in der App
+- Fremdwährungen</p>
+<script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs";mermaid.initialize({startOnLoad:true});</script>
+</body>
+</html>
